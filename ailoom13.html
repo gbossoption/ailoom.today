@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AILoom — Weave through the world of AI</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23d4a853'/><circle cx='9' cy='16' r='4' fill='none' stroke='%23080c14' stroke-width='2'/><circle cx='23' cy='9' r='3' fill='none' stroke='%23080c14' stroke-width='2'/><circle cx='23' cy='23' r='3' fill='none' stroke='%23080c14' stroke-width='2'/><line x1='12.8' y1='14.2' x2='20.2' y2='10.6' stroke='%23080c14' stroke-width='1.6' stroke-linecap='round'/><line x1='12.8' y1='17.8' x2='20.2' y2='21.4' stroke='%23080c14' stroke-width='1.6' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#080c14;--deep:#0d1424;
+  --glass:rgba(255,255,255,0.04);--glass2:rgba(255,255,255,0.07);--glass3:rgba(255,255,255,0.10);
+  --rim:rgba(255,255,255,0.08);--rim2:rgba(255,255,255,0.14);--rim3:rgba(255,255,255,0.22);
+  --snow:#f0f4ff;--mist:#8898bb;--fog:#4a5878;
+  --gold:#d4a853;--gold2:#f0c96a;
+  --gpt:#34d399;--cla:#fbbf24;--gem:#60a5fa;--grk:#c084fc;--meta:#2d8cf0;
+  --r:14px;--r2:8px;
+  --fh:'Playfair Display',serif;--fb:'Plus Jakarta Sans',sans-serif;
+  --s1:0 1px 4px rgba(0,0,0,.5),0 1px 2px rgba(0,0,0,.3);
+  --s2:0 8px 32px rgba(0,0,0,.55),0 2px 8px rgba(0,0,0,.3);
+}
+*,::before,::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--snow);font-family:var(--fb);font-size:15px;line-height:1.65;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;padding-top:60px}
+a{color:inherit;text-decoration:none}
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+#vote-fx{position:fixed;inset:0;z-index:9000;pointer-events:none}
+
+/* ══ NAV ══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:300;height:60px;background:rgba(8,12,20,.94);backdrop-filter:blur(24px);border-bottom:1px solid var(--rim);display:flex;align-items:center;padding:0 18px;gap:10px}
+.logo-btn{display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0;text-decoration:none}
+.logo-mark{width:34px;height:34px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 12px rgba(212,168,83,.4)}
+.logo-mark svg{width:18px;height:18px}
+.logo-text{font-family:var(--fh);font-size:21px;font-weight:700;letter-spacing:-.02em;color:var(--snow)}
+.logo-text em{font-style:italic;color:var(--gold)}
+.nav-search{position:relative;flex:1;max-width:400px;margin:0 auto}
+.nav-search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--fog);pointer-events:none}
+.nav-si{width:100%;background:var(--glass2);border:1px solid var(--rim2);color:var(--snow);font-family:var(--fb);font-size:13px;padding:8px 36px;border-radius:20px;outline:none;transition:border-color .2s}
+.nav-si::placeholder{color:var(--fog)}
+.nav-si:focus{border-color:rgba(212,168,83,.5)}
+.nav-si-x{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--fog);cursor:pointer;display:none;font-size:13px}
+.live-chip{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--mist);background:var(--glass2);border:1px solid var(--rim);padding:5px 10px;border-radius:20px;flex-shrink:0}
+.ld{width:6px;height:6px;border-radius:50%;background:var(--gpt);animation:blink 2s infinite;box-shadow:0 0 6px var(--gpt)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.nav-r{display:flex;align-items:center;gap:6px;flex-shrink:0}
+
+/* Language switcher */
+.lang-btn{background:var(--glass2);border:1px solid var(--rim2);border-radius:20px;padding:5px 10px;cursor:pointer;font-size:12px;font-weight:700;color:var(--mist);display:flex;align-items:center;gap:5px;transition:all .15s;white-space:nowrap}
+.lang-btn:hover{background:var(--glass3);border-color:var(--rim3)}
+.login-btn{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:6px 13px;border-radius:20px;border:1px solid var(--rim2);background:var(--glass2);color:var(--snow);cursor:pointer;transition:all .18s;font-family:var(--fb);white-space:nowrap}
+.login-btn:hover{background:var(--glass3);border-color:var(--rim3)}
+.login-btn svg{width:14px;height:14px;flex-shrink:0}
+.user-chip{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;padding:4px 10px 4px 4px;border-radius:20px;border:1px solid var(--rim2);background:var(--glass2);color:var(--snow);white-space:nowrap}
+.user-avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--night);flex-shrink:0}
+.signout-btn{font-size:11px;font-weight:700;padding:4px 9px;border-radius:20px;border:1px solid var(--rim2);background:var(--glass);color:var(--fog);cursor:pointer;transition:all .15s;font-family:var(--fb)}
+.signout-btn:hover{background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.3);color:#f87171}
+.votes-chip{font-size:11px;font-weight:700;padding:4px 9px;border-radius:20px;background:rgba(212,168,83,.1);border:1px solid rgba(212,168,83,.25);color:var(--gold);white-space:nowrap}
+
+/* ══ SECTIONS ══ */
+.section{padding:52px 44px;border-bottom:1px solid var(--rim);position:relative}
+.section:last-child{border-bottom:none}
+.section-eyebrow{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center}
+.section-eyebrow::before,.section-eyebrow::after{content:'';width:40px;height:1px;background:linear-gradient(to right,transparent,rgba(212,168,83,.3));flex-shrink:0}
+.section-eyebrow::after{background:linear-gradient(to left,transparent,rgba(212,168,83,.3))}
+.section-title{font-family:var(--fh);font-size:clamp(26px,4vw,40px);font-weight:700;letter-spacing:-.02em;color:var(--snow);margin-bottom:8px;line-height:1.15;text-align:center}
+.section-title em{font-style:italic;color:var(--gold)}
+.section-sub{font-size:14px;color:var(--mist);margin-bottom:28px;line-height:1.6;max-width:560px;text-align:center;margin-left:auto;margin-right:auto}
+
+/* ══ AI NEWS — simplified single card ══ */
+.news-card-big{background:linear-gradient(135deg,rgba(96,165,250,.05),rgba(212,168,83,.04));border:1px solid rgba(212,168,83,.15);border-radius:20px;padding:36px 44px;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:16px}
+.news-orb{position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:var(--gem);filter:blur(100px);opacity:.04;pointer-events:none}
+.nc-model{background:var(--glass);border:1px solid var(--rim);border-radius:12px;padding:16px;transition:border-color .2s,background .2s;cursor:default}
+.nc-model:hover{border-color:var(--rim2);background:var(--glass2)}
+.nc-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-bottom:8px}
+.nc-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fog);margin-bottom:5px}
+.nc-headline{font-family:var(--fh);font-size:13px;font-weight:600;color:var(--snow);line-height:1.35;margin-bottom:5px}
+.nc-sub{font-size:11px;color:var(--mist);line-height:1.4;margin-bottom:8px}
+.nc-tag{display:inline-block;font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:.05em}
+.nc-date{font-size:10px;color:var(--fog);margin-top:5px}
+
+/* ══ BEST OF WEEK — Big 5 comparison ══ */
+.bow-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.bow-card{background:var(--glass);border:1px solid var(--rim);border-radius:14px;padding:18px;text-align:center;transition:all .2s;cursor:pointer;position:relative}
+.bow-card:hover{border-color:var(--rim2);background:var(--glass2);transform:translateY(-2px)}
+.bow-card.winner{border-color:rgba(212,168,83,.4);background:rgba(212,168,83,.06)}
+.bow-crown{position:absolute;top:-10px;left:50%;transform:translateX(-50%);font-size:20px}
+.bow-icon{width:48px;height:48px;border-radius:12px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--glass2);border:1px solid var(--rim)}
+.bow-name{font-family:var(--fh);font-size:14px;font-weight:700;color:var(--snow);margin-bottom:3px}
+.bow-maker{font-size:10px;color:var(--fog);margin-bottom:10px}
+.bow-score{font-family:var(--fh);font-size:26px;font-weight:800;margin-bottom:4px}
+.bow-score-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fog);margin-bottom:12px}
+.bow-bars{display:flex;flex-direction:column;gap:5px;text-align:left}
+.bow-bar-row{display:flex;align-items:center;gap:6px}
+.bow-bar-label{font-size:9px;color:var(--fog);width:40px;flex-shrink:0}
+.bow-bar-track{flex:1;height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+.bow-bar-fill{height:3px;border-radius:2px}
+.bow-bar-val{font-size:9px;font-weight:700;color:var(--mist);width:24px;text-align:right;flex-shrink:0}
+.bow-week-label{font-size:10px;color:var(--fog);margin-top:8px}
+
+/* ══ BIG 5 MODELS — horizontal bars, popup detail ══ */
+.models-list{display:flex;flex-direction:column;gap:10px}
+.mbar{background:var(--glass);border:1px solid var(--rim);border-radius:14px;padding:16px 20px;display:grid;grid-template-columns:44px 1fr 80px 90px 80px 110px;gap:10px;align-items:center;transition:all .2s;cursor:pointer;position:relative;overflow:hidden}
+.mbar:hover{border-color:var(--rim2);background:var(--glass2)}
+.mbar::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,currentColor,transparent);opacity:0;transition:opacity .3s}
+.mbar:hover::before{opacity:.4}
+.mbar-icon{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;border:1px solid var(--rim2);background:var(--glass2);flex-shrink:0}
+.mbar-name{font-family:var(--fh);font-size:18px;font-weight:700;color:var(--snow)}
+.mbar-maker{font-size:11px;color:var(--fog)}
+.mbar-users{font-family:var(--fh);font-size:14px;font-weight:700;color:var(--snow);text-align:center}
+.mbar-users-label{font-size:9px;color:var(--fog);text-align:center}
+.mbar-price{font-size:12px;color:var(--mist);text-align:center}
+.mbar-free{font-size:10px;color:var(--gpt);font-weight:700}
+.mbar-update{font-size:11px;color:var(--mist);text-align:right;line-height:1.3}
+.mbar-update-date{font-size:9px;color:var(--fog)}
+.mbar-cta{font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;background:rgba(212,168,83,.1);border:1px solid rgba(212,168,83,.25);color:var(--gold);cursor:pointer;font-family:var(--fb);transition:all .15s;text-align:center;white-space:nowrap}
+.mbar-cta:hover{background:var(--gold);color:var(--night)}
+
+/* Model popup */
+.model-popup-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.75);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.model-popup-overlay.open{opacity:1;pointer-events:all}
+.model-popup{background:rgba(10,15,26,.98);border:1px solid var(--rim2);border-radius:22px;width:min(760px,92vw);max-height:88vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.7);scrollbar-width:thin;scrollbar-color:var(--rim) transparent;animation:popIn .22s ease both}
+@keyframes popIn{from{opacity:0;transform:scale(.95) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.mp-head{padding:24px 28px 18px;border-bottom:1px solid var(--rim);display:flex;align-items:center;gap:14px;position:sticky;top:0;background:rgba(10,15,26,.98);backdrop-filter:blur(20px);z-index:2}
+.mp-icon{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;border:1px solid var(--rim2);background:var(--glass2);flex-shrink:0}
+.mp-title-wrap{flex:1}
+.mp-name{font-family:var(--fh);font-size:26px;font-weight:700;color:var(--snow)}
+.mp-sub{font-size:13px;color:var(--mist)}
+.mp-visit{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:8px 16px;border-radius:20px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--night);cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.mp-close{background:none;border:1px solid var(--rim2);border-radius:9px;color:var(--fog);font-size:16px;cursor:pointer;padding:6px 10px;transition:all .15s;flex-shrink:0}
+.mp-close:hover{color:var(--snow);background:var(--glass2)}
+.mp-body{padding:24px 28px}
+.mp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.mp-section{margin-bottom:20px}
+.mp-sec-title{font-family:var(--fh);font-size:16px;font-weight:700;color:var(--snow);margin-bottom:12px}
+.mp-pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
+.mp-pc{background:var(--glass);border:1px solid var(--rim);border-radius:11px;padding:14px;text-align:center}
+.mp-pc.hi{border-color:rgba(212,168,83,.35);background:rgba(212,168,83,.06)}
+.mp-pc-tier{font-size:9px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--fog);margin-bottom:5px}
+.mp-pc-price{font-family:var(--fh);font-size:22px;font-weight:700;color:var(--snow);margin-bottom:2px}
+.mp-pc-price.free{color:var(--gpt)}
+.mp-pc-desc{font-size:11px;color:var(--mist)}
+.mp-stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}
+.mp-stat{background:var(--glass);border:1px solid var(--rim);border-radius:10px;padding:12px;text-align:center}
+.mp-stat-l{font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:var(--fog);margin-bottom:4px;font-weight:700}
+.mp-stat-v{font-family:var(--fh);font-size:18px;font-weight:700;color:var(--snow)}
+.mp-skill-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.mp-skill-label{font-size:12px;color:var(--mist);width:120px;flex-shrink:0}
+.mp-skill-track{flex:1;height:4px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+.mp-skill-fill{height:4px;border-radius:2px}
+.mp-skill-pct{font-size:11px;font-weight:700;color:var(--mist);width:32px;text-align:right}
+.mp-update-item{display:flex;gap:10px;padding-bottom:12px}
+.mp-update-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:4px;flex-shrink:0}
+.mp-update-text{font-size:12px;color:var(--mist);line-height:1.4}
+.mp-update-date{font-size:10px;color:var(--fog);margin-bottom:2px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.mp-tip-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mp-tip{background:var(--glass);border:1px solid var(--rim);border-radius:9px;padding:10px 12px}
+.mp-tip-l{font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:var(--gold);margin-bottom:3px;font-weight:700}
+.mp-tip-t{font-size:11px;color:var(--mist);line-height:1.4}
+
+/* ══ AI TOOLS ══ */
+.filter-bar{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.filt{font-size:11px;font-weight:600;padding:5px 14px;border-radius:20px;border:1px solid var(--rim);background:var(--glass);color:var(--fog);cursor:pointer;transition:all .18s;position:relative}
+.filt:hover{color:var(--mist);border-color:var(--rim2);background:var(--glass2)}
+.filt.on{background:var(--gold);color:var(--night);border-color:var(--gold);box-shadow:0 2px 12px rgba(212,168,83,.3);font-weight:700}
+.filt-hot-badge{position:absolute;top:-7px;right:-6px;font-size:11px;pointer-events:none;animation:flamePulse 1.5s infinite}
+@keyframes flamePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+.lb-header{display:flex;align-items:center;justify-content:space-between;padding:0 14px 10px;border-bottom:1px solid var(--rim);margin-bottom:8px}
+.lb-label{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold)}
+.lb-total{font-size:11px;color:var(--fog)}
+.lb-total b{color:var(--mist);font-weight:700}
+.lb-votes-left{font-size:11px;padding:3px 9px;border-radius:20px;background:rgba(212,168,83,.1);border:1px solid rgba(212,168,83,.2);color:var(--gold);font-weight:700}
+#tool-list{position:relative;min-height:200px}
+.tool-row{display:grid;grid-template-columns:50px 1fr 88px 66px 56px 150px;gap:8px;align-items:center;padding:12px 14px;background:var(--glass);border:1px solid var(--rim);border-radius:11px;margin-bottom:5px;transition:border-color .2s,background .2s;backdrop-filter:blur(12px)}
+.tool-row:hover{border-color:var(--rim2);background:var(--glass2)}
+.tool-row.rank-1{border-color:rgba(212,168,83,.35);background:rgba(212,168,83,.06)}
+.tool-row.rank-2{border-color:rgba(255,255,255,.12)}
+.tool-row.rank-3{border-color:rgba(192,132,252,.2);background:rgba(192,132,252,.03)}
+.tr-rank-wrap{display:flex;align-items:center;justify-content:flex-end;gap:3px}
+.tr-rank{font-family:var(--fh);font-size:14px;font-weight:700;color:var(--fog)}
+.tr-rank.gold{color:var(--gold)}
+.tr-rank.silver{color:#94a3b8}
+.tr-rank.bronze{color:#c084fc}
+.rank-medal{font-size:13px;line-height:1}
+.tr-name-wrap{display:flex;align-items:center;gap:9px;min-width:0}
+.tr-icon{width:30px;height:30px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;background:var(--glass2);border:1px solid var(--rim);overflow:hidden;cursor:pointer}
+.tr-name{font-size:13px;color:var(--snow);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;transition:color .15s}
+.tr-name:hover{color:var(--gold)}
+.tr-maker{font-size:10px;color:var(--fog)}
+.tr-cat{font-size:10px;padding:2px 8px;border-radius:20px;width:fit-content;font-weight:600}
+.tr-hot{font-size:10px;padding:2px 7px;border-radius:20px;background:rgba(52,211,153,.12);color:var(--gpt);font-weight:700;border:1px solid rgba(52,211,153,.2);width:fit-content}
+.tr-hot.cold{opacity:0;pointer-events:none}
+.tr-gr{font-size:12px;font-weight:700;color:var(--gpt)}
+.vote-wrap{display:flex;align-items:center;gap:4px}
+.vote-btn{display:flex;align-items:center;gap:5px;padding:6px 10px;border-radius:20px;border:1px solid var(--rim2);background:var(--glass);color:var(--mist);font-size:11px;font-weight:700;font-family:var(--fb);cursor:pointer;transition:all .2s;white-space:nowrap;position:relative;overflow:hidden}
+.vote-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--gold),var(--gold2));opacity:0;transition:opacity .2s;border-radius:20px}
+.vote-btn:hover:not(.voted):not(.disabled)::before{opacity:.15}
+.vote-btn:hover:not(.voted):not(.disabled){border-color:rgba(212,168,83,.5);color:var(--gold)}
+.vote-btn.voted{background:rgba(212,168,83,.18);color:var(--gold2);border-color:rgba(212,168,83,.5)}
+.vote-btn.disabled{opacity:.4;cursor:not-allowed}
+.vote-btn.downvoted{background:rgba(248,113,113,.15);color:#f87171;border-color:rgba(248,113,113,.4)}
+.vote-btn.pop{animation:popBounce .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popBounce{0%{transform:scale(1)}30%{transform:scale(1.18)}60%{transform:scale(.96)}100%{transform:scale(1)}}
+.v-arrow{font-size:12px;line-height:1;position:relative;z-index:1}
+.vcount{font-weight:800;font-size:12px;position:relative;z-index:1}
+.downvote-btn{display:flex;align-items:center;gap:4px;padding:6px 9px;border-radius:20px;border:1px solid var(--rim2);background:var(--glass);color:var(--mist);font-size:11px;font-weight:700;font-family:var(--fb);cursor:pointer;transition:all .2s;white-space:nowrap}
+.downvote-btn:hover:not(.disabled){border-color:rgba(248,113,113,.4);color:#f87171}
+.downvote-btn.downvoted{background:rgba(248,113,113,.15);color:#f87171;border-color:rgba(248,113,113,.4)}
+.downvote-btn.disabled{opacity:.4;cursor:not-allowed}
+.no-res{padding:40px 0;text-align:center;color:var(--fog);font-size:14px}
+.tool-row.rank-up{animation:rankFlash .7s ease both}
+@keyframes rankFlash{0%{background:var(--glass)}30%{background:rgba(212,168,83,.14);border-color:rgba(212,168,83,.45)}100%{background:var(--glass)}}
+.moved-badge{display:inline-flex;align-items:center;gap:2px;font-size:10px;font-weight:700;color:var(--gpt);background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.2);padding:2px 7px;border-radius:20px;margin-left:6px;animation:fadeInOut 2.5s ease forwards}
+@keyframes fadeInOut{0%{opacity:0;transform:translateY(3px)}15%{opacity:1;transform:translateY(0)}80%{opacity:1}100%{opacity:0}}
+.login-to-vote{font-size:11px;color:var(--fog);font-style:italic;white-space:nowrap}
+/* cat pills */
+.cc-code{background:rgba(192,132,252,.15);color:#c084fc}
+.cc-img{background:rgba(251,113,133,.15);color:#fb7185}
+.cc-aud{background:rgba(52,211,153,.15);color:var(--gpt)}
+.cc-vid{background:rgba(251,191,36,.15);color:var(--cla)}
+.cc-wri{background:rgba(96,165,250,.15);color:var(--gem)}
+.cc-sch{background:rgba(74,222,128,.15);color:#4ade80}
+.cc-3d{background:rgba(244,114,182,.15);color:#f472b6}
+.cc-ux{background:rgba(168,85,247,.15);color:#a855f7}
+
+/* ══ QUIZ SECTION ══ */
+.quiz-wrap{max-width:640px;margin:0 auto}
+.quiz-step{display:none}
+.quiz-step.active{display:block;animation:fadeUp .22s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.quiz-q{font-family:var(--fh);font-size:22px;font-weight:700;color:var(--snow);margin-bottom:6px;text-align:center}
+.quiz-q-sub{font-size:13px;color:var(--mist);margin-bottom:22px;text-align:center}
+.quiz-progress{height:3px;background:var(--rim);border-radius:2px;margin-bottom:28px;overflow:hidden}
+.quiz-progress-fill{height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px;transition:width .4s ease}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.quiz-option{background:var(--glass);border:1px solid var(--rim);border-radius:12px;padding:14px 16px;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:10px}
+.quiz-option:hover{border-color:rgba(212,168,83,.4);background:rgba(212,168,83,.06)}
+.quiz-option.selected{border-color:var(--gold);background:rgba(212,168,83,.12)}
+.quiz-option-icon{font-size:20px;flex-shrink:0}
+.quiz-option-text{font-size:13px;font-weight:600;color:var(--snow)}
+.quiz-option-sub{font-size:11px;color:var(--fog);margin-top:2px}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:20px}
+.quiz-btn{font-size:13px;font-weight:700;padding:10px 22px;border-radius:22px;border:none;cursor:pointer;transition:all .2s;font-family:var(--fb)}
+.quiz-btn-prev{background:var(--glass2);color:var(--mist);border:1px solid var(--rim2)}
+.quiz-btn-prev:hover{background:var(--glass3)}
+.quiz-btn-next{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--night)}
+.quiz-btn-next:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(212,168,83,.4)}
+.quiz-btn-next:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.quiz-result{display:none}
+.quiz-result.show{display:block;animation:fadeUp .25s ease both}
+.quiz-result-head{text-align:center;margin-bottom:24px}
+.quiz-result-badge{font-size:48px;margin-bottom:10px}
+.quiz-result-title{font-family:var(--fh);font-size:24px;font-weight:700;color:var(--snow);margin-bottom:5px}
+.quiz-result-sub{font-size:14px;color:var(--mist)}
+.quiz-recs{display:flex;flex-direction:column;gap:10px}
+.quiz-rec{background:var(--glass);border:1px solid var(--rim);border-radius:14px;padding:16px 18px;display:flex;align-items:center;gap:14px;transition:all .2s}
+.quiz-rec.top{border-color:rgba(212,168,83,.35);background:rgba(212,168,83,.06)}
+.quiz-rec-rank{font-family:var(--fh);font-size:20px;font-weight:800;color:var(--gold);width:28px;flex-shrink:0;text-align:center}
+.quiz-rec-icon{font-size:24px;flex-shrink:0}
+.quiz-rec-name{font-family:var(--fh);font-size:16px;font-weight:700;color:var(--snow)}
+.quiz-rec-reason{font-size:12px;color:var(--mist);line-height:1.4;margin-top:2px}
+.quiz-rec-score{font-size:13px;font-weight:700;color:var(--gold);margin-left:auto;flex-shrink:0}
+.quiz-restart-btn{display:block;margin:20px auto 0;font-size:13px;font-weight:700;padding:10px 24px;border-radius:22px;background:var(--glass2);border:1px solid var(--rim2);color:var(--mist);cursor:pointer;font-family:var(--fb);transition:all .2s}
+.quiz-restart-btn:hover{background:var(--glass3);color:var(--snow)}
+
+/* ══ GLOSSARY ══ */
+.glossary-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.gloss-card{background:var(--glass);border:1px solid var(--rim);border-radius:12px;padding:16px;cursor:pointer;transition:all .18s;position:relative}
+.gloss-card:hover{border-color:rgba(212,168,83,.3);background:var(--glass2)}
+.gloss-term{font-family:var(--fh);font-size:14px;font-weight:700;color:var(--gold);margin-bottom:5px}
+.gloss-def{font-size:12px;color:var(--mist);line-height:1.45}
+.gloss-badge{position:absolute;top:10px;right:10px;font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;background:rgba(96,165,250,.12);color:var(--gem);border:1px solid rgba(96,165,250,.2)}
+.gloss-tooltip{position:fixed;z-index:600;background:rgba(10,15,26,.97);border:1px solid var(--rim2);border-radius:14px;padding:16px 18px;max-width:280px;box-shadow:0 8px 32px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .18s;backdrop-filter:blur(20px)}
+.gloss-tooltip.visible{opacity:1}
+.gloss-tt-term{font-family:var(--fh);font-size:14px;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gloss-tt-def{font-size:12px;color:var(--mist);line-height:1.5}
+.gloss-tt-example{font-size:11px;color:var(--fog);margin-top:7px;padding-top:7px;border-top:1px solid var(--rim);font-style:italic}
+
+/* ══ SUBMIT TOOL SECTION ══ */
+.submit-form{max-width:600px;margin:0 auto;background:var(--glass);border:1px solid var(--rim);border-radius:20px;padding:32px}
+.sf-title{font-family:var(--fh);font-size:20px;font-weight:700;color:var(--snow);margin-bottom:5px}
+.sf-sub{font-size:13px;color:var(--mist);margin-bottom:22px;line-height:1.5}
+.sf-pricing{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.sf-tier{flex:1;min-width:140px;background:var(--glass2);border:1px solid var(--rim);border-radius:12px;padding:14px;text-align:center;cursor:pointer;transition:all .18s}
+.sf-tier:hover{border-color:rgba(212,168,83,.3)}
+.sf-tier.selected{border-color:var(--gold);background:rgba(212,168,83,.08)}
+.sf-tier-name{font-family:var(--fh);font-size:14px;font-weight:700;color:var(--snow);margin-bottom:4px}
+.sf-tier-price{font-size:18px;font-weight:800;color:var(--gold);margin-bottom:3px}
+.sf-tier-desc{font-size:10px;color:var(--fog);line-height:1.3}
+.sf-row{margin-bottom:14px}
+.sf-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--fog);margin-bottom:6px;display:block}
+.sf-input,.sf-select,.sf-textarea{width:100%;background:var(--glass2);border:1px solid var(--rim2);color:var(--snow);font-family:var(--fb);font-size:13px;padding:9px 13px;border-radius:9px;outline:none;transition:border-color .2s}
+.sf-input::placeholder,.sf-textarea::placeholder{color:var(--fog)}
+.sf-input:focus,.sf-select:focus,.sf-textarea:focus{border-color:rgba(212,168,83,.5)}
+.sf-select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a5878' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.sf-select option{background:#0d1424;color:var(--snow)}
+.sf-textarea{resize:vertical;min-height:80px;line-height:1.5}
+.sf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sf-submit{width:100%;padding:12px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--night);font-size:13px;font-weight:800;font-family:var(--fb);cursor:pointer;transition:all .2s;margin-top:4px}
+.sf-submit:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(212,168,83,.4)}
+.sf-success{text-align:center;padding:20px 0}
+.sf-success-icon{font-size:48px;margin-bottom:12px}
+.sf-success-title{font-family:var(--fh);font-size:20px;font-weight:700;color:var(--snow);margin-bottom:7px}
+.sf-success-sub{font-size:13px;color:var(--mist);line-height:1.5}
+
+/* ══ TOC DOTS ══ */
+.toc-dots{position:fixed;top:50%;right:14px;transform:translateY(-50%);z-index:251;display:flex;flex-direction:column;align-items:center;gap:12px}
+.toc-dot-btn{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.12);cursor:pointer;transition:all .22s;position:relative;flex-shrink:0}
+.toc-dot-btn:hover{background:rgba(212,168,83,.7);border-color:var(--gold);transform:scale(1.4)}
+.toc-dot-btn.active{background:var(--gold);border-color:var(--gold);box-shadow:0 0 8px rgba(212,168,83,.6);transform:scale(1.2)}
+.toc-dot-btn::before{content:attr(data-label);position:absolute;right:calc(100% + 10px);top:50%;transform:translateY(-50%);background:rgba(8,12,20,.92);backdrop-filter:blur(10px);color:var(--snow);font-family:var(--fb);font-size:11px;font-weight:600;padding:4px 10px;border-radius:7px;white-space:nowrap;border:1px solid var(--rim2);opacity:0;pointer-events:none;transition:opacity .18s}
+.toc-dot-btn:hover::before{opacity:1}
+
+/* ══ FOOTER ══ */
+.site-footer{border-top:1px solid var(--rim);padding:44px 44px 36px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;background:rgba(8,12,20,.6)}
+.footer-brand{font-family:var(--fh);font-size:26px;font-weight:700;color:var(--snow)}
+.footer-brand em{font-style:italic;color:var(--gold)}
+.footer-tagline{font-size:13px;color:var(--fog);margin-top:-10px}
+.support-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.support-btn{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:700;padding:12px 24px;border-radius:28px;cursor:pointer;transition:all .2s;font-family:var(--fb);border:none;text-decoration:none;letter-spacing:.01em;box-shadow:var(--s1)}
+.bmc-btn{background:linear-gradient(135deg,#FFDD00,#FFC600);color:#0d1117}
+.bmc-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(255,220,0,.4)}
+.crypto-btn{background:linear-gradient(135deg,#f7931a,#ffb347);color:#0d1117}
+.crypto-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(247,147,26,.4)}
+.crypto-confirm{font-size:12px;color:var(--gpt);display:none;margin-top:-8px}
+.footer-links{display:flex;gap:20px;font-size:12px;color:var(--fog)}
+.footer-links a{cursor:pointer;transition:color .15s}
+.footer-links a:hover{color:var(--mist)}
+.footer-copy{font-size:11px;color:var(--fog);opacity:.7}
+
+/* ══ MODALS ══ */
+.modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:rgba(13,20,36,.97);border:1px solid var(--rim2);border-radius:20px;padding:36px;max-width:400px;width:90%;text-align:center;box-shadow:0 16px 60px rgba(0,0,0,.6);backdrop-filter:blur(24px);position:relative}
+.modal-close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--fog);font-size:20px;cursor:pointer;padding:4px 8px;border-radius:6px;transition:color .15s}
+.modal-close:hover{color:var(--snow)}
+.modal-logo{font-family:var(--fh);font-size:26px;font-weight:700;color:var(--snow);margin-bottom:6px}
+.modal-logo em{font-style:italic;color:var(--gold)}
+.modal-sub{font-size:13px;color:var(--mist);margin-bottom:24px;line-height:1.5}
+.google-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:13px 20px;border-radius:12px;border:1px solid var(--rim2);background:var(--glass2);color:var(--snow);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--fb);margin-bottom:12px}
+.google-btn:hover{background:var(--glass3);border-color:var(--rim3)}
+.google-btn svg{width:20px;height:20px;flex-shrink:0}
+.modal-note{font-size:11px;color:var(--fog);line-height:1.5}
+
+/* Feedback modal */
+.fb-modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.fb-modal-overlay.open{opacity:1;pointer-events:all}
+.fb-modal{background:rgba(13,20,36,.97);border:1px solid var(--rim2);border-radius:20px;padding:32px;max-width:480px;width:90%;box-shadow:0 16px 60px rgba(0,0,0,.6);backdrop-filter:blur(24px);position:relative;max-height:90vh;overflow-y:auto}
+.fb-close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--fog);font-size:20px;cursor:pointer;padding:4px 8px;border-radius:6px;transition:color .15s}
+.fb-close:hover{color:var(--snow)}
+.fb-title{font-family:var(--fh);font-size:22px;font-weight:700;color:var(--snow);margin-bottom:5px}
+.fb-title em{font-style:italic;color:var(--gold)}
+.fb-sub{font-size:13px;color:var(--mist);margin-bottom:22px;line-height:1.5}
+.fb-row{margin-bottom:14px}
+.fb-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--fog);margin-bottom:6px;display:block}
+.fb-input,.fb-select,.fb-textarea{width:100%;background:var(--glass2);border:1px solid var(--rim2);color:var(--snow);font-family:var(--fb);font-size:13px;padding:9px 13px;border-radius:9px;outline:none;transition:border-color .2s}
+.fb-input::placeholder,.fb-textarea::placeholder{color:var(--fog)}
+.fb-input:focus,.fb-select:focus,.fb-textarea:focus{border-color:rgba(212,168,83,.5)}
+.fb-select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a5878' stroke-width='1.5' fill='none' fill-rule='evenodd' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.fb-select option{background:#0d1424;color:var(--snow)}
+.fb-textarea{resize:vertical;min-height:90px;line-height:1.5}
+.fb-rating{display:flex;gap:7px}
+.fb-star{width:34px;height:34px;border:1px solid var(--rim2);border-radius:7px;background:var(--glass);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:all .15s}
+.fb-star.on{background:rgba(212,168,83,.15);border-color:rgba(212,168,83,.4)}
+.fb-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fb-submit{width:100%;padding:12px;border-radius:11px;border:none;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--night);font-size:13px;font-weight:800;font-family:var(--fb);cursor:pointer;transition:all .2s;margin-top:4px}
+.fb-submit:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(212,168,83,.4)}
+.fb-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.fb-success{text-align:center;padding:16px 0}
+.fb-success-icon{font-size:44px;margin-bottom:12px}
+.fb-success-title{font-family:var(--fh);font-size:20px;font-weight:700;color:var(--snow);margin-bottom:7px}
+.fb-success-sub{font-size:13px;color:var(--mist);line-height:1.5}
+
+/* TOAST */
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(16px);background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--night);font-size:13px;font-weight:800;padding:11px 24px;border-radius:26px;opacity:0;transition:all .28s;z-index:500;pointer-events:none;font-family:var(--fb);box-shadow:0 4px 18px rgba(212,168,83,.4)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* FAB */
+.feedback-fab{position:fixed;bottom:26px;right:26px;z-index:400;display:flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--night);font-size:13px;font-weight:800;padding:10px 18px;border-radius:26px;border:none;cursor:pointer;box-shadow:0 4px 18px rgba(212,168,83,.4);transition:transform .2s,box-shadow .2s;font-family:var(--fb)}
+.feedback-fab:hover{transform:translateY(-2px);box-shadow:0 6px 26px rgba(212,168,83,.55)}
+.feedback-fab svg{width:15px;height:15px;flex-shrink:0}
+
+/* SEARCH PANEL */
+.search-results-panel{display:none;padding:20px 44px 0;position:relative;z-index:2}
+.sr-meta{font-size:12px;color:var(--fog);margin-bottom:14px}
+.sr-meta b{color:var(--mist)}
+.sr-group{margin-bottom:16px}
+.sr-group-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.sr-item{display:flex;align-items:center;gap:10px;padding:10px 13px;background:var(--glass);border:1px solid var(--rim);border-radius:var(--r2);margin-bottom:4px;cursor:pointer;transition:border-color .15s,background .15s}
+.sr-item:hover{border-color:var(--rim2);background:var(--glass2)}
+.sr-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.sr-name{font-size:13px;color:var(--snow);flex:1;font-weight:500}
+.sr-sub{font-size:11px;color:var(--fog)}
+.sr-type{font-size:9px;padding:2px 7px;border-radius:20px;background:var(--glass2);color:var(--mist);font-weight:700;letter-spacing:.05em;text-transform:uppercase;flex-shrink:0;border:1px solid var(--rim)}
+
+/* GitHub section */
+.github-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.gh-step{background:var(--glass);border:1px solid var(--rim);border-radius:14px;padding:18px;text-align:center}
+.gh-step-num{width:32px;height:32px;border-radius:50%;background:rgba(212,168,83,.15);border:1px solid rgba(212,168,83,.3);color:var(--gold);font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.gh-step-title{font-family:var(--fh);font-size:14px;font-weight:700;color:var(--snow);margin-bottom:5px}
+.gh-step-desc{font-size:12px;color:var(--mist);line-height:1.4}
+.gh-code{background:rgba(0,0,0,.4);border:1px solid var(--rim);border-radius:10px;padding:14px 18px;font-size:12px;font-family:monospace;color:#7dd3fc;margin:14px 0;overflow-x:auto;line-height:1.6}
+.gh-code span{color:var(--gold)}
+.gh-highlight{background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.2);border-radius:12px;padding:16px;margin-top:14px;font-size:13px;color:var(--mist);line-height:1.6}
+.gh-highlight b{color:var(--snow)}
+.gh-highlight code{background:rgba(255,255,255,.08);padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px;color:#7dd3fc}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .bow-grid{grid-template-columns:repeat(3,1fr)}
+  .news-card-big{grid-template-columns:1fr 1fr 1fr}
+  .github-steps{grid-template-columns:repeat(2,1fr)}
+  .glossary-wrap{grid-template-columns:1fr 1fr}
+  .tool-row{grid-template-columns:40px 1fr 80px 54px 50px auto}
+  .mp-grid{grid-template-columns:1fr}
+  .mp-stat-row{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .nav{padding:0 12px;gap:6px}
+  .nav-search{max-width:160px}
+  .live-chip{display:none}
+  .section{padding:36px 18px}
+  .search-results-panel{padding:16px 18px 0}
+  .bow-grid{grid-template-columns:1fr 1fr}
+  .news-card-big{grid-template-columns:1fr 1fr}
+  .quiz-options{grid-template-columns:1fr}
+  .mbar{grid-template-columns:40px 1fr auto auto}
+  .mbar-users,.mbar-price,.mbar-update{display:none}
+  .tool-row{grid-template-columns:30px 1fr auto auto}
+  .tr-hot,.tr-gr,.tr-cat{display:none}
+  .glossary-wrap{grid-template-columns:1fr}
+  .sf-grid{grid-template-columns:1fr}
+  .github-steps{grid-template-columns:1fr 1fr}
+  .site-footer{padding:36px 18px 32px}
+}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<canvas id="vote-fx"></canvas>
+
+<!-- ══ LOGIN MODAL ══ -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-logo"><em>AI</em>Loom</div>
+    <div class="modal-sub" id="modal-sub" data-en="Sign in to vote on AI tools. You get 5 votes per day, refreshed at midnight." data-zh="登录后即可每日投票5次，每天午夜重置。">Sign in to vote on AI tools. You get 5 votes per day, refreshed at midnight.</div>
+    <button class="google-btn" onclick="signInWithGoogle()">
+      <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      <span data-en="Continue with Google" data-zh="使用谷歌账户登录">Continue with Google</span>
+    </button>
+    <div class="modal-note" data-en="Free forever. No credit card. 5 votes/day, upvote + downvote supported." data-zh="永久免费，无需信用卡。每日5票，支持上票和下票。">Free forever. No credit card. 5 votes/day, upvote + downvote supported.</div>
+  </div>
+</div>
+
+<!-- ══ FEEDBACK MODAL ══ -->
+<div class="fb-modal-overlay" id="fb-modal">
+  <div class="fb-modal">
+    <button class="fb-close" onclick="closeFeedback()">✕</button>
+    <div id="fb-form-wrap">
+      <div class="fb-title" data-en="Help us improve <em>AILoom</em>" data-zh="帮助我们改进 <em>AILoom</em>">Help us improve <em>AILoom</em></div>
+      <div class="fb-sub" data-en="Your feedback directly shapes this website." data-zh="您的反馈直接影响网站改进方向。">Your feedback directly shapes this website.</div>
+      <div class="fb-grid">
+        <div class="fb-row"><label class="fb-label" data-en="Name (optional)" data-zh="姓名（可选）">Name (optional)</label><input class="fb-input" id="fb-name" type="text" placeholder="e.g. Alex"></div>
+        <div class="fb-row"><label class="fb-label" data-en="Email (optional)" data-zh="邮箱（可选）">Email (optional)</label><input class="fb-input" id="fb-email" type="email" placeholder="for follow-up"></div>
+      </div>
+      <div class="fb-row"><label class="fb-label">Type</label>
+        <select class="fb-select" id="fb-type">
+          <option value="suggestion">💡 Suggestion</option><option value="missing">🔍 Missing tool</option><option value="bug">🐛 Bug</option><option value="content">📝 Wrong content</option><option value="design">🎨 Design feedback</option><option value="other">💬 Other</option>
+        </select>
+      </div>
+      <div class="fb-row"><label class="fb-label" data-en="Rating" data-zh="评分">Rating</label><div class="fb-rating" id="fb-stars"><div class="fb-star" data-v="1" onclick="setRating(1)">⭐</div><div class="fb-star" data-v="2" onclick="setRating(2)">⭐</div><div class="fb-star" data-v="3" onclick="setRating(3)">⭐</div><div class="fb-star" data-v="4" onclick="setRating(4)">⭐</div><div class="fb-star" data-v="5" onclick="setRating(5)">⭐</div></div></div>
+      <div class="fb-row"><label class="fb-label" data-en="Message *" data-zh="留言 *">Message *</label><textarea class="fb-textarea" id="fb-msg" placeholder="Tell us what you think…"></textarea></div>
+      <button class="fb-submit" id="fb-submit" onclick="submitFeedback()" data-en="Send Feedback →" data-zh="发送反馈 →">Send Feedback →</button>
+    </div>
+    <div class="fb-success" id="fb-success" style="display:none"><div class="fb-success-icon">🎉</div><div class="fb-success-title" data-en="Thank you!" data-zh="感谢您！">Thank you!</div><div class="fb-success-sub" data-en="We read every message and use them to make AILoom better." data-zh="我们会阅读每条消息并用于改进AILoom。">We read every message.</div></div>
+  </div>
+</div>
+
+<!-- ══ MODEL DETAIL POPUP ══ -->
+<div class="model-popup-overlay" id="model-popup-overlay" onclick="closeModelPopup(event)">
+  <div class="model-popup" id="model-popup">
+    <div id="model-popup-content"></div>
+  </div>
+</div>
+
+<!-- ══ GLOSSARY TOOLTIP ══ -->
+<div class="gloss-tooltip" id="gloss-tooltip">
+  <div class="gloss-tt-term" id="gt-term"></div>
+  <div class="gloss-tt-def" id="gt-def"></div>
+  <div class="gloss-tt-example" id="gt-ex"></div>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <a class="logo-btn" href="#sec-news">
+    <div class="logo-mark">
+      <svg viewBox="0 0 18 18" fill="none"><circle cx="5.5" cy="9" r="2.5" fill="#080c14"/><circle cx="13" cy="5" r="2" fill="#080c14"/><circle cx="13" cy="13" r="2" fill="#080c14"/><line x1="7.9" y1="8.1" x2="11.2" y2="5.8" stroke="#080c14" stroke-width="1.2"/><line x1="7.9" y1="9.9" x2="11.2" y2="12.2" stroke="#080c14" stroke-width="1.2"/></svg>
+    </div>
+    <span class="logo-text"><em>AI</em>Loom</span>
+  </a>
+  <div class="nav-search">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.5" stroke="#4a5878" stroke-width="1.3"/><line x1="9.5" y1="9.5" x2="12.5" y2="12.5" stroke="#4a5878" stroke-width="1.4" stroke-linecap="round"/></svg>
+    <input class="nav-si" id="nav-si" type="text" placeholder="Search tools, models…" oninput="doSearch(this.value)">
+    <button class="nav-si-x" id="nav-si-x" onclick="clearSearch()">✕</button>
+  </div>
+  <div class="live-chip"><span class="ld"></span>Live</div>
+  <div class="nav-r" id="auth-area">
+    <button class="lang-btn" onclick="toggleLang()" id="lang-btn">🇨🇳 中文</button>
+    <button class="login-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <span data-en="Sign in" data-zh="登录">Sign in</span>
+    </button>
+  </div>
+</nav>
+
+<div class="search-results-panel" id="search-panel"></div>
+
+<div class="site-layout" style="position:relative;z-index:1">
+
+<!-- ══ SECTION 1: AI NEWS ══ -->
+<section class="section" id="sec-news">
+  <div class="section-eyebrow" data-en="5 models · curated daily" data-zh="5大模型 · 每日精选">5 models · curated daily</div>
+  <h1 class="section-title"><em data-en="AI" data-zh="AI">AI</em> <span data-en="Updates" data-zh="最新动态">Updates</span></h1>
+  <p class="section-sub" data-en="The latest official update from each of the Big 5 AI models. No noise — just what matters." data-zh="五大AI模型的最新官方更新，简洁精准。">The latest official update from each of the Big 5 AI models. No noise — just what matters.</p>
+  <div class="news-card-big" id="news-card-big">
+    <div class="news-orb"></div>
+  </div>
+</section>
+
+<!-- ══ SECTION 2: BEST OF WEEK ══ -->
+<section class="section" id="sec-bow">
+  <div class="section-eyebrow" data-en="Week of April 18, 2026" data-zh="2026年4月18日当周">Week of April 18, 2026</div>
+  <h2 class="section-title"><span data-en="Best AI" data-zh="本周最佳">Best AI</span> <em data-en="This Week" data-zh="AI">This Week</em></h2>
+  <p class="section-sub" data-en="How Claude, Gemini, ChatGPT, Grok and Meta AI compare right now across key dimensions." data-zh="Claude、Gemini、ChatGPT、Grok和Meta AI本周各维度对比。">How the Big 5 compare right now across key dimensions.</p>
+  <div class="bow-grid" id="bow-grid"></div>
+</section>
+
+<!-- ══ SECTION 3: BIG 5 MODELS ══ -->
+<section class="section" id="sec-models">
+  <div class="section-eyebrow" data-en="Click any row for full breakdown" data-zh="点击任意行查看完整详情">Click any row for full breakdown</div>
+  <h2 class="section-title"><span data-en="Big 5" data-zh="五大">Big 5</span> <em data-en="Models" data-zh="模型">Models</em></h2>
+  <p class="section-sub" data-en="ChatGPT, Claude, Gemini, Grok and Meta AI at a glance. Click any to expand." data-zh="ChatGPT、Claude、Gemini、Grok与Meta AI一览，点击展开详情。">ChatGPT, Claude, Gemini, Grok and Meta AI at a glance. Click any to expand.</p>
+  <div class="models-list" id="models-list"></div>
+</section>
+
+<!-- ══ SECTION 4: AI TOOLS ══ -->
+<section class="section" id="sec-tools">
+  <div class="section-eyebrow" data-en="Sign in · 5 votes/day · resets midnight" data-zh="登录 · 每日5票 · 午夜重置">Sign in · 5 votes/day · resets midnight</div>
+  <h2 class="section-title"><em data-en="AI" data-zh="AI">AI</em> <span data-en="Tools" data-zh="工具排行">Tools</span></h2>
+  <p class="section-sub" data-en="30 tools ranked by community votes. Sign in to upvote or downvote. Rankings update live." data-zh="30款工具，由社区投票排名。登录后可上票或下票，排名实时更新。">30 tools ranked by community votes. Sign in to upvote or downvote.</p>
+  <div class="filter-bar" id="filter-bar"></div>
+  <div class="lb-header">
+    <span class="lb-label" data-en="Ranking" data-zh="排名">Ranking</span>
+    <div style="display:flex;align-items:center;gap:10px">
+      <span class="lb-total">Total: <b id="total-votes">0</b> votes</span>
+      <span class="lb-votes-left" id="votes-left-chip" style="display:none"></span>
+    </div>
+  </div>
+  <div id="tool-list"></div>
+</section>
+
+<!-- ══ SECTION 5: QUIZ ══ -->
+<section class="section" id="sec-quiz">
+  <div class="section-eyebrow" data-en="Personalised in 60 seconds" data-zh="60秒个性化推荐">Personalised in 60 seconds</div>
+  <h2 class="section-title"><span data-en="Which AI" data-zh="哪款AI">Which AI</span> <em data-en="Is Right For You?" data-zh="适合你？">Is Right For You?</em></h2>
+  <p class="section-sub" data-en="Answer 5 quick questions — we'll match you to the perfect AI tools for your goals and budget." data-zh="回答5个简短问题，我们将为您匹配最适合的AI工具。">Answer 5 quick questions — we'll match you to the perfect AI tools.</p>
+  <div class="quiz-wrap">
+    <div class="quiz-progress"><div class="quiz-progress-fill" id="quiz-progress-fill" style="width:0%"></div></div>
+    <div id="quiz-steps"></div>
+    <div class="quiz-result" id="quiz-result"></div>
+  </div>
+</section>
+
+<!-- ══ SECTION 6: GLOSSARY ══ -->
+<section class="section" id="sec-glossary">
+  <div class="section-eyebrow" data-en="For newcomers to AI" data-zh="AI新手必读">For newcomers to AI</div>
+  <h2 class="section-title"><em data-en="AI" data-zh="AI">AI</em> <span data-en="Glossary" data-zh="词汇表">Glossary</span></h2>
+  <p class="section-sub" data-en="Hover any term for a full explanation. No jargon left unexplained." data-zh="悬停任意术语查看完整解释，零基础也能看懂。">Hover any term for a full explanation.</p>
+  <div class="glossary-wrap" id="glossary-wrap"></div>
+</section>
+
+<!-- ══ SECTION 7: SUBMIT TOOL ══ -->
+<section class="section" id="sec-submit">
+  <div class="section-eyebrow" data-en="For AI founders · reviewed before publishing" data-zh="面向AI创业者 · 审核后发布">For AI founders · reviewed before publishing</div>
+  <h2 class="section-title"><span data-en="Submit Your" data-zh="提交">Submit Your</span> <em data-en="AI Tool" data-zh="AI工具">AI Tool</em></h2>
+  <p class="section-sub" data-en="Get your tool listed on AILoom. Choose a listing tier — all submissions are reviewed before going live." data-zh="将您的工具上架AILoom。选择上架套餐，所有提交均经审核后发布。">Get your tool listed. All submissions are reviewed before going live.</p>
+  <div class="submit-form" id="submit-form-wrap">
+    <div class="sf-title" data-en="Choose a Listing Tier" data-zh="选择上架套餐">Choose a Listing Tier</div>
+    <div class="sf-sub" data-en="All tiers are reviewed within 48h. Higher tiers get featured placement and promotion." data-zh="所有套餐48小时内审核。高级套餐享有置顶推广。">All tiers reviewed within 48h. Higher tiers get featured placement.</div>
+    <div class="sf-pricing" id="sf-pricing">
+      <div class="sf-tier selected" data-tier="basic" onclick="selectTier(this,'basic')">
+        <div class="sf-tier-name">Basic</div>
+        <div class="sf-tier-price">$0</div>
+        <div class="sf-tier-desc">Listed in directory<br>No promotion<br>Reviewed in 7 days</div>
+      </div>
+      <div class="sf-tier" data-tier="featured" onclick="selectTier(this,'featured')">
+        <div class="sf-tier-name">⭐ Featured</div>
+        <div class="sf-tier-price">$49</div>
+        <div class="sf-tier-desc">Top of category<br>"Hot" badge<br>Reviewed in 48h</div>
+      </div>
+      <div class="sf-tier" data-tier="premium" onclick="selectTier(this,'premium')">
+        <div class="sf-tier-name">🔥 Premium</div>
+        <div class="sf-tier-price">$149</div>
+        <div class="sf-tier-desc">Homepage feature<br>Newsletter mention<br>Reviewed in 24h</div>
+      </div>
+    </div>
+    <div class="sf-grid">
+      <div class="sf-row"><label class="sf-label" data-en="Tool Name *" data-zh="工具名称 *">Tool Name *</label><input class="sf-input" id="sf-name" placeholder="e.g. Cursor"></div>
+      <div class="sf-row"><label class="sf-label" data-en="Website URL *" data-zh="网站链接 *">Website URL *</label><input class="sf-input" id="sf-url" placeholder="https://..."></div>
+    </div>
+    <div class="sf-grid">
+      <div class="sf-row"><label class="sf-label" data-en="Category" data-zh="类别">Category</label>
+        <select class="sf-select" id="sf-cat"><option>Code</option><option>Image</option><option>Audio</option><option>Video</option><option>Writing</option><option>Search</option><option>3D</option><option>Design</option><option>Other</option></select>
+      </div>
+      <div class="sf-row"><label class="sf-label" data-en="Pricing Model" data-zh="定价模式">Pricing Model</label>
+        <select class="sf-select" id="sf-pricing-model"><option>Free</option><option>Freemium</option><option>Paid only</option><option>Enterprise</option></select>
+      </div>
+    </div>
+    <div class="sf-row"><label class="sf-label" data-en="Your Contact Email *" data-zh="联系邮箱 *">Your Contact Email *</label><input class="sf-input" id="sf-email" type="email" placeholder="founder@yourtool.com"></div>
+    <div class="sf-row"><label class="sf-label" data-en="Describe your tool (1-2 sentences)" data-zh="描述您的工具（1-2句话）">Describe your tool (1-2 sentences)</label><textarea class="sf-textarea" id="sf-desc" placeholder="What does your tool do and who is it for?"></textarea></div>
+    <button class="sf-submit" onclick="submitTool()"><span data-en="Submit for Review →" data-zh="提交审核 →">Submit for Review →</span></button>
+  </div>
+  <div class="sf-success" id="sf-success" style="display:none">
+    <div class="sf-success-icon">🎉</div>
+    <div class="sf-success-title" data-en="Submission Received!" data-zh="提交成功！">Submission Received!</div>
+    <div class="sf-success-sub" data-en="We'll review your tool and reach out within 48 hours. Thank you for choosing AILoom!" data-zh="我们将审核您的工具并在48小时内联系您。感谢选择AILoom！">We'll review your tool and reach out within 48 hours. Thank you!</div>
+  </div>
+</section>
+
+<!-- ══ SECTION 8: GITHUB AUTO-UPDATE GUIDE ══ -->
+<section class="section" id="sec-github">
+  <div class="section-eyebrow" data-en="For the site owner — you!" data-zh="站长专属指南">For the site owner — you!</div>
+  <h2 class="section-title"><span data-en="Auto-Update via" data-zh="通过">Auto-Update via</span> <em>GitHub</em></h2>
+  <p class="section-sub" data-en="Host AILoom on GitHub Pages for free. Every time you ask Claude to update the site and download the new file, just commit it — it goes live in seconds." data-zh="免费托管于GitHub Pages。每次让Claude更新网站后，提交新文件即可立即上线。">Host AILoom on GitHub Pages for free. Update by committing the new file.</p>
+  <div class="github-steps" id="github-steps">
+    <div class="gh-step">
+      <div class="gh-step-num">1</div>
+      <div class="gh-step-title">Create GitHub Repo</div>
+      <div class="gh-step-desc">Go to github.com → New repository → Name it <code style="font-size:10px;background:rgba(255,255,255,.08);padding:1px 4px;border-radius:3px">ailoom</code> → Public → Create</div>
+    </div>
+    <div class="gh-step">
+      <div class="gh-step-num">2</div>
+      <div class="gh-step-title">Upload Your File</div>
+      <div class="gh-step-desc">Click "Add file" → Upload files → Drag your <code style="font-size:10px;background:rgba(255,255,255,.08);padding:1px 4px;border-radius:3px">ailoom.html</code> → Rename to <code style="font-size:10px;background:rgba(255,255,255,.08);padding:1px 4px;border-radius:3px">index.html</code> → Commit</div>
+    </div>
+    <div class="gh-step">
+      <div class="gh-step-num">3</div>
+      <div class="gh-step-title">Enable Pages</div>
+      <div class="gh-step-desc">Settings → Pages → Source: Deploy from branch → Branch: main → Folder: / (root) → Save</div>
+    </div>
+    <div class="gh-step">
+      <div class="gh-step-num">4</div>
+      <div class="gh-step-title">Update Anytime</div>
+      <div class="gh-step-desc">Ask Claude for changes → Download new HTML → Go to repo → Click index.html → Edit → paste new code → Commit → Live in ~30s</div>
+    </div>
+  </div>
+  <div class="gh-highlight" id="gh-highlight">
+    <b>Your live URL will be:</b> <code>https://YOUR-USERNAME.github.io/ailoom/</code><br><br>
+    <b>To update after every Claude session:</b> Download the new HTML → In GitHub click <code>index.html</code> → click the ✏️ pencil icon → select all → paste → "Commit changes" → Done! Your site updates in about 30 seconds.<br><br>
+    <b>Pro tip:</b> Enable Firebase Auth in the Firebase Console and add your GitHub Pages domain (e.g. <code>yourname.github.io</code>) to "Authorised domains" so Google Sign-In works on your live site.
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer" id="site-footer">
+  <div>
+    <div class="footer-brand"><em>AI</em>Loom</div>
+    <div class="footer-tagline" data-en="Weave through the world of AI — free forever" data-zh="编织AI世界，永久免费">Weave through the world of AI — free forever</div>
+  </div>
+  <div class="support-btns">
+    <a href="https://buymeacoffee.com/a877893234f" target="_blank" rel="noopener" class="support-btn bmc-btn">☕ <span data-en="Buy me a coffee" data-zh="请我喝杯咖啡">Buy me a coffee</span></a>
+    <button class="support-btn crypto-btn" onclick="copyCrypto()">₿ <span id="crypto-label" data-en="Copy Bitcoin address" data-zh="复制比特币地址">Copy Bitcoin address</span></button>
+  </div>
+  <div class="crypto-confirm" id="crypto-confirm" data-en="✓ Address copied!" data-zh="✓ 地址已复制！">✓ Address copied!</div>
+  <div class="footer-links">
+    <a onclick="openFeedback()" data-en="Send feedback" data-zh="发送反馈">Send feedback</a>
+    <a href="#sec-submit" data-en="Submit a tool" data-zh="提交工具">Submit a tool</a>
+    <a href="https://buymeacoffee.com/a877893234f" target="_blank" data-en="Support us" data-zh="支持我们">Support us</a>
+  </div>
+  <div class="footer-copy" data-en="© 2026 AILoom · Built to keep you informed, free forever" data-zh="© 2026 AILoom · 让您紧跟AI前沿，永久免费">© 2026 AILoom · Built to keep you informed, free forever</div>
+</footer>
+
+</div><!-- /site-layout -->
+
+<!-- TOC DOTS -->
+<nav class="toc-dots" id="toc-dots">
+  <div class="toc-dot-btn active" data-label="AI Updates"     onclick="tocNav('sec-news')"></div>
+  <div class="toc-dot-btn"        data-label="Best This Week" onclick="tocNav('sec-bow')"></div>
+  <div class="toc-dot-btn"        data-label="Big 5 Models"   onclick="tocNav('sec-models')"></div>
+  <div class="toc-dot-btn"        data-label="AI Tools"       onclick="tocNav('sec-tools')"></div>
+  <div class="toc-dot-btn"        data-label="Find Your AI"   onclick="tocNav('sec-quiz')"></div>
+  <div class="toc-dot-btn"        data-label="Glossary"       onclick="tocNav('sec-glossary')"></div>
+  <div class="toc-dot-btn"        data-label="Submit Tool"    onclick="tocNav('sec-submit')"></div>
+  <div class="toc-dot-btn"        data-label="GitHub Guide"   onclick="tocNav('sec-github')"></div>
+</nav>
+
+<div class="toast" id="toast"></div>
+<button class="feedback-fab" onclick="openFeedback()">
+  <svg viewBox="0 0 20 20" fill="none"><path d="M2 4a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H6l-4 4V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+  <span data-en="Feedback" data-zh="反馈">Feedback</span>
+</button>
+
+<!-- SVG ICONS -->
+<svg style="display:none">
+  <defs>
+    <symbol id="icon-gpt" viewBox="0 0 40 40"><path d="M33 18.6a7 7 0 00-8.5-6.8A7 7 0 0011 18a7 7 0 00-1.4 13.3 7 7 0 008.5 6.8A7 7 0 0029 32a7 7 0 001.4-13.3z" stroke="#34d399" stroke-width="1.8" fill="none"/><line x1="15" y1="20" x2="25" y2="20" stroke="#34d399" stroke-width="1.8" stroke-linecap="round"/><line x1="20" y1="15" x2="20" y2="25" stroke="#34d399" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-claude" viewBox="0 0 40 40"><path d="M13 30l7-20 7 20" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="15.5" y1="24" x2="24.5" y2="24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="icon-gemini" viewBox="0 0 40 40"><path d="M20 10c0 5.5-4.5 10-10 10 5.5 0 10 4.5 10 10 0-5.5 4.5-10 10-10-5.5 0-10-4.5-10-10z" fill="#60a5fa"/></symbol>
+    <symbol id="icon-grok" viewBox="0 0 40 40"><path d="M12 12l16 16M28 12L12 28" stroke="#c084fc" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <symbol id="icon-meta" viewBox="0 0 40 40"><ellipse cx="14" cy="20" rx="5" ry="8" stroke="#2d8cf0" stroke-width="2" fill="none"/><ellipse cx="26" cy="20" rx="5" ry="8" stroke="#2d8cf0" stroke-width="2" fill="none"/><line x1="19" y1="20" x2="21" y2="20" stroke="#2d8cf0" stroke-width="2"/></symbol>
+  </defs>
+</svg>
+
+<script>
+/* ═══ I18N ═══ */
+let LANG='en';
+function toggleLang(){
+  LANG=LANG==='en'?'zh':'en';
+  document.documentElement.setAttribute('data-lang',LANG);
+  document.getElementById('lang-btn').textContent=LANG==='en'?'🇨🇳 中文':'🇺🇸 English';
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    const v=el.getAttribute('data-'+LANG);
+    if(v!==null)el.innerHTML=v;
+  });
+  // re-render dynamic parts
+  renderModels();renderBOW();renderFilters();buildList(curCat);renderQuiz();renderNews();
+}
+function t(en,zh){return LANG==='zh'&&zh?zh:en;}
+
+/* ═══ CONSTELLATION BG ═══ */
+(function(){
+  const c=document.getElementById('bg'),ctx=c.getContext('2d');
+  let W,H,S=[];
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}
+  function seed(){S=[];const n=Math.floor(W*H/5500);for(let i=0;i<n;i++)S.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.1+.2,a:Math.random(),da:(Math.random()-.5)*.004,vx:(Math.random()-.5)*.07,vy:(Math.random()-.5)*.045});}
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    const g=ctx.createLinearGradient(0,0,W,H);g.addColorStop(0,'#080c14');g.addColorStop(.5,'#0a1020');g.addColorStop(1,'#060a12');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    for(let i=0;i<S.length;i++){for(let j=i+1;j<S.length;j++){const dx=S[i].x-S[j].x,dy=S[i].y-S[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<95){ctx.beginPath();ctx.moveTo(S[i].x,S[i].y);ctx.lineTo(S[j].x,S[j].y);ctx.strokeStyle=`rgba(160,180,230,${.035*(1-d/95)})`;ctx.lineWidth=.4;ctx.stroke();}}}
+    S.forEach(s=>{s.a+=s.da;if(s.a>1||s.a<.1)s.da*=-1;s.x+=s.vx;s.y+=s.vy;if(s.x<0)s.x=W;if(s.x>W)s.x=0;if(s.y<0)s.y=H;if(s.y>H)s.y=0;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(200,215,255,${s.a*.65})`;ctx.fill();});
+    requestAnimationFrame(frame);
+  }
+  resize();seed();frame();
+  window.addEventListener('resize',()=>{resize();seed();});
+})();
+
+/* ═══ DATA: BIG 5 MODELS ═══ */
+const M={
+  gpt:{id:'gpt',icon:'icon-gpt',name:'ChatGPT',nameZh:'ChatGPT',maker:'by OpenAI',badge:'new',ac:'#34d399',url:'https://chatgpt.com',
+    tier1Price:'Free',tier1Label:'Free',tier1Sub:'Limited daily use',
+    tier2Price:'$20',tier2Label:'Plus',tier2Sub:'Best for most',tier2Highlight:'Most popular',
+    tier3Price:'$200',tier3Label:'Pro',tier3Sub:'Power users',
+    reachVal:'900M',reachUnit:'weekly users',
+    update:'GPT-5.2 Turbo — 40% faster, surprise drop Apr 12',
+    updateZh:'GPT-5.2 Turbo — 速度提升40%，4月12日惊喜发布',
+    updateDate:'Apr 12',
+    skills:[{label:'Smart answers',labelZh:'智能问答',v:95},{label:'Writing code',labelZh:'代码编写',v:90},{label:'Images',labelZh:'图像生成',v:92},{label:'Voice chat',labelZh:'语音对话',v:96}],
+    updates:[{d:'Apr 12',t:'GPT-5.2 Turbo — 40% faster reasoning',tag:'speed'},{d:'Apr 9',t:'Memory syncs across all devices',tag:'memory'},{d:'Apr 5',t:'Deep Research: 36-page web reports'},{d:'Mar 28',t:'Better image generation (DALL-E 4)',tag:'image'}],
+    patch:{date:'~Apr 22, 2026',days:'~4 days'},
+    stats:[{l:'Weekly users',v:'900M',d:'Every week'},{l:'Paying',v:'35M+',d:'Full access'},{l:'Market share',v:'60%',d:'Of all AI chats'},{l:'Free tier?',v:'Yes',d:'Start free'}],
+    howTo:['Go to chatgpt.com — free in 30 seconds','Start free, upgrade to Plus ($20/mo)','Enable Memory in Settings → Personalization'],
+    tips:[{l:'Best at',t:'Questions, images, voice, research'},{l:'Not great at',t:'Very long docs — try Claude'},{l:'Hidden gem',t:'GPT Store: 1000s of specialist bots'},{l:'Pro tip',t:'Use Projects to keep context focused'}]
+  },
+  claude:{id:'claude',icon:'icon-claude',name:'Claude',nameZh:'Claude',maker:'by Anthropic',badge:'soon',ac:'#fbbf24',url:'https://claude.ai',
+    tier1Price:'Free',tier1Label:'Free',tier1Sub:'Daily limits',
+    tier2Price:'$20',tier2Label:'Pro',tier2Sub:'Higher limits + priority',tier2Highlight:'Best for coding',
+    tier3Price:'$100',tier3Label:'Max',tier3Sub:'5× more messages',
+    reachVal:'19M',reachUnit:'monthly users',
+    update:'Claude Code reaches 1M developers worldwide, now #1 on GitHub',
+    updateZh:'Claude Code全球突破100万开发者，GitHub排名第一',
+    updateDate:'Apr 11',
+    skills:[{label:'Writing & editing',labelZh:'写作与编辑',v:98},{label:'Coding',labelZh:'代码',v:97},{label:'Reasoning',labelZh:'推理',v:93},{label:'Long docs',labelZh:'长文档',v:94}],
+    updates:[{d:'Apr 11',t:'Claude Code hits 1M devs — #1 on GitHub',tag:'tools'},{d:'Apr 7',t:'Cowork: automates files & folders'},{d:'Mar 31',t:'Chrome extension for web browsing',tag:'agent'},{d:'Mar 20',t:'Works inside Excel & PowerPoint',tag:'tools'}],
+    patch:{date:'~Apr 18, 2026',days:'Today'},
+    stats:[{l:'Monthly users',v:'19M',d:'Each month'},{l:'YoY growth',v:'+200%',d:'Year over year'},{l:'Best at',v:'Coding',d:'#1 by devs'},{l:'Free tier?',v:'Yes',d:'Start free'}],
+    howTo:['Go to claude.ai — free, no credit card','Upgrade to Pro ($20/mo) for higher limits','Create Projects to give Claude long-term context'],
+    tips:[{l:'Best at',t:'Long docs, precise coding, writing'},{l:'Not great at',t:'Voice mode — not available yet'},{l:'Hidden gem',t:'Artifacts builds working web apps instantly'},{l:'Pro tip',t:'Paste your writing so it matches your voice'}]
+  },
+  gemini:{id:'gemini',icon:'icon-gemini',name:'Gemini',nameZh:'Gemini',maker:'by Google',badge:'stable',ac:'#60a5fa',url:'https://gemini.google.com',
+    tier1Price:'Free',tier1Label:'Free',tier1Sub:'Google account needed',
+    tier2Price:'$20',tier2Label:'Pro',tier2Sub:'All Workspace AI',tier2Highlight:'Best for Google users',
+    tier3Price:'$30',tier3Label:'Business',tier3Sub:'Teams & enterprise',
+    reachVal:'750M',reachUnit:'monthly users',
+    update:'Veo 3 video generation launches to Gemini Pro in 40+ countries',
+    updateZh:'Veo 3视频生成功能在40余个国家向Gemini Pro用户开放',
+    updateDate:'Apr 8',
+    skills:[{label:'Video gen (Veo 3)',labelZh:'视频生成(Veo 3)',v:96},{label:'Google apps',labelZh:'谷歌应用',v:99},{label:'Multimodal',labelZh:'多模态',v:98},{label:'Cost efficiency',labelZh:'性价比',v:94}],
+    updates:[{d:'Apr 8',t:'Veo 3 video generation in Pro',tag:'video'},{d:'Apr 1',t:'Interacts with any website live'},{d:'Mar 20',t:'200M images generated in week 1',tag:'image'},{d:'Mar 10',t:'2 million word context window'}],
+    patch:{date:'~May 5, 2026',days:'~17 days'},
+    stats:[{l:'Monthly users',v:'750M',d:'Each month'},{l:'Paid growth',v:'+258%',d:'Subscribers growing'},{l:'Best at',v:'Video',d:'Best AI video gen'},{l:'Free tier?',v:'Yes',d:'With Google account'}],
+    howTo:['Go to gemini.google.com — free with Google','Connect Gmail + Drive for full memory','Upgrade to Pro ($20/mo) for Veo 3'],
+    tips:[{l:'Best at',t:'Videos, Google apps, audio'},{l:'Not great at',t:'Long docs — use Claude'},{l:'Hidden gem',t:'NotebookLM for deep research'},{l:'Pro tip',t:'Cheapest API of the five'}]
+  },
+  grok:{id:'grok',icon:'icon-grok',name:'Grok',nameZh:'Grok',maker:'by xAI',badge:'new',ac:'#c084fc',url:'https://grok.com',
+    tier1Price:'$8',tier1Label:'X Premium',tier1Sub:'Included with X',
+    tier2Price:'$30',tier2Label:'SuperGrok',tier2Sub:'Standalone grok.com',tier2Highlight:'Best real-time AI',
+    tier3Price:'API',tier3Label:'Enterprise',tier3Sub:'Custom pricing',
+    reachVal:'X Premium',reachUnit:'users have access',
+    update:'Grok 3 now browses live X posts mid-conversation for breaking news',
+    updateZh:'Grok 3对话中实时浏览X帖子，突发新闻第一手掌握',
+    updateDate:'Apr 10',
+    skills:[{label:'Real-time info',labelZh:'实时信息',v:97},{label:'Reasoning',labelZh:'推理',v:90},{label:'Speed',labelZh:'速度',v:93},{label:'Image gen',labelZh:'图像生成',v:82}],
+    updates:[{d:'Apr 10',t:'Browses live X posts while chatting',tag:'search'},{d:'Apr 3',t:'Voice mode for X Premium users'},{d:'Mar 25',t:'Aurora image model quality jump',tag:'image'},{d:'Mar 15',t:'DeepSearch rivals Perplexity'}],
+    patch:{date:'~Apr 28, 2026',days:'~10 days'},
+    stats:[{l:'Access via',v:'X.com',d:'Built into X'},{l:'Best at',v:'Real-time',d:'Reads live tweets'},{l:'Context',v:'131k',d:'~100k words'},{l:'Free tier?',v:'No',d:'Needs X Premium'}],
+    howTo:['Subscribe to X Premium at x.com — $8/mo','Or go to grok.com standalone at $30/mo','Enable Think mode for hard math/logic'],
+    tips:[{l:'Best at',t:'Breaking news, real-time X trends'},{l:'Not great at',t:'Long docs or enterprise work'},{l:'Hidden gem',t:'DeepSearch rivals Perplexity'},{l:'Pro tip',t:'Free if you already pay for X Premium'}]
+  },
+  meta:{id:'meta',icon:'icon-meta',name:'Meta AI',nameZh:'Meta AI',maker:'by Meta',badge:'new',ac:'#2d8cf0',url:'https://meta.ai',
+    tier1Price:'Free',tier1Label:'Free',tier1Sub:'Facebook/Instagram/WhatsApp',
+    tier2Price:'Free',tier2Label:'Meta+',tier2Sub:'Enhanced with Ray-Ban',tier2Highlight:'Most accessible',
+    tier3Price:'API',tier3Label:'Enterprise',tier3Sub:'Custom pricing',
+    reachVal:'3.2B',reachUnit:'potential users (Meta apps)',
+    update:'Meta AI 4.5 rolls out across WhatsApp, Instagram & Facebook globally',
+    updateZh:'Meta AI 4.5在WhatsApp、Instagram和Facebook全球推出',
+    updateDate:'Apr 14',
+    skills:[{label:'Accessibility',labelZh:'易用性',v:99},{label:'Image gen',labelZh:'图像生成',v:85},{label:'WhatsApp chat',labelZh:'WhatsApp聊天',v:97},{label:'Speed',labelZh:'速度',v:91}],
+    updates:[{d:'Apr 14',t:'Meta AI 4.5 rolls out globally in all Meta apps',tag:'release'},{d:'Apr 5',t:'Ray-Ban AI glasses: real-world vision'},{d:'Mar 22',t:'Imagine image gen now free in chat'},{d:'Mar 10',t:'llama 4 open source model released'}],
+    patch:{date:'~May 1, 2026',days:'~13 days'},
+    stats:[{l:'Potential reach',v:'3.2B',d:'Via Meta apps'},{l:'Platforms',v:'4',d:'WA, FB, IG, Portal'},{l:'Best at',v:'Reach',d:'Most users globally'},{l:'Free tier?',v:'Yes',d:'Completely free'}],
+    howTo:['Open WhatsApp, Instagram or Facebook — Meta AI is built in','Or go to meta.ai directly','Ask it anything — no sign-up beyond your Meta account'],
+    tips:[{l:'Best at',t:'Accessibility, WhatsApp, images'},{l:'Not great at',t:'Complex reasoning vs GPT/Claude'},{l:'Hidden gem',t:'AI in Ray-Ban smart glasses'},{l:'Pro tip',t:'Completely free — largest user base'}]
+  }
+};
+
+/* ═══ NEWS DATA (curated per model) ═══ */
+const MODEL_NEWS={
+  gpt:{color:'#34d399',label:'ChatGPT',tag:'OpenAI',headline:'GPT-5.2 Turbo drops with 40% speed boost',subEn:'A surprise release delivering dramatically faster reasoning. Developers are reporting near-instant responses on complex tasks.',subZh:'惊喜发布，推理速度大幅提升。开发者反映复杂任务几乎即时响应。',date:'Apr 12, 2026'},
+  claude:{color:'#fbbf24',label:'Claude',tag:'Anthropic',headline:'Claude Code hits 1M developers, tops GitHub',subEn:'Anthropic\'s CLI coding tool surpasses GitHub Copilot in developer satisfaction surveys for the first time.',subZh:'Anthropic命令行编码工具在开发者满意度调查中首次超越GitHub Copilot。',date:'Apr 11, 2026'},
+  gemini:{color:'#60a5fa',label:'Gemini',tag:'Google',headline:'Veo 3 video generation live in 40+ countries',subEn:'Text-to-video is now available to all Gemini Pro subscribers with 8-second clip generation.',subZh:'文字转视频现已向所有Gemini Pro订阅者开放，可生成8秒短片。',date:'Apr 8, 2026'},
+  grok:{color:'#c084fc',label:'Grok',tag:'xAI',headline:'Grok browses live X posts mid-conversation',subEn:'xAI\'s Grok can now search real-time X posts while answering, giving it a unique edge for breaking news.',subZh:'xAI的Grok现在可以在对话中实时搜索X帖子，在突发新闻方面具有独特优势。',date:'Apr 10, 2026'},
+  meta:{color:'#2d8cf0',label:'Meta AI',tag:'Meta',headline:'Meta AI 4.5 rolls out to 3.2B users globally',subEn:'The biggest AI rollout in history. Meta AI 4.5 is now live in WhatsApp, Instagram, Facebook and Messenger worldwide.',subZh:'史上最大规模AI部署。Meta AI 4.5现已在WhatsApp、Instagram、Facebook和Messenger全球上线。',date:'Apr 14, 2026'}
+};
+
+function renderNews(){
+  const el=document.getElementById('news-card-big');
+  const items=Object.entries(MODEL_NEWS);
+  el.innerHTML=`<div class="news-orb"></div>`+items.map(([k,n])=>`
+    <div class="nc-model">
+      <div class="nc-dot" style="background:${n.color};box-shadow:0 0 8px ${n.color}50;width:8px;height:8px;border-radius:50%"></div>
+      <div class="nc-label">${n.label}</div>
+      <div class="nc-headline">${n.headline}</div>
+      <div class="nc-sub" data-en="${n.subEn}" data-zh="${n.subZh}">${LANG==='zh'?n.subZh:n.subEn}</div>
+      <span class="nc-tag" style="background:${n.color}20;color:${n.color};border:1px solid ${n.color}30">${n.tag}</span>
+      <div class="nc-date">${n.date}</div>
+    </div>`).join('');
+}
+
+/* ═══ BEST OF WEEK ═══ */
+const BOW_DATA=[
+  {id:'gpt',  icon:'🤖',name:'ChatGPT', maker:'OpenAI', ac:'#34d399',score:91,
+   bars:[{l:t('Speed','速度'),v:96},{l:t('Smart','智能'),v:95},{l:t('Value','价值'),v:80},{l:t('Voice','语音'),v:96}]},
+  {id:'claude',icon:'⚡',name:'Claude',  maker:'Anthropic',ac:'#fbbf24',score:89,
+   bars:[{l:t('Speed','速度'),v:85},{l:t('Smart','智能'),v:93},{l:t('Value','价值'),v:82},{l:t('Code','代码'),v:97}]},
+  {id:'gemini',icon:'✨',name:'Gemini',  maker:'Google',   ac:'#60a5fa',score:86,
+   bars:[{l:t('Speed','速度'),v:90},{l:t('Smart','智能'),v:88},{l:t('Video','视频'),v:96},{l:t('Value','价值'),v:94}]},
+  {id:'grok', icon:'⚡',name:'Grok',    maker:'xAI',      ac:'#c084fc',score:81,
+   bars:[{l:t('Speed','速度'),v:93},{l:t('News','新闻'),v:97},{l:t('Smart','智能'),v:88},{l:t('Value','价值'),v:70}]},
+  {id:'meta', icon:'🌐',name:'Meta AI', maker:'Meta',     ac:'#2d8cf0',score:79,
+   bars:[{l:t('Reach','覆盖'),v:99},{l:t('Speed','速度'),v:91},{l:t('Smart','智能'),v:80},{l:t('Free','免费'),v:100}]}
+];
+
+function renderBOW(){
+  const sorted=[...BOW_DATA].sort((a,b)=>b.score-a.score);
+  document.getElementById('bow-grid').innerHTML=sorted.map((m,i)=>`
+    <div class="bow-card${i===0?' winner':''}" onclick="openModelPopup('${m.id}')">
+      ${i===0?'<div class="bow-crown">👑</div>':''}
+      <div class="bow-icon"><svg width="28" height="28"><use href="#icon-${m.id}"/></svg></div>
+      <div class="bow-name">${m.name}</div>
+      <div class="bow-maker">${m.maker}</div>
+      <div class="bow-score" style="color:${m.ac}">${m.score}</div>
+      <div class="bow-score-label">${t('AILoom Score','AILoom分数')}</div>
+      <div class="bow-bars">${m.bars.map(b=>`
+        <div class="bow-bar-row">
+          <div class="bow-bar-label">${b.l}</div>
+          <div class="bow-bar-track"><div class="bow-bar-fill" style="width:${b.v}%;background:${m.ac}"></div></div>
+          <div class="bow-bar-val">${b.v}</div>
+        </div>`).join('')}
+      </div>
+      <div class="bow-week-label">${t('Click for details','点击查看详情')}</div>
+    </div>`).join('');
+}
+
+/* ═══ BIG 5 MODEL BARS ═══ */
+function renderModels(){
+  document.getElementById('models-list').innerHTML=Object.values(M).map(m=>`
+    <div class="mbar" onclick="openModelPopup('${m.id}')" style="border-left:3px solid ${m.ac}20">
+      <div class="mbar-icon"><svg width="26" height="26"><use href="#icon-${m.id}"/></svg></div>
+      <div>
+        <div class="mbar-name">${LANG==='zh'?m.nameZh:m.name}</div>
+        <div class="mbar-maker">${m.maker}</div>
+      </div>
+      <div>
+        <div class="mbar-users" style="color:${m.ac}">${m.reachVal}</div>
+        <div class="mbar-users-label">${m.reachUnit}</div>
+      </div>
+      <div>
+        <div class="mbar-free">${m.tier1Price==='Free'?t('Free','免费'):m.tier1Price}</div>
+        <div class="mbar-price">${t('from','起') } ${m.tier2Price}${m.tier2Price.startsWith('$')?'/mo':''}</div>
+      </div>
+      <div>
+        <div class="mbar-update">${LANG==='zh'?m.updateZh:m.update}</div>
+        <div class="mbar-update-date">${m.updateDate}</div>
+      </div>
+      <div class="mbar-cta">${t('Full Details →','查看详情 →')}</div>
+    </div>`).join('');
+}
+
+/* ═══ MODEL POPUP ═══ */
+function openModelPopup(id){
+  const m=M[id];
+  const overlay=document.getElementById('model-popup-overlay');
+  document.getElementById('model-popup-content').innerHTML=`
+    <div class="mp-head">
+      <div class="mp-icon"><svg width="32" height="32"><use href="#icon-${m.id}"/></svg></div>
+      <div class="mp-title-wrap">
+        <div class="mp-name" style="color:${m.ac}">${LANG==='zh'?m.nameZh:m.name}</div>
+        <div class="mp-sub">${m.maker} · ${m.reachVal} ${m.reachUnit}</div>
+      </div>
+      <a href="${m.url}" target="_blank" class="mp-visit">↗ ${t('Visit','访问')}</a>
+      <button class="mp-close" onclick="closeModelPopup()">✕</button>
+    </div>
+    <div class="mp-body">
+      <div class="mp-sec-title">${t('Pricing','定价')}</div>
+      <div class="mp-pricing">
+        <div class="mp-pc"><div class="mp-pc-tier">${m.tier1Label}</div><div class="mp-pc-price free">${m.tier1Price}</div><div class="mp-pc-desc">${m.tier1Sub}</div></div>
+        <div class="mp-pc hi"><div class="mp-pc-tier">${m.tier2Label}</div><div class="mp-pc-price">${m.tier2Price}${m.tier2Price.startsWith('$')?'<span style="font-size:11px;color:var(--fog)">/mo</span>':''}</div><div class="mp-pc-desc">${m.tier2Highlight} · ${m.tier2Sub}</div></div>
+        <div class="mp-pc"><div class="mp-pc-tier">${m.tier3Label}</div><div class="mp-pc-price">${m.tier3Price}${m.tier3Price.startsWith('$')?'<span style="font-size:11px;color:var(--fog)">/mo</span>':''}</div><div class="mp-pc-desc">${m.tier3Sub}</div></div>
+      </div>
+      <div class="mp-stat-row">${m.stats.map(s=>`<div class="mp-stat"><div class="mp-stat-l">${s.l}</div><div class="mp-stat-v">${s.v}</div></div>`).join('')}</div>
+      <div class="mp-grid">
+        <div>
+          <div class="mp-sec-title">${t('Performance','性能')}</div>
+          ${m.skills.map(s=>`<div class="mp-skill-row"><div class="mp-skill-label">${LANG==='zh'&&s.labelZh?s.labelZh:s.label}</div><div class="mp-skill-track"><div class="mp-skill-fill" style="width:${s.v}%;background:${m.ac}"></div></div><div class="mp-skill-pct">${s.v}%</div></div>`).join('')}
+        </div>
+        <div>
+          <div class="mp-sec-title">${t('Recent Updates','最新更新')}</div>
+          ${m.updates.map(u=>`<div class="mp-update-item"><div class="mp-update-dot" style="background:${m.ac}"></div><div><div class="mp-update-date">${u.d}</div><div class="mp-update-text">${u.t}${u.tag?`<span style="font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(212,168,83,.12);color:var(--gold);margin-left:4px;font-weight:700">${u.tag}</span>`:''}</div></div></div>`).join('')}
+        </div>
+      </div>
+      <div class="mp-sec-title">${t('Tips','使用技巧')}</div>
+      <div class="mp-tip-grid">${m.tips.map(tip=>`<div class="mp-tip"><div class="mp-tip-l">${tip.l}</div><div class="mp-tip-t">${tip.t}</div></div>`).join('')}</div>
+      <div class="mp-sec-title" style="margin-top:16px">${t('How to Get Started','如何开始')}</div>
+      ${m.howTo.map((s,i)=>`<div style="display:flex;gap:9px;align-items:flex-start;margin-bottom:8px"><div style="width:20px;height:20px;border-radius:50%;background:rgba(212,168,83,.15);color:var(--gold);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(212,168,83,.25)">${i+1}</div><div style="font-size:12px;color:var(--mist);line-height:1.5">${s}</div></div>`).join('')}
+    </div>`;
+  overlay.classList.add('open');
+}
+function closeModelPopup(e){
+  if(e&&e.target!==document.getElementById('model-popup-overlay'))return;
+  document.getElementById('model-popup-overlay').classList.remove('open');
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('model-popup-overlay').classList.remove('open');}});
+
+/* ═══ TOOLS DATA ═══ */
+const TOOLS_BASE=[
+  {r:1, n:'Cursor',       cat:'code', cl:'Code',    cc:'cc-code',g:'+38%',hot:true, votes:1840,url:'https://cursor.sh',           aff:'https://cursor.sh/?ref=ailoom',         icon:'🖱️',maker:'Anysphere'},
+  {r:2, n:'Midjourney v7',cat:'image',cl:'Image',   cc:'cc-img', g:'+22%',hot:true, votes:1520,url:'https://midjourney.com',      aff:'https://midjourney.com',                icon:'🎨',maker:'Midjourney'},
+  {r:3, n:'Perplexity',   cat:'search',cl:'Search', cc:'cc-sch', g:'+19%',hot:false,votes:1380,url:'https://perplexity.ai',       aff:'https://perplexity.ai/?ref=ailoom',     icon:'🔍',maker:'Perplexity AI'},
+  {r:4, n:'Suno AI',      cat:'audio',cl:'Audio',   cc:'cc-aud', g:'+44%',hot:true, votes:1260,url:'https://suno.com',            aff:'https://suno.com',                      icon:'🎵',maker:'Suno'},
+  {r:5, n:'Runway Gen-3', cat:'video',cl:'Video',   cc:'cc-vid', g:'+31%',hot:true, votes:1190,url:'https://runwayml.com',        aff:'https://runwayml.com/?ref=ailoom',      icon:'🎬',maker:'Runway'},
+  {r:6, n:'GitHub Copilot',cat:'code',cl:'Code',    cc:'cc-code',g:'+15%',hot:false,votes:1080,url:'https://github.com/features/copilot',aff:'https://github.com/features/copilot',icon:'💻',maker:'Microsoft'},
+  {r:7, n:'ElevenLabs',   cat:'audio',cl:'Audio',   cc:'cc-aud', g:'+29%',hot:true, votes:990, url:'https://elevenlabs.io',       aff:'https://try.elevenlabs.io/ailoom',      icon:'🔊',maker:'ElevenLabs'},
+  {r:8, n:'v0 by Vercel', cat:'code', cl:'Code',    cc:'cc-code',g:'+52%',hot:true, votes:940, url:'https://v0.dev',              aff:'https://v0.dev/?ref=ailoom',            icon:'⚡',maker:'Vercel'},
+  {r:9, n:'Pika 2.0',     cat:'video',cl:'Video',   cc:'cc-vid', g:'+27%',hot:true, votes:890, url:'https://pika.art',            aff:'https://pika.art/?ref=ailoom',          icon:'📹',maker:'Pika Labs'},
+  {r:10,n:'Jasper',        cat:'write',cl:'Writing', cc:'cc-wri', g:'+11%',hot:false,votes:820, url:'https://jasper.ai',           aff:'https://jasper.ai?fpr=ailoom',          icon:'✍️',maker:'Jasper AI'},
+  {r:11,n:'Notion AI',     cat:'write',cl:'Writing', cc:'cc-wri', g:'+8%', hot:false,votes:760, url:'https://notion.so',           aff:'https://notion.so/?ref=ailoom',         icon:'📝',maker:'Notion'},
+  {r:12,n:'Adobe Firefly', cat:'image',cl:'Image',   cc:'cc-img', g:'+14%',hot:false,votes:720, url:'https://firefly.adobe.com',   aff:'https://www.adobe.com/products/firefly.html',icon:'🔥',maker:'Adobe'},
+  {r:13,n:'Kling AI',      cat:'video',cl:'Video',   cc:'cc-vid', g:'+61%',hot:true, votes:680, url:'https://klingai.com',         aff:'https://klingai.com/?ref=ailoom',       icon:'🎥',maker:'Kuaishou'},
+  {r:14,n:'You.com',       cat:'search',cl:'Search', cc:'cc-sch', g:'+18%',hot:false,votes:620, url:'https://you.com',             aff:'https://you.com/?ref=ailoom',           icon:'🌐',maker:'You.com'},
+  {r:15,n:'Descript',      cat:'audio',cl:'Audio',   cc:'cc-aud', g:'+23%',hot:false,votes:570, url:'https://descript.com',        aff:'https://get.descript.com/ailoom',       icon:'🎙️',maker:'Descript'},
+  {r:16,n:'Replit AI',     cat:'code', cl:'Code',    cc:'cc-code',g:'+33%',hot:true, votes:530, url:'https://replit.com',          aff:'https://replit.com/?ref=ailoom',        icon:'🤖',maker:'Replit'},
+  {r:17,n:'Synthesia',     cat:'video',cl:'Video',   cc:'cc-vid', g:'+19%',hot:false,votes:490, url:'https://synthesia.io',        aff:'https://www.synthesia.io/?via=ailoom',  icon:'👤',maker:'Synthesia'},
+  {r:18,n:'Copy.ai',       cat:'write',cl:'Writing', cc:'cc-wri', g:'+6%', hot:false,votes:450, url:'https://copy.ai',             aff:'https://copy.ai/?via=ailoom',           icon:'📋',maker:'Copy.ai'},
+  {r:19,n:'Stability AI',  cat:'image',cl:'Image',   cc:'cc-img', g:'+12%',hot:false,votes:420, url:'https://stability.ai',        aff:'https://stability.ai/?ref=ailoom',      icon:'🖼️',maker:'Stability AI'},
+  {r:20,n:'HeyGen',        cat:'video',cl:'Video',   cc:'cc-vid', g:'+35%',hot:true, votes:400, url:'https://heygen.com',          aff:'https://app.heygen.com/guest?sid=ailoom',icon:'🎭',maker:'HeyGen'},
+  {r:21,n:'Krea AI',       cat:'image',cl:'Image',   cc:'cc-img', g:'+28%',hot:true, votes:370, url:'https://krea.ai',             aff:'https://krea.ai/?ref=ailoom',           icon:'✨',maker:'Krea'},
+  {r:22,n:'Luma AI',       cat:'3d',   cl:'3D',      cc:'cc-3d',  g:'+42%',hot:true, votes:350, url:'https://lumalabs.ai',         aff:'https://lumalabs.ai/?ref=ailoom',       icon:'💎',maker:'Luma Labs'},
+  {r:23,n:'Gamma',          cat:'write',cl:'Writing', cc:'cc-wri', g:'+31%',hot:true, votes:330, url:'https://gamma.app',           aff:'https://gamma.app/?ref=ailoom',         icon:'📊',maker:'Gamma'},
+  {r:24,n:'Beautiful.ai',  cat:'ux',   cl:'Design',  cc:'cc-ux',  g:'+16%',hot:false,votes:310, url:'https://beautiful.ai',        aff:'https://www.beautiful.ai/?ref=ailoom',  icon:'🎯',maker:'Beautiful.ai'},
+  {r:25,n:'Murf AI',       cat:'audio',cl:'Audio',   cc:'cc-aud', g:'+21%',hot:false,votes:295, url:'https://murf.ai',             aff:'https://murf.ai/?ref=ailoom',           icon:'🗣️',maker:'Murf'},
+  {r:26,n:'Leonardo AI',   cat:'image',cl:'Image',   cc:'cc-img', g:'+17%',hot:false,votes:280, url:'https://leonardo.ai',         aff:'https://leonardo.ai/?ref=ailoom',       icon:'🖌️',maker:'Leonardo'},
+  {r:27,n:'Framer AI',     cat:'ux',   cl:'Design',  cc:'cc-ux',  g:'+24%',hot:true, votes:265, url:'https://framer.com',          aff:'https://framer.com/?via=ailoom',        icon:'🧩',maker:'Framer'},
+  {r:28,n:'Writesonic',    cat:'write',cl:'Writing', cc:'cc-wri', g:'+9%', hot:false,votes:250, url:'https://writesonic.com',      aff:'https://writesonic.com?fpr=ailoom',     icon:'🖊️',maker:'Writesonic'},
+  {r:29,n:'Krisp',          cat:'audio',cl:'Audio',   cc:'cc-aud', g:'+13%',hot:false,votes:235, url:'https://krisp.ai',            aff:'https://krisp.ai/?ref=ailoom',          icon:'🎧',maker:'Krisp'},
+  {r:30,n:'Consensus',     cat:'search',cl:'Search', cc:'cc-sch', g:'+20%',hot:false,votes:220, url:'https://consensus.app',       aff:'https://consensus.app/?ref=ailoom',     icon:'📚',maker:'Consensus'},
+];
+
+/* ═══ VOTES — 5/day, reset midnight, require sign-in ═══ */
+const VOTE_KEY='ailoom_votes_v3',VOTED_KEY='ailoom_voted_v3',DVOTED_KEY='ailoom_dvoted_v3',VDATE_KEY='ailoom_vdate_v3',VLEFT_KEY='ailoom_vleft_v3';
+const MAX_VOTES_PER_DAY=5;
+let votes={},upvoted={},downvoted={},curCat='all';
+
+// init base votes
+TOOLS_BASE.forEach((t,i)=>{votes[i]=t.votes;upvoted[i]=false;downvoted[i]=false;});
+
+function todayStr(){return new Date().toISOString().slice(0,10);}
+function getVotesLeft(){
+  const savedDate=localStorage.getItem(VDATE_KEY);
+  const today=todayStr();
+  if(savedDate!==today){
+    localStorage.setItem(VDATE_KEY,today);
+    localStorage.setItem(VLEFT_KEY,MAX_VOTES_PER_DAY);
+    return MAX_VOTES_PER_DAY;
+  }
+  return parseInt(localStorage.getItem(VLEFT_KEY)||MAX_VOTES_PER_DAY);
+}
+function setVotesLeft(n){localStorage.setItem(VLEFT_KEY,n);}
+
+try{
+  const sv=localStorage.getItem(VOTE_KEY);
+  const su=localStorage.getItem(VOTED_KEY);
+  const sd=localStorage.getItem(DVOTED_KEY);
+  if(sv)Object.assign(votes,JSON.parse(sv));
+  if(su)Object.assign(upvoted,JSON.parse(su));
+  if(sd)Object.assign(downvoted,JSON.parse(sd));
+}catch(e){}
+
+function saveVotes(){
+  try{
+    localStorage.setItem(VOTE_KEY,JSON.stringify(votes));
+    localStorage.setItem(VOTED_KEY,JSON.stringify(upvoted));
+    localStorage.setItem(DVOTED_KEY,JSON.stringify(downvoted));
+  }catch(e){}
+}
+
+/* ═══ TOOLS RENDER ═══ */
+const CATS=['all','code','image','audio','video','write','search','3d','ux'];
+
+function getHottestCat(){
+  const catVotes={};
+  TOOLS_BASE.forEach((tool,i)=>{
+    if(!catVotes[tool.cat])catVotes[tool.cat]=0;
+    catVotes[tool.cat]+=votes[i]||0;
+  });
+  return Object.entries(catVotes).sort((a,b)=>b[1]-a[1])[0]?.[0]||'';
+}
+
+function updateTotalVotes(){
+  const tv=Object.values(votes).reduce((a,b)=>a+b,0);
+  const el=document.getElementById('total-votes');
+  if(el)el.textContent=tv.toLocaleString();
+  const vlEl=document.getElementById('votes-left-chip');
+  if(vlEl&&currentUser){
+    const vl=getVotesLeft();
+    vlEl.style.display='inline';
+    vlEl.textContent=`${vl} ${t('votes left today','票剩余今日')}`;
+    vlEl.style.color=vl===0?'#f87171':'var(--gold)';
+  } else if(vlEl){vlEl.style.display='none';}
+}
+
+function renderFilters(){
+  const hotCat=getHottestCat();
+  const catLabels={all:t('All','全部'),code:t('Code','代码'),image:t('Image','图像'),audio:t('Audio','音频'),video:t('Video','视频'),write:t('Writing','写作'),search:t('Search','搜索'),'3d':'3D',ux:t('Design','设计')};
+  document.getElementById('filter-bar').innerHTML=CATS.map(c=>`
+    <button class="filt${c===curCat?' on':''}" onclick="setCat('${c}',this)">
+      ${catLabels[c]||c}
+      ${c!=='all'&&c===hotCat?'<span class="filt-hot-badge">🔥</span>':''}
+    </button>`).join('');
+}
+
+function setCat(cat,el){curCat=cat;document.querySelectorAll('.filt').forEach(b=>b.classList.remove('on'));el.classList.add('on');buildList(cat);}
+function rnkClass(p){return p===1?'rank-1':p===2?'rank-2':p===3?'rank-3':'';}
+function rnkNum(p){return p===1?'gold':p===2?'silver':p===3?'bronze':'';}
+function rnkMedal(p){return p===1?'🥇':p===2?'🥈':p===3?'🥉':'';}
+
+function rowHTML(tool,idx,pos,moved){
+  const isUp=upvoted[idx],isDn=downvoted[idx];
+  const netVotes=votes[idx];
+  const dest=tool.aff||tool.url;
+  const loggedIn=!!currentUser;
+  const vleft=getVotesLeft();
+
+  let voteArea;
+  if(!loggedIn){
+    voteArea=`<span class="login-to-vote" onclick="openModal()" style="cursor:pointer;color:var(--gold)">${t('Sign in to vote','登录投票')}</span>`;
+  } else {
+    const upDis=(!isUp&&!isDn&&vleft===0)||isDn;
+    const dnDis=(!isDn&&!isUp&&vleft===0)||isUp;
+    voteArea=`
+      <button class="vote-btn${isUp?' voted':''}${upDis?' disabled':''}" id="vb-up-${idx}" onclick="castVote(${idx},'up',event)" title="${isUp?t('Remove upvote','取消赞'):t('Upvote','赞')}">
+        <span class="v-arrow" style="position:relative;z-index:1">${isUp?'▲':'△'}</span>
+        <span class="vcount">${netVotes.toLocaleString()}</span>
+      </button>
+      <button class="downvote-btn${isDn?' downvoted':''}${dnDis?' disabled':''}" id="vb-dn-${idx}" onclick="castVote(${idx},'down',event)" title="${isDn?t('Remove downvote','取消踩'):t('Downvote','踩')}">
+        <span style="font-size:12px">${isDn?'▼':'▽'}</span>
+      </button>`;
+  }
+
+  return `<div class="tool-row ${rnkClass(pos)}" id="tr-${idx}" data-idx="${idx}" data-pos="${pos}">
+    <div class="tr-rank-wrap"><span class="tr-rank ${rnkNum(pos)}">${pos}</span><span class="rank-medal">${rnkMedal(pos)}</span></div>
+    <div class="tr-name-wrap">
+      <div class="tr-icon" onclick="window.open('${dest}','_blank','noopener')" title="Visit ${tool.n}">${tool.icon}</div>
+      <div>
+        <div class="tr-name" onclick="window.open('${dest}','_blank','noopener')">${tool.n}${moved?'<span class="moved-badge">↑</span>':''}</div>
+        <div class="tr-maker">${tool.maker}</div>
+      </div>
+    </div>
+    <span class="tr-cat ${tool.cc}">${tool.cl}</span>
+    <span class="tr-hot${tool.hot?'':' cold'}">${tool.hot?'🔥 hot':''}</span>
+    <span class="tr-gr">${tool.g}</span>
+    <div class="vote-wrap">${voteArea}</div>
+  </div>`;
+}
+
+function buildList(cat){
+  const list=cat==='all'?TOOLS_BASE:TOOLS_BASE.filter(t=>t.cat===cat);
+  const sorted=[...list].sort((a,b)=>votes[TOOLS_BASE.indexOf(b)]-votes[TOOLS_BASE.indexOf(a)]);
+  const el=document.getElementById('tool-list');
+  if(!sorted.length){el.innerHTML=`<div class="no-res">${t('No tools in this category yet','该类别暂无工具')}</div>`;return;}
+  el.innerHTML=sorted.map((tool,i)=>rowHTML(tool,TOOLS_BASE.indexOf(tool),i+1,false)).join('');
+  updateTotalVotes();
+}
+
+/* ═══ VOTE FX ═══ */
+function spawnVoteFX(btn){
+  const canvas=document.getElementById('vote-fx');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const ctx=canvas.getContext('2d');
+  const r=btn.getBoundingClientRect();
+  const cx=r.left+r.width/2,cy=r.top+r.height/2;
+  const particles=[];
+  const colors=['#d4a853','#f0c96a','#34d399','#ffffff','#fbbf24'];
+  for(let i=0;i<22;i++){const a=Math.random()*Math.PI*2,sp=Math.random()*5+2;particles.push({x:cx,y:cy,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-3,r:Math.random()*3+1.5,color:colors[Math.floor(Math.random()*colors.length)],life:1,decay:Math.random()*.03+.02});}
+  let fr=0;
+  function fx(){ctx.clearRect(0,0,canvas.width,canvas.height);let alive=false;particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.2;p.life-=p.decay;if(p.life<=0)return;alive=true;ctx.save();ctx.globalAlpha=p.life;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.color;ctx.fill();ctx.restore();});fr++;if(alive&&fr<70)requestAnimationFrame(fx);else ctx.clearRect(0,0,canvas.width,canvas.height);}
+  fx();
+}
+
+function castVote(idx,direction,e){
+  e&&e.stopPropagation();
+  if(!currentUser){openModal();return;}
+  const vleft=getVotesLeft();
+  const wasUp=upvoted[idx],wasDn=downvoted[idx];
+
+  if(direction==='up'){
+    if(wasDn){showToast(t('Remove your downvote first','请先取消踩票'));return;}
+    if(wasUp){
+      // undo upvote
+      votes[idx]--;upvoted[idx]=false;setVotesLeft(Math.min(vleft+1,MAX_VOTES_PER_DAY));
+    } else {
+      if(vleft<=0){showToast(t(`No votes left today! Resets at midnight.`,`今日票数已用完，午夜重置！`));return;}
+      votes[idx]++;upvoted[idx]=true;setVotesLeft(vleft-1);
+      const btn=document.getElementById('vb-up-'+idx);
+      if(btn)spawnVoteFX(btn);
+      showToast('↑ '+t('Voted for','投票给')+' '+TOOLS_BASE[idx].n+'!');
+    }
+  } else {
+    if(wasUp){showToast(t('Remove your upvote first','请先取消赞'));return;}
+    if(wasDn){
+      // undo downvote
+      votes[idx]++;downvoted[idx]=false;setVotesLeft(Math.min(vleft+1,MAX_VOTES_PER_DAY));
+    } else {
+      if(vleft<=0){showToast(t('No votes left today! Resets at midnight.','今日票数已用完，午夜重置！'));return;}
+      votes[idx]--;downvoted[idx]=true;setVotesLeft(vleft-1);
+      showToast('↓ '+t('Downvoted','踩了')+' '+TOOLS_BASE[idx].n);
+    }
+  }
+
+  saveVotes();
+
+  // Re-render with animation
+  const list=curCat==='all'?TOOLS_BASE:TOOLS_BASE.filter(t=>t.cat===curCat);
+  const sorted=[...list].sort((a,b)=>votes[TOOLS_BASE.indexOf(b)]-votes[TOOLS_BASE.indexOf(a)]);
+  const container=document.getElementById('tool-list');if(!container)return;
+  const rows=Array.from(container.querySelectorAll('.tool-row'));
+  const snaps={};rows.forEach(r=>{snaps[parseInt(r.dataset.idx)]=r.getBoundingClientRect().top;});
+  container.innerHTML=sorted.map((tool,i)=>rowHTML(tool,TOOLS_BASE.indexOf(tool),i+1,false)).join('');
+  updateTotalVotes();
+  renderFilters();// update hot badge
+  Array.from(container.querySelectorAll('.tool-row')).forEach(r=>{
+    const ridx=parseInt(r.dataset.idx);
+    if(snaps[ridx]!==undefined){const delta=snaps[ridx]-r.getBoundingClientRect().top;if(Math.abs(delta)>2){r.style.transition='none';r.style.transform=`translateY(${delta}px)`;r.getBoundingClientRect();r.style.transition='transform 0.45s cubic-bezier(0.22,1,0.36,1)';r.style.transform='translateY(0)';r.addEventListener('transitionend',()=>{r.style.transition='';r.style.transform='';},{once:true});}}
+  });
+  if(direction==='up'&&!wasUp){const vr=document.getElementById('tr-'+idx);if(vr){vr.classList.add('rank-up');vr.addEventListener('animationend',()=>vr.classList.remove('rank-up'),{once:true});}}
+}
+
+/* ═══ QUIZ ═══ */
+const QUIZ_QUESTIONS=[
+  {q:t('What\'s your main goal with AI?','您使用AI的主要目标是什么？'),sub:t('Pick the one that fits best','选择最符合的选项'),options:[
+    {icon:'💻',text:t('Write or fix code','写代码/修复Bug'),sub:'Dev work',val:'code'},
+    {icon:'✍️',text:t('Write & create content','写作与内容创作'),sub:'Blog, copy, essays',val:'write'},
+    {icon:'🎨',text:t('Generate images/videos','生成图片/视频'),sub:'Creative media',val:'creative'},
+    {icon:'🔍',text:t('Research & find info','研究与信息查找'),sub:'Analysis, search',val:'search'},
+  ]},
+  {q:t('What\'s your daily budget?','您的每日预算是多少？'),sub:t('Be honest — free options are great too!','免费选项也很棒！'),options:[
+    {icon:'🆓',text:t('$0 — free only','0元，只要免费'),sub:'Completely free',val:'free'},
+    {icon:'💵',text:'$1–$20/mo',sub:t('Basic paid tier','基础付费套餐'),val:'low'},
+    {icon:'💳',text:'$20–$100/mo',sub:t('Pro tier','专业套餐'),val:'mid'},
+    {icon:'🏢',text:'$100+/mo',sub:t('Enterprise/team','企业/团队'),val:'high'},
+  ]},
+  {q:t('How do you prefer to use AI?','您倾向于如何使用AI？'),sub:'',options:[
+    {icon:'💬',text:t('Chat & ask questions','聊天问答'),sub:t('Conversational AI','对话式AI'),val:'chat'},
+    {icon:'🛠️',text:t('Build tools & apps','构建工具和应用'),sub:t('Agentic/coding AI','自主/编码AI'),val:'build'},
+    {icon:'🎭',text:t('Create media','创作媒体'),sub:t('Images, audio, video','图片、音频、视频'),val:'media'},
+    {icon:'📊',text:t('Automate workflows','自动化工作流'),sub:t('Productivity AI','生产力AI'),val:'automate'},
+  ]},
+  {q:t('What\'s your technical level?','您的技术水平如何？'),sub:'',options:[
+    {icon:'👶',text:t('Beginner — no tech skills','初学者，无技术背景'),sub:'',val:'beginner'},
+    {icon:'🙋',text:t('Intermediate — comfortable online','中级，擅长网络操作'),sub:'',val:'mid'},
+    {icon:'💡',text:t('Advanced — know some code','进阶，了解一些代码'),sub:'',val:'advanced'},
+    {icon:'🧑‍💻',text:t('Developer — use APIs, build stuff','开发者，使用API构建应用'),sub:'',val:'dev'},
+  ]},
+  {q:t('What matters most to you?','您最看重什么？'),sub:'',options:[
+    {icon:'⚡',text:t('Speed — fast responses','速度，快速响应'),sub:'',val:'speed'},
+    {icon:'🧠',text:t('Intelligence — smartest answers','智能，最聪明的回答'),sub:'',val:'smart'},
+    {icon:'💰',text:t('Value — best free/cheap option','价值，最佳免费/低价选项'),sub:'',val:'value'},
+    {icon:'🔒',text:t('Privacy — data safety','隐私，数据安全'),sub:'',val:'privacy'},
+  ]}
+];
+
+let quizAnswers=[];let quizStep=0;
+
+function getQuizRecs(answers){
+  const [goal,budget,usage,level,priority]=answers;
+  const scores={ChatGPT:0,Claude:0,Gemini:0,Grok:0,'Meta AI':0,Cursor:0,Midjourney:0,'Suno AI':0,Perplexity:0};
+  if(goal==='code'){scores['Claude']+=3;scores['Cursor']+=4;scores['ChatGPT']+=2;}
+  if(goal==='write'){scores['Claude']+=4;scores['ChatGPT']+=3;scores['Gemini']+=2;}
+  if(goal==='creative'){scores['Midjourney']+=4;scores['Gemini']+=3;scores['ChatGPT']+=2;scores['Suno AI']+=2;}
+  if(goal==='search'){scores['Perplexity']+=4;scores['Grok']+=3;scores['Gemini']+=2;}
+  if(budget==='free'){scores['Meta AI']+=3;scores['Gemini']+=2;scores['ChatGPT']+=2;scores['Claude']+=1;}
+  if(budget==='low'){scores['ChatGPT']+=2;scores['Claude']+=2;scores['Gemini']+=2;}
+  if(budget==='mid'){scores['ChatGPT']+=1;scores['Claude']+=1;scores['Cursor']+=2;}
+  if(usage==='chat'){scores['ChatGPT']+=2;scores['Claude']+=2;scores['Meta AI']+=2;}
+  if(usage==='build'){scores['Claude']+=3;scores['Cursor']+=3;scores['ChatGPT']+=1;}
+  if(usage==='media'){scores['Midjourney']+=3;scores['Gemini']+=2;scores['Suno AI']+=3;}
+  if(usage==='automate'){scores['Claude']+=2;scores['ChatGPT']+=2;scores['Gemini']+=2;}
+  if(level==='beginner'){scores['ChatGPT']+=2;scores['Meta AI']+=3;scores['Gemini']+=1;}
+  if(level==='dev'){scores['Claude']+=2;scores['Cursor']+=3;}
+  if(priority==='speed'){scores['ChatGPT']+=2;scores['Grok']+=2;scores['Meta AI']+=1;}
+  if(priority==='smart'){scores['ChatGPT']+=2;scores['Claude']+=2;}
+  if(priority==='value'){scores['Gemini']+=3;scores['Meta AI']+=3;}
+  if(priority==='privacy'){scores['Claude']+=2;}
+  return Object.entries(scores).sort((a,b)=>b[1]-a[1]).slice(0,4).map(([name,score])=>({name,score}));
+}
+
+const toolInfo={
+  ChatGPT:{icon:'🤖',reasonEn:'Great all-rounder. Best voice mode, image gen, and GPT Store.',reasonZh:'全能选手，语音、图像和插件市场均出色。',url:'https://chatgpt.com'},
+  Claude:{icon:'⚡',reasonEn:'Best for long documents, precise coding, and detailed writing.',reasonZh:'长文档处理、精准编码和详细写作的最佳选择。',url:'https://claude.ai'},
+  Gemini:{icon:'✨',reasonEn:'Best for Google users, video generation, and free access.',reasonZh:'谷歌用户、视频生成和免费访问的首选。',url:'https://gemini.google.com'},
+  Grok:{icon:'📡',reasonEn:'Best for real-time news and X/Twitter integration.',reasonZh:'实时新闻和X/Twitter整合的最佳工具。',url:'https://grok.com'},
+  'Meta AI':{icon:'🌐',reasonEn:'Free, built into WhatsApp & Instagram. Great for beginners.',reasonZh:'免费，内置于WhatsApp和Instagram。适合初学者。',url:'https://meta.ai'},
+  Cursor:{icon:'🖱️',reasonEn:'Best AI code editor. Beats Copilot for full-project context.',reasonZh:'最佳AI代码编辑器，整体项目理解超越Copilot。',url:'https://cursor.sh'},
+  Midjourney:{icon:'🎨',reasonEn:'Best image quality. Industry standard for creative professionals.',reasonZh:'最高图像质量，创意专业人士的行业标准。',url:'https://midjourney.com'},
+  'Suno AI':{icon:'🎵',reasonEn:'Create full songs with vocals from text. Remarkable quality.',reasonZh:'从文本生成完整歌曲，质量出众。',url:'https://suno.com'},
+  Perplexity:{icon:'🔍',reasonEn:'AI-powered search with citations. Best for research & fact-checking.',reasonZh:'带引用的AI搜索，研究和事实核查首选。',url:'https://perplexity.ai'},
+};
+
+function renderQuiz(){
+  const stepsEl=document.getElementById('quiz-steps');
+  stepsEl.innerHTML=QUIZ_QUESTIONS.map((q,qi)=>`
+    <div class="quiz-step${qi===0?' active':''}" id="qstep-${qi}">
+      <div class="quiz-q">${q.q}</div>
+      ${q.sub?`<div class="quiz-q-sub">${q.sub}</div>`:''}
+      <div class="quiz-options">
+        ${q.options.map((opt,oi)=>`
+          <div class="quiz-option" id="qopt-${qi}-${oi}" onclick="selectQuizOption(${qi},${oi},'${opt.val}')">
+            <span class="quiz-option-icon">${opt.icon}</span>
+            <div>
+              <div class="quiz-option-text">${opt.text}</div>
+              ${opt.sub?`<div class="quiz-option-sub">${opt.sub}</div>`:''}
+            </div>
+          </div>`).join('')}
+      </div>
+      <div class="quiz-nav">
+        ${qi>0?`<button class="quiz-btn quiz-btn-prev" onclick="quizPrev(${qi})">${t('← Back','← 返回')}</button>`:'<div></div>'}
+        <button class="quiz-btn quiz-btn-next" id="qnext-${qi}" onclick="quizNext(${qi})" disabled>${qi<QUIZ_QUESTIONS.length-1?t('Next →','下一步 →'):t('See My Results →','查看结果 →')}</button>
+      </div>
+    </div>`).join('');
+  quizAnswers=new Array(QUIZ_QUESTIONS.length).fill(null);
+  quizStep=0;
+  document.getElementById('quiz-result').classList.remove('show');
+  document.getElementById('quiz-result').style.display='none';
+  updateQuizProgress();
+}
+
+function selectQuizOption(qi,oi,val){
+  quizAnswers[qi]=val;
+  document.querySelectorAll(`#qstep-${qi} .quiz-option`).forEach((el,i)=>el.classList.toggle('selected',i===oi));
+  const nxt=document.getElementById(`qnext-${qi}`);
+  if(nxt)nxt.disabled=false;
+}
+
+function quizNext(qi){
+  if(quizAnswers[qi]===null)return;
+  if(qi<QUIZ_QUESTIONS.length-1){
+    document.getElementById(`qstep-${qi}`).classList.remove('active');
+    document.getElementById(`qstep-${qi+1}`).classList.add('active');
+    quizStep=qi+1;updateQuizProgress();
+  } else {
+    // show results
+    showQuizResults();
+  }
+}
+
+function quizPrev(qi){
+  document.getElementById(`qstep-${qi}`).classList.remove('active');
+  document.getElementById(`qstep-${qi-1}`).classList.add('active');
+  quizStep=qi-1;updateQuizProgress();
+}
+
+function updateQuizProgress(){
+  const pct=(quizStep/QUIZ_QUESTIONS.length)*100;
+  document.getElementById('quiz-progress-fill').style.width=pct+'%';
+}
+
+function showQuizResults(){
+  document.querySelectorAll('.quiz-step').forEach(s=>s.classList.remove('active'));
+  const recs=getQuizRecs(quizAnswers);
+  const resultEl=document.getElementById('quiz-result');
+  resultEl.style.display='block';
+  resultEl.innerHTML=`
+    <div class="quiz-result-head">
+      <div class="quiz-result-badge">🎯</div>
+      <div class="quiz-result-title">${t('Your Perfect AI Match','您的完美AI匹配')}</div>
+      <div class="quiz-result-sub">${t('Based on your answers, here are our top picks:','根据您的回答，以下是我们的推荐：')}</div>
+    </div>
+    <div class="quiz-recs">
+      ${recs.map((rec,i)=>{
+        const info=toolInfo[rec.name]||{icon:'🤖',reasonEn:rec.name,reasonZh:rec.name,url:'#'};
+        return `<div class="quiz-rec${i===0?' top':''}">
+          <div class="quiz-rec-rank">${i===0?'🥇':i===1?'🥈':i===2?'🥉':`#${i+1}`}</div>
+          <span class="quiz-rec-icon">${info.icon}</span>
+          <div>
+            <div class="quiz-rec-name">${rec.name}</div>
+            <div class="quiz-rec-reason">${LANG==='zh'?info.reasonZh:info.reasonEn}</div>
+          </div>
+          <div style="margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0">
+            <span class="quiz-rec-score">${t('Score','分数')}: ${rec.score}</span>
+            <a href="${info.url}" target="_blank" style="font-size:11px;font-weight:700;padding:5px 11px;border-radius:20px;background:rgba(212,168,83,.1);border:1px solid rgba(212,168,83,.25);color:var(--gold);cursor:pointer">${t('Try it →','立即试用 →')}</a>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+    <button class="quiz-restart-btn" onclick="restartQuiz()">${t('← Retake Quiz','← 重新测试')}</button>`;
+  resultEl.classList.add('show');
+  updateQuizProgress();
+  document.getElementById('quiz-progress-fill').style.width='100%';
+}
+
+function restartQuiz(){
+  document.getElementById('quiz-result').classList.remove('show');
+  document.getElementById('quiz-result').style.display='none';
+  renderQuiz();
+}
+
+/* ═══ GLOSSARY ═══ */
+const GLOSSARY=[
+  {term:'LLM',termZh:'大语言模型(LLM)',def:'Large Language Model — the technology behind ChatGPT, Claude, Gemini etc. Trained on vast text to understand and generate human language.',defZh:'大型语言模型——ChatGPT、Claude、Gemini等背后的技术，通过海量文本训练来理解和生成人类语言。',example:'GPT-4, Claude 3.5, Gemini 1.5 are all LLMs.',exZh:'GPT-4、Claude 3.5、Gemini 1.5都是大语言模型。',badge:'Core'},
+  {term:'Prompt',termZh:'提示词(Prompt)',def:'The text instruction you type to an AI. Better prompts → better answers. The art of writing prompts is called "prompt engineering".',defZh:'您输入给AI的文字指令。提示词越好，回答越好。编写提示词的技巧称为"提示工程"。',example:'"Write a cover letter for a software engineer job in a friendly tone."',exZh:'"用友好语气写一封软件工程师岗位的求职信。"',badge:'Beginner'},
+  {term:'Context Window',termZh:'上下文窗口',def:'How much text the AI can "see" at once. Measured in tokens (~4 chars each). Claude has 200k tokens; GPT-4o has 128k.',defZh:'AI一次能"看到"多少文字，以token计量（约4个字符/token）。Claude有20万，GPT-4o有12.8万。',example:'Long context = you can paste entire books. Short context = AI forgets earlier messages.',exZh:'上下文越长，可粘贴整本书；越短，AI越快遗忘早期对话。',badge:'Key concept'},
+  {term:'Token',termZh:'词元(Token)',def:'The unit AI models use to process text. Roughly 1 token = 0.75 words (or ~4 characters). API pricing is based on tokens used.',defZh:'AI处理文字的最小单位，约1 token = 0.75个英文词（或约4个字符）。API按token计费。',example:'"Hello!" = ~2 tokens. API usage is billed per 1,000 tokens.',exZh:'"你好！"约等于2个token，API按每1000个token计费。',badge:'Pricing'},
+  {term:'RAG',termZh:'检索增强生成(RAG)',def:'Retrieval-Augmented Generation — connecting an AI to external data (your docs, a database) so it can answer questions with your specific information.',defZh:'检索增强生成——将AI连接到外部数据（您的文档、数据库），使其能基于您的专属信息回答问题。',example:'Chatbots that can answer questions from your company\'s internal Wiki.',exZh:'能基于公司内部Wiki回答问题的企业聊天机器人。',badge:'Advanced'},
+  {term:'Hallucination',termZh:'幻觉(Hallucination)',def:'When an AI confidently states something false. E.g. inventing a fake citation or wrong fact. Always verify important AI outputs!',defZh:'AI自信地陈述错误信息，例如捏造引用或错误事实。重要的AI输出请务必核实！',example:'"This paper by Smith (2019) proves X" — but the paper doesn\'t exist.',exZh:'"Smith(2019)的论文证明X" ——但该论文根本不存在。',badge:'⚠️ Warning'},
+  {term:'Fine-tuning',termZh:'微调(Fine-tuning)',def:'Training an existing AI model on your specific data to make it specialised for your use case. Used to create custom AI assistants.',defZh:'在您的特定数据上继续训练现有AI模型，使其专门适合您的场景，用于创建定制AI助手。',example:'A medical AI fine-tuned on clinical notes to give better healthcare advice.',exZh:'在临床病历上微调的医疗AI，能提供更专业的医疗建议。',badge:'Advanced'},
+  {term:'API',termZh:'应用编程接口(API)',def:'Application Programming Interface — a way for developers to send requests to AI models in their own apps. Used to build products powered by GPT, Claude etc.',defZh:'开发者在自己的应用中调用AI模型的方式，用于构建基于GPT、Claude等的产品。',example:'A startup uses the Claude API to power their writing assistant app.',exZh:'初创公司使用Claude API为其写作助手应用提供支持。',badge:'Dev'},
+  {term:'Multimodal',termZh:'多模态',def:'AI that can handle multiple types of input — text, images, audio, video — in one conversation. GPT-4o and Gemini Ultra are multimodal.',defZh:'能在一次对话中处理多种输入类型（文字、图片、音频、视频）的AI。GPT-4o和Gemini Ultra是多模态AI。',example:'"Here\'s a photo of my error — what\'s wrong with my code?"',exZh:'"这是我的错误截图，我的代码哪里有问题？"',badge:'Feature'},
+  {term:'Prompt Engineering',termZh:'提示工程',def:'The skill of crafting AI prompts to get better, more accurate results. Includes techniques like chain-of-thought, few-shot examples, and role assignment.',defZh:'设计AI提示词以获取更好结果的技能，包括思维链、少样本示例和角色分配等技巧。',example:'"You are an expert data scientist. Think step by step. First, explain..."',exZh:'"你是一名资深数据科学家。请逐步思考。首先，解释……"',badge:'Skill'},
+  {term:'Agentic AI',termZh:'自主AI(Agentic AI)',def:'AI that can take multi-step actions autonomously — browsing the web, writing and running code, managing files — to complete complex tasks without human intervention at each step.',defZh:'能自主执行多步骤操作的AI——浏览网页、编写并运行代码、管理文件——无需人工干预即可完成复杂任务。',example:'Claude Code plans, writes, tests and deploys code by itself.',exZh:'Claude Code可以自主规划、编写、测试和部署代码。',badge:'Trend'},
+  {term:'Inference',termZh:'推理(Inference)',def:'The process of an AI model generating a response from your input. "Inference cost" is what AI companies pay to run models; it affects pricing.',defZh:'AI模型根据您的输入生成回答的过程。"推理成本"是AI公司运行模型的费用，直接影响定价。',example:'Every time you press "Send" in ChatGPT, one inference happens.',exZh:'每次在ChatGPT中按"发送"，就会发生一次推理。',badge:'Concept'},
+];
+
+let tooltipTimeout;
+function renderGlossary(){
+  document.getElementById('glossary-wrap').innerHTML=GLOSSARY.map((g,i)=>`
+    <div class="gloss-card" 
+      onmouseenter="showGlossTooltip(event,${i})" 
+      onmouseleave="hideGlossTooltip()"
+      onclick="showGlossTooltip(event,${i},true)">
+      <span class="gloss-badge">${g.badge}</span>
+      <div class="gloss-term">${LANG==='zh'?g.termZh:g.term}</div>
+      <div class="gloss-def">${LANG==='zh'?(g.defZh||g.def).slice(0,80):g.def.slice(0,80)}…</div>
+    </div>`).join('');
+}
+
+function showGlossTooltip(e,idx,pin=false){
+  clearTimeout(tooltipTimeout);
+  const g=GLOSSARY[idx];
+  const tt=document.getElementById('gloss-tooltip');
+  document.getElementById('gt-term').textContent=LANG==='zh'?g.termZh:g.term;
+  document.getElementById('gt-def').textContent=LANG==='zh'?(g.defZh||g.def):g.def;
+  document.getElementById('gt-ex').textContent=LANG==='zh'?(g.exZh||g.example):g.example;
+  const rect=e.currentTarget.getBoundingClientRect();
+  let left=rect.right+12;let top=rect.top;
+  if(left+290>window.innerWidth)left=rect.left-302;
+  if(top+160>window.innerHeight)top=window.innerHeight-170;
+  tt.style.left=left+'px';tt.style.top=Math.max(70,top)+'px';
+  tt.classList.add('visible');
+}
+function hideGlossTooltip(){
+  tooltipTimeout=setTimeout(()=>document.getElementById('gloss-tooltip').classList.remove('visible'),200);
+}
+
+/* ═══ SUBMIT TOOL ═══ */
+let selectedTier='basic';
+function selectTier(el,tier){
+  selectedTier=tier;
+  document.querySelectorAll('.sf-tier').forEach(t=>t.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+async function submitTool(){
+  const name=document.getElementById('sf-name').value.trim();
+  const url=document.getElementById('sf-url').value.trim();
+  const email=document.getElementById('sf-email').value.trim();
+  const desc=document.getElementById('sf-desc').value.trim();
+  if(!name||!url||!email){showToast(t('Please fill required fields','请填写必填项'));return;}
+  const payload={toolName:name,url,category:document.getElementById('sf-cat').value,pricing:document.getElementById('sf-pricing-model').value,contactEmail:email,description:desc,tier:selectedTier,timestamp:new Date().toISOString()};
+  if(db){
+    try{await db.collection('tool_submissions').add({...payload,createdAt:firebase.firestore.FieldValue.serverTimestamp()});}
+    catch(e){console.warn('Firestore submit error:',e);}
+  }
+  try{const ex=JSON.parse(localStorage.getItem('ailoom_submissions')||'[]');ex.push(payload);localStorage.setItem('ailoom_submissions',JSON.stringify(ex));}catch(e){}
+  document.getElementById('submit-form-wrap').style.display='none';
+  document.getElementById('sf-success').style.display='block';
+}
+
+/* ═══ TOC ═══ */
+const TOC_SECTIONS=['sec-news','sec-bow','sec-models','sec-tools','sec-quiz','sec-glossary','sec-submit','sec-github'];
+function setTocActive(id){
+  document.querySelectorAll('.toc-dot-btn').forEach((d,i)=>d.classList.toggle('active',TOC_SECTIONS[i]===id));
+}
+window.addEventListener('scroll',()=>{
+  let active=null;
+  const threshold=window.innerHeight*.45+60;
+  TOC_SECTIONS.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=threshold)active=id;});
+  if(active)setTocActive(active);
+},{passive:true});
+function tocNav(id){
+  const el=document.getElementById(id);if(!el)return;
+  window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-65,behavior:'smooth'});
+}
+
+/* ═══ SEARCH ═══ */
+function doSearch(q){
+  const v=q.trim().toLowerCase();
+  document.getElementById('nav-si-x').style.display=v?'block':'none';
+  const panel=document.getElementById('search-panel');
+  if(!v){panel.style.display='none';panel.innerHTML='';return;}
+  panel.style.display='block';
+  const groups={'Models':[],'Tools':[]};
+  Object.values(M).forEach(m=>{
+    if(m.name.toLowerCase().includes(v)||m.maker.toLowerCase().includes(v))
+      groups['Models'].push({name:m.name,sub:m.reachVal+' '+m.reachUnit,color:m.ac,action:`openModelPopup('${m.id}')`});
+  });
+  TOOLS_BASE.forEach(tool=>{
+    if(tool.n.toLowerCase().includes(v)||tool.cl.toLowerCase().includes(v))
+      groups['Tools'].push({name:tool.n,sub:tool.cl,color:'#c084fc',action:`window.open('${tool.aff||tool.url}','_blank')`});
+  });
+  const total=Object.values(groups).reduce((a,b)=>a+b.length,0);
+  if(!total){panel.innerHTML=`<div class="sr-meta">No results for "<b>${q}</b>"</div>`;return;}
+  panel.innerHTML=`<div class="sr-meta">${total} result${total!==1?'s':''} for <b>"${q}"</b></div>`+
+    Object.entries(groups).filter(([,items])=>items.length).map(([label,items])=>
+      `<div class="sr-group"><div class="sr-group-label">${label}</div>${items.map(r=>`
+        <div class="sr-item" onclick="${r.action}">
+          <div class="sr-dot" style="background:${r.color}"></div>
+          <div style="flex:1"><div class="sr-name">${r.name}</div><div class="sr-sub">${r.sub}</div></div>
+          <span class="sr-type">${label.slice(0,-1)}</span>
+        </div>`).join('')}</div>`).join('');
+}
+function clearSearch(){
+  const inp=document.getElementById('nav-si');if(inp)inp.value='';
+  document.getElementById('nav-si-x').style.display='none';
+  const p=document.getElementById('search-panel');if(p){p.style.display='none';p.innerHTML='';}
+}
+
+/* ═══ SUPPORT ═══ */
+const BTC_ADDRESS='0xeA8b46003836C46A000BF59562cDFeCf751A9DD8';
+function copyCrypto(){
+  navigator.clipboard.writeText(BTC_ADDRESS).then(()=>{
+    const l=document.getElementById('crypto-label');if(l)l.textContent=t('Copied! ✓','已复制！✓');
+    const c=document.getElementById('crypto-confirm');if(c)c.style.display='block';
+    setTimeout(()=>{if(l)l.setAttribute('data-en','Copy Bitcoin address');if(l)l.textContent=t('Copy Bitcoin address','复制比特币地址');if(c)c.style.display='none';},3000);
+  }).catch(()=>showToast('BTC: '+BTC_ADDRESS));
+}
+
+/* ═══ TOAST ═══ */
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+
+/* ═══ FIREBASE AUTH ═══ */
+let auth=null,db=null,fbRating=0,currentUser=null;
+function loadScript(src){return new Promise((res,rej)=>{if(document.querySelector(`script[src="${src}"]`)){res();return;}const s=document.createElement('script');s.src=src;s.crossOrigin='anonymous';s.onload=()=>res();s.onerror=()=>rej(new Error('Failed: '+src));document.head.appendChild(s);});}
+
+async function initFirebase(){
+  if(location.protocol==='file:'){setLoggedOutUI();return;}
+  try{
+    await loadScript('https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js');
+    await loadScript('https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js');
+    await loadScript('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js');
+    if(typeof firebase==='undefined')throw new Error('firebase undefined');
+    const cfg={apiKey:"AIzaSyAxmNk_KrgnZEykubo2l1WWcW5d2rh1voQ",authDomain:"ailoom-af7eb.firebaseapp.com",projectId:"ailoom-af7eb",storageBucket:"ailoom-af7eb.firebasestorage.app",messagingSenderId:"920197788828",appId:"1:920197788828:web:9787d9749770f6e7f3e959"};
+    if(!firebase.apps.length)firebase.initializeApp(cfg);
+    auth=firebase.auth();db=firebase.firestore();
+    const gp=new firebase.auth.GoogleAuthProvider();gp.addScope('profile');gp.addScope('email');window._googleProvider=gp;
+    auth.onAuthStateChanged(user=>{currentUser=user;if(user)setLoggedInUI(user);else setLoggedOutUI();buildList(curCat);updateTotalVotes();});
+  }catch(e){console.warn('Firebase unavailable:',e.message);setLoggedOutUI();}
+}
+
+function setLoggedInUI(user){
+  const init=(user.displayName||user.email||'?')[0].toUpperCase();
+  const name=user.displayName?user.displayName.split(' ')[0]:'User';
+  document.getElementById('auth-area').innerHTML=`
+    <button class="lang-btn" onclick="toggleLang()" id="lang-btn">${LANG==='en'?'🇨🇳 中文':'🇺🇸 English'}</button>
+    <div class="user-chip">
+      ${user.photoURL?`<img src="${user.photoURL}" style="width:26px;height:26px;border-radius:50%;object-fit:cover" referrerpolicy="no-referrer">`:`<div class="user-avatar">${init}</div>`}
+      ${name}
+    </div>
+    <button class="signout-btn" onclick="signOutUser()" data-en="Sign out" data-zh="退出">Sign out</button>`;
+}
+function setLoggedOutUI(){
+  document.getElementById('auth-area').innerHTML=`
+    <button class="lang-btn" onclick="toggleLang()" id="lang-btn">${LANG==='en'?'🇨🇳 中文':'🇺🇸 English'}</button>
+    <button class="login-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <span data-en="Sign in" data-zh="登录">${t('Sign in','登录')}</span>
+    </button>`;
+}
+function openModal(){document.getElementById('modal').classList.add('open');}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+async function signInWithGoogle(){
+  if(!auth){showToast(t('Still loading — try again in a moment','正在加载，请稍后重试'));return;}
+  try{await auth.signInWithPopup(window._googleProvider);closeModal();showToast(t('Welcome to AILoom! You have 5 votes today.','欢迎来到AILoom！您今日有5票。'));}
+  catch(err){
+    if(err.code==='auth/unauthorized-domain'){document.getElementById('modal-sub').innerHTML=`<span style="color:#f87171;font-weight:700">⚠ Domain not authorised.</span><br>Add <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;font-size:11px">${location.hostname}</code> in Firebase Console → Auth → Authorised domains`;}
+    else if(err.code!=='auth/popup-closed-by-user'){showToast('Sign-in error: '+err.code);}
+  }
+}
+async function signOutUser(){if(auth)await auth.signOut();currentUser=null;showToast(t('Signed out. See you soon!','已退出，再见！'));buildList(curCat);}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+/* ═══ FEEDBACK ═══ */
+function openFeedback(){document.getElementById('fb-form-wrap').style.display='block';document.getElementById('fb-success').style.display='none';document.getElementById('fb-submit').disabled=false;document.getElementById('fb-submit').textContent=t('Send Feedback →','发送反馈 →');document.getElementById('fb-modal').classList.add('open');}
+function closeFeedback(){document.getElementById('fb-modal').classList.remove('open');fbRating=0;document.querySelectorAll('.fb-star').forEach(s=>s.classList.remove('on'));['fb-msg','fb-name','fb-email'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});}
+document.getElementById('fb-modal').addEventListener('click',function(e){if(e.target===this)closeFeedback();});
+function setRating(n){fbRating=n;document.querySelectorAll('.fb-star').forEach(s=>s.classList.toggle('on',parseInt(s.dataset.v)<=n));}
+async function submitFeedback(){
+  const msg=document.getElementById('fb-msg').value.trim();
+  if(!msg){document.getElementById('fb-msg').focus();document.getElementById('fb-msg').style.borderColor='rgba(248,113,113,.6)';setTimeout(()=>document.getElementById('fb-msg').style.borderColor='',2000);return;}
+  const btn=document.getElementById('fb-submit');btn.disabled=true;btn.textContent=t('Sending…','发送中…');
+  const payload={name:document.getElementById('fb-name').value.trim()||'Anonymous',email:document.getElementById('fb-email').value.trim()||'',type:document.getElementById('fb-type').value,rating:fbRating||null,message:msg,timestamp:new Date().toISOString()};
+  if(db){try{await db.collection('feedback').add({...payload,createdAt:firebase.firestore.FieldValue.serverTimestamp()});}catch(e){console.warn('Firestore feedback error:',e);}}
+  try{const ex=JSON.parse(localStorage.getItem('ailoom_feedback')||'[]');ex.push(payload);localStorage.setItem('ailoom_feedback',JSON.stringify(ex));}catch(e){}
+  document.getElementById('fb-form-wrap').style.display='none';document.getElementById('fb-success').style.display='block';
+  setTimeout(()=>closeFeedback(),4000);
+}
+
+/* ═══ GITHUB STEPS: Chinese translation ═══ */
+function renderGithubSteps(){
+  const steps=[
+    {num:1,en:{title:'Create GitHub Repo',desc:'Go to github.com → New repository → Name it <code>ailoom</code> → Public → Create'},zh:{title:'创建GitHub仓库',desc:'访问github.com → 新建仓库 → 命名为 <code>ailoom</code> → 选公开 → 创建'}},
+    {num:2,en:{title:'Upload Your File',desc:'Click "Add file" → Upload files → Drag your HTML file → Rename to <code>index.html</code> → Commit'},zh:{title:'上传文件',desc:'点击"添加文件"→ 上传文件 → 拖入HTML文件 → 重命名为 <code>index.html</code> → 提交'}},
+    {num:3,en:{title:'Enable Pages',desc:'Settings → Pages → Source: Deploy from branch → Branch: main → / (root) → Save'},zh:{title:'启用Pages',desc:'设置 → Pages → 来源：从分支部署 → 分支：main → /(根目录) → 保存'}},
+    {num:4,en:{title:'Update Anytime',desc:'Ask Claude for changes → Download new HTML → Go to repo → Click index.html → Pencil icon → Paste → Commit → Live in ~30s'},zh:{title:'随时更新',desc:'向Claude请求更改 → 下载新HTML → 进入仓库 → 点击index.html → 铅笔图标 → 粘贴 → 提交 → 约30秒上线'}},
+  ];
+  document.getElementById('github-steps').innerHTML=steps.map(s=>`
+    <div class="gh-step">
+      <div class="gh-step-num">${s.num}</div>
+      <div class="gh-step-title">${LANG==='zh'?s.zh.title:s.en.title}</div>
+      <div class="gh-step-desc">${LANG==='zh'?s.zh.desc:s.en.desc}</div>
+    </div>`).join('');
+  document.getElementById('gh-highlight').innerHTML=LANG==='zh'
+    ?`<b>您的上线地址将是：</b> <code>https://您的用户名.github.io/ailoom/</code><br><br><b>每次Claude会话后更新：</b>下载新HTML → 在GitHub点击 <code>index.html</code> → 点击✏️铅笔图标 → 全选 → 粘贴 → "提交更改" → 完成！约30秒上线。<br><br><b>专业提示：</b>在Firebase控制台启用Firebase Auth，并将您的GitHub Pages域名添加到"已授权域名"，确保Google登录在线上站点正常运行。`
+    :`<b>Your live URL will be:</b> <code>https://YOUR-USERNAME.github.io/ailoom/</code><br><br><b>To update after every Claude session:</b> Download the new HTML → In GitHub click <code>index.html</code> → click the ✏️ pencil icon → select all → paste → "Commit changes" → Done! Live in ~30 seconds.<br><br><b>Pro tip:</b> Enable Firebase Auth in the Firebase Console and add your GitHub Pages domain to "Authorised domains" so Google Sign-In works on your live site.`;
+}
+
+/* ═══ INIT ═══ */
+renderNews();
+renderBOW();
+renderModels();
+renderFilters();
+buildList('all');
+renderQuiz();
+renderGlossary();
+renderGithubSteps();
+initFirebase();
+
+// Midnight vote reset check
+setInterval(()=>{
+  const vl=getVotesLeft();// this auto-resets if date changed
+  updateTotalVotes();
+},60000);
+</script>
+</body>
+</html>
