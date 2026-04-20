@@ -936,12 +936,49 @@ const M={
   }
 };
 
-/* ════ BOW votes stored separately ════ */
-const BOW_VOTE_KEY='ailoom_bow_votes_v1',BOW_VOTED_KEY='ailoom_bow_voted_v1';
-let bowVotes={gpt:1240,claude:980,gemini:820,grok:610,meta:540};
+/* ════ BOW VOTES — Firestore shared, localStorage for user's own voted state ════ */
+const BOW_VOTED_KEY='ailoom_bow_voted_v2'; // only tracks if THIS user voted (local)
+let bowVotes={gpt:1240,claude:980,gemini:820,grok:610,meta:540}; // defaults, overwritten by Firestore
 let bowVoted={gpt:false,claude:false,gemini:false,grok:false,meta:false};
-try{const bv=localStorage.getItem(BOW_VOTE_KEY);const bd=localStorage.getItem(BOW_VOTED_KEY);if(bv)Object.assign(bowVotes,JSON.parse(bv));if(bd)Object.assign(bowVoted,JSON.parse(bd));}catch(e){}
-function saveBowVotes(){try{localStorage.setItem(BOW_VOTE_KEY,JSON.stringify(bowVotes));localStorage.setItem(BOW_VOTED_KEY,JSON.stringify(bowVoted));}catch(e){}}
+try{const bd=localStorage.getItem(BOW_VOTED_KEY);if(bd)Object.assign(bowVoted,JSON.parse(bd));}catch(e){}
+function saveBowVotedLocal(){try{localStorage.setItem(BOW_VOTED_KEY,JSON.stringify(bowVoted));}catch(e){}}
+
+// Load shared BOW vote counts from Firestore
+async function loadBowVotesFromFirestore(){
+  if(!db)return;
+  try{
+    const snap=await db.collection('votes').where('type','==','bow').get();
+    snap.forEach(doc=>{
+      const d=doc.data();
+      if(d.modelId&&typeof d.count==='number') bowVotes[d.modelId]=d.count;
+    });
+    renderBOW();renderModels();
+  }catch(e){console.warn('BOW Firestore load:',e);}
+}
+
+// Write BOW vote to Firestore
+async function writeBowVoteToFirestore(modelId, increment){
+  if(!db)return;
+  const ref=db.collection('votes').doc('bow_'+modelId);
+  try{
+    await db.runTransaction(async tx=>{
+      const doc=await tx.get(ref);
+      if(!doc.exists){
+        tx.set(ref,{type:'bow',modelId,count:Math.max(0,(bowVotes[modelId]||0)+increment)});
+      } else {
+        const newCount=Math.max(0,(doc.data().count||0)+increment);
+        tx.update(ref,{count:newCount});
+        bowVotes[modelId]=newCount;
+      }
+    });
+    renderBOW();renderModels();
+  }catch(e){
+    // Fallback to local if Firestore write fails
+    bowVotes[modelId]=Math.max(0,(bowVotes[modelId]||0)+increment);
+    renderBOW();renderModels();
+    console.warn('BOW Firestore write failed, using local:',e);
+  }
+}
 
 /* ════ SKILL SCORES per model ════ */
 const MODEL_SCORES={
@@ -1040,21 +1077,21 @@ function bowCardHTML(id,rank){
 function castBowVote(id,e){
   e&&e.stopPropagation();
   if(!currentUser){openModal();return;}
-  if(bowVoted[id]){
-    bowVotes[id]=Math.max(0,(bowVotes[id]||0)-1);
-    bowVoted[id]=false;
-  } else {
-    bowVotes[id]=(bowVotes[id]||0)+1;
-    bowVoted[id]=true;
+  const wasVoted=bowVoted[id];
+  const increment=wasVoted?-1:1;
+  bowVoted[id]=!wasVoted;
+  saveBowVotedLocal();
+  // Optimistically update UI
+  bowVotes[id]=Math.max(0,(bowVotes[id]||0)+increment);
+  renderBOW();renderModels();
+  if(!wasVoted){
     showToast('▲ Voted for '+M[id].name+'!');
-    // ripple on the bar
     const bar=document.getElementById('mbar-'+id);
     if(bar){bar.classList.add('vote-flash');bar.addEventListener('animationend',()=>bar.classList.remove('vote-flash'),{once:true});}
     if(e&&e.target)spawnVoteFX(e.target);
   }
-  saveBowVotes();
-  renderBOW();
-  renderModels();
+  // Write to Firestore (shared across all users)
+  writeBowVoteToFirestore(id, increment);
 }
 
 /* ════ BIG 5 MODELS — whole bar = vote ════ */
@@ -1165,14 +1202,74 @@ const TOOLS_BASE=[
   {n:'Consensus',    cat:'search',cl:'Search', cc:'cc-sch', g:'+20%',hot:false,votes:220, url:'https://consensus.app',       aff:'https://consensus.app/?ref=ailoom',  lk:'consensus'},
 ];
 
-const VOTE_KEY='ailoom_votes_v4',VOTED_KEY='ailoom_voted_v4',DVOTED_KEY='ailoom_dvoted_v4',VDATE_KEY='ailoom_vdate_v4',VLEFT_KEY='ailoom_vleft_v4';
+/* ════ TOOL VOTES — Firestore for shared counts, localStorage for user's own voted state ════ */
+const VOTED_KEY='ailoom_upvoted_v5',DVOTED_KEY='ailoom_dvoted_v5';  // user's own votes (local only)
+const VDATE_KEY='ailoom_vdate_v5',VLEFT_KEY='ailoom_vleft_v5';
 const MAX_VOTES=5;
 let votes={},upvoted={},downvoted={},curCat='all';
+// Seed default counts from TOOLS_BASE (overwritten by Firestore on load)
 TOOLS_BASE.forEach((t,i)=>{votes[i]=t.votes;upvoted[i]=false;downvoted[i]=false;});
-try{const sv=localStorage.getItem(VOTE_KEY);const su=localStorage.getItem(VOTED_KEY);const sd=localStorage.getItem(DVOTED_KEY);if(sv)Object.assign(votes,JSON.parse(sv));if(su)Object.assign(upvoted,JSON.parse(su));if(sd)Object.assign(downvoted,JSON.parse(sd));}catch(e){}
-function saveVotes(){try{localStorage.setItem(VOTE_KEY,JSON.stringify(votes));localStorage.setItem(VOTED_KEY,JSON.stringify(upvoted));localStorage.setItem(DVOTED_KEY,JSON.stringify(downvoted));}catch(e){}}
+// Load user's own voted state from localStorage (not the counts)
+try{
+  const su=localStorage.getItem(VOTED_KEY);
+  const sd=localStorage.getItem(DVOTED_KEY);
+  if(su)Object.assign(upvoted,JSON.parse(su));
+  if(sd)Object.assign(downvoted,JSON.parse(sd));
+}catch(e){}
+
+// Save only the user's personal voted state (not counts — those live in Firestore)
+function saveUserVoteState(){
+  try{
+    localStorage.setItem(VOTED_KEY,JSON.stringify(upvoted));
+    localStorage.setItem(DVOTED_KEY,JSON.stringify(downvoted));
+  }catch(e){}
+}
+
+// Load all shared tool vote counts from Firestore
+async function loadToolVotesFromFirestore(){
+  if(!db)return;
+  try{
+    const snap=await db.collection('votes').where('type','==','tool').get();
+    snap.forEach(doc=>{
+      const d=doc.data();
+      if(typeof d.toolIdx==='number'&&typeof d.count==='number'){
+        votes[d.toolIdx]=d.count;
+      }
+    });
+    buildList(curCat);
+    updateTotalVotes();
+  }catch(e){console.warn('Tool Firestore load:',e);}
+}
+
+// Write tool vote to Firestore
+async function writeToolVoteToFirestore(idx, increment){
+  if(!db)return;
+  const ref=db.collection('votes').doc('tool_'+idx);
+  try{
+    await db.runTransaction(async tx=>{
+      const doc=await tx.get(ref);
+      if(!doc.exists){
+        tx.set(ref,{type:'tool',toolIdx:idx,toolName:TOOLS_BASE[idx].n,count:Math.max(0,(votes[idx]||0))});
+      } else {
+        const newCount=Math.max(0,(doc.data().count||0)+increment);
+        tx.update(ref,{count:newCount});
+        votes[idx]=newCount;
+      }
+    });
+    buildList(curCat);
+    updateTotalVotes();
+  }catch(e){
+    console.warn('Tool Firestore write failed, using local:',e);
+  }
+}
+
 function todayStr(){return new Date().toISOString().slice(0,10);}
-function getVotesLeft(){const sd=localStorage.getItem(VDATE_KEY);const today=todayStr();if(sd!==today){localStorage.setItem(VDATE_KEY,today);localStorage.setItem(VLEFT_KEY,MAX_VOTES);return MAX_VOTES;}return parseInt(localStorage.getItem(VLEFT_KEY)||MAX_VOTES);}
+function getVotesLeft(){
+  const sd=localStorage.getItem(VDATE_KEY);
+  const today=todayStr();
+  if(sd!==today){localStorage.setItem(VDATE_KEY,today);localStorage.setItem(VLEFT_KEY,MAX_VOTES);return MAX_VOTES;}
+  return parseInt(localStorage.getItem(VLEFT_KEY)||MAX_VOTES);
+}
 function setVotesLeft(n){localStorage.setItem(VLEFT_KEY,Math.max(0,n));}
 
 const CATS=['all','code','image','audio','video','write','search','3d','ux'];
@@ -1267,16 +1364,19 @@ function castVote(idx,dir,e){
   if(!currentUser){openModal();return;}
   const vleft=getVotesLeft();
   const wasUp=upvoted[idx],wasDn=downvoted[idx];
+  let increment=0;
   if(dir==='up'){
     if(wasDn)return;
-    if(wasUp){votes[idx]--;upvoted[idx]=false;setVotesLeft(Math.min(vleft+1,MAX_VOTES));}
-    else{if(vleft<=0){showToast('No votes left today! Resets at midnight.');return;}votes[idx]++;upvoted[idx]=true;setVotesLeft(vleft-1);const btn=document.getElementById('vb-up-'+idx);if(btn)spawnVoteFX(btn);showToast('↑ Voted for '+TOOLS_BASE[idx].n+'!');}
+    if(wasUp){votes[idx]--;upvoted[idx]=false;setVotesLeft(Math.min(vleft+1,MAX_VOTES));increment=-1;}
+    else{if(vleft<=0){showToast('No votes left today! Resets at midnight.');return;}votes[idx]++;upvoted[idx]=true;setVotesLeft(vleft-1);increment=1;const btn=document.getElementById('vb-up-'+idx);if(btn)spawnVoteFX(btn);showToast('↑ Voted for '+TOOLS_BASE[idx].n+'!');}
   } else {
     if(wasUp)return;
-    if(wasDn){votes[idx]++;downvoted[idx]=false;setVotesLeft(Math.min(vleft+1,MAX_VOTES));}
-    else{if(vleft<=0){showToast('No votes left today! Resets at midnight.');return;}votes[idx]--;downvoted[idx]=true;setVotesLeft(vleft-1);showToast('↓ Downvoted '+TOOLS_BASE[idx].n);}
+    if(wasDn){votes[idx]++;downvoted[idx]=false;setVotesLeft(Math.min(vleft+1,MAX_VOTES));increment=1;}
+    else{if(vleft<=0){showToast('No votes left today! Resets at midnight.');return;}votes[idx]--;downvoted[idx]=true;setVotesLeft(vleft-1);increment=-1;showToast('↓ Downvoted '+TOOLS_BASE[idx].n);}
   }
-  saveVotes();
+  saveUserVoteState(); // save only user's own vote state
+  if(increment!==0) writeToolVoteToFirestore(idx, increment); // write count to Firestore
+  // Animate UI immediately (optimistic update)
   const list=curCat==='all'?TOOLS_BASE:TOOLS_BASE.filter(t=>t.cat===curCat);
   const sorted=[...list].sort((a,b)=>votes[TOOLS_BASE.indexOf(b)]-votes[TOOLS_BASE.indexOf(a)]);
   const container=document.getElementById('tool-list');if(!container)return;
@@ -1598,8 +1698,20 @@ async function initFirebase(){
     if(!firebase.apps.length)firebase.initializeApp(cfg);
     auth=firebase.auth();db=firebase.firestore();
     const gp=new firebase.auth.GoogleAuthProvider();gp.addScope('profile');gp.addScope('email');window._googleProvider=gp;
-    auth.onAuthStateChanged(user=>{currentUser=user;if(user)setLoggedInUI(user);else setLoggedOutUI();buildList(curCat);updateTotalVotes();});
-  }catch(e){console.warn('Firebase:',e.message);setLoggedOutUI();}
+    auth.onAuthStateChanged(user=>{
+      currentUser=user;
+      if(user)setLoggedInUI(user);
+      else setLoggedOutUI();
+      buildList(curCat);
+      updateTotalVotes();
+    });
+    // Load shared vote counts from Firestore on startup
+    loadBowVotesFromFirestore();
+    loadToolVotesFromFirestore();
+  }catch(e){console.warn('Firebase:',e.message);setLoggedOutUI();
+    // Still try to load votes if db somehow initialized
+    if(db){loadBowVotesFromFirestore();loadToolVotesFromFirestore();}
+  }
 }
 function setLoggedInUI(user){
   const init=(user.displayName||user.email||'?')[0].toUpperCase();
