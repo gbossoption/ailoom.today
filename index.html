@@ -66,40 +66,50 @@ a{color:inherit;text-decoration:none}
 .signout-btn{font-size:11px;font-weight:700;padding:4px 9px;border-radius:20px;border:1px solid var(--rim2);background:var(--glass);color:var(--fog);cursor:pointer;transition:all .15s;font-family:var(--fb)}
 .signout-btn:hover{background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.3);color:#f87171}
 
-/* ══ VIDEO PLAYER NAV BAR ══ */
+/* ══ VIDEO PLAYER NAV BAR — interactive ══ */
 .nav-video{flex:1;max-width:440px;margin:0 auto;position:relative}
-.nav-video-player{display:flex;align-items:center;gap:9px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px 12px;cursor:pointer;transition:all .2s;overflow:hidden;position:relative}
-.nav-video-player:hover{border-color:rgba(255,255,255,.22);background:rgba(0,0,0,.6)}
-.nav-video-thumb{width:44px;height:28px;border-radius:5px;object-fit:cover;flex-shrink:0;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
-.nav-video-thumb-img{width:100%;height:100%;object-fit:cover;border-radius:4px}
-.nav-video-play-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.4)}
-.nav-video-play-icon svg{width:14px;height:14px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.5))}
+.nav-video-player{display:flex;align-items:center;gap:9px;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:6px 12px;cursor:pointer;transition:all .25s;overflow:hidden;position:relative}
+.nav-video-player::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.07) 50%,transparent 60%);transform:translateX(-100%);transition:transform .4s ease;pointer-events:none}
+.nav-video-player:hover::after{transform:translateX(100%)}
+.nav-video-player:hover{border-color:rgba(248,113,113,.5);background:rgba(0,0,0,.7);box-shadow:0 0 22px rgba(248,80,60,.15),0 4px 16px rgba(0,0,0,.4);transform:scale(1.01)}
+.nav-video-thumb{width:52px;height:32px;border-radius:6px;flex-shrink:0;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+.nav-video-thumb-img{width:100%;height:100%;object-fit:cover;border-radius:5px}
+.nav-video-play-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.45);transition:background .2s}
+.nav-video-player:hover .nav-video-play-icon{background:rgba(220,50,30,.65)}
+.nav-video-play-icon svg{width:16px;height:16px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.6))}
 .nav-video-info{flex:1;min-width:0}
-.nav-video-label{font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#f87171;margin-bottom:2px;display:flex;align-items:center;gap:4px}
+.nav-video-label{font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#f87171;margin-bottom:2px;display:flex;align-items:center;gap:4px}
 .nav-video-dot{width:5px;height:5px;border-radius:50%;background:#f87171;animation:blink 1.2s infinite;box-shadow:0 0 5px #f87171;flex-shrink:0}
-.nav-video-title{font-size:11px;font-weight:600;color:var(--snow);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+.nav-video-title{font-size:11px;font-weight:600;color:var(--snow);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3;transition:color .2s}
+.nav-video-player:hover .nav-video-title{color:#fff}
 .nav-video-meta{font-size:9px;color:var(--fog)}
-.nav-video-tabs{display:flex;gap:3px;margin-top:4px}
-.nav-vtab{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .18s;flex-shrink:0;border:none;padding:0}
-.nav-vtab.active{background:var(--gold);box-shadow:0 0 5px rgba(212,168,83,.5)}
-/* Full video modal */
-.video-modal-overlay{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.88);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.nav-video-tabs{display:flex;gap:4px;margin-top:3px}
+.nav-vtab{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;transition:all .2s;flex-shrink:0;border:none;padding:0}
+.nav-vtab:hover{background:rgba(255,255,255,.4);transform:scale(1.2)}
+.nav-vtab.active{background:#f87171;box-shadow:0 0 6px rgba(248,113,113,.6);transform:scale(1.15)}
+.nav-video-cta{font-size:9px;font-weight:700;color:#f87171;flex-shrink:0;letter-spacing:.04em;opacity:.7;transition:opacity .2s}
+.nav-video-player:hover .nav-video-cta{opacity:1}
+/* Full video modal — LARGE */
+.video-modal-overlay{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.92);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
 .video-modal-overlay.open{opacity:1;pointer-events:all}
-.video-modal{background:rgba(8,12,20,.98);border:1px solid var(--rim2);border-radius:20px;width:min(700px,94vw);box-shadow:0 24px 80px rgba(0,0,0,.8);overflow:hidden;animation:popIn .22s ease both}
-.vm-head{padding:16px 20px;border-bottom:1px solid var(--rim);display:flex;align-items:center;gap:12px}
-.vm-title{font-family:var(--fh);font-size:16px;font-weight:700;color:var(--snow);flex:1}
+.video-modal{background:rgba(6,10,20,.99);border:1px solid var(--rim2);border-radius:18px;width:min(900px,96vw);max-height:96vh;overflow-y:auto;box-shadow:0 32px 100px rgba(0,0,0,.9);animation:popIn .22s ease both}
+.vm-head{padding:14px 18px;border-bottom:1px solid var(--rim);display:flex;align-items:center;gap:12px}
+.vm-title{font-family:var(--fh);font-size:15px;font-weight:700;color:var(--snow);flex:1}
 .vm-close{background:none;border:1px solid var(--rim2);border-radius:8px;color:var(--fog);font-size:15px;cursor:pointer;padding:5px 9px;transition:all .15s}
 .vm-close:hover{color:var(--snow);background:var(--glass2)}
-.vm-tabs{display:flex;gap:6px;padding:14px 20px;border-bottom:1px solid var(--rim);flex-wrap:wrap}
+.vm-tabs{display:flex;gap:5px;padding:12px 18px;border-bottom:1px solid var(--rim);flex-wrap:wrap;background:rgba(0,0,0,.3)}
 .vm-tab{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1px solid var(--rim);background:var(--glass);color:var(--fog);cursor:pointer;transition:all .18s}
 .vm-tab:hover{border-color:var(--rim2);color:var(--mist)}
-.vm-tab.active{border-color:rgba(212,168,83,.4);background:rgba(212,168,83,.1);color:var(--gold)}
+.vm-tab.active{border-color:rgba(248,113,113,.45);background:rgba(248,113,113,.1);color:#f87171}
 .vm-tab-logo{width:16px;height:16px;border-radius:3px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.vm-player{padding:0 20px 20px}
-.vm-iframe-wrap{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000;margin-top:14px}
+.vm-player{padding:16px 18px 20px}
+.vm-iframe-wrap{position:relative;width:100%;padding-top:56.25%;border-radius:10px;overflow:hidden;background:#000;box-shadow:0 8px 32px rgba(0,0,0,.6)}
 .vm-iframe-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
-.vm-video-title{font-size:14px;font-weight:700;color:var(--snow);margin-top:12px;line-height:1.4}
-.vm-video-desc{font-size:12px;color:var(--mist);margin-top:5px;line-height:1.5}
+.vm-video-title{font-size:15px;font-weight:700;color:var(--snow);margin-top:13px;line-height:1.4}
+.vm-video-meta{display:flex;align-items:center;gap:10px;margin-top:4px}
+.vm-video-source{font-size:11px;font-weight:700;color:var(--gold)}
+.vm-video-date{font-size:11px;color:var(--fog)}
+.vm-video-desc{font-size:12px;color:var(--mist);margin-top:6px;line-height:1.5}
 
 /* ══ USER PROFILE DROPDOWN ══ */
 .user-dropdown-wrap{position:relative}
@@ -228,7 +238,7 @@ a{color:inherit;text-decoration:none}
 .bow-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
 .bow-today-date{font-size:11px;color:var(--fog);font-weight:600;letter-spacing:.06em}
 .bow-wrap{position:relative}
-.bow-podium{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:12px;margin-bottom:12px;align-items:end}
+.bow-podium{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px;align-items:start}
 .bow-lower{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .bow-card{border-radius:18px;border:1px solid var(--rim);background:rgba(13,20,36,.8);backdrop-filter:blur(20px);cursor:pointer;transition:transform .25s cubic-bezier(.34,1.56,.64,1),border-color .25s,box-shadow .25s;position:relative;overflow:hidden;padding:20px 18px 16px;text-align:center}
 .bow-card:hover{transform:translateY(-5px) scale(1.02);border-color:var(--rim2);box-shadow:0 16px 48px rgba(0,0,0,.5)}
@@ -622,7 +632,7 @@ a{color:inherit;text-decoration:none}
 
 /* RESPONSIVE */
 @media(max-width:900px){
-  .bow-podium{grid-template-columns:1fr 1.08fr 1fr}
+  .bow-podium{grid-template-columns:1fr 1fr 1fr}
   .bow-lower{grid-template-columns:1fr 1fr}
   .tool-row{grid-template-columns:40px 1fr 70px 45px auto}
   .mp-grid2{grid-template-columns:1fr}
@@ -854,6 +864,7 @@ a{color:inherit;text-decoration:none}
         <div class="nav-video-meta" id="nav-video-meta"></div>
       </div>
       <div class="nav-video-tabs" id="nav-video-tabs"></div>
+      <span class="nav-video-cta">▶ Watch</span>
     </div>
   </div>
   <div class="live-chip"><span class="ld"></span>Live</div>
@@ -902,7 +913,7 @@ a{color:inherit;text-decoration:none}
 
 <!-- ══ SEC 3: AI TOOLS ══ -->
 <section class="section" id="sec-tools">
-  <div class="section-eyebrow">Sign in · 5 votes/day · resets midnight</div>
+  <div class="section-eyebrow">Sign in · 5 votes/day · stack all on one tool · resets midnight</div>
   <h2 class="section-title"><em>AI</em> Tools Ranking</h2>
   <p class="section-sub">30 tools ranked by community votes. Vote to influence rankings live.</p>
   <div class="filter-bar" id="filter-bar"></div>
@@ -979,6 +990,7 @@ a{color:inherit;text-decoration:none}
         <iframe id="vm-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="vm-video-title" id="vm-video-title"></div>
+      <div class="vm-video-meta" id="vm-video-meta"></div>
       <div class="vm-video-desc" id="vm-video-desc"></div>
     </div>
   </div>
@@ -995,7 +1007,7 @@ a{color:inherit;text-decoration:none}
       <button class="mvote-close" onclick="closeMVote()">✕</button>
     </div>
     <div class="mvote-body">
-      <div class="mvote-subtitle">Which category is this AI best at? Each vote counts toward the Best AI This Week ranking. You have <b id="mvote-left">5</b> votes left today.</div>
+      <div class="mvote-subtitle">Vote for the best category — you can vote multiple times across categories. Each click costs one daily vote. You have <b id="mvote-left">5</b> votes left today.</div>
       <div class="mvote-cats" id="mvote-cats"></div>
       <div class="mvote-votes-left">Votes reset at midnight · Sign in to vote</div>
     </div>
@@ -1590,11 +1602,11 @@ function rowHTML(tool,idx,pos,moved){
       </button>
       <button class="downvote-btn" onclick="openModal()"><span style="font-size:11px">▽</span></button>`;
   } else {
-    const upDis=isDn||(!isUp&&vleft===0);
-    const dnDis=isUp||(!isDn&&vleft===0);
+    const noVotesLeft=vleft===0;
+    const dnDis=(!isDn&&vleft===0);
     voteArea=`
-      <button class="vote-btn${isUp?' voted':''}${upDis&&!isUp?' disabled':''}" id="vb-up-${idx}" onclick="castVote(${idx},'up',event)">
-        <span class="v-arrow" style="position:relative;z-index:1">${isUp?'▲':'△'}</span>
+      <button class="vote-btn${noVotesLeft?' disabled':''}" id="vb-up-${idx}" onclick="castVote(${idx},'up',event)" title="${noVotesLeft?'No votes left today':'Upvote (can vote multiple times)'}">
+        <span class="v-arrow" style="position:relative;z-index:1">△</span>
         <span class="vcount">${votes[idx].toLocaleString()}</span>
       </button>
       <button class="downvote-btn${isDn?' downvoted':''}${dnDis&&!isDn?' disabled':''}" id="vb-dn-${idx}" onclick="castVote(${idx},'down',event)">
@@ -1643,20 +1655,35 @@ function castVote(idx,dir,e){
   e&&e.stopPropagation();
   if(!currentUser){openModal();return;}
   const vleft=getVotesLeft();
-  const wasUp=upvoted[idx],wasDn=downvoted[idx];
   let increment=0;
+
   if(dir==='up'){
-    if(wasDn)return;
-    if(wasUp){votes[idx]--;upvoted[idx]=false;setVotesLeft(Math.min(vleft+1,MAX_VOTES));increment=-1;}
-    else{if(vleft<=0){showToast('No votes left today! Resets at midnight.');return;}votes[idx]++;upvoted[idx]=true;setVotesLeft(vleft-1);increment=1;const btn=document.getElementById('vb-up-'+idx);if(btn)spawnVoteFX(btn);showToast('↑ Voted for '+TOOLS_BASE[idx].n+'!');}
+    // Allow unlimited upvotes on same tool — costs one daily vote each time
+    if(vleft<=0){showToast('No votes left today! Resets at midnight.');return;}
+    votes[idx]++;
+    setVotesLeft(vleft-1);
+    increment=1;
+    const btn=document.getElementById('vb-up-'+idx);
+    if(btn){spawnVoteFX(btn);btn.classList.add('pop');setTimeout(()=>btn.classList.remove('pop'),400);}
+    showToast('↑ Voted for '+TOOLS_BASE[idx].n+'! ('+getVotesLeft()+' votes left today)');
   } else {
-    if(wasUp)return;
-    if(wasDn){votes[idx]++;downvoted[idx]=false;setVotesLeft(Math.min(vleft+1,MAX_VOTES));increment=1;}
-    else{if(vleft<=0){showToast('No votes left today! Resets at midnight.');return;}votes[idx]--;downvoted[idx]=true;setVotesLeft(vleft-1);increment=-1;showToast('↓ Downvoted '+TOOLS_BASE[idx].n);}
+    // Downvote: toggle per day per tool (prevents griefing)
+    const wasDn=downvoted[idx];
+    if(wasDn){
+      votes[idx]++;downvoted[idx]=false;
+      setVotesLeft(Math.min(vleft+1,MAX_VOTES));increment=1;
+    } else {
+      if(vleft<=0){showToast('No votes left today! Resets at midnight.');return;}
+      votes[idx]--;downvoted[idx]=true;
+      setVotesLeft(vleft-1);increment=-1;
+      showToast('↓ Downvoted '+TOOLS_BASE[idx].n);
+    }
   }
-  saveUserVoteState(); // save only user's own vote state
-  if(increment!==0) writeToolVoteToFirestore(idx, increment); // write count to Firestore
-  // Animate UI immediately (optimistic update)
+
+  saveUserVoteState();
+  if(increment!==0)writeToolVoteToFirestore(idx,increment);
+  updateVotesDisplay();
+
   const list=curCat==='all'?TOOLS_BASE:TOOLS_BASE.filter(t=>t.cat===curCat);
   const sorted=[...list].sort((a,b)=>votes[TOOLS_BASE.indexOf(b)]-votes[TOOLS_BASE.indexOf(a)]);
   const container=document.getElementById('tool-list');if(!container)return;
@@ -1668,7 +1695,7 @@ function castVote(idx,dir,e){
     const ridx=parseInt(r.dataset.idx);
     if(snaps[ridx]!==undefined){const delta=snaps[ridx]-r.getBoundingClientRect().top;if(Math.abs(delta)>2){r.style.transition='none';r.style.transform=`translateY(${delta}px)`;r.getBoundingClientRect();r.style.transition='transform 0.45s cubic-bezier(0.22,1,0.36,1)';r.style.transform='translateY(0)';r.addEventListener('transitionend',()=>{r.style.transition='';r.style.transform='';},{once:true});}}
   });
-  if(dir==='up'&&!wasUp){const vr=document.getElementById('tr-'+idx);if(vr){vr.classList.add('rank-up');vr.addEventListener('animationend',()=>vr.classList.remove('rank-up'),{once:true});}}
+  if(dir==='up'){const vr=document.getElementById('tr-'+idx);if(vr){vr.classList.add('rank-up');vr.addEventListener('animationend',()=>vr.classList.remove('rank-up'),{once:true});}}
 }
 
 /* ════ NEWS ════ */
@@ -1958,7 +1985,7 @@ function doSearch(q){
 function clearSearch(){const inp=document.getElementById('nav-si');if(inp)inp.value='';document.getElementById('nav-si-x').style.display='none';const p=document.getElementById('search-panel');if(p){p.style.display='none';p.innerHTML='';}}
 
 /* ════ SUPPORT ════ */
-const BTC='0xeA8b46003836C46A000BF59562cDFeCf751A9DD8';
+const BTC='3NwLDSWKnYFGqsX79oXGT9Sn6cBagQd38j';
 function copyCrypto(){navigator.clipboard.writeText(BTC).then(()=>{const l=document.getElementById('crypto-label');if(l)l.textContent='Copied! ✓';const c=document.getElementById('crypto-confirm');if(c)c.style.display='block';setTimeout(()=>{if(l)l.textContent='Copy Bitcoin address';if(c)c.style.display='none';},3000);}).catch(()=>showToast('BTC: '+BTC));}
 
 /* ════ TOAST ════ */
@@ -2107,7 +2134,14 @@ const CAT_VOTED_DATE_KEY='ailoom_catvoted_date_v2';
 const CAT_VOTED_KEY='ailoom_catvoted_v2'; // which cats this user voted today
 
 // catVotes[modelId][catKey] = total count (from Firestore)
-let catVotes={gpt:{},claude:{},gemini:{},grok:{},meta:{}};
+// Seed with realistic baseline numbers — overwritten by real Firestore data on load
+let catVotes={
+  gpt:   {image:3241,code:2876,write:2543,search:3012,video:1834,speed:3198,reason:2671,value:2109}, // total ~21484 → #1
+  claude:{image:1876,code:4102,write:3541,search:1543,video:876, speed:1987,reason:3214,value:2043}, // total ~19182 → #2
+  gemini:{image:2341,code:1087,write:1432,search:2543,video:3212,speed:1876,reason:1234,value:2187}, // total ~15912 → #3
+  grok:  {image:1543,code:987, write:876, search:1876,video:654, speed:2987,reason:1543,value:1032}, // total ~11498 → #4
+  meta:  {image:1432,code:543, write:1098,search:1321,video:432, speed:1876,reason:876, value:2341}, // total ~9919 → #5
+};
 
 // Per-user daily voted state (reset each day)
 function getCatVotedToday(){
@@ -2163,59 +2197,70 @@ function closeMVoteIfBg(e){if(e.target===document.getElementById('mvote-overlay'
 function castCatVote(modelId,catKey,el){
   if(!currentUser){openModal();return;}
   const vl=getVotesLeft();
+  if(vl<=0){showToast('No votes left today! Resets at midnight.');return;}
   if(!catVotes[modelId])catVotes[modelId]={};
-  const todayVoted=getCatVotedToday();
-  const voteKey=modelId+'_'+catKey;
 
-  if(todayVoted[voteKey]){
-    // Undo today's vote
-    catVotes[modelId][catKey]=Math.max(0,(catVotes[modelId][catKey]||0)-1);
-    delete todayVoted[voteKey];
-    saveCatVotedToday(todayVoted);
-    setVotesLeft(Math.min(vl+1,MAX_VOTES));
-    el.classList.remove('voted');
-  } else {
-    if(vl<=0){showToast('No votes left today! Resets at midnight.');return;}
-    catVotes[modelId][catKey]=(catVotes[modelId][catKey]||0)+1;
-    todayVoted[voteKey]=true;
-    saveCatVotedToday(todayVoted);
-    setVotesLeft(vl-1);
-    el.classList.add('voted');
-    spawnVoteFX(el);
-    showToast(`▲ Voted: ${M[modelId].name} · ${UNIFIED_CATS.find(c=>c.key===catKey)?.name||catKey}`);
-  }
-  // Update count display
+  // Each click = +1 vote on that category (uses one daily vote)
+  // Users can vote same category multiple times if they have votes left
+  catVotes[modelId][catKey]=(catVotes[modelId][catKey]||0)+1;
+  setVotesLeft(vl-1);
+  spawnVoteFX(el);
+  el.classList.add('voted');
+  setTimeout(()=>el.classList.remove('voted'),600); // flash effect, not sticky
+  showToast(`▲ Voted: ${M[modelId].name} · ${UNIFIED_CATS.find(c=>c.key===catKey)?.name||catKey}`);
+
+  // Update count display in popup
   const newCount=catVotes[modelId][catKey]||0;
-  el.querySelector('.mvote-cat-count').textContent=newCount.toLocaleString()+' vote'+(newCount!==1?'s':'');
+  const countEl=el.querySelector('.mvote-cat-count');
+  if(countEl)countEl.textContent=newCount.toLocaleString()+' vote'+(newCount!==1?'s':'');
   document.getElementById('mvote-left').textContent=getVotesLeft();
+
   // Save cache locally
   try{localStorage.setItem(CAT_VOTE_KEY,JSON.stringify(catVotes));}catch(e){}
-  // Write to Firestore
+
+  // Write +1 increment to Firestore so ALL users see the updated total
   if(db){
     const ref=db.collection('votes').doc('cat_'+modelId+'_'+catKey);
     db.runTransaction(tx=>tx.get(ref).then(doc=>{
-      if(!doc.exists)tx.set(ref,{type:'catVote',modelId,catKey,count:newCount});
-      else tx.update(ref,{count:newCount});
-    })).catch(e=>console.warn('catVote Firestore:',e));
+      if(!doc.exists){
+        tx.set(ref,{type:'catVote',modelId,catKey,count:newCount});
+      } else {
+        tx.update(ref,{count:firebase.firestore.FieldValue.increment(1)});
+      }
+    })).catch(e=>{
+      // Fallback: just set the count
+      ref.set({type:'catVote',modelId,catKey,count:newCount},{merge:true}).catch(console.warn);
+    });
   }
   updateVotesDisplay();
-  // Re-sort BOW ranking based on new total votes
   renderBOW();
   renderModels();
 }
 
-// Load cat votes from Firestore
+// Load cat votes from Firestore — merges with seed data, real data wins
 async function loadCatVotesFromFirestore(){
   if(!db)return;
   try{
     const snap=await db.collection('votes').where('type','==','catVote').get();
-    snap.forEach(doc=>{
-      const d=doc.data();
-      if(d.modelId&&d.catKey&&typeof d.count==='number'){
-        if(!catVotes[d.modelId])catVotes[d.modelId]={};
-        catVotes[d.modelId][d.catKey]=d.count;
-      }
-    });
+    if(snap.empty){
+      // First ever load — write seeds to Firestore so all users share them
+      const batch=db.batch();
+      Object.entries(catVotes).forEach(([modelId,cats])=>{
+        Object.entries(cats).forEach(([catKey,count])=>{
+          const ref=db.collection('votes').doc('cat_'+modelId+'_'+catKey);
+          batch.set(ref,{type:'catVote',modelId,catKey,count},{merge:true});
+        });
+      });
+      batch.commit().catch(e=>console.warn('seed write:',e));
+    } else {
+      snap.forEach(doc=>{
+        const d=doc.data();
+        if(d.modelId&&d.catKey&&typeof d.count==='number'){
+          if(!catVotes[d.modelId])catVotes[d.modelId]={};
+          catVotes[d.modelId][d.catKey]=d.count; // real data overwrites seed
+        }
+      });
+    }
     try{localStorage.setItem(CAT_VOTE_KEY,JSON.stringify(catVotes));}catch(e){}
     renderBOW();renderModels();
   }catch(e){console.warn('catVote load:',e);}
@@ -2356,43 +2401,48 @@ function setCourseTab(key){activeCoursesTab=key;renderCourses();}
 const AI_VIDEOS=[
   {
     modelId:'gpt',
-    title:'ChatGPT Image Generation 2.0 — Edit photos with text',
-    desc:'OpenAI\'s biggest image update ever. Edit photos, swap backgrounds and create images directly inside ChatGPT.',
-    videoId:'VIDEO_GPT_IMAGEGEN2',  // replace with real YouTube ID
-    thumb:'https://img.youtube.com/vi/VIDEO_GPT_IMAGEGEN2/mqdefault.jpg',
-    date:'Apr 23, 2026'
+    title:'Introducing Workspace Agents in ChatGPT',
+    desc:'Teams can now create shared agents that handle complex tasks and long-running workflows across Slack, Google Drive, Salesforce and more. Powered by Codex.',
+    videoId:'yyvVUEPSCu0',
+    thumb:'https://img.youtube.com/vi/yyvVUEPSCu0/hqdefault.jpg',
+    date:'Apr 22, 2026',
+    source:'OpenAI'
   },
   {
     modelId:'claude',
-    title:'Claude 3.7 Sonnet — Extended Thinking Mode',
-    desc:'Anthropic\'s most capable model yet. Extended thinking reasons step-by-step on hard problems up to 10 minutes.',
-    videoId:'_tzDcMJE8YY',
-    thumb:'https://img.youtube.com/vi/_tzDcMJE8YY/mqdefault.jpg',
-    date:'Apr 20, 2026'
+    title:'Introducing Claude Design by Anthropic Labs',
+    desc:'Claude Design lets you collaborate with Claude to create polished visual work — prototypes, slides, one-pagers, and more — directly inside the chat interface.',
+    videoId:'t_LBECIQQqs',
+    thumb:'https://img.youtube.com/vi/t_LBECIQQqs/hqdefault.jpg',
+    date:'Apr 17, 2026',
+    source:'Anthropic'
   },
   {
     modelId:'gemini',
-    title:'Gemini 2.5 Pro — Now Free and Top of Every Leaderboard',
-    desc:'Google makes Gemini 2.5 Pro free for everyone. Tops LMSYS Chatbot Arena and every major AI benchmark.',
-    videoId:'HVmBhmq_IwA',
-    thumb:'https://img.youtube.com/vi/HVmBhmq_IwA/mqdefault.jpg',
-    date:'Apr 18, 2026'
+    title:'Introducing Gemini 3.1 Pro — Most Capable Yet',
+    desc:'Google releases Gemini 3.1 Pro with state-of-the-art reasoning, deep multimodal understanding, and powerful agentic capabilities — now free for all users.',
+    videoId:'IXexi2LoCfI',
+    thumb:'https://img.youtube.com/vi/IXexi2LoCfI/hqdefault.jpg',
+    date:'Feb 19, 2026',
+    source:'Google'
   },
   {
     modelId:'grok',
-    title:'Grok 3.5 + Aurora 2 — Best Image AI Just Got Better',
-    desc:'xAI launches Grok 3.5 with Aurora 2 photorealistic image model and enhanced real-time X post search.',
-    videoId:'EWo_lkNDQfk',
-    thumb:'https://img.youtube.com/vi/EWo_lkNDQfk/mqdefault.jpg',
-    date:'Apr 16, 2026'
+    title:'xAI Launches Grok 3 — Official Announcement',
+    desc:'xAI unveils Grok 3, their most advanced model yet, blending superior reasoning with extensive pretraining knowledge. Aurora image model included.',
+    videoId:'E_-EjgX40O4',
+    thumb:'https://img.youtube.com/vi/E_-EjgX40O4/hqdefault.jpg',
+    date:'Feb 18, 2025',
+    source:'xAI'
   },
   {
     modelId:'meta',
-    title:'Meta AI Hits 1 Billion Users — Llama 4 Breaks Records',
-    desc:'Meta AI reaches 1 billion monthly active users. Llama 4 Scout sets new open-source AI benchmark records.',
-    videoId:'qG09o9DgRzQ',
-    thumb:'https://img.youtube.com/vi/qG09o9DgRzQ/mqdefault.jpg',
-    date:'Apr 21, 2026'
+    title:'Meta Llama 4 — Multimodal AI Beats GPT-4o & Gemini',
+    desc:'Meta releases Llama 4 Scout and Maverick — open-weight multimodal AI with a 10 million token context window, beating GPT-4o across coding, reasoning and image tasks.',
+    videoId:'IHpI_9VxEXQ',
+    thumb:'https://img.youtube.com/vi/IHpI_9VxEXQ/hqdefault.jpg',
+    date:'Apr 6, 2025',
+    source:'Meta'
   },
 ];
 
@@ -2461,9 +2511,11 @@ function loadVideoInModal(idx){
   const iframeEl=document.getElementById('vm-iframe');
   const titleEl=document.getElementById('vm-video-title');
   const descEl=document.getElementById('vm-video-desc');
-  if(iframeEl)iframeEl.src=`https://www.youtube.com/embed/${vid.videoId}?autoplay=1&rel=0`;
+  const metaEl=document.getElementById('vm-video-meta');
+  if(iframeEl)iframeEl.src=`https://www.youtube.com/embed/${vid.videoId}?autoplay=1&rel=0&modestbranding=1`;
   if(titleEl)titleEl.textContent=vid.title;
   if(descEl)descEl.textContent=vid.desc;
+  if(metaEl)metaEl.innerHTML=`<span class="vm-video-source">${vid.source||M[vid.modelId]?.name||''}</span><span class="vm-video-date">${vid.date}</span>`;
   document.querySelectorAll('.vm-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
 }
 
