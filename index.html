@@ -36,7 +36,7 @@ body{background:var(--night);color:var(--snow);font-family:var(--fb);font-size:1
 a{color:inherit;text-decoration:none}
 #bg{position:fixed;inset:0;z-index:0;pointer-events:none}
 #vote-fx{position:fixed;inset:0;z-index:9000;pointer-events:none}
- 
+
 /* ══ NAV ══ */
 .nav{position:fixed;top:0;left:0;right:0;z-index:300;height:60px;background:rgba(8,12,20,.95);backdrop-filter:blur(24px);border-bottom:1px solid var(--rim);display:flex;align-items:center;padding:0 18px;gap:8px}
 .logo-btn{display:flex;align-items:center;gap:9px;cursor:pointer;flex-shrink:0;text-decoration:none}
@@ -65,7 +65,7 @@ a{color:inherit;text-decoration:none}
 .user-avatar{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--night);flex-shrink:0}
 .signout-btn{font-size:11px;font-weight:700;padding:4px 9px;border-radius:20px;border:1px solid var(--rim2);background:var(--glass);color:var(--fog);cursor:pointer;transition:all .15s;font-family:var(--fb)}
 .signout-btn:hover{background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.3);color:#f87171}
- 
+
 /* ══ VIDEO PLAYER NAV BAR — interactive ══ */
 .nav-video{flex:1;max-width:440px;margin:0 auto;position:relative}
 .nav-video-player{display:flex;align-items:center;gap:9px;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:6px 12px;cursor:pointer;transition:all .25s;overflow:hidden;position:relative}
@@ -110,7 +110,7 @@ a{color:inherit;text-decoration:none}
 .vm-video-source{font-size:11px;font-weight:700;color:var(--gold)}
 .vm-video-date{font-size:11px;color:var(--fog)}
 .vm-video-desc{font-size:12px;color:var(--mist);margin-top:6px;line-height:1.5}
- 
+
 /* ══ USER PROFILE DROPDOWN ══ */
 .user-dropdown-wrap{position:relative}
 .user-dropdown{position:absolute;top:calc(100% + 8px);right:0;width:220px;background:rgba(10,15,26,.98);border:1px solid var(--rim2);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.6);backdrop-filter:blur(20px);z-index:400;opacity:0;pointer-events:none;transform:translateY(-6px);transition:all .2s}
@@ -128,7 +128,7 @@ a{color:inherit;text-decoration:none}
 .ud-item svg{width:14px;height:14px;flex-shrink:0;opacity:.7}
 .ud-signout{color:#f87171!important}
 .ud-signout:hover{background:rgba(248,113,113,.1)!important}
- 
+
 /* ══ MODEL VOTE POPUP (Big 5 click → category vote) ══ */
 .mvote-overlay{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.75);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
 .mvote-overlay.open{opacity:1;pointer-events:all}
@@ -150,7 +150,7 @@ a{color:inherit;text-decoration:none}
 .mvote-cat-count{font-size:11px;color:var(--fog)}
 .mvote-votes-left{text-align:center;margin-top:16px;padding-top:16px;border-top:1px solid var(--rim);font-size:12px;color:var(--mist)}
 .mvote-votes-left b{color:var(--gold)}
- 
+
 /* ══ COURSES PAGE ══ */
 .courses-overlay{position:fixed;inset:0;z-index:700;background:rgba(8,12,20,.98);backdrop-filter:blur(20px);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .25s;overflow-y:auto}
 .courses-overlay.open{opacity:1;pointer-events:all}
@@ -185,7 +185,7 @@ a{color:inherit;text-decoration:none}
 .cfb-sub{font-size:13px;color:var(--mist)}
 .cfb-btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;padding:10px 20px;border-radius:22px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--night);text-decoration:none;flex-shrink:0;transition:all .2s}
 .cfb-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(212,168,83,.4)}
- 
+
 /* ══ MENU BAR ══ */
 .menu-bar{position:fixed;bottom:26px;right:26px;z-index:400;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
 .menu-bar-items{display:flex;flex-direction:column;gap:6px;align-items:flex-end;transition:all .25s}
@@ -206,7 +206,7 @@ a{color:inherit;text-decoration:none}
 .menu-toggle.open .hb-line:nth-child(2){opacity:0;transform:scaleX(0)}
 .menu-toggle.open .hb-line:nth-child(3){transform:translateY(-6px) rotate(-45deg);background:#f87171}
 .menu-toggle.open .hb-line:nth-child(4){opacity:0}
- 
+
 /* ══ NAV COURSES BUTTON — prominent page link ══ */
 .nav-courses-btn{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:7px 14px;border-radius:10px;border:none;background:linear-gradient(135deg,rgba(96,165,250,.2),rgba(192,132,252,.15));color:var(--snow);cursor:pointer;transition:all .2s;font-family:var(--fb);white-space:nowrap;text-decoration:none;position:relative;overflow:hidden;letter-spacing:.01em;box-shadow:0 2px 10px rgba(96,165,250,.15),inset 0 1px 0 rgba(255,255,255,.08)}
 .nav-courses-btn::before{content:'';position:absolute;inset:0;border-radius:10px;border:1px solid rgba(96,165,250,.35);pointer-events:none}
@@ -220,7 +220,7 @@ a{color:inherit;text-decoration:none}
 .section-title{font-family:var(--fh);font-size:clamp(24px,3.5vw,38px);font-weight:700;letter-spacing:-.02em;color:var(--snow);margin-bottom:7px;line-height:1.15;text-align:center}
 .section-title em{font-style:italic;color:var(--gold)}
 .section-sub{font-size:14px;color:var(--mist);margin-bottom:26px;line-height:1.6;max-width:540px;text-align:center;margin-left:auto;margin-right:auto}
- 
+
 /* ══ AI UPDATES — compact ticker strip ══ */
 .news-strip-compact{display:flex;flex-direction:column;gap:8px}
 .nc-row{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:var(--glass);border:1px solid var(--rim);border-radius:11px;transition:border-color .18s,background .18s,transform .18s;cursor:pointer;text-decoration:none;color:inherit}
@@ -233,7 +233,7 @@ a{color:inherit;text-decoration:none}
 .nc-headline{font-size:13px;font-weight:600;color:var(--snow);line-height:1.3;margin-bottom:3px}
 .nc-sub{font-size:11px;color:var(--mist);line-height:1.4}
 .nc-date{font-size:10px;color:var(--fog);margin-left:auto;flex-shrink:0;padding-top:3px}
- 
+
 /* ══ BEST AI THIS WEEK — interactive fancy cards ══ */
 .bow-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
 .bow-today-date{font-size:11px;color:var(--fog);font-weight:600;letter-spacing:.06em}
@@ -289,7 +289,7 @@ a{color:inherit;text-decoration:none}
 .bow-lower .bow-logo-wrap{width:42px;height:42px;border-radius:11px}
 .bow-lower .bow-logo-img{width:28px;height:28px}
 .bow-lower .bow-name{font-size:13px}
- 
+
 /* ══ BIG 5 MODELS ══ */
 .models-list{display:flex;flex-direction:column;gap:10px}
 .mbar{background:var(--glass);border:1px solid var(--rim);border-radius:16px;padding:18px 22px;display:grid;grid-template-columns:50px 1fr repeat(4,auto);gap:16px;align-items:center;transition:all .22s;cursor:pointer;position:relative;overflow:hidden}
@@ -310,7 +310,7 @@ a{color:inherit;text-decoration:none}
 .mbar-mini-fill{height:3px;border-radius:2px}
 .mbar-cta{font-size:11px;font-weight:700;padding:7px 14px;border-radius:20px;background:rgba(212,168,83,.08);border:1px solid rgba(212,168,83,.2);color:var(--gold);cursor:pointer;font-family:var(--fb);transition:all .15s;white-space:nowrap;flex-shrink:0}
 .mbar-cta:hover{background:var(--gold);color:var(--night)}
- 
+
 /* Model popup */
 .model-popup-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.78);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
 .model-popup-overlay.open{opacity:1;pointer-events:all}
@@ -353,7 +353,7 @@ a{color:inherit;text-decoration:none}
 .mp-update-dot{width:7px;height:7px;border-radius:50%;margin-top:4px;flex-shrink:0}
 .mp-update-date{font-size:10px;color:var(--fog);margin-bottom:2px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
 .mp-update-text{font-size:12px;color:var(--mist);line-height:1.35}
- 
+
 /* ══ AI TOOLS ══ */
 .filter-bar{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:13px;align-items:center}
 .filt{font-size:11px;font-weight:600;padding:5px 13px;border-radius:20px;border:1px solid var(--rim);background:var(--glass);color:var(--fog);cursor:pointer;transition:all .18s;position:relative}
@@ -414,7 +414,7 @@ a{color:inherit;text-decoration:none}
 .cc-sch{background:rgba(74,222,128,.13);color:#4ade80}
 .cc-3d{background:rgba(244,114,182,.13);color:#f472b6}
 .cc-ux{background:rgba(168,85,247,.13);color:#a855f7}
- 
+
 /* ══ QUIZ POPUP ══ */
 .quiz-fab{position:fixed;left:26px;bottom:80px;z-index:400;display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(212,168,83,.18),rgba(240,201,106,.1));border:1px solid rgba(212,168,83,.55);color:var(--snow);font-size:13px;font-weight:700;padding:11px 18px;border-radius:28px;cursor:pointer;box-shadow:0 6px 28px rgba(212,168,83,.28),0 2px 8px rgba(0,0,0,.4);font-family:var(--fb);backdrop-filter:blur(20px);animation:quizJump 1.8s cubic-bezier(.36,.07,.19,.97) infinite}
 .quiz-fab.still{animation:none!important;transform:none!important;border-color:var(--rim2);background:var(--glass2);box-shadow:0 2px 8px rgba(0,0,0,.3)}
@@ -433,7 +433,7 @@ a{color:inherit;text-decoration:none}
 .quiz-fab.still .quiz-fab-main{color:var(--mist)}
 .quiz-fab-sub{font-size:10px;color:var(--gold);font-weight:600}
 .quiz-fab.still .quiz-fab-sub{color:var(--fog)}
- 
+
 .quiz-overlay{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.7);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
 .quiz-overlay.open{opacity:1;pointer-events:all}
 .quiz-popup{background:rgba(10,15,26,.98);border:1px solid var(--rim2);border-radius:24px;width:min(600px,94vw);max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.7);animation:popIn .22s ease both;position:relative}
@@ -489,7 +489,7 @@ a{color:inherit;text-decoration:none}
 .quiz-restart-btn:hover{background:var(--glass3);color:var(--snow)}
 .qr-save-note{text-align:center;font-size:11px;color:var(--fog);margin-top:10px;line-height:1.5}
 .qr-save-note b{color:var(--mist)}
- 
+
 /* ══ GLOSSARY FAB + POPUP ══ */
 .glossary-fab{position:fixed;left:26px;bottom:26px;z-index:400;display:flex;align-items:center;gap:6px;background:rgba(13,20,36,.92);border:1px solid var(--rim2);color:var(--mist);font-size:12px;font-weight:700;padding:8px 14px;border-radius:22px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.4);transition:all .2s;font-family:var(--fb);backdrop-filter:blur(16px)}
 .glossary-fab:hover{border-color:var(--rim3);background:var(--glass3);color:var(--snow);transform:translateY(-1px)}
@@ -512,7 +512,7 @@ a{color:inherit;text-decoration:none}
 .gp-term-example{font-size:11px;color:var(--fog);font-style:italic;line-height:1.4}
 /* Visual diagram for selected terms */
 .gp-diagram{background:rgba(0,0,0,.3);border:1px solid var(--rim);border-radius:10px;padding:12px;margin-top:8px;font-size:11px;color:var(--mist);font-family:monospace;line-height:1.7;overflow-x:auto}
- 
+
 /* ══ SUBMIT POPUP ══ */
 .submit-overlay{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.7);backdrop-filter:blur(10px);display:flex;align-items:flex-start;justify-content:flex-end;padding:72px 18px 0;opacity:0;pointer-events:none;transition:opacity .22s}
 .submit-overlay.open{opacity:1;pointer-events:all}
@@ -541,7 +541,7 @@ a{color:inherit;text-decoration:none}
 .sp-success-icon{font-size:40px;margin-bottom:10px}
 .sp-success-title{font-family:var(--fh);font-size:18px;font-weight:700;color:var(--snow);margin-bottom:6px}
 .sp-success-sub{font-size:12px;color:var(--mist);line-height:1.5}
- 
+
 /* ══ FOOTER ══ */
 .site-footer{border-top:1px solid var(--rim);padding:44px 44px 36px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;background:rgba(8,12,20,.6)}
 .footer-brand{font-family:var(--fh);font-size:24px;font-weight:700;color:var(--snow)}
@@ -558,7 +558,7 @@ a{color:inherit;text-decoration:none}
 .footer-links a{cursor:pointer;transition:color .15s}
 .footer-links a:hover{color:var(--mist)}
 .footer-copy{font-size:11px;color:var(--fog);opacity:.7}
- 
+
 /* ══ MODALS (login, feedback) ══ */
 .modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
 .modal-overlay.open{opacity:1;pointer-events:all}
@@ -599,16 +599,16 @@ a{color:inherit;text-decoration:none}
 .fb-success-icon{font-size:40px;margin-bottom:10px}
 .fb-success-title{font-family:var(--fh);font-size:19px;font-weight:700;color:var(--snow);margin-bottom:6px}
 .fb-success-sub{font-size:13px;color:var(--mist);line-height:1.5}
- 
+
 /* TOAST */
 .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(16px);background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--night);font-size:13px;font-weight:800;padding:10px 22px;border-radius:24px;opacity:0;transition:all .28s;z-index:9999;pointer-events:none;font-family:var(--fb);box-shadow:0 4px 18px rgba(212,168,83,.4)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
- 
+
 /* FAB feedback */
 .feedback-fab{position:fixed;bottom:26px;right:26px;z-index:400;display:flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--night);font-size:12px;font-weight:800;padding:9px 16px;border-radius:24px;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(212,168,83,.4);transition:transform .2s,box-shadow .2s;font-family:var(--fb)}
 .feedback-fab:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(212,168,83,.55)}
 .feedback-fab svg{width:13px;height:13px;flex-shrink:0}
- 
+
 /* TOC DOTS */
 .toc-dots{position:fixed;top:50%;right:13px;transform:translateY(-50%);z-index:251;display:flex;flex-direction:column;align-items:center;gap:11px}
 .toc-dot-btn{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.16);border:1px solid rgba(255,255,255,0.1);cursor:pointer;transition:all .22s;position:relative;flex-shrink:0}
@@ -616,7 +616,7 @@ a{color:inherit;text-decoration:none}
 .toc-dot-btn.active{background:var(--gold);border-color:var(--gold);box-shadow:0 0 7px rgba(212,168,83,.6);transform:scale(1.3)}
 .toc-dot-btn::before{content:attr(data-label);position:absolute;right:calc(100% + 9px);top:50%;transform:translateY(-50%);background:rgba(8,12,20,.92);backdrop-filter:blur(10px);color:var(--snow);font-family:var(--fb);font-size:11px;font-weight:600;padding:4px 9px;border-radius:7px;white-space:nowrap;border:1px solid var(--rim2);opacity:0;pointer-events:none;transition:opacity .15s}
 .toc-dot-btn:hover::before{opacity:1}
- 
+
 /* SEARCH PANEL */
 .search-results-panel{display:none;padding:18px 44px 0;position:relative;z-index:2}
 .sr-meta{font-size:12px;color:var(--fog);margin-bottom:12px}
@@ -629,8 +629,96 @@ a{color:inherit;text-decoration:none}
 .sr-name{font-size:13px;color:var(--snow);flex:1;font-weight:500}
 .sr-sub{font-size:11px;color:var(--fog)}
 .sr-type{font-size:9px;padding:2px 7px;border-radius:20px;background:var(--glass2);color:var(--mist);font-weight:700;letter-spacing:.05em;text-transform:uppercase;flex-shrink:0;border:1px solid var(--rim)}
- 
-/* RESPONSIVE */
+
+/* ══ WELCOME POPUP ══ */
+.welcome-overlay{position:fixed;inset:0;z-index:1100;background:rgba(0,0,0,.82);backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s}
+.welcome-overlay.open{opacity:1;pointer-events:all}
+.welcome-popup{background:rgba(8,12,20,.98);border:1px solid var(--rim2);border-radius:24px;width:min(620px,94vw);max-height:88vh;overflow-y:auto;box-shadow:0 32px 100px rgba(0,0,0,.8);animation:popIn .3s ease both;scrollbar-width:thin;scrollbar-color:var(--rim) transparent}
+.wp-head{padding:22px 26px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.wp-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#f87171;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);padding:5px 12px;border-radius:20px;margin-bottom:10px}
+.wp-badge-dot{width:6px;height:6px;border-radius:50%;background:#f87171;animation:blink 1s infinite;box-shadow:0 0 5px #f87171}
+.wp-close{background:none;border:1px solid var(--rim2);border-radius:9px;color:var(--fog);font-size:15px;cursor:pointer;padding:5px 10px;transition:all .15s;flex-shrink:0;margin-top:2px}
+.wp-close:hover{color:var(--snow);background:var(--glass2)}
+.wp-hero{padding:0 26px 20px;border-bottom:1px solid var(--rim)}
+.wp-title{font-family:var(--fh);font-size:clamp(20px,3vw,28px);font-weight:700;color:var(--snow);margin-bottom:6px;line-height:1.2}
+.wp-title em{font-style:italic;color:var(--gold)}
+.wp-subtitle{font-size:13px;color:var(--mist);line-height:1.55;margin-bottom:16px}
+.wp-cards{display:flex;flex-direction:column;gap:10px;padding:20px 26px 24px}
+.wp-card{background:var(--glass);border:1px solid var(--rim);border-radius:14px;padding:16px 18px;transition:border-color .2s}
+.wp-card:hover{border-color:var(--rim2);background:var(--glass2)}
+.wp-card-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.wp-card-logo{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;border:1px solid var(--rim2);background:var(--glass2);flex-shrink:0;overflow:hidden}
+.wp-card-name{font-family:var(--fh);font-size:15px;font-weight:700;color:var(--snow)}
+.wp-card-version{font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;margin-left:6px;vertical-align:middle}
+.wp-card-maker{font-size:10px;color:var(--fog)}
+.wp-card-update{font-size:12px;font-weight:700;color:var(--snow);margin-bottom:5px}
+.wp-card-desc{font-size:12px;color:var(--mist);line-height:1.5;margin-bottom:8px}
+.wp-card-vs{display:flex;gap:6px;flex-wrap:wrap}
+.wp-vs-tag{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;background:var(--glass2);border:1px solid var(--rim);color:var(--mist)}
+.wp-vs-tag.win{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.3);color:var(--gpt)}
+.wp-vs-tag.lose{background:rgba(248,113,113,.07);border-color:rgba(248,113,113,.2);color:#f87171}
+.wp-footer{display:flex;align-items:center;justify-content:space-between;padding:14px 26px;border-top:1px solid var(--rim);gap:12px}
+.wp-dismiss{font-size:12px;color:var(--fog);cursor:pointer;transition:color .15s}
+.wp-dismiss:hover{color:var(--mist)}
+.wp-cta{font-size:13px;font-weight:700;padding:9px 20px;border-radius:20px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--night);border:none;cursor:pointer;font-family:var(--fb);transition:all .2s}
+.wp-cta:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(212,168,83,.4)}
+
+/* ══ RELEASE CALENDAR ══ */
+.cal-wrap{padding:0}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+.cal-month{font-family:var(--fh);font-size:20px;font-weight:700;color:var(--snow)}
+.cal-nav{display:flex;gap:6px}
+.cal-nav-btn{background:var(--glass2);border:1px solid var(--rim2);border-radius:8px;color:var(--mist);font-size:13px;cursor:pointer;padding:6px 12px;transition:all .15s;font-family:var(--fb)}
+.cal-nav-btn:hover{background:var(--glass3);color:var(--snow)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:6px}
+.cal-day-label{text-align:center;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fog);padding:6px 0}
+.cal-day{min-height:52px;border-radius:9px;background:var(--glass);border:1px solid var(--rim);padding:5px 6px;position:relative;cursor:default;transition:all .18s}
+.cal-day.has-event{border-color:var(--rim2);background:var(--glass2);cursor:pointer}
+.cal-day.has-event:hover{transform:scale(1.04);z-index:2;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.cal-day.today{border-color:rgba(212,168,83,.4);background:rgba(212,168,83,.06)}
+.cal-day.other-month{opacity:.3}
+.cal-day-num{font-size:11px;font-weight:700;color:var(--mist);margin-bottom:3px}
+.cal-day.today .cal-day-num{color:var(--gold)}
+.cal-event-dot{width:7px;height:7px;border-radius:50%;margin-bottom:2px;display:flex;align-items:center;gap:3px;font-size:9px;font-weight:700;padding:0 3px;border-radius:4px;line-height:1.6}
+.cal-event-list{display:flex;flex-direction:column;gap:2px}
+.cal-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.cal-legend-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--mist)}
+.cal-legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+/* Event detail popup */
+.cal-event-popup{position:fixed;z-index:850;background:rgba(10,15,26,.98);border:1px solid var(--rim2);border-radius:16px;width:min(380px,90vw);padding:20px;box-shadow:0 12px 40px rgba(0,0,0,.6);backdrop-filter:blur(20px);animation:popIn .18s ease both}
+.cal-ep-close{position:absolute;top:12px;right:12px;background:none;border:none;color:var(--fog);font-size:14px;cursor:pointer;padding:3px 7px;border-radius:6px}
+.cal-ep-close:hover{color:var(--snow)}
+.cal-ep-date{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.cal-ep-title{font-family:var(--fh);font-size:17px;font-weight:700;color:var(--snow);margin-bottom:5px}
+.cal-ep-desc{font-size:12px;color:var(--mist);line-height:1.55;margin-bottom:12px}
+.cal-ep-features{display:flex;flex-direction:column;gap:5px}
+.cal-ep-feat{display:flex;align-items:flex-start;gap:7px;font-size:12px;color:var(--mist);line-height:1.4}
+.cal-ep-feat::before{content:'→';color:var(--gold);flex-shrink:0;font-weight:700}
+
+/* ══ MBAR EXPANDABLE (Big 5) ══ */
+.mbar{background:var(--glass);border:1px solid var(--rim);border-radius:16px;padding:16px 20px;display:grid;grid-template-columns:46px 1fr repeat(2,auto);gap:12px;align-items:center;transition:all .25s;cursor:pointer;position:relative;overflow:hidden}
+.mbar:hover{border-color:var(--rim2);background:var(--glass2)}
+.mbar.expanded{border-color:rgba(212,168,83,.35);background:rgba(212,168,83,.04);border-radius:16px 16px 0 0;cursor:default}
+.mbar-expand-content{display:none;background:var(--glass);border:1px solid rgba(212,168,83,.2);border-top:none;border-radius:0 0 16px 16px;padding:18px 20px;margin-bottom:10px;animation:fadeUp .18s ease both}
+.mbar-expand-content.open{display:block}
+.mbar-exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mbar-exp-section{margin-bottom:0}
+.mbar-exp-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.mbar-exp-skill-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mbar-exp-skill-name{font-size:11px;color:var(--mist);width:100px;flex-shrink:0}
+.mbar-exp-track{flex:1;height:4px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+.mbar-exp-fill{height:4px;border-radius:2px}
+.mbar-exp-val{font-size:10px;font-weight:700;color:var(--mist);width:28px;text-align:right;flex-shrink:0}
+.mbar-exp-fact{display:flex;align-items:flex-start;gap:6px;margin-bottom:5px;font-size:11px;color:var(--mist);line-height:1.4}
+.mbar-exp-fact::before{content:'•';color:var(--gold);flex-shrink:0;font-weight:700}
+.mbar-exp-update{padding:8px 10px;background:rgba(0,0,0,.25);border-radius:8px;border-left:2px solid var(--gold);margin-bottom:5px}
+.mbar-exp-update-date{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);margin-bottom:2px}
+.mbar-exp-update-text{font-size:11px;color:var(--mist);line-height:1.35}
+.mbar-exp-visit{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:7px 14px;border-radius:20px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--night);text-decoration:none;margin-top:10px;transition:all .18s}
+.mbar-exp-visit:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(212,168,83,.4)}
+.mbar-chevron{font-size:12px;color:var(--fog);transition:transform .25s;flex-shrink:0}
+.mbar.expanded .mbar-chevron{transform:rotate(180deg)}
+
 @media(max-width:900px){
   .bow-podium{grid-template-columns:1fr 1fr 1fr}
   .bow-lower{grid-template-columns:1fr 1fr}
@@ -721,7 +809,7 @@ a{color:inherit;text-decoration:none}
 <body>
 <canvas id="bg"></canvas>
 <canvas id="vote-fx"></canvas>
- 
+
 <!-- ══ LOGIN MODAL ══ -->
 <div class="modal-overlay" id="modal">
   <div class="modal">
@@ -735,7 +823,7 @@ a{color:inherit;text-decoration:none}
     <div class="modal-note">Free forever. No credit card. 5 votes/day, resets at midnight.</div>
   </div>
 </div>
- 
+
 <!-- ══ FEEDBACK MODAL ══ -->
 <div class="fb-modal-overlay" id="fb-modal">
   <div class="fb-modal">
@@ -757,12 +845,12 @@ a{color:inherit;text-decoration:none}
     <div class="fb-success" id="fb-success" style="display:none"><div class="fb-success-icon">🎉</div><div class="fb-success-title">Thank you!</div><div class="fb-success-sub">We read every message and use it to make AILoom better.</div></div>
   </div>
 </div>
- 
+
 <!-- ══ MODEL DETAIL POPUP ══ -->
 <div class="model-popup-overlay" id="model-popup-overlay" onclick="closeModelPopup(event)">
   <div class="model-popup" id="model-popup"><div id="model-popup-content"></div></div>
 </div>
- 
+
 <!-- ══ QUIZ POPUP ══ -->
 <div class="quiz-overlay" id="quiz-overlay" onclick="closeQuizIfBg(event)">
   <div class="quiz-popup" id="quiz-popup">
@@ -780,7 +868,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
 </div>
- 
+
 <!-- ══ GLOSSARY POPUP ══ -->
 <div class="glossary-overlay" id="glossary-overlay" onclick="closeGlossaryIfBg(event)">
   <div class="glossary-popup" id="glossary-popup">
@@ -794,7 +882,7 @@ a{color:inherit;text-decoration:none}
     <div class="gp-body" id="gp-body"></div>
   </div>
 </div>
- 
+
 <!-- ══ SUBMIT POPUP ══ -->
 <div class="submit-overlay" id="submit-overlay" onclick="closeSubmitIfBg(event)">
   <div class="submit-popup" id="submit-popup">
@@ -835,7 +923,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
 </div>
- 
+
 <!-- ══ NAV ══ -->
 <nav class="nav">
   <a class="logo-btn" href="#sec-bow">
@@ -846,8 +934,8 @@ a{color:inherit;text-decoration:none}
   </a>
   <!-- Courses link top-left -->
   <button class="nav-courses-btn" onclick="openCourses()">
-    <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 7h6M5 10h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-    AI Courses
+    <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="5" y1="2" x2="5" y2="5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="11" y1="2" x2="11" y2="5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="2" y1="7" x2="14" y2="7" stroke="currentColor" stroke-width="1.2"/></svg>
+    AI Calendar
   </button>
   <!-- Latest AI video player -->
   <div class="nav-video" id="nav-video">
@@ -876,7 +964,7 @@ a{color:inherit;text-decoration:none}
     </button>
   </div>
 </nav>
- 
+
 <!-- Google One Tap container -->
 <div id="g_id_onload"
   data-client_id="177919376299-4nrd48kutpt33ta2ecg9avd1arhm09u0.apps.googleusercontent.com"
@@ -886,11 +974,11 @@ a{color:inherit;text-decoration:none}
   data-ux_mode="popup">
 </div>
 <div class="g_id_signin" data-type="standard" style="display:none"></div>
- 
+
 <div class="search-results-panel" id="search-panel"></div>
- 
+
 <div style="position:relative;z-index:1">
- 
+
 <!-- ══ SEC 1: BEST AI THIS WEEK ══ -->
 <section class="section" id="sec-bow">
   <div class="section-eyebrow">Community voted · updates live</div>
@@ -902,15 +990,15 @@ a{color:inherit;text-decoration:none}
   </div>
   <div id="bow-wrap"></div>
 </section>
- 
+
 <!-- ══ SEC 2: BIG 5 MODELS ══ -->
 <section class="section" id="sec-models">
-  <div class="section-eyebrow">Click any row to vote by category</div>
+  <div class="section-eyebrow">Click any row to expand full details</div>
   <h2 class="section-title">Big 5 <em>Models</em></h2>
-  <p class="section-sub">Vote for the best AI in each category — Image, Coding, Writing and more. Your votes shape the Best AI This Week ranking.</p>
+  <p class="section-sub">ChatGPT, Claude, Gemini, Grok and Meta AI. Click any bar to expand specs, strengths and latest updates.</p>
   <div class="models-list" id="models-list"></div>
 </section>
- 
+
 <!-- ══ SEC 3: AI TOOLS ══ -->
 <section class="section" id="sec-tools">
   <div class="section-eyebrow">Sign in · 5 votes/day · stack all on one tool · resets midnight</div>
@@ -926,7 +1014,7 @@ a{color:inherit;text-decoration:none}
   </div>
   <div id="tool-list"></div>
 </section>
- 
+
 <!-- ══ SEC 4: AI UPDATES (compact) ══ -->
 <section class="section" id="sec-news" style="padding:36px 44px">
   <div class="section-eyebrow">Curated · 5 models</div>
@@ -934,7 +1022,7 @@ a{color:inherit;text-decoration:none}
   <p class="section-sub" style="margin-bottom:18px;font-size:13px">What changed this week across the Big 5.</p>
   <div class="news-strip-compact" id="news-strip-compact"></div>
 </section>
- 
+
 <!-- ══ FOOTER ══ -->
 <footer class="site-footer" id="site-footer">
   <div>
@@ -954,7 +1042,7 @@ a{color:inherit;text-decoration:none}
   <div class="footer-copy">© 2026 AILoom · Built to keep you informed, free forever</div>
 </footer>
 </div>
- 
+
 <!-- TOC DOTS -->
 <nav class="toc-dots" id="toc-dots">
   <div class="toc-dot-btn active" data-label="Best This Week" onclick="tocNav('sec-bow')"></div>
@@ -962,7 +1050,7 @@ a{color:inherit;text-decoration:none}
   <div class="toc-dot-btn" data-label="AI Tools"        onclick="tocNav('sec-tools')"></div>
   <div class="toc-dot-btn" data-label="AI Updates"      onclick="tocNav('sec-news')"></div>
 </nav>
- 
+
 <!-- FLOATING BUTTONS -->
 <button class="quiz-fab" onclick="openQuiz()">
   <div class="quiz-fab-dot"></div>
@@ -971,12 +1059,12 @@ a{color:inherit;text-decoration:none}
     <span class="quiz-fab-sub">4 quick questions →</span>
   </div>
 </button>
- 
+
 <button class="glossary-fab" onclick="openGlossary()">
   <svg viewBox="0 0 16 16" fill="none"><path d="M2 3a1 1 0 011-1h10a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3z" stroke="currentColor" stroke-width="1.3"/><line x1="5" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="5" y1="9" x2="9" y2="9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
   AI Dictionary
 </button>
- 
+
 <!-- ══ VIDEO MODAL ══ -->
 <div class="video-modal-overlay" id="video-modal-overlay" onclick="closeVideoIfBg(event)">
   <div class="video-modal">
@@ -995,7 +1083,26 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
 </div>
- 
+
+<!-- ══ WELCOME POPUP ══ -->
+<div class="welcome-overlay" id="welcome-overlay">
+  <div class="welcome-popup">
+    <div class="wp-head">
+      <div>
+        <div class="wp-badge"><div class="wp-badge-dot"></div>Breaking AI News · May 2026</div>
+        <div class="wp-title">What's <em>New</em> in AI This Week</div>
+        <div class="wp-subtitle">The latest model updates across all Big 5 — here's what changed and how they compare.</div>
+      </div>
+      <button class="wp-close" onclick="closeWelcome()">✕</button>
+    </div>
+    <div class="wp-cards" id="wp-cards"></div>
+    <div class="wp-footer">
+      <span class="wp-dismiss" onclick="closeWelcome()">Don't show again today</span>
+      <button class="wp-cta" onclick="closeWelcome();tocNav('sec-bow')">See Full Rankings →</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══ MODEL CATEGORY VOTE POPUP ══ -->
 <div class="mvote-overlay" id="mvote-overlay" onclick="closeMVoteIfBg(event)">
   <div class="mvote-popup" id="mvote-popup">
@@ -1013,20 +1120,20 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
 </div>
- 
-<!-- ══ COURSES PAGE ══ -->
+
+<!-- ══ RELEASE CALENDAR ══ -->
 <div class="courses-overlay" id="courses-overlay">
   <div class="courses-nav">
     <button class="courses-back" onclick="closeCourses()">
       <svg viewBox="0 0 16 16" fill="none" width="16" height="16"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       Back
     </button>
-    <div class="courses-title">AI Courses</div>
+    <div class="courses-title">AI Release Calendar</div>
   </div>
   <div class="courses-body">
     <div class="courses-hero">
-      <div class="courses-hero-title">Learn <em>AI</em> From the Best</div>
-      <div class="courses-hero-sub">Free and paid courses for every skill level — from ChatGPT basics to Claude API development.</div>
+      <div class="courses-hero-title">AI <em>Release</em> Calendar</div>
+      <div class="courses-hero-sub">Track upcoming model releases, feature drops and AI events across all 5 models.</div>
     </div>
     <!-- Framer hire banner -->
     <div class="courses-framer-banner">
@@ -1039,11 +1146,20 @@ a{color:inherit;text-decoration:none}
         Hire on Framer
       </a>
     </div>
-    <div class="courses-tabs" id="courses-tabs"></div>
-    <div class="courses-grid" id="courses-grid"></div>
+    <div class="cal-header">
+      <div class="cal-month" id="cal-month-label">May 2026</div>
+      <div class="cal-nav">
+        <button class="cal-nav-btn" onclick="calPrev()">← Prev</button>
+        <button class="cal-nav-btn" onclick="calNext()">Next →</button>
+      </div>
+    </div>
+    <div id="cal-grid-wrap"></div>
+    <div class="cal-legend" id="cal-legend"></div>
   </div>
 </div>
- 
+<!-- Calendar event popup -->
+<div id="cal-event-popup" style="display:none"></div>
+
 <!-- ══ MENU BAR (replaces feedback FAB) ══ -->
 <div class="menu-bar" id="menu-bar">
   <div class="menu-bar-items hidden" id="menu-bar-items">
@@ -1062,9 +1178,9 @@ a{color:inherit;text-decoration:none}
     <span class="hb-line"></span>
   </button>
 </div>
- 
+
 <div class="toast" id="toast"></div>
- 
+
 <script>
 /* ════════════════════════════════════
    LOGO URLS (real favicons via Google)
@@ -1074,7 +1190,7 @@ a{color:inherit;text-decoration:none}
 // Brandfetch note: register your domain at brandfetch.com/developers
 // then replace BF_ID and uncomment BF lines for higher quality tool logos
 // ─────────────────────────────────────────────────────
- 
+
 // Inline SVG logos for Big 5 — always load, pixel-perfect
 const SVG_LOGOS = {
   gpt: `<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="20" fill="#10a37f"/><path d="M29.4 16.8a7.2 7.2 0 00-8.7-7A7.2 7.2 0 0011 18a7.2 7.2 0 00-1.4 13.7 7.2 7.2 0 008.7 7A7.2 7.2 0 0029 31a7.2 7.2 0 001.4-13.7l-1-.5zm-9.4 13a5.4 5.4 0 01-3.5-1.3l.2-.1 5.8-3.3a.9.9 0 00.5-.8v-8.1l2.5 1.4v6.7a5.4 5.4 0 01-5.5 3.5zm-11.6-5a5.4 5.4 0 01-.6-3.6l.2.1 5.8 3.3a.9.9 0 00.9 0l7.1-4.1v2.8l-7.2 4.1a5.4 5.4 0 01-6.2-2.6zM7.3 14.8a5.4 5.4 0 012.9-2.4v6.8a.9.9 0 00.4.8l7.1 4-2.4 1.4-5.8-3.4a5.4 5.4 0 01-2.2-7.2zm19.8 4.7l-7.1-4.1 2.4-1.4 5.8 3.4a5.4 5.4 0 01-.8 9.7v-6.8a.9.9 0 00-.3-.8zm2.4-3.6l-.2-.1-5.8-3.3a.9.9 0 00-.9 0l-7.1 4.1v-2.8l7.2-4.2a5.4 5.4 0 018 4.8v.1l-1.2 1.4zm-15.4 5l-2.5-1.4v-6.7a5.4 5.4 0 018.8-4.1l-.2.1-5.8 3.3a.9.9 0 00-.5.8v8zm1.4-3l3.2-1.8 3.2 1.8v3.6l-3.2 1.8-3.2-1.8v-3.6z" fill="white"/></svg>`,
@@ -1083,7 +1199,7 @@ const SVG_LOGOS = {
   grok: `<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="20" fill="#000"/><path d="M13 13l14 14M27 13L13 27" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>`,
   meta: `<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="20" fill="#0082fb"/><path d="M8 20c0-4 2.5-7 6-7 2 0 3.8 1 5.3 2.8 1-1.4 2.4-2.8 4.7-2.8 4 0 8 4 8 9.5 0 3.3-1.5 5.5-3.8 5.5-1.8 0-3-1-4.2-3l-1.3-2.3c-.5-.9-.9-1.3-1.4-1.3-.7 0-1.3.8-1.3 2.3 0 1 .3 1.8.3 1.8H17s-.3-.7-.3-2c0-3.3 1.8-5.3 4-5.3 1.5 0 2.6.8 3.7 2.7l1.4 2.3c.7 1.2 1.2 1.6 1.8 1.6.9 0 1.5-1 1.5-2.8 0-4-2.8-7-5.5-7-1.6 0-2.7 1-3.7 2.5C18.6 14.8 17 14 15 14c-3 0-4.6 2.8-4.6 6.5 0 2.3.8 4.5.8 4.5h-2.5S8 22.8 8 20z" fill="white"/></svg>`,
 };
- 
+
 // Tool logos — emojis, always work everywhere
 const TOOL_FAVICONS = {
   cursor:    '🖱️',
@@ -1117,7 +1233,7 @@ const TOOL_FAVICONS = {
   krisp:     '🎧',
   consensus: '📚',
 };
- 
+
 // Unified logo getter — SVG for Big 5, emoji for tools
 function logoImg(key, size=30) {
   if (SVG_LOGOS[key]) {
@@ -1126,15 +1242,15 @@ function logoImg(key, size=30) {
   const emoji = TOOL_FAVICONS[key] || '🤖';
   return `<span style="font-size:${Math.round(size*0.72)}px;line-height:1;flex-shrink:0;display:flex;align-items:center;justify-content:center;width:${size}px;height:${size}px">${emoji}</span>`;
 }
- 
+
 // Keep LOGOS map for backward compat (used in a few spots as src strings)
 const LOGOS = {};
 Object.keys(SVG_LOGOS).forEach(k => LOGOS[k] = ''); // SVG models handled via logoImg()
 Object.entries(TOOL_FAVICONS).forEach(([k,v]) => LOGOS[k] = v);
 function logo(key,size=20){return logoImg(key,size);}
- 
+
 /* ════════ NO I18N — English only ════════ */
- 
+
 /* ════════ BG CANVAS ════════ */
 (function(){
   const c=document.getElementById('bg'),ctx=c.getContext('2d');
@@ -1151,7 +1267,7 @@ function logo(key,size=20){return logoImg(key,size);}
   resize();seed();frame();
   window.addEventListener('resize',()=>{resize();seed();});
 })();
- 
+
 /* ════════ DATA ════════ */
 const M={
   gpt:{id:'gpt',logoKey:'gpt',name:'ChatGPT',nameZh:'ChatGPT',maker:'OpenAI',ac:'#34d399',url:'https://chatgpt.com',
@@ -1205,14 +1321,14 @@ const M={
     tips:[{l:'Best at',t:'WhatsApp AI, images, global accessibility'},{l:'Hidden gem',t:'Ray-Ban Meta glasses for real-world AI vision'},{l:'Not great at',t:'Complex reasoning vs GPT-5 or Claude 3.7'},{l:'Pro tip',t:'1B users and completely free forever'}]
   }
 };
- 
+
 /* ════ BOW VOTES — Firestore shared, localStorage for user's own voted state ════ */
 const BOW_VOTED_KEY='ailoom_bow_voted_v2'; // only tracks if THIS user voted (local)
 let bowVotes={gpt:1240,claude:980,gemini:820,grok:610,meta:540}; // defaults, overwritten by Firestore
 let bowVoted={gpt:false,claude:false,gemini:false,grok:false,meta:false};
 try{const bd=localStorage.getItem(BOW_VOTED_KEY);if(bd)Object.assign(bowVoted,JSON.parse(bd));}catch(e){}
 function saveBowVotedLocal(){try{localStorage.setItem(BOW_VOTED_KEY,JSON.stringify(bowVoted));}catch(e){}}
- 
+
 // Load shared BOW vote counts from Firestore
 async function loadBowVotesFromFirestore(){
   if(!db)return;
@@ -1225,7 +1341,7 @@ async function loadBowVotesFromFirestore(){
     renderBOW();renderModels();
   }catch(e){console.warn('BOW Firestore load:',e);}
 }
- 
+
 // Write BOW vote to Firestore
 async function writeBowVoteToFirestore(modelId, increment){
   if(!db)return;
@@ -1249,7 +1365,7 @@ async function writeBowVoteToFirestore(modelId, increment){
     console.warn('BOW Firestore write failed, using local:',e);
   }
 }
- 
+
 /* ════ SKILL SCORES per model ════ */
 const MODEL_SCORES={
   gpt:{speed:96,smart:95,value:80,voice:96},
@@ -1259,16 +1375,19 @@ const MODEL_SCORES={
   meta:{reach:99,speed:91,smart:80,free:100}
 };
 const SCORE_LABELS={speed:'Speed',smart:'Smart',value:'Value',voice:'Voice',code:'Code',video:'Video',news:'News',reach:'Reach',free:'Free'};
- 
+
 function calcBowScore(id){
-  // Score = base + vote boost. More votes = higher score. Fully vote-driven.
-  const base={gpt:50,claude:48,gemini:46,grok:42,meta:40};
-  const total=getModelTotalVotes(id);
-  // Each 10 votes = +1 score point, capped at 49 bonus (max score 99)
-  const boost=Math.min(49,Math.floor(total/10));
-  return base[id]+boost;
+  // Score based on real-world popularity metrics — independent of votes
+  const POPULARITY={
+    gpt:   {score:94,speed:96,smart:95,value:80,voice:96},
+    claude:{score:89,speed:84,smart:97,value:82,code:98},
+    gemini:{score:86,speed:91,smart:88,value:96,video:97},
+    grok:  {score:80,speed:94,smart:87,value:72,news:98},
+    meta:  {score:75,speed:90,smart:79,value:99,reach:99},
+  };
+  return POPULARITY[id]?.score||75;
 }
- 
+
 /* ════ BEST OF WEEK RENDER ════ */
 function renderBOW(){
   const today=new Date();
@@ -1276,11 +1395,11 @@ function renderBOW(){
   const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
   const dateEl=document.getElementById('bow-date');
   if(dateEl)dateEl.textContent=`${days[today.getDay()]}, ${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
- 
-  // Sort by TOTAL category votes — more votes = higher rank
-  const sorted=Object.keys(M).sort((a,b)=>getModelTotalVotes(b)-getModelTotalVotes(a));
+
+  // Sort by popularity score — independent of votes
+  const sorted=Object.keys(M).sort((a,b)=>calcBowScore(b)-calcBowScore(a));
   const [r1,r2,r3,r4,r5]=sorted;
- 
+
   const wrap=document.getElementById('bow-wrap');
   wrap.innerHTML=`
     <div class="bow-podium">
@@ -1292,7 +1411,7 @@ function renderBOW(){
       ${bowCardHTML(r4,4)}
       ${bowCardHTML(r5,5)}
     </div>`;
- 
+
   // Animate bars in after paint
   setTimeout(()=>{
     document.querySelectorAll('.bow-bar-fill').forEach(el=>{
@@ -1300,14 +1419,14 @@ function renderBOW(){
     });
   },100);
 }
- 
+
 function bowCardHTML(id,rank){
   const m=M[id];
   const score=calcBowScore(id);
   const skills=MODEL_SCORES[id];
   const skillEntries=Object.entries(skills).slice(0,4);
   const isSmall=rank>=4;
- 
+
   // SVG ring
   const r=isSmall?20:28;const circ=2*Math.PI*r;const dashArr=`${(score/100)*circ} ${circ}`;
   const ringHTML=`
@@ -1318,17 +1437,17 @@ function bowCardHTML(id,rank){
       </svg>
       <div class="bow-score-ring-num" style="color:${m.ac}">${score}</div>
     </div>`;
- 
+
   // Trophy SVG for #1
   const trophyHTML=rank===1?`<div class="bow-trophy"><svg viewBox="0 0 22 22" fill="none"><path d="M11 14c-3.314 0-6-2.686-6-6V4h12v4c0 3.314-2.686 6-6 6z" stroke="${m.ac}" stroke-width="1.5" fill="${m.ac}20"/><path d="M8 14v3M14 14v3M7 17h8" stroke="${m.ac}" stroke-width="1.5" stroke-linecap="round"/><path d="M5 4H3v2a2 2 0 002 2M17 4h2v2a2 2 0 01-2 2" stroke="${m.ac}" stroke-width="1.5" stroke-linecap="round"/></svg></div>`:'';
- 
+
   const bars=skillEntries.map(([k,v])=>`
     <div class="bow-bar-row">
       <div class="bow-bar-label">${SCORE_LABELS[k]||k}</div>
       <div class="bow-bar-track"><div class="bow-bar-fill" style="width:0%;background:${m.ac}" data-w="${v}%"></div></div>
       <div class="bow-bar-val">${v}</div>
     </div>`).join('');
- 
+
   return `<div class="bow-card rank-${rank}" onclick="openModelPopup('${id}')">
     <div class="bow-glow" style="background:${m.ac}"></div>
     ${trophyHTML}
@@ -1345,7 +1464,7 @@ function bowCardHTML(id,rank){
     </div>
   </div>`;
 }
- 
+
 function castBowVote(id,e){
   e&&e.stopPropagation();
   if(!currentUser){openModal();return;}
@@ -1365,37 +1484,149 @@ function castBowVote(id,e){
   // Write to Firestore (shared across all users)
   writeBowVoteToFirestore(id, increment);
 }
- 
-/* ════ BIG 5 MODELS — whole bar opens category vote popup ════ */
+
+/* ════ BIG 5 MODELS — expandable detail rows ════ */
+let expandedModel=null;
+const MODEL_DETAIL={
+  gpt:{
+    highlight:'GPT-4.1 handles 1M tokens — entire codebases in one prompt',
+    pricing:'Free / $20 Pro / $200 Ultra',
+    strengths:[
+      {label:'Image Gen 2.0',v:95,desc:'Edit photos with plain text inside ChatGPT'},
+      {label:'Voice Mode',   v:96,desc:'Indistinguishable from a real phone call'},
+      {label:'Research',     v:93,desc:'Deep Research writes 30+ page reports'},
+      {label:'Coding',       v:90,desc:'GPT-4.1 — 50% cheaper, 1M token context'},
+    ],
+    facts:['900M+ weekly users — largest AI user base','GPT Store: 3M+ custom bots available','Memory persists across all devices & sessions','Powers Microsoft Copilot, Bing and Azure AI'],
+    updates:[{d:'Apr 14',t:'GPT-4.1, 4.1 mini & nano — 1M token context, 50% cheaper API',tag:'model'},{d:'Apr 22',t:'Workspace Agents in ChatGPT — Slack, Drive, Salesforce integration'},{d:'Mar 28',t:'Image Gen 2.0 — edit any photo with natural language'}],
+  },
+  claude:{
+    highlight:'Extended thinking reasons up to 10 minutes — PhD-level problem solving',
+    pricing:'Free / $20 Pro / $100 Max',
+    strengths:[
+      {label:'Coding',       v:98,desc:'#1 rated by developers on GitHub 2026'},
+      {label:'Long Docs',    v:96,desc:'Read & analyse 300-page PDFs instantly'},
+      {label:'Writing',      v:97,desc:'Matches your personal tone and style'},
+      {label:'Reasoning',    v:95,desc:'Extended thinking: up to 10 min on hard problems'},
+    ],
+    facts:['#1 AI for developers on GitHub — ahead of Copilot','Claude Design: create prototypes & slides in chat','Claude Code: builds & deploys entire apps autonomously','Safest AI — trained with Constitutional AI principles'],
+    updates:[{d:'Apr 17',t:'Claude Design — AI-powered visual collaboration tool',tag:'product'},{d:'Apr 14',t:'Claude 3.7 Sonnet — extended thinking, 200k context'},{d:'Apr 7',t:'Claude Code: auto-deploys to Vercel, Netlify & more'}],
+  },
+  gemini:{
+    highlight:'Tops every AI leaderboard — LMSYS, WebDev Arena, coding benchmarks',
+    pricing:'Free / $20 Pro / $30 Business',
+    strengths:[
+      {label:'Video (Veo 3)', v:97,desc:'8-second photorealistic videos from text'},
+      {label:'Google Apps',   v:99,desc:'Built into Gmail, Docs, Sheets & Meet'},
+      {label:'Multimodal',    v:98,desc:'Text + image + audio + video in one prompt'},
+      {label:'API Value',     v:96,desc:'Cheapest capable AI API available'},
+    ],
+    facts:['750M+ monthly users across all Google products','2M word context — reads entire codebases','NotebookLM turns any doc into a podcast','Gemini 2.5 Pro leads LMSYS Chatbot Arena leaderboard'],
+    updates:[{d:'Apr 5',t:'Gemini 2.5 Pro Experimental tops all leaderboards',tag:'model'},{d:'Mar 25',t:'Veo 3 video generation in 50+ countries'},{d:'Mar 10',t:'Thinking budget control — speed vs depth slider'}],
+  },
+  grok:{
+    highlight:'Only AI reading live X posts — unbeatable for breaking news',
+    pricing:'$8 X Premium / $30 SuperGrok',
+    strengths:[
+      {label:'Real-time Info', v:98,desc:'Reads live X posts mid-conversation'},
+      {label:'Speed',          v:94,desc:'Fastest response times of the 5 models'},
+      {label:'Image Gen',      v:88,desc:'Aurora — photorealistic image generation'},
+      {label:'Reasoning',      v:87,desc:'Think mode for multi-step logic problems'},
+    ],
+    facts:['Only AI with live X/Twitter feed access','Free with X Premium ($8/mo) — great deal','DeepSearch gives cited answers from the full web','Aurora image model rivals Midjourney quality'],
+    updates:[{d:'Feb 18',t:'Grok 3 launches — xAI's most powerful model yet',tag:'model'},{d:'Jan 30',t:'Aurora image model — photorealistic generation'},{d:'Jan 15',t:'DeepSearch v2 with full source citations'}],
+  },
+  meta:{
+    highlight:'1 billion monthly users — most accessible AI ever built',
+    pricing:'Free (everywhere)',
+    strengths:[
+      {label:'Accessibility',  v:99,desc:'Built into WhatsApp, Instagram, Facebook'},
+      {label:'Speed',          v:90,desc:'Optimised for mobile real-time responses'},
+      {label:'Open Source',    v:98,desc:'Llama 4 — run locally, free forever'},
+      {label:'Value',          v:99,desc:'Completely free, no subscription needed'},
+    ],
+    facts:['1B+ monthly users — first AI to hit this milestone','Llama 4 Scout beats GPT-4o on most benchmarks','Ray-Ban Meta glasses: real-world AI vision','Open-weight models: download & run on your own hardware'],
+    updates:[{d:'Apr 5',t:'Llama 4 Scout & Maverick — beats GPT-4o open-source',tag:'model'},{d:'Mar 20',t:'Meta AI in Ray-Ban glasses expanded to UK, France, Australia'},{d:'Mar 10',t:'Meta AI hits 1 billion monthly active users'}],
+  },
+};
+
+const POPULARITY_SCORES={
+  gpt:{speed:96,smart:95,value:80,voice:96},
+  claude:{speed:84,smart:97,value:82,code:98},
+  gemini:{speed:91,smart:88,value:96,video:97},
+  grok:{speed:94,smart:87,value:72,news:98},
+  meta:{speed:90,smart:79,value:99,reach:99},
+};
+
+function toggleModelExpand(id,e){
+  e&&e.stopPropagation();
+  const wasExpanded=expandedModel===id;
+  expandedModel=wasExpanded?null:id;
+  renderModels();
+  if(!wasExpanded){
+    setTimeout(()=>{
+      const el=document.getElementById('mbar-'+id);
+      if(el)el.scrollIntoView({behavior:'smooth',block:'nearest'});
+    },80);
+  }
+}
+
 function renderModels(){
-  const sorted=Object.values(M).sort((a,b)=>getModelTotalVotes(b.id)-getModelTotalVotes(a.id));
-  document.getElementById('models-list').innerHTML=sorted.map(m=>{
-    const skills=MODEL_SCORES[m.id];
-    const entries=Object.entries(skills).slice(0,3);
-    const totalVotes=getModelTotalVotes(m.id);
-    return `<div class="mbar${bowVoted[m.id]?' voted-bar':''}" id="mbar-${m.id}" onclick="openMVote('${m.id}')" title="Vote for ${m.name} by category">
-      <div class="mbar-click-hint"></div>
+  const sorted=Object.values(M).sort((a,b)=>calcBowScore(b.id)-calcBowScore(a.id));
+  document.getElementById('models-list').innerHTML=sorted.map((m,rank)=>{
+    const det=MODEL_DETAIL[m.id]||{};
+    const pop=POPULARITY_SCORES[m.id]||{};
+    const isExp=expandedModel===m.id;
+    const popEntries=Object.entries(pop).slice(0,3);
+    const score=calcBowScore(m.id);
+    const expandHTML=isExp?`
+    <div class="mbar-expand-content open" id="mexp-${m.id}">
+      <div style="padding:4px 0 12px;font-size:13px;font-weight:600;color:${m.ac};border-bottom:1px solid var(--rim);margin-bottom:14px">${det.highlight||''}</div>
+      <div class="mbar-exp-grid">
+        <div>
+          <div class="mbar-exp-label">Performance</div>
+          ${(det.strengths||[]).map(s=>`<div class="mbar-exp-skill-row"><div class="mbar-exp-skill-name">${s.label}</div><div class="mbar-exp-track"><div class="mbar-exp-fill" style="width:${s.v}%;background:${m.ac}"></div></div><div class="mbar-exp-val">${s.v}</div></div><div style="font-size:10px;color:var(--fog);margin:-3px 0 6px 108px">${s.desc}</div>`).join('')}
+          <div class="mbar-exp-label" style="margin-top:10px">Pricing</div>
+          <div style="font-size:12px;color:var(--mist);margin-bottom:10px">${det.pricing||''}</div>
+          <a href="${m.url}" target="_blank" rel="noopener" class="mbar-exp-visit">↗ Visit ${m.name}</a>
+        </div>
+        <div>
+          <div class="mbar-exp-label">Did You Know?</div>
+          ${(det.facts||[]).map(f=>`<div class="mbar-exp-fact">${f}</div>`).join('')}
+          <div class="mbar-exp-label" style="margin-top:12px">Recent Updates</div>
+          ${(det.updates||[]).map(u=>`<div class="mbar-exp-update"><div class="mbar-exp-update-date">${u.d}${u.tag?` · ${u.tag}`:''}</div><div class="mbar-exp-update-text">${u.t}</div></div>`).join('')}
+        </div>
+      </div>
+    </div>`:'';
+
+    return `<div>
+    <div class="mbar${isExp?' expanded':''}" id="mbar-${m.id}" onclick="toggleModelExpand('${m.id}',event)">
       <div class="mbar-accent" style="background:${m.ac}"></div>
-      <div class="mbar-logo">${logoImg(m.logoKey, 30)}</div>
+      <div class="mbar-logo">${logoImg(m.logoKey,30)}</div>
       <div class="mbar-info">
         <div class="mbar-name">${m.name}</div>
-        <div class="mbar-maker">${m.maker}</div>
+        <div class="mbar-maker">${m.maker} · #${rank+1} this week</div>
       </div>
       <div class="mbar-stat">
         <div class="mbar-stat-val" style="color:${m.ac}">${m.reachVal}</div>
         <div class="mbar-stat-label">${m.reachUnit}</div>
       </div>
       <div class="mbar-mini-bars">
-        ${entries.map(([k,v])=>`<div class="mbar-mini-row"><div class="mbar-mini-label">${SCORE_LABELS[k]||k}</div><div class="mbar-mini-track"><div class="mbar-mini-fill" style="width:${v}%;background:${m.ac}"></div></div></div>`).join('')}
+        ${popEntries.map(([k,v])=>`<div class="mbar-mini-row"><div class="mbar-mini-label">${k}</div><div class="mbar-mini-track"><div class="mbar-mini-fill" style="width:${v}%;background:${m.ac}"></div></div></div>`).join('')}
       </div>
-      <div class="mbar-vote-display">
-        <div class="mbar-vote-val" style="color:${m.ac}">${totalVotes.toLocaleString()}</div>
-        <div class="mbar-vote-label">votes · tap to vote</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <div style="text-align:center">
+          <div style="font-family:var(--fh);font-size:20px;font-weight:800;color:${m.ac}">${score}</div>
+          <div style="font-size:9px;color:var(--fog);text-transform:uppercase;letter-spacing:.06em">Score</div>
+        </div>
+        <div class="mbar-chevron">${isExp?'▲':'▼'}</div>
       </div>
+    </div>
+    ${expandHTML}
     </div>`;
   }).join('');
 }
- 
+
 /* ════ MODEL POPUP ════ */
 function openModelPopup(id){
   const m=M[id];
@@ -1438,7 +1669,7 @@ function openModelPopup(id){
 }
 function closeModelPopup(e){if(e&&e.target!==document.getElementById('model-popup-overlay'))return;document.getElementById('model-popup-overlay').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('model-popup-overlay').classList.remove('open');closeQuiz();closeGlossary();closeSubmit();}});
- 
+
 /* ════ AI TOOLS ════ */
 const TOOLS_BASE=[
   {n:'Cursor',       cat:'code', cl:'Code',    cc:'cc-code',g:'+38%',hot:true, votes:1840,url:'https://cursor.sh',           aff:'https://cursor.sh/?ref=ailoom',      lk:'cursor'},
@@ -1472,7 +1703,7 @@ const TOOLS_BASE=[
   {n:'Krisp',        cat:'audio',cl:'Audio',   cc:'cc-aud', g:'+13%',hot:false,votes:235, url:'https://krisp.ai',            aff:'https://krisp.ai/?ref=ailoom',       lk:'krisp'},
   {n:'Consensus',    cat:'search',cl:'Search', cc:'cc-sch', g:'+20%',hot:false,votes:220, url:'https://consensus.app',       aff:'https://consensus.app/?ref=ailoom',  lk:'consensus'},
 ];
- 
+
 /* ════ TOOL VOTES — Firestore for shared counts, localStorage for user's own voted state ════ */
 const VOTED_KEY='ailoom_upvoted_v5',DVOTED_KEY='ailoom_dvoted_v5';  // user's own votes (local only)
 const VDATE_KEY='ailoom_vdate_v5',VLEFT_KEY='ailoom_vleft_v5';
@@ -1483,7 +1714,7 @@ const MAX_VOTES=5;
 let votes={},upvoted={},downvoted={},curCat='all';
 // Seed default counts from TOOLS_BASE (overwritten by Firestore on load)
 TOOLS_BASE.forEach((t,i)=>{votes[i]=t.votes;upvoted[i]=false;downvoted[i]=false;});
- 
+
 // Tool voted state resets daily — users CAN vote same tools each new day
 function getToolVotedToday(){
   const saved=localStorage.getItem(TOOL_VOTED_DATE_KEY);
@@ -1505,20 +1736,20 @@ function saveToolVotedToday(up,dn){
   localStorage.setItem(TOOL_VOTED_UP_KEY,JSON.stringify(up));
   localStorage.setItem(TOOL_VOTED_DN_KEY,JSON.stringify(dn));
 }
- 
+
 // Sync upvoted/downvoted from daily state
 (function syncToolVotedFromDaily(){
   const {up,dn}=getToolVotedToday();
   TOOLS_BASE.forEach((t,i)=>{upvoted[i]=!!up[i];downvoted[i]=!!dn[i];});
 })();
- 
+
 // Save only the user's personal voted state (not counts — those live in Firestore)
 function saveUserVoteState(){
   const {up,dn}=getToolVotedToday();
   TOOLS_BASE.forEach((t,i)=>{if(upvoted[i])up[i]=true;else delete up[i];if(downvoted[i])dn[i]=true;else delete dn[i];});
   saveToolVotedToday(up,dn);
 }
- 
+
 // Load all shared tool vote counts from Firestore
 async function loadToolVotesFromFirestore(){
   if(!db)return;
@@ -1534,7 +1765,7 @@ async function loadToolVotesFromFirestore(){
     updateTotalVotes();
   }catch(e){console.warn('Tool Firestore load:',e);}
 }
- 
+
 // Write tool vote to Firestore
 async function writeToolVoteToFirestore(idx, increment){
   if(!db)return;
@@ -1556,7 +1787,7 @@ async function writeToolVoteToFirestore(idx, increment){
     console.warn('Tool Firestore write failed, using local:',e);
   }
 }
- 
+
 function todayStr(){return new Date().toISOString().slice(0,10);}
 function getVotesLeft(){
   const sd=localStorage.getItem(VDATE_KEY);
@@ -1565,7 +1796,7 @@ function getVotesLeft(){
   return parseInt(localStorage.getItem(VLEFT_KEY)||MAX_VOTES);
 }
 function setVotesLeft(n){localStorage.setItem(VLEFT_KEY,Math.max(0,n));}
- 
+
 const CATS=['all','code','image','audio','video','write','search','3d','ux'];
 function getHottestCat(){const cv={};TOOLS_BASE.forEach((t,i)=>{if(!cv[t.cat])cv[t.cat]=0;cv[t.cat]+=votes[i]||0;});return Object.entries(cv).sort((a,b)=>b[1]-a[1])[0]?.[0]||'';}
 function updateTotalVotes(){
@@ -1586,7 +1817,7 @@ function setCat(cat,el){curCat=cat;document.querySelectorAll('.filt').forEach(b=
 function rnkClass(p){return p===1?'rank-1':p===2?'rank-2':p===3?'rank-3':'';}
 function rnkNum(p){return p===1?'gold':p===2?'silver':p===3?'bronze':'';}
 function rnkMedal(p){return p===1?'🥇':p===2?'🥈':p===3?'🥉':'';}
- 
+
 function rowHTML(tool,idx,pos,moved){
   const isUp=upvoted[idx],isDn=downvoted[idx];
   const dest=tool.aff||tool.url;
@@ -1627,7 +1858,7 @@ function rowHTML(tool,idx,pos,moved){
     <div class="vote-wrap">${voteArea}</div>
   </div>`;
 }
- 
+
 function buildList(cat){
   const list=cat==='all'?TOOLS_BASE:TOOLS_BASE.filter(t=>t.cat===cat);
   const sorted=[...list].sort((a,b)=>votes[TOOLS_BASE.indexOf(b)]-votes[TOOLS_BASE.indexOf(a)]);
@@ -1636,7 +1867,7 @@ function buildList(cat){
   el.innerHTML=sorted.map((tool,i)=>rowHTML(tool,TOOLS_BASE.indexOf(tool),i+1,false)).join('');
   updateTotalVotes();
 }
- 
+
 /* Vote FX */
 function spawnVoteFX(btn){
   const canvas=document.getElementById('vote-fx');
@@ -1650,13 +1881,13 @@ function spawnVoteFX(btn){
   function fx(){ctx.clearRect(0,0,canvas.width,canvas.height);let alive=false;P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.2;p.life-=p.decay;if(p.life<=0)return;alive=true;ctx.save();ctx.globalAlpha=p.life;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.color;ctx.fill();ctx.restore();});fr++;if(alive&&fr<65)requestAnimationFrame(fx);else ctx.clearRect(0,0,canvas.width,canvas.height);}
   fx();
 }
- 
+
 function castVote(idx,dir,e){
   e&&e.stopPropagation();
   if(!currentUser){openModal();return;}
   const vleft=getVotesLeft();
   let increment=0;
- 
+
   if(dir==='up'){
     // Allow unlimited upvotes on same tool — costs one daily vote each time
     if(vleft<=0){showToast('No votes left today! Resets at midnight.');return;}
@@ -1679,11 +1910,11 @@ function castVote(idx,dir,e){
       showToast('↓ Downvoted '+TOOLS_BASE[idx].n);
     }
   }
- 
+
   saveUserVoteState();
   if(increment!==0)writeToolVoteToFirestore(idx,increment);
   updateVotesDisplay();
- 
+
   const list=curCat==='all'?TOOLS_BASE:TOOLS_BASE.filter(t=>t.cat===curCat);
   const sorted=[...list].sort((a,b)=>votes[TOOLS_BASE.indexOf(b)]-votes[TOOLS_BASE.indexOf(a)]);
   const container=document.getElementById('tool-list');if(!container)return;
@@ -1697,14 +1928,14 @@ function castVote(idx,dir,e){
   });
   if(dir==='up'){const vr=document.getElementById('tr-'+idx);if(vr){vr.classList.add('rank-up');vr.addEventListener('animationend',()=>vr.classList.remove('rank-up'),{once:true});}}
 }
- 
+
 /* ════ NEWS ════ */
 const MODEL_NEWS={
-  gpt:{color:'#34d399',label:'ChatGPT',headline:'ChatGPT Image Generation 2.0 — native AI image editing in chat',sub:'OpenAI\'s biggest image update ever. Edit photos with text, swap backgrounds, remove objects and generate from scratch — all inside the ChatGPT interface.',date:'Apr 23, 2026',url:'https://openai.com/blog'},
-  claude:{color:'#fbbf24',label:'Claude',headline:'Claude 3.7 Sonnet launches with extended thinking & 200k context',sub:'Anthropic\'s most capable model yet. Extended thinking mode reasons for up to 10 minutes on hard problems. Now powers Claude Code, Excel, PowerPoint and Chrome.',date:'Apr 20, 2026',url:'https://anthropic.com/news'},
-  gemini:{color:'#60a5fa',label:'Gemini',headline:'Gemini 2.5 Pro now free — fastest model Google has ever shipped',sub:'Gemini 2.5 Pro is available free on gemini.google.com. Tops LMSYS Chatbot Arena leaderboard. Veo 3 video gen now in 50+ countries.',date:'Apr 18, 2026',url:'https://blog.google/products/gemini'},
-  grok:{color:'#c084fc',label:'Grok',headline:'Grok 3.5 drops with real-time X search, Aurora 2 image model',sub:'xAI\'s latest adds Aurora 2 for photorealistic images, enhanced Think mode for multi-step reasoning, and live X post integration mid-conversation.',date:'Apr 16, 2026',url:'https://x.ai/blog'},
-  meta:{color:'#2d8cf0',label:'Meta AI',headline:'Meta AI reaches 1 billion monthly users — free across all apps',sub:'Meta AI crossed 1 billion users on WhatsApp, Instagram, Facebook and Messenger. Llama 4 Scout sets new open-source benchmark records.',date:'Apr 21, 2026',url:'https://ai.meta.com/blog'}
+  gpt:{color:'#34d399',label:'ChatGPT',headline:'OpenAI launches GPT-4.1 with 1M token context & 50% cheaper API',sub:'GPT-4.1, GPT-4.1 mini and GPT-4.1 nano drop simultaneously. The flagship handles 1 million tokens — enough for entire codebases — and cuts API costs in half vs GPT-4o.',date:'Apr 14, 2026',url:'https://openai.com/index/gpt-4-1/'},
+  claude:{color:'#fbbf24',label:'Claude',headline:'Claude Design launches — AI-powered visual collaboration tool',sub:'Anthropic Labs releases Claude Design, letting users collaborate with Claude to create prototypes, slides and one-pagers. Joins Claude Code as Anthropic\'s second major product.',date:'Apr 17, 2026',url:'https://www.anthropic.com/news/claude-design-anthropic-labs'},
+  gemini:{color:'#60a5fa',label:'Gemini',headline:'Gemini 2.5 Pro Experimental tops every AI leaderboard worldwide',sub:'Google\'s Gemini 2.5 Pro Experimental leads LMSYS Chatbot Arena, WebDev Arena and coding benchmarks. Thinking budget control lets users balance speed vs reasoning depth.',date:'Apr 5, 2026',url:'https://blog.google/products/gemini/gemini-2-5-pro-experimental/'},
+  grok:{color:'#c084fc',label:'Grok',headline:'Grok 3 & Aurora image model release — xAI\'s most powerful yet',sub:'xAI releases Grok 3 with breakthrough reasoning and Aurora for photorealistic image generation. Grok now has the largest MoE architecture of any public AI model.',date:'Feb 18, 2026',url:'https://x.ai/blog/grok-3'},
+  meta:{color:'#2d8cf0',label:'Meta AI',headline:'Llama 4 Scout & Maverick — open-source beats GPT-4o on most tasks',sub:'Meta releases Llama 4 Scout (17B active params, 10M context) and Maverick. Both beat GPT-4o on image understanding, coding and reasoning. Fully open-weight and free.',date:'Apr 5, 2026',url:'https://ai.meta.com/blog/llama-4-multimodal-intelligence/'}
 };
 function renderNews(){
   document.getElementById('news-strip-compact').innerHTML=Object.entries(MODEL_NEWS).map(([k,n])=>`
@@ -1723,7 +1954,7 @@ function renderNews(){
       </div>
     </a>`).join('');
 }
- 
+
 /* ════ QUIZ ════ */
 const QUIZ_QUESTIONS=[
   {q:'What do you mainly want AI to do?',sub:'Pick the best match',options:[
@@ -1751,7 +1982,7 @@ const QUIZ_QUESTIONS=[
     {svg:'<svg viewBox="0 0 20 20" fill="none"><rect x="5" y="3" width="10" height="14" rx="2" stroke="#c084fc" stroke-width="1.5"/><path d="M8 7h4M8 10h3" stroke="#c084fc" stroke-width="1.3" stroke-linecap="round"/></svg>',text:'Privacy',sub:'Data safety & transparency',val:'privacy'},
   ]},
 ];
- 
+
 let quizAnswers=new Array(4).fill(null),quizStep=0;
 const toolInfo={
   ChatGPT:{logoKey:'gpt',reason:'Best all-rounder — great voice, images, GPT Store & research.',url:'https://chatgpt.com'},
@@ -1764,7 +1995,7 @@ const toolInfo={
   'Suno AI':{logoKey:'suno',reason:'Create full songs with vocals from text. Remarkable quality.',url:'https://suno.com'},
   Perplexity:{logoKey:'perplexity',reason:'AI search with citations. Best for research & fact-checking.',url:'https://perplexity.ai'},
 };
- 
+
 function getQuizRecs(ans){
   const [goal,budget,level,priority]=ans;
   const sc={ChatGPT:0,Claude:0,Gemini:0,Grok:0,'Meta AI':0,Cursor:0,Midjourney:0,'Suno AI':0,Perplexity:0};
@@ -1785,7 +2016,7 @@ function getQuizRecs(ans){
   if(priority==='privacy'){sc['Claude']+=3;}
   return Object.entries(sc).sort((a,b)=>b[1]-a[1]).slice(0,4).map(([name,score])=>({name,score}));
 }
- 
+
 function renderQuiz(){
   quizAnswers=new Array(4).fill(null);quizStep=0;
   document.getElementById('quiz-result').style.display='none';
@@ -1865,13 +2096,13 @@ function showQuizResults(){
     </div>
     ${currentUser?`<div class="qr-save-note">✓ Results saved to your account (<b>${currentUser.displayName||currentUser.email}</b>)</div>`:`<div class="qr-save-note">Sign in to save your results to your account</div>`}
     <button class="quiz-restart-btn" onclick="renderQuiz()">← Retake Quiz</button>`;
- 
+
   // Save to localStorage and Firestore if logged in
   const resultData={answers:quizAnswers,recs:recs.map(r=>r.name),timestamp:new Date().toISOString()};
   try{const ex=JSON.parse(localStorage.getItem('ailoom_quiz_results')||'[]');ex.push(resultData);localStorage.setItem('ailoom_quiz_results',JSON.stringify(ex.slice(-10)));}catch(e){}
   if(db&&currentUser){try{db.collection('quiz_results').add({...resultData,uid:currentUser.uid,email:currentUser.email||''});}catch(e){}}
 }
- 
+
 function openQuiz(){
   document.getElementById('quiz-overlay').classList.add('open');
   const fab=document.querySelector('.quiz-fab');
@@ -1880,7 +2111,7 @@ function openQuiz(){
 }
 function closeQuiz(){document.getElementById('quiz-overlay').classList.remove('open');}
 function closeQuizIfBg(e){if(e.target===document.getElementById('quiz-overlay'))closeQuiz();}
- 
+
 /* ════ GLOSSARY ════ */
 const GLOSSARY=[
   {term:'LLM',badge:'Core',def:'Large Language Model — the technology inside ChatGPT, Claude, Gemini etc. It learned from billions of pages of text to understand and generate language.',example:'Think of it like autocomplete that went to university.',
@@ -1920,7 +2151,7 @@ Agent: 1) Plans structure
 📝 Text  🖼️ Images  🎵 Audio  🎬 Video
 Examples: GPT-4o, Gemini, Claude 3.5`},
 ];
- 
+
 function renderGlossary(){
   document.getElementById('gp-body').innerHTML=GLOSSARY.map(g=>`
     <div class="gp-term">
@@ -1933,11 +2164,11 @@ function renderGlossary(){
       <div class="gp-diagram">${g.diagram}</div>
     </div>`).join('');
 }
- 
+
 function openGlossary(){document.getElementById('glossary-overlay').classList.add('open');renderGlossary();}
 function closeGlossary(){document.getElementById('glossary-overlay').classList.remove('open');}
 function closeGlossaryIfBg(e){if(e.target===document.getElementById('glossary-overlay'))closeGlossary();}
- 
+
 /* ════ SUBMIT ════ */
 function openSubmit(){document.getElementById('sp-form-wrap').style.display='block';document.getElementById('sp-success').style.display='none';document.getElementById('submit-overlay').classList.add('open');}
 function closeSubmit(){document.getElementById('submit-overlay').classList.remove('open');}
@@ -1954,13 +2185,13 @@ async function submitTool(){
   document.getElementById('sp-success').style.display='block';
   setTimeout(()=>closeSubmit(),4000);
 }
- 
+
 /* ════ TOC ════ */
 const TOC_SECTIONS=['sec-bow','sec-models','sec-tools','sec-news'];
 function setTocActive(id){document.querySelectorAll('.toc-dot-btn').forEach((d,i)=>d.classList.toggle('active',TOC_SECTIONS[i]===id));}
 window.addEventListener('scroll',()=>{let active=null;const th=window.innerHeight*.45+60;TOC_SECTIONS.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=th)active=id;});if(active)setTocActive(active);},{passive:true});
 function tocNav(id){const el=document.getElementById(id);if(!el)return;window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-65,behavior:'smooth'});}
- 
+
 /* ════ SEARCH ════ */
 function doSearch(q){
   const v=q.trim().toLowerCase();
@@ -1983,14 +2214,14 @@ function doSearch(q){
         </div>`).join('')}</div>`).join('');
 }
 function clearSearch(){const inp=document.getElementById('nav-si');if(inp)inp.value='';document.getElementById('nav-si-x').style.display='none';const p=document.getElementById('search-panel');if(p){p.style.display='none';p.innerHTML='';}}
- 
+
 /* ════ SUPPORT ════ */
 const BTC='3NwLDSWKnYFGqsX79oXGT9Sn6cBagQd38j';
 function copyCrypto(){navigator.clipboard.writeText(BTC).then(()=>{const l=document.getElementById('crypto-label');if(l)l.textContent='Copied! ✓';const c=document.getElementById('crypto-confirm');if(c)c.style.display='block';setTimeout(()=>{if(l)l.textContent='Copy Bitcoin address';if(c)c.style.display='none';},3000);}).catch(()=>showToast('BTC: '+BTC));}
- 
+
 /* ════ TOAST ════ */
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
- 
+
 /* ════ FIREBASE ════ */
 let auth=null,db=null,fbRating=0,currentUser=null;
 function loadScript(src){return new Promise((res,rej)=>{if(document.querySelector(`script[src="${src}"]`)){res();return;}const s=document.createElement('script');s.src=src;s.crossOrigin='anonymous';s.onload=()=>res();s.onerror=()=>rej(new Error('Failed: '+src));document.head.appendChild(s);});}
@@ -2059,7 +2290,7 @@ function setLoggedInUI(user){
   // Update votes display
   updateVotesDisplay();
 }
- 
+
 function toggleUserDropdown(e){
   e&&e.stopPropagation();
   const dd=document.getElementById('user-dropdown');
@@ -2069,7 +2300,7 @@ document.addEventListener('click',()=>{
   const dd=document.getElementById('user-dropdown');
   if(dd)dd.classList.remove('open');
 });
- 
+
 function updateVotesDisplay(){
   const vl=getVotesLeft();
   const val=document.getElementById('ud-votes-val');
@@ -2097,7 +2328,7 @@ async function signInWithGoogle(){
 }
 async function signOutUser(){if(auth)await auth.signOut();currentUser=null;showToast('Signed out. See you!');buildList(curCat);}
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
- 
+
 /* ════ FEEDBACK ════ */
 function openFeedback(){document.getElementById('fb-form-wrap').style.display='block';document.getElementById('fb-success').style.display='none';document.getElementById('fb-submit').disabled=false;document.getElementById('fb-submit').textContent='Send Feedback →';document.getElementById('fb-modal').classList.add('open');}
 function closeFeedback(){document.getElementById('fb-modal').classList.remove('open');fbRating=0;document.querySelectorAll('.fb-star').forEach(s=>s.classList.remove('on'));['fb-msg','fb-name','fb-email'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});}
@@ -2113,7 +2344,7 @@ async function submitFeedback(){
   document.getElementById('fb-form-wrap').style.display='none';document.getElementById('fb-success').style.display='block';
   setTimeout(()=>closeFeedback(),3500);
 }
- 
+
 /* ════ CATEGORY VOTES for Big 5 — UNIFIED categories, daily refresh ════ */
 // Same 8 categories for ALL models so votes are comparable
 const UNIFIED_CATS=[
@@ -2127,12 +2358,12 @@ const UNIFIED_CATS=[
   {icon:'💰',name:'Best Value',  key:'value'},
 ];
 const MODEL_CATS={gpt:UNIFIED_CATS,claude:UNIFIED_CATS,gemini:UNIFIED_CATS,grok:UNIFIED_CATS,meta:UNIFIED_CATS};
- 
+
 // Storage keys
 const CAT_VOTE_KEY='ailoom_catvotes_v2';
 const CAT_VOTED_DATE_KEY='ailoom_catvoted_date_v2';
 const CAT_VOTED_KEY='ailoom_catvoted_v2'; // which cats this user voted today
- 
+
 // catVotes[modelId][catKey] = total count (from Firestore)
 // Seed with realistic baseline numbers — overwritten by real Firestore data on load
 let catVotes={
@@ -2142,7 +2373,7 @@ let catVotes={
   grok:  {image:1543,code:987, write:876, search:1876,video:654, speed:2987,reason:1543,value:1032}, // total ~11498 → #4
   meta:  {image:1432,code:543, write:1098,search:1321,video:432, speed:1876,reason:876, value:2341}, // total ~9919 → #5
 };
- 
+
 // Per-user daily voted state (reset each day)
 function getCatVotedToday(){
   const saved=localStorage.getItem(CAT_VOTED_DATE_KEY);
@@ -2158,15 +2389,15 @@ function getCatVotedToday(){
 function saveCatVotedToday(obj){
   localStorage.setItem(CAT_VOTED_KEY,JSON.stringify(obj));
 }
- 
+
 // Load catVotes from localStorage cache (overwritten by Firestore)
 try{const cv=localStorage.getItem(CAT_VOTE_KEY);if(cv)catVotes=JSON.parse(cv);}catch(e){}
- 
+
 // Get total votes for a model (used for ranking)
 function getModelTotalVotes(id){
   return Object.values(catVotes[id]||{}).reduce((a,b)=>a+b,0);
 }
- 
+
 let currentMVoteId=null;
 function openMVote(modelId){
   if(!currentUser){openModal();return;}
@@ -2193,13 +2424,13 @@ function openMVote(modelId){
 }
 function closeMVote(){document.getElementById('mvote-overlay').classList.remove('open');}
 function closeMVoteIfBg(e){if(e.target===document.getElementById('mvote-overlay'))closeMVote();}
- 
+
 function castCatVote(modelId,catKey,el){
   if(!currentUser){openModal();return;}
   const vl=getVotesLeft();
   if(vl<=0){showToast('No votes left today! Resets at midnight.');return;}
   if(!catVotes[modelId])catVotes[modelId]={};
- 
+
   // Each click = +1 vote on that category (uses one daily vote)
   // Users can vote same category multiple times if they have votes left
   catVotes[modelId][catKey]=(catVotes[modelId][catKey]||0)+1;
@@ -2208,16 +2439,16 @@ function castCatVote(modelId,catKey,el){
   el.classList.add('voted');
   setTimeout(()=>el.classList.remove('voted'),600); // flash effect, not sticky
   showToast(`▲ Voted: ${M[modelId].name} · ${UNIFIED_CATS.find(c=>c.key===catKey)?.name||catKey}`);
- 
+
   // Update count display in popup
   const newCount=catVotes[modelId][catKey]||0;
   const countEl=el.querySelector('.mvote-cat-count');
   if(countEl)countEl.textContent=newCount.toLocaleString()+' vote'+(newCount!==1?'s':'');
   document.getElementById('mvote-left').textContent=getVotesLeft();
- 
+
   // Save cache locally
   try{localStorage.setItem(CAT_VOTE_KEY,JSON.stringify(catVotes));}catch(e){}
- 
+
   // Write +1 increment to Firestore so ALL users see the updated total
   if(db){
     const ref=db.collection('votes').doc('cat_'+modelId+'_'+catKey);
@@ -2236,7 +2467,7 @@ function castCatVote(modelId,catKey,el){
   renderBOW();
   renderModels();
 }
- 
+
 // Load cat votes from Firestore — merges with seed data, real data wins
 async function loadCatVotesFromFirestore(){
   if(!db)return;
@@ -2265,7 +2496,7 @@ async function loadCatVotesFromFirestore(){
     renderBOW();renderModels();
   }catch(e){console.warn('catVote load:',e);}
 }
- 
+
 /* ════ MENU BAR ════ */
 let menuOpen=false;
 function toggleMenu(){
@@ -2275,7 +2506,7 @@ function toggleMenu(){
   if(items)items.classList.toggle('hidden',!menuOpen);
   if(toggle)toggle.classList.toggle('open',menuOpen);
 }
- 
+
 /* ════ BOW enhanced render — more info in cards ════ */
 const BOW_INSIGHTS={
   gpt:  {tag:'Image Gen 2.0 is here',desc:'Edit photos with plain text — the biggest ChatGPT image update ever',bestFor:'Images · Voice · Research',nextUpdate:'May 7, 2026'},
@@ -2284,7 +2515,7 @@ const BOW_INSIGHTS={
   grok: {tag:'Grok 3.5 + Aurora 2',desc:'Best image quality of the 5 + only AI with live X post access',bestFor:'Breaking news · Images · Speed',nextUpdate:'May 2, 2026'},
   meta: {tag:'1 Billion users',desc:'First AI to hit 1B monthly users. Llama 4 breaks open-source records.',bestFor:'WhatsApp · Reach · Free access',nextUpdate:'May 5, 2026'},
 };
- 
+
 function bowCardHTML(id,rank){
   const m=M[id];
   const score=calcBowScore(id);
@@ -2332,77 +2563,112 @@ function bowCardHTML(id,rank){
       <button class="bow-details-btn" onclick="event.stopPropagation();openModelPopup('${id}')">Details →</button>
     </div>
   </div>`;}
- 
-/* ════ COURSES DATA ════ */
-const COURSES=[
-  // ChatGPT
-  {model:'gpt',title:'ChatGPT Complete Guide 2026',provider:'Udemy',desc:'From zero to prompt engineering pro. Covers GPT-4o, image gen, voice mode and custom GPTs.',free:false,url:'https://udemy.com'},
-  {model:'gpt',title:'ChatGPT for Beginners',provider:'OpenAI',desc:'Official free tutorials on using ChatGPT effectively for everyday tasks.',free:true,url:'https://openai.com/chatgpt'},
-  {model:'gpt',title:'Prompt Engineering Guide',provider:'DAIR.AI',desc:'Open-source guide to writing better prompts. Chain-of-thought, few-shot, and more.',free:true,url:'https://promptingguide.ai'},
-  {model:'gpt',title:'Building Apps with GPT API',provider:'Coursera',desc:'Build real products using OpenAI APIs. Covers function calling, RAG, and embeddings.',free:false,url:'https://coursera.org'},
-  // Claude
-  {model:'claude',title:'Claude AI Masterclass',provider:'Anthropic',desc:'Official documentation and prompt guide for getting the most from Claude.',free:true,url:'https://docs.anthropic.com'},
-  {model:'claude',title:'Claude for Developers',provider:'Anthropic Academy',desc:'Learn the Claude API, build agents, use tool use and long-context features.',free:true,url:'https://anthropic.com'},
-  {model:'claude',title:'AI Coding with Claude',provider:'YouTube',desc:'Build full apps using Claude Code and Claude Artifacts — step by step tutorials.',free:true,url:'https://youtube.com'},
-  {model:'claude',title:'Enterprise AI with Claude',provider:'Coursera',desc:'Deploy Claude in enterprise settings. RAG pipelines, safety, and production best practices.',free:false,url:'https://coursera.org'},
-  // Gemini
-  {model:'gemini',title:'Google AI Essentials',provider:'Google',desc:'Official Google course covering Gemini, AI literacy, and responsible AI use.',free:true,url:'https://grow.google/ai'},
-  {model:'gemini',title:'Gemini for Google Workspace',provider:'Google',desc:'Use Gemini in Gmail, Docs, Sheets, Slides and Meet to save hours every week.',free:true,url:'https://workspace.google.com/ai'},
-  {model:'gemini',title:'Build with Gemini API',provider:'Google Codelabs',desc:'Hands-on Codelabs for building apps with the Gemini API and Vertex AI.',free:true,url:'https://codelabs.developers.google.com'},
-  {model:'gemini',title:'AI Video Production with Veo',provider:'YouTube',desc:'Master Gemini Veo 3 for professional AI video creation and storytelling.',free:true,url:'https://youtube.com'},
-  // Grok
-  {model:'grok',title:'Getting Started with Grok',provider:'xAI',desc:'Official xAI documentation. Learn Grok\'s real-time search, Think mode, and image gen.',free:true,url:'https://docs.x.ai'},
-  {model:'grok',title:'AI Research with Grok DeepSearch',provider:'YouTube',desc:'Use Grok\'s DeepSearch for real-time research, news verification and analysis.',free:true,url:'https://youtube.com'},
-  {model:'grok',title:'Grok API for Developers',provider:'xAI Docs',desc:'Build apps using the Grok API. Streaming, function calling and usage examples.',free:true,url:'https://docs.x.ai'},
-  // Meta AI
-  {model:'meta',title:'Meta AI in WhatsApp',provider:'Meta',desc:'Use Meta AI directly in WhatsApp for summaries, translations, images and more.',free:true,url:'https://meta.ai'},
-  {model:'meta',title:'Llama Developer Guide',provider:'Meta',desc:'Build with Llama 4 open-source models. Fine-tuning, deployment and API access.',free:true,url:'https://llama.meta.com'},
-  {model:'meta',title:'AI for Social Media Creators',provider:'Meta',desc:'Use Meta AI for Instagram content, captions, video ideas and audience growth.',free:true,url:'https://meta.ai'},
+
+/* ════ RELEASE CALENDAR ════ */
+const RELEASE_EVENTS=[
+  // May 2026
+  {date:'2026-05-07',modelId:'gpt',  title:'ChatGPT GPT-5 Preview',         desc:'OpenAI expected to release GPT-5 public preview. Rumoured to score 95%+ on MMLU and include native multimodal reasoning.',features:['Native video understanding','Autonomous agent mode','1M+ token context','Real-time web + code execution']},
+  {date:'2026-05-12',modelId:'claude',title:'Claude 3.8 Sonnet',              desc:'Anthropic's next iteration of Sonnet. Expected improvements to agentic coding, faster extended thinking, and expanded file support.',features:['Faster extended thinking (30s vs 10min)','Improved Claude Code autonomy','PDF & spreadsheet native editing','New memory system across sessions']},
+  {date:'2026-05-15',modelId:'gemini',title:'Google I/O — Gemini 3.0 Reveal', desc:'Google I/O 2026 keynote. Major Gemini announcements expected including next-gen Veo video, Imagen 4 and Project Astra updates.',features:['Gemini 3.0 architecture reveal','Veo 3.0 — full HD 30s videos','Imagen 4 photorealistic images','Project Astra wearable AI']},
+  {date:'2026-05-20',modelId:'meta',  title:'Llama 4 Behemoth Release',       desc:'Meta's most capable Llama 4 model — Behemoth — expected to go public. Currently in internal testing and scores higher than GPT-4.5 on most benchmarks.',features:['300B+ parameter model','Beats GPT-4.5 on coding','Full multimodal: text/image/video/audio','Open weights — free to run locally']},
+  {date:'2026-05-28',modelId:'grok',  title:'Grok 3.5 Update + Aurora 2',     desc:'xAI expected to ship Grok 3.5 with upgraded Aurora 2 image model and enhanced DeepSearch capabilities across the web and X.',features:['Aurora 2 — Photorealistic image gen','DeepSearch v2 with citations','Longer context: 512k tokens','Voice mode for SuperGrok users']},
+  // June 2026
+  {date:'2026-06-03',modelId:'gpt',  title:'OpenAI DevDay Announcements',    desc:'OpenAI's annual developer conference. Expected: new API features, Realtime API v2, improved function calling and new modalities.',features:['Realtime API v2 — voice + vision','Structured outputs v2','New fine-tuning capabilities','GPT-5 API general availability']},
+  {date:'2026-06-10',modelId:'claude',title:'Claude Code GA + Claude 3.8 Opus',desc:'Claude Code exits beta and becomes generally available. Claude 3.8 Opus — Anthropic's flagship — expected to launch with world-class reasoning.',features:['Claude Code production-ready','Claude 3.8 Opus launch','Enterprise memory & knowledge bases','Native computer use improvements']},
+  {date:'2026-06-15',modelId:'gemini',title:'Gemini 2.5 Flash — Speed Tier',   desc:'Google launches Gemini 2.5 Flash for high-throughput applications. Designed for real-time use cases requiring sub-second responses.',features:['Sub-100ms response latency','10x cheaper than Pro tier','Streaming multimodal output','Deep Google Search integration']},
+  {date:'2026-06-22',modelId:'meta',  title:'Meta Connect 2026 — AI Hardware', desc:'Meta's annual Connect event focused on AI hardware. Ray-Ban Meta 2 and new AR headset announcements with integrated Meta AI.',features:['Ray-Ban Meta 2 with display','Orion AR headset preview','Meta AI on all hardware','Open AI stack for developers']},
+  {date:'2026-06-30',modelId:'grok',  title:'SuperGrok Enterprise Launch',     desc:'xAI launches SuperGrok Enterprise tier for businesses, with API access, team management, private data integration and SLA guarantees.',features:['Enterprise API with SLA','Private data integration','Team voting & collaboration','Custom Grok fine-tuning']},
+  // July 2026
+  {date:'2026-07-08',modelId:'gpt',  title:'GPT-5 General Availability',      desc:'OpenAI opens GPT-5 to all ChatGPT users and via API. Expected to be the most capable publicly available AI model.',features:['Available to all ChatGPT tiers','API pricing announced','Custom GPT-5 bots in store','Enterprise deployment tools']},
+  {date:'2026-07-15',modelId:'gemini',title:'Veo 3.0 — Full HD Video Generation',desc:'Google makes Veo 3.0 available to all Gemini Pro users. Generate full HD 30-second videos from text prompts.',features:['Full HD 1080p video output','30-second generation','Audio + music synthesis','Multi-scene editing']},
 ];
- 
-let activeCoursesTab='all';
-function openCourses(){document.getElementById('courses-overlay').classList.add('open');renderCourses();}
-function closeCourses(){document.getElementById('courses-overlay').classList.remove('open');}
- 
-function renderCourses(){
-  const tabModels=[
-    {key:'all',label:'All Courses',logoKey:null},
-    {key:'gpt',label:'ChatGPT',logoKey:'gpt'},
-    {key:'claude',label:'Claude',logoKey:'claude'},
-    {key:'gemini',label:'Gemini',logoKey:'gemini'},
-    {key:'grok',label:'Grok',logoKey:'grok'},
-    {key:'meta',label:'Meta AI',logoKey:'meta'},
-  ];
-  document.getElementById('courses-tabs').innerHTML=tabModels.map(t=>`
-    <button class="ctab${activeCoursesTab===t.key?' active':''}" onclick="setCourseTab('${t.key}')">
-      ${t.logoKey?`<div class="ctab-logo">${logoImg(t.logoKey,16)}</div>`:''}
-      ${t.label}
-    </button>`).join('');
-  const filtered=activeCoursesTab==='all'?COURSES:COURSES.filter(c=>c.model===activeCoursesTab);
-  const modelColors={gpt:'#34d399',claude:'#fbbf24',gemini:'#60a5fa',grok:'#c084fc',meta:'#2d8cf0'};
-  const modelNames={gpt:'ChatGPT',claude:'Claude',gemini:'Gemini',grok:'Grok',meta:'Meta AI'};
-  document.getElementById('courses-grid').innerHTML=filtered.map(c=>`
-    <a class="course-card" href="${c.url}" target="_blank" rel="noopener">
-      <span class="course-badge" style="background:${modelColors[c.model]}20;color:${modelColors[c.model]};border:1px solid ${modelColors[c.model]}30">
-        ${modelNames[c.model]}
-      </span>
-      <div class="course-title">${c.title}</div>
-      <div class="course-desc">${c.desc}</div>
-      <div class="course-meta">
-        <span class="course-provider">${c.provider}</span>
-        <span class="course-free ${c.free?'free':'paid'}">${c.free?'Free':'Paid'}</span>
-      </div>
-    </a>`).join('');
+
+const MODEL_COLORS={gpt:'#34d399',claude:'#fbbf24',gemini:'#60a5fa',grok:'#c084fc',meta:'#2d8cf0'};
+const MODEL_NAMES={gpt:'ChatGPT',claude:'Claude',gemini:'Gemini',grok:'Grok',meta:'Meta AI'};
+
+let calYear=2026,calMonth=4; // 0-indexed: 4=May
+function openCourses(){document.getElementById('courses-overlay').classList.add('open');renderCalendar();}
+function closeCourses(){document.getElementById('courses-overlay').classList.remove('open');closeCalEventPopup();}
+function calPrev(){calMonth--;if(calMonth<0){calMonth=11;calYear--;}renderCalendar();}
+function calNext(){calMonth++;if(calMonth>11){calMonth=0;calYear++;}renderCalendar();}
+
+function renderCalendar(){
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('cal-month-label').textContent=months[calMonth]+' '+calYear;
+  const firstDay=new Date(calYear,calMonth,1).getDay();
+  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+  const today=new Date();
+  const todayStr=today.toISOString().slice(0,10);
+  // Days of week header
+  const dayLabels=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  let html=`<div class="cal-grid">${dayLabels.map(d=>`<div class="cal-day-label">${d}</div>`).join('')}`;
+  // Empty cells before first day
+  for(let i=0;i<firstDay;i++)html+=`<div class="cal-day other-month"></div>`;
+  // Fill days
+  for(let d=1;d<=daysInMonth;d++){
+    const dateStr=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const events=RELEASE_EVENTS.filter(e=>e.date===dateStr);
+    const isToday=dateStr===todayStr;
+    const hasEv=events.length>0;
+    html+=`<div class="cal-day${hasEv?' has-event':''}${isToday?' today':''}" ${hasEv?`onclick="openCalEvent('${dateStr}',event)"`:''}>`
+    html+=`<div class="cal-day-num">${d}</div>`;
+    if(hasEv){
+      html+=`<div class="cal-event-list">`;
+      events.forEach(ev=>{
+        const c=MODEL_COLORS[ev.modelId]||'#888';
+        html+=`<div class="cal-event-dot" style="background:${c}20;color:${c};border:1px solid ${c}40">${MODEL_NAMES[ev.modelId]?.slice(0,4)||''}</div>`;
+      });
+      html+=`</div>`;
+    }
+    html+=`</div>`;
+  }
+  html+=`</div>`;
+  document.getElementById('cal-grid-wrap').innerHTML=html;
+  // Legend
+  document.getElementById('cal-legend').innerHTML=Object.entries(MODEL_COLORS).map(([id,c])=>`
+    <div class="cal-legend-item"><div class="cal-legend-dot" style="background:${c}"></div>${MODEL_NAMES[id]}</div>`).join('');
 }
-function setCourseTab(key){activeCoursesTab=key;renderCourses();}
- 
+
+function openCalEvent(dateStr,e){
+  e&&e.stopPropagation();
+  const events=RELEASE_EVENTS.filter(ev=>ev.date===dateStr);
+  if(!events.length)return;
+  const el=e.currentTarget;const rect=el.getBoundingClientRect();
+  const popup=document.getElementById('cal-event-popup');
+  popup.style.display='block';
+  const ev=events[0];
+  const c=MODEL_COLORS[ev.modelId]||'var(--gold)';
+  const d=new Date(dateStr+'T00:00:00');
+  const dateLabel=d.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  popup.innerHTML=`<div class="cal-event-popup" style="border-color:${c}40">
+    <button class="cal-ep-close" onclick="closeCalEventPopup()">✕</button>
+    <div class="cal-ep-date">${MODEL_NAMES[ev.modelId]} · ${dateLabel}</div>
+    <div class="cal-ep-title">${ev.title}</div>
+    <div class="cal-ep-desc">${ev.desc}</div>
+    <div class="cal-ep-features">${ev.features.map(f=>`<div class="cal-ep-feat">${f}</div>`).join('')}</div>
+  </div>`;
+  // Position near the clicked cell
+  const pEl=popup.querySelector('.cal-event-popup');
+  pEl.style.left=Math.min(rect.left,window.innerWidth-400)+'px';
+  pEl.style.top=(rect.bottom+8)+'px';
+  if(rect.bottom+250>window.innerHeight)pEl.style.top=(rect.top-260)+'px';
+}
+function closeCalEventPopup(){
+  const p=document.getElementById('cal-event-popup');
+  if(p)p.style.display='none';
+}
+document.addEventListener('click',e=>{
+  const p=document.getElementById('cal-event-popup');
+  if(p&&p.style.display!=='none'&&!p.contains(e.target)&&!e.target.closest('.has-event'))closeCalEventPopup();
+});
+
 /* ════ VIDEO PLAYER SYSTEM ════ */
 // Latest official YouTube videos from each AI model's channel
 const AI_VIDEOS=[
   {
     modelId:'gpt',
     title:'Introducing Workspace Agents in ChatGPT',
-    desc:'Teams can now create shared agents that handle complex tasks and long-running workflows across Slack, Google Drive, Salesforce and more. Powered by Codex.',
+    desc:'Teams can now create shared agents handling complex workflows across Slack, Google Drive and Salesforce. The biggest ChatGPT business feature of 2026.',
     videoId:'yyvVUEPSCu0',
     thumb:'https://img.youtube.com/vi/yyvVUEPSCu0/hqdefault.jpg',
     date:'Apr 22, 2026',
@@ -2411,7 +2677,7 @@ const AI_VIDEOS=[
   {
     modelId:'claude',
     title:'Introducing Claude Design by Anthropic Labs',
-    desc:'Claude Design lets you collaborate with Claude to create polished visual work — prototypes, slides, one-pagers, and more — directly inside the chat interface.',
+    desc:'Claude Design lets you collaborate with Claude to create prototypes, slides, one-pagers and polished visual work directly inside the chat interface.',
     videoId:'t_LBECIQQqs',
     thumb:'https://img.youtube.com/vi/t_LBECIQQqs/hqdefault.jpg',
     date:'Apr 17, 2026',
@@ -2419,36 +2685,36 @@ const AI_VIDEOS=[
   },
   {
     modelId:'gemini',
-    title:'Introducing Gemini 3.1 Pro — Most Capable Yet',
-    desc:'Google releases Gemini 3.1 Pro with state-of-the-art reasoning, deep multimodal understanding, and powerful agentic capabilities — now free for all users.',
-    videoId:'IXexi2LoCfI',
-    thumb:'https://img.youtube.com/vi/IXexi2LoCfI/hqdefault.jpg',
-    date:'Feb 19, 2026',
-    source:'Google'
+    title:'Introducing Gemini 2.5 — Google's Most Capable AI',
+    desc:'Google DeepMind officially introduces Gemini 2.5, combining state-of-the-art reasoning with Veo 3 video and Imagen 4 — leading every major benchmark.',
+    videoId:'eHO2RKBIWiQ',
+    thumb:'https://img.youtube.com/vi/eHO2RKBIWiQ/hqdefault.jpg',
+    date:'Mar 25, 2026',
+    source:'Google DeepMind'
   },
   {
     modelId:'grok',
-    title:'xAI Launches Grok 3 — Official Announcement',
-    desc:'xAI unveils Grok 3, their most advanced model yet, blending superior reasoning with extensive pretraining knowledge. Aurora image model included.',
-    videoId:'E_-EjgX40O4',
-    thumb:'https://img.youtube.com/vi/E_-EjgX40O4/hqdefault.jpg',
-    date:'Feb 18, 2025',
+    title:'Grok 3 — Live Demo with Elon Musk & xAI Team',
+    desc:'xAI's official Grok 3 launch livestream. Elon Musk and the xAI team demonstrate Grok 3's reasoning, Aurora image gen and real-time X integration.',
+    videoId:'iFsRn0Kbbpc',
+    thumb:'https://img.youtube.com/vi/iFsRn0Kbbpc/hqdefault.jpg',
+    date:'Feb 18, 2026',
     source:'xAI'
   },
   {
     modelId:'meta',
-    title:'Meta Llama 4 — Multimodal AI Beats GPT-4o & Gemini',
-    desc:'Meta releases Llama 4 Scout and Maverick — open-weight multimodal AI with a 10 million token context window, beating GPT-4o across coding, reasoning and image tasks.',
-    videoId:'IHpI_9VxEXQ',
-    thumb:'https://img.youtube.com/vi/IHpI_9VxEXQ/hqdefault.jpg',
-    date:'Apr 6, 2025',
+    title:'Introducing Llama 4 — Meta's Most Capable Open Model',
+    desc:'Meta officially introduces Llama 4: Scout with 10M token context and Maverick. Both are open-weight, free to download, and beat GPT-4o on key benchmarks.',
+    videoId:'eRFeNQb6noQ',
+    thumb:'https://img.youtube.com/vi/eRFeNQb6noQ/hqdefault.jpg',
+    date:'Apr 5, 2026',
     source:'Meta'
   },
 ];
- 
+
 let currentVideoIdx=0;
 let videoRotateInterval=null;
- 
+
 function initVideoBar(){
   const vid=AI_VIDEOS[currentVideoIdx];
   updateNavVideoBar(vid);
@@ -2464,7 +2730,7 @@ function initVideoBar(){
     document.querySelectorAll('.nav-vtab').forEach((d,i)=>d.classList.toggle('active',i===currentVideoIdx));
   },8000);
 }
- 
+
 function updateNavVideoBar(vid){
   const m=M[vid.modelId];
   const thumbEl=document.getElementById('nav-video-thumb');
@@ -2474,7 +2740,7 @@ function updateNavVideoBar(vid){
   if(titleEl)titleEl.textContent=vid.title;
   if(metaEl)metaEl.textContent=`${m?.name||''} · ${vid.date}`;
 }
- 
+
 function switchNavVideo(idx){
   currentVideoIdx=idx;
   updateNavVideoBar(AI_VIDEOS[idx]);
@@ -2486,7 +2752,7 @@ function switchNavVideo(idx){
     document.querySelectorAll('.nav-vtab').forEach((d,i)=>d.classList.toggle('active',i===currentVideoIdx));
   },8000);
 }
- 
+
 function openVideoModal(startIdx){
   const idx=startIdx!==undefined?startIdx:currentVideoIdx;
   currentVideoIdx=idx;
@@ -2505,7 +2771,7 @@ function openVideoModal(startIdx){
   loadVideoInModal(idx);
   document.getElementById('video-modal-overlay').classList.add('open');
 }
- 
+
 function loadVideoInModal(idx){
   const vid=AI_VIDEOS[idx];
   const iframeEl=document.getElementById('vm-iframe');
@@ -2518,12 +2784,12 @@ function loadVideoInModal(idx){
   if(metaEl)metaEl.innerHTML=`<span class="vm-video-source">${vid.source||M[vid.modelId]?.name||''}</span><span class="vm-video-date">${vid.date}</span>`;
   document.querySelectorAll('.vm-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
 }
- 
+
 function switchVideoModal(idx){
   currentVideoIdx=idx;
   loadVideoInModal(idx);
 }
- 
+
 function closeVideoModal(){
   document.getElementById('video-modal-overlay').classList.remove('open');
   const iframeEl=document.getElementById('vm-iframe');
@@ -2535,11 +2801,11 @@ function closeVideoModal(){
     document.querySelectorAll('.nav-vtab').forEach((d,i)=>d.classList.toggle('active',i===currentVideoIdx));
   },8000);
 }
- 
+
 function closeVideoIfBg(e){
   if(e.target===document.getElementById('video-modal-overlay'))closeVideoModal();
 }
- 
+
 /* ════ GOOGLE ONE TAP ════ */
 function handleOneTap(response){
   // response.credential is a JWT — use it with Firebase
@@ -2552,6 +2818,101 @@ function handleOneTap(response){
     }).catch(e=>console.warn('One Tap Firebase error:',e));
   }catch(e){console.warn('One Tap error:',e);}
 }
+
+/* ════ WELCOME POPUP ════ */
+const WELCOME_DATA=[
+  {modelId:'gpt',  version:'GPT-4.1',  color:'#34d399',update:'1M token context + 50% cheaper API',   desc:'Entire codebases in one prompt. GPT-4.1 nano is the fastest OpenAI model ever. Workspace Agents connect to Slack, Drive & Salesforce.',vsWin:['Cheapest API at scale','Best voice mode','Largest custom bot ecosystem'],vsLose:['Claude beats it on long-form writing','Gemini leads on video gen']},
+  {modelId:'claude',version:'Claude 3.7',color:'#fbbf24',update:'Extended thinking: 10-min deep reasoning',desc:'Claude Design just launched for visual work. Claude Code auto-deploys apps. The #1 model for developers on GitHub in 2026.',vsWin:['#1 for coding on GitHub','Best at following precise instructions','Extended thinking solves PhD-level math'],vsLose:['No voice mode yet','Smaller overall user base than GPT/Gemini']},
+  {modelId:'gemini',version:'Gemini 2.5 Pro',color:'#60a5fa',update:'Tops every AI leaderboard worldwide',desc:'Free for all users and leads LMSYS Chatbot Arena, WebDev Arena and coding benchmarks. Veo 3 is the best AI video generator available.',vsWin:['Best AI video (Veo 3)','Cheapest capable API','Built into Gmail, Docs, Sheets, Meet'],vsLose:['Less popular than ChatGPT for daily use','Claude/GPT have smoother chat UX']},
+  {modelId:'grok', version:'Grok 3',   color:'#c084fc',update:'Live X search + Aurora photorealistic images',desc:'Only AI reading live X/Twitter posts mid-conversation. Aurora generates photorealistic images. Free with existing X Premium.',vsWin:['Best for breaking news & trends','Aurora rivals Midjourney quality','Free if you already pay for X Premium'],vsLose:['No free standalone tier','Less capable on long documents']},
+  {modelId:'meta', version:'Llama 4',  color:'#2d8cf0',update:'1B users · open-source beats GPT-4o',    desc:'First AI to hit 1 billion monthly users. Llama 4 is fully open-weight — download and run privately. Scout has a 10M token context window.',vsWin:['Completely free, on every Meta app','10M token context in Scout','Open-source: run locally for full privacy'],vsLose:['Lags behind GPT-4.1/Claude on hard reasoning','No dedicated standalone AI app']},
+];
+function openWelcome(){
+  const lastSeen=localStorage.getItem('ailoom_welcome_date');
+  const today=new Date().toISOString().slice(0,10);
+  if(lastSeen===today)return;
+  const overlay=document.getElementById('welcome-overlay');
+  if(!overlay)return;
+  overlay.classList.add('open');
+  document.getElementById('wp-cards').innerHTML=WELCOME_DATA.map(d=>`
+    <div class="wp-card">
+      <div class="wp-card-head">
+        <div class="wp-card-logo">${logoImg(d.modelId,32)}</div>
+        <div>
+          <div class="wp-card-name">${M[d.modelId]?.name||d.modelId} <span class="wp-card-version" style="background:${d.color}20;color:${d.color};border:1px solid ${d.color}30">${d.version}</span></div>
+          <div class="wp-card-maker" style="color:${d.color};font-weight:700">${d.update}</div>
+        </div>
+      </div>
+      <div class="wp-card-desc">${d.desc}</div>
+      <div class="wp-card-vs">
+        ${d.vsWin.map(w=>`<span class="wp-vs-tag win">✓ ${w}</span>`).join('')}
+        ${d.vsLose.slice(0,1).map(l=>`<span class="wp-vs-tag lose">✗ ${l}</span>`).join('')}
+      </div>
+    </div>`).join('');
+}
+function closeWelcome(){
+  const overlay=document.getElementById('welcome-overlay');
+  if(overlay)overlay.classList.remove('open');
+  localStorage.setItem('ailoom_welcome_date',new Date().toISOString().slice(0,10));
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const wo=document.getElementById('welcome-overlay');
+  if(wo)wo.addEventListener('click',function(e){if(e.target===this)closeWelcome();});
+});
+
+/* ════ VIDEO ZOOM ANIMATION ════ */
+function openVideoModal(startIdx){
+  const idx=startIdx!==undefined?startIdx:currentVideoIdx;
+  currentVideoIdx=idx;
+  clearInterval(videoRotateInterval);
+  const overlay=document.getElementById('video-modal-overlay');
+  const modal=document.querySelector('.video-modal');
+  const bar=document.getElementById('nav-video');
+  if(modal&&bar){
+    const rect=bar.getBoundingClientRect();
+    const cx=rect.left+rect.width/2;
+    const cy=rect.top+rect.height/2;
+    modal.style.transformOrigin=`${cx}px ${cy}px`;
+    modal.style.transform='scale(0.06) translateY(-20px)';
+    modal.style.opacity='0';
+    modal.style.transition='none';
+    overlay.classList.add('open');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      modal.style.transition='transform .38s cubic-bezier(0.22,1,0.36,1), opacity .28s ease';
+      modal.style.transform='scale(1) translateY(0)';
+      modal.style.opacity='1';
+    }));
+  } else {overlay.classList.add('open');}
+  const tabsEl=document.getElementById('vm-tabs');
+  if(tabsEl)tabsEl.innerHTML=AI_VIDEOS.map((v,i)=>`<div class="vm-tab${i===idx?' active':''}" onclick="switchVideoModal(${i})"><div class="vm-tab-logo">${logoImg(v.modelId,16)}</div>${M[v.modelId]?.name||v.modelId}</div>`).join('');
+  loadVideoInModal(idx);
+}
+function closeVideoModal(){
+  const overlay=document.getElementById('video-modal-overlay');
+  const modal=document.querySelector('.video-modal');
+  const bar=document.getElementById('nav-video');
+  if(modal&&bar){
+    const rect=bar.getBoundingClientRect();
+    modal.style.transformOrigin=`${rect.left+rect.width/2}px ${rect.top+rect.height/2}px`;
+    modal.style.transition='transform .3s cubic-bezier(0.55,0,.88,.4), opacity .22s ease';
+    modal.style.transform='scale(0.05)';
+    modal.style.opacity='0';
+    setTimeout(()=>{
+      overlay.classList.remove('open');
+      modal.style.transform='';modal.style.opacity='';modal.style.transition='';
+      const iframeEl=document.getElementById('vm-iframe');
+      if(iframeEl)iframeEl.src='';
+    },320);
+  } else {
+    overlay.classList.remove('open');
+    const iframeEl=document.getElementById('vm-iframe');
+    if(iframeEl)iframeEl.src='';
+  }
+  videoRotateInterval=setInterval(()=>{currentVideoIdx=(currentVideoIdx+1)%AI_VIDEOS.length;updateNavVideoBar(AI_VIDEOS[currentVideoIdx]);document.querySelectorAll('.nav-vtab').forEach((d,i)=>d.classList.toggle('active',i===currentVideoIdx));},8000);
+}
+function closeVideoIfBg(e){if(e.target===document.getElementById('video-modal-overlay'))closeVideoModal();}
+
+/* ════ INIT ════ */
 renderBOW();
 renderModels();
 renderFilters();
@@ -2559,6 +2920,8 @@ buildList('all');
 renderNews();
 initVideoBar();
 initFirebase();
+// Show welcome popup after short delay
+setTimeout(openWelcome, 1200);
 setInterval(()=>{getVotesLeft();updateTotalVotes();},60000);
 </script>
 </body>
