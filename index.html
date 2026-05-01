@@ -292,8 +292,7 @@ a{color:inherit;text-decoration:none}
 
 /* ══ BIG 5 MODELS ══ */
 .models-list{display:flex;flex-direction:column;gap:10px}
-.mbar{background:var(--glass);border:1px solid var(--rim);border-radius:16px;padding:18px 22px;display:grid;grid-template-columns:50px 1fr repeat(4,auto);gap:16px;align-items:center;transition:all .22s;cursor:pointer;position:relative;overflow:hidden}
-.mbar:hover{border-color:var(--rim2);background:var(--glass2);transform:translateX(3px)}
+/* mbar CSS defined below */
 .mbar-accent{position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:16px 0 0 16px}
 .mbar-logo{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;border:1px solid var(--rim2);background:var(--glass2);flex-shrink:0;overflow:hidden}
 .mbar-logo img{width:30px;height:30px;object-fit:contain}
@@ -1271,24 +1270,24 @@ function logo(key,size=20){return logoImg(key,size);}
 /* ════════ DATA ════════ */
 const M={
   gpt:{id:'gpt',logoKey:'gpt',name:'ChatGPT',nameZh:'ChatGPT',maker:'OpenAI',ac:'#34d399',url:'https://chatgpt.com',
-    reachVal:'900M',reachUnit:'weekly users',
-    skills:[{label:'Smart answers',v:96},{label:'Image editing',v:95},{label:'Images',v:94},{label:'Voice chat',v:96}],
-    funFacts:['Image Gen 2.0 lets you edit photos with plain text','Powers 60%+ of all AI conversations globally','GPT Store now has 3M+ custom bots','Voice mode is indistinguishable from a real call'],
-    updates:[{d:'Apr 23',t:'Image Gen 2.0 — edit photos with text inside chat',tag:'image'},{d:'Apr 18',t:'GPT-5.2 Turbo — 40% faster, smarter memory'},{d:'Apr 12',t:'Deep Research now pulls real-time web data'},{d:'Apr 5',t:'Custom GPT Store open to all free users',tag:'store'}],
-    stats:[{l:'Weekly users',v:'900M+'},{l:'Paying',v:'40M+'},{l:'Market share',v:'60%'},{l:'Free?',v:'Yes'}],
+    reachVal:'900M+',reachUnit:'weekly users',
+    skills:[{label:'Agentic tasks',v:97},{label:'Coding',v:96},{label:'Research',v:95},{label:'Voice chat',v:96}],
+    funFacts:['GPT-5.5 is the smartest model OpenAI has ever shipped','900M+ weekly users & 50M+ paying subscribers','4M active Codex users building with AI','Matches GPT-5.4 speed at much higher intelligence'],
+    updates:[{d:'Apr 23',t:'GPT-5.5 launches — smartest & most agentic model yet',tag:'model'},{d:'Apr 22',t:'Workspace Agents — Slack, Google Drive, Salesforce'},{d:'Apr 14',t:'GPT-4.1 with 1M token context, 50% cheaper API'},{d:'Mar 28',t:'Image Gen 2.0 — edit photos with plain text'}],
+    stats:[{l:'Weekly users',v:'900M+'},{l:'Paying',v:'50M+'},{l:'Market share',v:'60%'},{l:'Free?',v:'Yes'}],
     tier1Price:'Free',tier1Label:'Free',tier2Price:'$20',tier2Label:'Plus',tier2Highlight:'Most popular',tier3Price:'$200',tier3Label:'Pro',
-    patch:{date:'May 7, 2026',days:'~11 days'},
-    tips:[{l:'Best at',t:'Images, voice, research, Q&A'},{l:'Hidden gem',t:'Image Gen 2.0: edit photos by typing'},{l:'Not great at',t:'Very long documents — try Claude'},{l:'Pro tip',t:'Image Gen 2.0 is free for all users'}]
+    patch:{date:'May 2026',days:'~2 weeks'},
+    tips:[{l:'Best at',t:'Agentic tasks, coding, research, voice'},{l:'Hidden gem',t:'GPT-5.5 does multi-step work with zero hand-holding'},{l:'Not great at',t:'Very long documents — try Claude'},{l:'Pro tip',t:'GPT-5.5 now in ChatGPT Plus ($20/mo)'}]
   },
   claude:{id:'claude',logoKey:'claude',name:'Claude',nameZh:'Claude',maker:'Anthropic',ac:'#fbbf24',url:'https://claude.ai',
-    reachVal:'19M',reachUnit:'monthly users',
-    skills:[{label:'Writing & editing',v:98},{label:'Coding',v:97},{label:'Long docs',v:96},{label:'Reasoning',v:95}],
-    funFacts:['Claude 3.7 Sonnet thinks for up to 10 minutes on hard problems','#1 rated AI by developers on GitHub 2026','Builds working web apps inside Artifacts instantly','Extended thinking mode solves PhD-level math'],
-    updates:[{d:'Apr 20',t:'Claude 3.7 Sonnet — extended thinking, 200k context',tag:'model'},{d:'Apr 14',t:'Claude Code: auto-builds & deploys full apps'},{d:'Apr 7',t:'Cowork desktop automation now in beta',tag:'agent'},{d:'Apr 1',t:'Chrome extension for full web browsing'}],
-    stats:[{l:'Monthly users',v:'19M'},{l:'YoY growth',v:'+220%'},{l:'Best at',v:'Coding'},{l:'Free?',v:'Yes'}],
+    reachVal:'19M+',reachUnit:'monthly users',
+    skills:[{label:'Agentic coding',v:99},{label:'Writing & editing',v:98},{label:'Long docs',v:96},{label:'Vision',v:95}],
+    funFacts:['Opus 4.7 is 13% better than Opus 4.6 on hard coding tasks','Catches its own logical faults during planning phase','1M token context with 128k max output','Beats ChatGPT 5.4 & Gemini 3.1 Pro on most benchmarks'],
+    updates:[{d:'Apr 16',t:'Claude Opus 4.7 — most capable GA model ever',tag:'model'},{d:'Apr 17',t:'Claude Design: create prototypes & slides with AI',tag:'product'},{d:'Apr 14',t:'Claude Code: auto-deploys apps to Vercel & Netlify'},{d:'Apr 7',t:'Adaptive thinking: dynamically allocates reasoning budget'}],
+    stats:[{l:'Monthly users',v:'19M+'},{l:'YoY growth',v:'+220%'},{l:'Best at',v:'Coding'},{l:'Free?',v:'Yes'}],
     tier1Price:'Free',tier1Label:'Free',tier2Price:'$20',tier2Label:'Pro',tier2Highlight:'Best for devs',tier3Price:'$100',tier3Label:'Max',
-    patch:{date:'May 5, 2026',days:'~9 days'},
-    tips:[{l:'Best at',t:'Long docs, coding, extended reasoning'},{l:'Hidden gem',t:'Artifacts builds live web apps instantly'},{l:'Not great at',t:'No voice mode yet'},{l:'Pro tip',t:'Extended thinking for hard math & logic'}]
+    patch:{date:'May 2026',days:'~2-3 weeks'},
+    tips:[{l:'Best at',t:'Agentic coding, long docs, knowledge work'},{l:'Hidden gem',t:'Opus 4.7 catches its own mistakes before reporting back'},{l:'Not great at',t:'No voice mode yet'},{l:'Pro tip',t:'Use xhigh effort for the hardest reasoning tasks'}]
   },
   gemini:{id:'gemini',logoKey:'gemini',name:'Gemini',nameZh:'Gemini',maker:'Google',ac:'#60a5fa',url:'https://gemini.google.com',
     reachVal:'750M',reachUnit:'monthly users',
@@ -1301,14 +1300,14 @@ const M={
     tips:[{l:'Best at',t:'Video, Google apps, multimodal'},{l:'Hidden gem',t:'NotebookLM for deep podcast-style research'},{l:'Not great at',t:'Creative long-form writing vs Claude'},{l:'Pro tip',t:'Gemini 2.5 Pro is now completely free'}]
   },
   grok:{id:'grok',logoKey:'grok',name:'Grok',nameZh:'Grok',maker:'xAI',ac:'#c084fc',url:'https://grok.com',
-    reachVal:'X Premium',reachUnit:'users included',
-    skills:[{label:'Real-time info',v:98},{label:'Speed',v:94},{label:'Image gen',v:88},{label:'Reasoning',v:91}],
-    funFacts:['Only AI with live X/Twitter post access mid-chat','Aurora 2 generates photorealistic images in seconds','DeepSearch gives cited answers from across the web','Free with X Premium subscription — $8/month'],
-    updates:[{d:'Apr 16',t:'Grok 3.5 drops with Aurora 2 image model',tag:'model'},{d:'Apr 10',t:'Real-time X post search mid-conversation',tag:'search'},{d:'Apr 3',t:'Enhanced Think mode for multi-step reasoning'},{d:'Mar 25',t:'DeepSearch updated — now cites all sources'}],
-    stats:[{l:'Access via',v:'X.com'},{l:'Best at',v:'Real-time'},{l:'Context',v:'256k'},{l:'Free?',v:'With X'}],
-    tier1Price:'$8',tier1Label:'X Premium',tier2Price:'$30',tier2Label:'SuperGrok',tier2Highlight:'Best real-time AI',tier3Price:'API',tier3Label:'Enterprise',
-    patch:{date:'May 2, 2026',days:'~6 days'},
-    tips:[{l:'Best at',t:'Breaking news, X trends, real-time data'},{l:'Hidden gem',t:'Aurora 2: best image quality of the 5'},{l:'Not great at',t:'Long documents or enterprise workflows'},{l:'Pro tip',t:'Free if you already pay for X Premium'}]
+    reachVal:'SuperGrok',reachUnit:'subscribers',
+    skills:[{label:'Real-time info',v:98},{label:'Speed',v:95},{label:'Video input',v:90},{label:'Reasoning',v:91}],
+    funFacts:['Grok 4.3 Beta: native video input & slide generation','2M token context — largest of any Western AI model','Daily improvements pledged during active beta','SpaceX acquired xAI in Feb 2026 — now one company'],
+    updates:[{d:'Apr 17',t:'Grok 4.3 Beta — video input, slide gen, enhanced reasoning',tag:'beta'},{d:'Mar 31',t:'Grok 4.20: industry speed & agentic tool use',tag:'model'},{d:'Feb 18',t:'Grok 4 launches — world-class reasoning model'},{d:'Jan 28',t:'State-of-the-art video generation added to xAI API'}],
+    stats:[{l:'Context',v:'2M tokens'},{l:'Best at',v:'Real-time'},{l:'4.3 Beta',v:'$300/mo'},{l:'SuperGrok',v:'$30/mo'}],
+    tier1Price:'$8',tier1Label:'X Premium',tier2Price:'$30',tier2Label:'SuperGrok',tier2Highlight:'Best real-time AI',tier3Price:'$300',tier3Label:'4.3 Heavy Beta',
+    patch:{date:'Daily (beta)',days:'Active beta'},
+    tips:[{l:'Best at',t:'Breaking news, real-time X data, video input'},{l:'Hidden gem',t:'Grok 4.3 creates downloadable PDFs & slides in chat'},{l:'Not great at',t:'No memory across sessions — even at $300/mo'},{l:'Pro tip',t:'Grok 4.3 rolling out to $30 SuperGrok in May 2026'}]
   },
   meta:{id:'meta',logoKey:'meta',name:'Meta AI',nameZh:'Meta AI',maker:'Meta',ac:'#2d8cf0',url:'https://meta.ai',
     reachVal:'1B+',reachUnit:'monthly users',
@@ -1489,16 +1488,16 @@ function castBowVote(id,e){
 let expandedModel=null;
 const MODEL_DETAIL={
   gpt:{
-    highlight:'GPT-4.1 handles 1M tokens — entire codebases in one prompt',
-    pricing:'Free / $20 Pro / $200 Ultra',
+    highlight:'GPT-5.5 — smartest & most agentic model OpenAI has ever shipped',
+    pricing:'Free / $20 Plus / $200 Pro',
     strengths:[
-      {label:'Image Gen 2.0',v:95,desc:'Edit photos with plain text inside ChatGPT'},
-      {label:'Voice Mode',   v:96,desc:'Indistinguishable from a real phone call'},
-      {label:'Research',     v:93,desc:'Deep Research writes 30+ page reports'},
-      {label:'Coding',       v:90,desc:'GPT-4.1 — 50% cheaper, 1M token context'},
+      {label:'Agentic tasks', v:97,desc:'Plans, uses tools, checks work — no hand-holding needed'},
+      {label:'Voice Mode',    v:96,desc:'Indistinguishable from a real phone call'},
+      {label:'Coding',        v:96,desc:'GPT-5.5 uses fewer tokens than 5.4 for same Codex tasks'},
+      {label:'Research',      v:95,desc:'Deep Research writes 30+ page real-time web reports'},
     ],
-    facts:['900M+ weekly users — largest AI user base','GPT Store: 3M+ custom bots available','Memory persists across all devices & sessions','Powers Microsoft Copilot, Bing and Azure AI'],
-    updates:[{d:'Apr 14',t:'GPT-4.1, 4.1 mini & nano — 1M token context, 50% cheaper API',tag:'model'},{d:'Apr 22',t:'Workspace Agents in ChatGPT — Slack, Drive, Salesforce integration'},{d:'Mar 28',t:'Image Gen 2.0 — edit any photo with natural language'}],
+    facts:['900M+ weekly users & 50M+ paying subscribers','GPT-5.5 matches GPT-5.4 speed at much higher intelligence','4M active Codex users building production apps','Powers Microsoft Copilot, Bing, Azure AI and GitHub'],
+    updates:[{d:'Apr 23',t:'GPT-5.5 launches — smartest & most agentic model yet',tag:'model'},{d:'Apr 22',t:'Workspace Agents in ChatGPT — Slack, Drive, Salesforce'},{d:'Apr 14',t:'GPT-4.1 with 1M token context, 50% cheaper API'},{d:'Mar 28',t:'Image Gen 2.0 — edit photos with plain text'}],
   },
   claude:{
     highlight:'Extended thinking reasons up to 10 minutes — PhD-level problem solving',
@@ -1525,16 +1524,16 @@ const MODEL_DETAIL={
     updates:[{d:'Apr 5',t:'Gemini 2.5 Pro Experimental tops all leaderboards',tag:'model'},{d:'Mar 25',t:'Veo 3 video generation in 50+ countries'},{d:'Mar 10',t:'Thinking budget control — speed vs depth slider'}],
   },
   grok:{
-    highlight:'Only AI reading live X posts — unbeatable for breaking news',
-    pricing:'$8 X Premium / $30 SuperGrok',
+    highlight:'Grok 4.3 Beta — video input, slides & PDFs, 2M context window',
+    pricing:'$8 X Premium / $30 SuperGrok / $300 Heavy (4.3 Beta)',
     strengths:[
-      {label:'Real-time Info', v:98,desc:'Reads live X posts mid-conversation'},
-      {label:'Speed',          v:94,desc:'Fastest response times of the 5 models'},
-      {label:'Image Gen',      v:88,desc:'Aurora — photorealistic image generation'},
-      {label:'Reasoning',      v:87,desc:'Think mode for multi-step logic problems'},
+      {label:'Real-time Info', v:98,desc:'Only AI reading live X posts mid-conversation'},
+      {label:'Speed',          v:95,desc:'Fastest response times + largest 2M token context'},
+      {label:'Video input',    v:90,desc:'Grok 4.3 Beta: understand & analyse video in chat'},
+      {label:'Reasoning',      v:91,desc:'Grok 4 Heavy: 16-agent reasoning architecture'},
     ],
-    facts:['Only AI with live X/Twitter feed access','Free with X Premium ($8/mo) — great deal','DeepSearch gives cited answers from the full web','Aurora image model rivals Midjourney quality'],
-    updates:[{d:'Feb 18',t:'Grok 3 launches — xAI's most powerful model yet',tag:'model'},{d:'Jan 30',t:'Aurora image model — photorealistic generation'},{d:'Jan 15',t:'DeepSearch v2 with full source citations'}],
+    facts:['Grok 4.3 Beta: native video input & slide/PDF generation','2M token context — largest Western closed-source model','SpaceX acquired xAI Feb 2026 — Grok powers Tesla AI','Daily improvements pledged during active beta period'],
+    updates:[{d:'Apr 17',t:'Grok 4.3 Beta — video, slides, PDFs, enhanced reasoning',tag:'beta'},{d:'Mar 31',t:'Grok 4.20: industry-leading speed & agentic tool use',tag:'model'},{d:'Feb 18',t:'Grok 4 launches — world-class reasoning'}],
   },
   meta:{
     highlight:'1 billion monthly users — most accessible AI ever built',
@@ -1931,11 +1930,11 @@ function castVote(idx,dir,e){
 
 /* ════ NEWS ════ */
 const MODEL_NEWS={
-  gpt:{color:'#34d399',label:'ChatGPT',headline:'OpenAI launches GPT-4.1 with 1M token context & 50% cheaper API',sub:'GPT-4.1, GPT-4.1 mini and GPT-4.1 nano drop simultaneously. The flagship handles 1 million tokens — enough for entire codebases — and cuts API costs in half vs GPT-4o.',date:'Apr 14, 2026',url:'https://openai.com/index/gpt-4-1/'},
-  claude:{color:'#fbbf24',label:'Claude',headline:'Claude Design launches — AI-powered visual collaboration tool',sub:'Anthropic Labs releases Claude Design, letting users collaborate with Claude to create prototypes, slides and one-pagers. Joins Claude Code as Anthropic\'s second major product.',date:'Apr 17, 2026',url:'https://www.anthropic.com/news/claude-design-anthropic-labs'},
-  gemini:{color:'#60a5fa',label:'Gemini',headline:'Gemini 2.5 Pro Experimental tops every AI leaderboard worldwide',sub:'Google\'s Gemini 2.5 Pro Experimental leads LMSYS Chatbot Arena, WebDev Arena and coding benchmarks. Thinking budget control lets users balance speed vs reasoning depth.',date:'Apr 5, 2026',url:'https://blog.google/products/gemini/gemini-2-5-pro-experimental/'},
-  grok:{color:'#c084fc',label:'Grok',headline:'Grok 3 & Aurora image model release — xAI\'s most powerful yet',sub:'xAI releases Grok 3 with breakthrough reasoning and Aurora for photorealistic image generation. Grok now has the largest MoE architecture of any public AI model.',date:'Feb 18, 2026',url:'https://x.ai/blog/grok-3'},
-  meta:{color:'#2d8cf0',label:'Meta AI',headline:'Llama 4 Scout & Maverick — open-source beats GPT-4o on most tasks',sub:'Meta releases Llama 4 Scout (17B active params, 10M context) and Maverick. Both beat GPT-4o on image understanding, coding and reasoning. Fully open-weight and free.',date:'Apr 5, 2026',url:'https://ai.meta.com/blog/llama-4-multimodal-intelligence/'}
+  gpt:{color:'#34d399',label:'ChatGPT',headline:'GPT-5.5 launches — smartest and most agentic OpenAI model ever',sub:'GPT-5.5 rolls out to Plus, Pro, Business & Enterprise users. Built for complex multi-step tasks — plan, use tools, check work, and keep going without hand-holding.',date:'Apr 23, 2026',url:'https://openai.com/index/introducing-gpt-5-5/'},
+  claude:{color:'#fbbf24',label:'Claude',headline:'Claude Opus 4.7 — beats GPT-5.4 & Gemini 3.1 Pro on benchmarks',sub:'Anthropic releases Opus 4.7 with 13% better coding, triple the vision resolution, and adaptive thinking. Catches its own logical faults before reporting back.',date:'Apr 16, 2026',url:'https://www.anthropic.com/news/claude-opus-4-7'},
+  gemini:{color:'#60a5fa',label:'Gemini',headline:'Gemini 2.5 Pro Experimental tops every AI leaderboard worldwide',sub:'Google Gemini 2.5 Pro Experimental leads LMSYS Chatbot Arena, WebDev Arena and coding benchmarks. Thinking budget control balances speed vs depth.',date:'Apr 5, 2026',url:'https://blog.google/products/gemini/gemini-2-5-pro-experimental/'},
+  grok:{color:'#c084fc',label:'Grok',headline:'Grok 4.3 Beta drops — native video input, slides, PDFs in chat',sub:'xAI quietly ships Grok 4.3 Beta for SuperGrok Heavy ($300/mo). Adds video understanding, slide & PDF generation, and enhanced reasoning. Rolling out to $30 tier in May.',date:'Apr 17, 2026',url:'https://x.ai/news'},
+  meta:{color:'#2d8cf0',label:'Meta AI',headline:'Llama 4 Scout & Maverick open-source — beats GPT-4o on most tasks',sub:'Meta releases Llama 4 Scout (10M context, 17B active params) and Maverick. Both beat GPT-4o on image understanding, coding and reasoning. Fully open-weight and free.',date:'Apr 5, 2026',url:'https://ai.meta.com/blog/llama-4-multimodal-intelligence/'}
 };
 function renderNews(){
   document.getElementById('news-strip-compact').innerHTML=Object.entries(MODEL_NEWS).map(([k,n])=>`
@@ -2509,78 +2508,28 @@ function toggleMenu(){
 
 /* ════ BOW enhanced render — more info in cards ════ */
 const BOW_INSIGHTS={
-  gpt:  {tag:'Image Gen 2.0 is here',desc:'Edit photos with plain text — the biggest ChatGPT image update ever',bestFor:'Images · Voice · Research',nextUpdate:'May 7, 2026'},
-  claude:{tag:'Claude 3.7 Sonnet',desc:'Extended thinking reasons for up to 10 mins — #1 dev AI on GitHub',bestFor:'Coding · Long docs · Reasoning',nextUpdate:'May 5, 2026'},
-  gemini:{tag:'2.5 Pro now FREE',desc:'Tops every AI leaderboard and Veo 3 video gen in 50+ countries',bestFor:'Video · Google apps · Search',nextUpdate:'May 10, 2026'},
-  grok: {tag:'Grok 3.5 + Aurora 2',desc:'Best image quality of the 5 + only AI with live X post access',bestFor:'Breaking news · Images · Speed',nextUpdate:'May 2, 2026'},
-  meta: {tag:'1 Billion users',desc:'First AI to hit 1B monthly users. Llama 4 breaks open-source records.',bestFor:'WhatsApp · Reach · Free access',nextUpdate:'May 5, 2026'},
+  gpt:  {tag:'GPT-5.5 just launched',desc:'Smartest OpenAI model ever — agentic, faster, with zero hand-holding needed',bestFor:'Agentic tasks · Voice · Research',nextUpdate:'May 2026'},
+  claude:{tag:'Claude Opus 4.7',desc:'13% better than Opus 4.6 on hard coding — beats GPT-5.4 on benchmarks',bestFor:'Coding · Long docs · Vision',nextUpdate:'May 2026'},
+  gemini:{tag:'Tops every leaderboard',desc:'Gemini 2.5 Pro leads LMSYS, WebDev Arena and coding — now free',bestFor:'Video · Google apps · Search',nextUpdate:'May 10, 2026'},
+  grok: {tag:'Grok 4.3 Beta',desc:'Native video input, slide gen, 2M context — daily improvements in beta',bestFor:'Breaking news · Video · Real-time X',nextUpdate:'Daily (beta)'},
+  meta: {tag:'1 Billion users',desc:'First AI to hit 1B monthly users. Llama 4 beats GPT-4o open-source.',bestFor:'WhatsApp · Reach · Free access',nextUpdate:'May 5, 2026'},
 };
 
-function bowCardHTML(id,rank){
-  const m=M[id];
-  const score=calcBowScore(id);
-  const skills=MODEL_SCORES[id];
-  const skillEntries=Object.entries(skills).slice(0,4);
-  const isSmall=rank>=4;
-  const insight=BOW_INSIGHTS[id]||{tag:'',desc:'',bestFor:''};
-  const r=isSmall?20:28;const circ=2*Math.PI*r;const dashArr=`${(score/100)*circ} ${circ}`;
-  const ringHTML=`
-    <div class="bow-score-ring">
-      <svg viewBox="0 0 ${isSmall?50:64} ${isSmall?50:64}">
-        <circle cx="${isSmall?25:32}" cy="${isSmall?25:32}" r="${r}" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="${isSmall?4:5}"/>
-        <circle cx="${isSmall?25:32}" cy="${isSmall?25:32}" r="${r}" fill="none" stroke="${m.ac}" stroke-width="${isSmall?4:5}" stroke-dasharray="${dashArr}" stroke-linecap="round"/>
-      </svg>
-      <div class="bow-score-ring-num" style="color:${m.ac}">${score}</div>
-    </div>`;
-  const trophyHTML=rank===1?`<div class="bow-trophy"><svg viewBox="0 0 22 22" fill="none"><path d="M11 14c-3.314 0-6-2.686-6-6V4h12v4c0 3.314-2.686 6-6 6z" stroke="${m.ac}" stroke-width="1.5" fill="${m.ac}20"/><path d="M8 14v3M14 14v3M7 17h8" stroke="${m.ac}" stroke-width="1.5" stroke-linecap="round"/><path d="M5 4H3v2a2 2 0 002 2M17 4h2v2a2 2 0 01-2 2" stroke="${m.ac}" stroke-width="1.5" stroke-linecap="round"/></svg></div>`:'';
-  const bars=skillEntries.map(([k,v])=>`
-    <div class="bow-bar-row">
-      <div class="bow-bar-label">${SCORE_LABELS[k]||k}</div>
-      <div class="bow-bar-track"><div class="bow-bar-fill" style="width:0%;background:${m.ac}" data-w="${v}%"></div></div>
-      <div class="bow-bar-val">${v}</div>
-    </div>`).join('');
-  // extra info for large cards
-  const nextUpd=insight.nextUpdate||'';
-  const extraHTML=!isSmall?`
-    <div style="margin-top:8px;padding:7px 9px;background:rgba(255,255,255,.04);border-radius:8px;border:1px solid rgba(255,255,255,.06)">
-      <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:${m.ac};margin-bottom:3px">${insight.tag}</div>
-      <div style="font-size:10px;color:var(--mist);line-height:1.4">${insight.desc}</div>
-    </div>
-    <div style="margin-top:5px;font-size:9px;color:var(--fog)">Best for: <span style="color:var(--mist)">${insight.bestFor}</span></div>
-    <div style="margin-top:3px;font-size:9px;color:var(--fog)">Next update: <span style="color:${m.ac};font-weight:700">${nextUpd}</span></div>`
-  :`<div style="margin-top:4px;font-size:9px;color:var(--fog)">Next: <span style="color:${m.ac};font-weight:700">${nextUpd}</span></div>`;
-  return `<div class="bow-card rank-${rank}" onclick="openModelPopup('${id}')">
-    <div class="bow-glow" style="background:${m.ac}"></div>
-    ${trophyHTML}
-    <div class="bow-rank-num">#${rank}</div>
-    <div class="bow-logo-wrap">${logoImg(m.logoKey, isSmall?28:34)}</div>
-    <div class="bow-name">${m.name}</div>
-    <div class="bow-maker">${m.maker}</div>
-    ${ringHTML}
-    <div class="bow-bars">${bars}</div>
-    ${extraHTML}
-    <div class="bow-votes-row">
-      <button class="bow-details-btn" onclick="event.stopPropagation();openModelPopup('${id}')">Details →</button>
-    </div>
-  </div>`;}
 
 /* ════ RELEASE CALENDAR ════ */
 const RELEASE_EVENTS=[
-  // May 2026
-  {date:'2026-05-07',modelId:'gpt',  title:'ChatGPT GPT-5 Preview',         desc:'OpenAI expected to release GPT-5 public preview. Rumoured to score 95%+ on MMLU and include native multimodal reasoning.',features:['Native video understanding','Autonomous agent mode','1M+ token context','Real-time web + code execution']},
-  {date:'2026-05-12',modelId:'claude',title:'Claude 3.8 Sonnet',              desc:'Anthropic's next iteration of Sonnet. Expected improvements to agentic coding, faster extended thinking, and expanded file support.',features:['Faster extended thinking (30s vs 10min)','Improved Claude Code autonomy','PDF & spreadsheet native editing','New memory system across sessions']},
-  {date:'2026-05-15',modelId:'gemini',title:'Google I/O — Gemini 3.0 Reveal', desc:'Google I/O 2026 keynote. Major Gemini announcements expected including next-gen Veo video, Imagen 4 and Project Astra updates.',features:['Gemini 3.0 architecture reveal','Veo 3.0 — full HD 30s videos','Imagen 4 photorealistic images','Project Astra wearable AI']},
-  {date:'2026-05-20',modelId:'meta',  title:'Llama 4 Behemoth Release',       desc:'Meta's most capable Llama 4 model — Behemoth — expected to go public. Currently in internal testing and scores higher than GPT-4.5 on most benchmarks.',features:['300B+ parameter model','Beats GPT-4.5 on coding','Full multimodal: text/image/video/audio','Open weights — free to run locally']},
-  {date:'2026-05-28',modelId:'grok',  title:'Grok 3.5 Update + Aurora 2',     desc:'xAI expected to ship Grok 3.5 with upgraded Aurora 2 image model and enhanced DeepSearch capabilities across the web and X.',features:['Aurora 2 — Photorealistic image gen','DeepSearch v2 with citations','Longer context: 512k tokens','Voice mode for SuperGrok users']},
-  // June 2026
-  {date:'2026-06-03',modelId:'gpt',  title:'OpenAI DevDay Announcements',    desc:'OpenAI's annual developer conference. Expected: new API features, Realtime API v2, improved function calling and new modalities.',features:['Realtime API v2 — voice + vision','Structured outputs v2','New fine-tuning capabilities','GPT-5 API general availability']},
-  {date:'2026-06-10',modelId:'claude',title:'Claude Code GA + Claude 3.8 Opus',desc:'Claude Code exits beta and becomes generally available. Claude 3.8 Opus — Anthropic's flagship — expected to launch with world-class reasoning.',features:['Claude Code production-ready','Claude 3.8 Opus launch','Enterprise memory & knowledge bases','Native computer use improvements']},
-  {date:'2026-06-15',modelId:'gemini',title:'Gemini 2.5 Flash — Speed Tier',   desc:'Google launches Gemini 2.5 Flash for high-throughput applications. Designed for real-time use cases requiring sub-second responses.',features:['Sub-100ms response latency','10x cheaper than Pro tier','Streaming multimodal output','Deep Google Search integration']},
-  {date:'2026-06-22',modelId:'meta',  title:'Meta Connect 2026 — AI Hardware', desc:'Meta's annual Connect event focused on AI hardware. Ray-Ban Meta 2 and new AR headset announcements with integrated Meta AI.',features:['Ray-Ban Meta 2 with display','Orion AR headset preview','Meta AI on all hardware','Open AI stack for developers']},
-  {date:'2026-06-30',modelId:'grok',  title:'SuperGrok Enterprise Launch',     desc:'xAI launches SuperGrok Enterprise tier for businesses, with API access, team management, private data integration and SLA guarantees.',features:['Enterprise API with SLA','Private data integration','Team voting & collaboration','Custom Grok fine-tuning']},
-  // July 2026
+  {date:'2026-05-07',modelId:'gpt',  title:'ChatGPT GPT-5 Preview',          desc:'OpenAI expected to release GPT-5 public preview. Rumoured to score 95%+ on MMLU with native multimodal reasoning.',features:['Native video understanding','Autonomous agent mode','1M+ token context','Real-time web + code execution']},
+  {date:'2026-05-12',modelId:'claude',title:'Claude 3.8 Sonnet',              desc:'Anthropic next Sonnet iteration. Faster extended thinking, improved Claude Code autonomy, expanded file support.',features:['Faster extended thinking','Improved Claude Code autonomy','PDF & spreadsheet native editing','New memory system across sessions']},
+  {date:'2026-05-15',modelId:'gemini',title:'Google I/O — Gemini 3.0 Reveal', desc:'Google I/O 2026 keynote. Major Gemini announcements including next-gen Veo video, Imagen 4 and Project Astra updates.',features:['Gemini 3.0 architecture reveal','Veo 3.0 — full HD 30s videos','Imagen 4 photorealistic images','Project Astra wearable AI']},
+  {date:'2026-05-20',modelId:'meta',  title:'Llama 4 Behemoth Release',       desc:'Meta flagship Llama 4 Behemoth goes public. In internal testing it scores higher than GPT-4.5 on most benchmarks.',features:['300B+ parameter model','Beats GPT-4.5 on coding','Full multimodal: text/image/video/audio','Open weights — free to run locally']},
+  {date:'2026-05-28',modelId:'grok',  title:'Grok 3.5 Update + Aurora 2',     desc:'xAI ships Grok 3.5 with upgraded Aurora 2 image model and enhanced DeepSearch capabilities across web and X.',features:['Aurora 2 — Photorealistic image gen','DeepSearch v2 with citations','Longer context: 512k tokens','Voice mode for SuperGrok users']},
+  {date:'2026-06-03',modelId:'gpt',  title:'OpenAI DevDay 2026',              desc:'OpenAI annual developer conference. New API features, Realtime API v2, improved function calling and new modalities.',features:['Realtime API v2 — voice + vision','Structured outputs v2','New fine-tuning capabilities','GPT-5 API general availability']},
+  {date:'2026-06-10',modelId:'claude',title:'Claude Code GA + Claude 3.8 Opus',desc:'Claude Code exits beta and becomes generally available. Claude 3.8 Opus — flagship model — launches with world-class reasoning.',features:['Claude Code production-ready','Claude 3.8 Opus launch','Enterprise memory & knowledge bases','Native computer use improvements']},
+  {date:'2026-06-15',modelId:'gemini',title:'Gemini 2.5 Flash — Speed Tier',   desc:'Google launches Gemini 2.5 Flash for high-throughput apps. Sub-second responses for real-time use cases.',features:['Sub-100ms response latency','10x cheaper than Pro tier','Streaming multimodal output','Deep Google Search integration']},
+  {date:'2026-06-22',modelId:'meta',  title:'Meta Connect 2026 — AI Hardware', desc:'Meta annual Connect event focused on AI hardware. Ray-Ban Meta 2 and new AR headset announcements with integrated Meta AI.',features:['Ray-Ban Meta 2 with display','Orion AR headset preview','Meta AI on all hardware','Open AI stack for developers']},
+  {date:'2026-06-30',modelId:'grok',  title:'SuperGrok Enterprise Launch',     desc:'xAI launches SuperGrok Enterprise for businesses with API access, team management, private data integration and SLA.',features:['Enterprise API with SLA','Private data integration','Team collaboration tools','Custom Grok fine-tuning']},
   {date:'2026-07-08',modelId:'gpt',  title:'GPT-5 General Availability',      desc:'OpenAI opens GPT-5 to all ChatGPT users and via API. Expected to be the most capable publicly available AI model.',features:['Available to all ChatGPT tiers','API pricing announced','Custom GPT-5 bots in store','Enterprise deployment tools']},
-  {date:'2026-07-15',modelId:'gemini',title:'Veo 3.0 — Full HD Video Generation',desc:'Google makes Veo 3.0 available to all Gemini Pro users. Generate full HD 30-second videos from text prompts.',features:['Full HD 1080p video output','30-second generation','Audio + music synthesis','Multi-scene editing']},
+  {date:'2026-07-15',modelId:'gemini',title:'Veo 3.0 — Full HD Video Gen',    desc:'Google makes Veo 3.0 available to all Gemini Pro users. Generate full HD 30-second videos from text prompts.',features:['Full HD 1080p video output','30-second generation','Audio + music synthesis','Multi-scene editing']},
 ];
 
 const MODEL_COLORS={gpt:'#34d399',claude:'#fbbf24',gemini:'#60a5fa',grok:'#c084fc',meta:'#2d8cf0'};
@@ -2685,7 +2634,7 @@ const AI_VIDEOS=[
   },
   {
     modelId:'gemini',
-    title:'Introducing Gemini 2.5 — Google's Most Capable AI',
+    title:"Introducing Gemini 2.5 — Google's Most Capable AI",
     desc:'Google DeepMind officially introduces Gemini 2.5, combining state-of-the-art reasoning with Veo 3 video and Imagen 4 — leading every major benchmark.',
     videoId:'eHO2RKBIWiQ',
     thumb:'https://img.youtube.com/vi/eHO2RKBIWiQ/hqdefault.jpg',
@@ -2695,7 +2644,7 @@ const AI_VIDEOS=[
   {
     modelId:'grok',
     title:'Grok 3 — Live Demo with Elon Musk & xAI Team',
-    desc:'xAI's official Grok 3 launch livestream. Elon Musk and the xAI team demonstrate Grok 3's reasoning, Aurora image gen and real-time X integration.',
+    desc:"xAI official Grok 3 launch livestream. Elon Musk and the xAI team demonstrate Grok 3 reasoning, Aurora image gen and real-time X integration.",
     videoId:'iFsRn0Kbbpc',
     thumb:'https://img.youtube.com/vi/iFsRn0Kbbpc/hqdefault.jpg',
     date:'Feb 18, 2026',
@@ -2703,7 +2652,7 @@ const AI_VIDEOS=[
   },
   {
     modelId:'meta',
-    title:'Introducing Llama 4 — Meta's Most Capable Open Model',
+    title:"Introducing Llama 4 — Meta's Most Capable Open Model",
     desc:'Meta officially introduces Llama 4: Scout with 10M token context and Maverick. Both are open-weight, free to download, and beat GPT-4o on key benchmarks.',
     videoId:'eRFeNQb6noQ',
     thumb:'https://img.youtube.com/vi/eRFeNQb6noQ/hqdefault.jpg',
@@ -2753,88 +2702,20 @@ function switchNavVideo(idx){
   },8000);
 }
 
-function openVideoModal(startIdx){
-  const idx=startIdx!==undefined?startIdx:currentVideoIdx;
-  currentVideoIdx=idx;
-  clearInterval(videoRotateInterval);
-  // Render model tabs
-  const tabsEl=document.getElementById('vm-tabs');
-  if(tabsEl){
-    tabsEl.innerHTML=AI_VIDEOS.map((v,i)=>{
-      const m=M[v.modelId];
-      return `<div class="vm-tab${i===idx?' active':''}" onclick="switchVideoModal(${i})">
-        <div class="vm-tab-logo">${logoImg(v.modelId,16)}</div>
-        ${m?.name||v.modelId}
-      </div>`;
-    }).join('');
-  }
-  loadVideoInModal(idx);
-  document.getElementById('video-modal-overlay').classList.add('open');
-}
-
-function loadVideoInModal(idx){
-  const vid=AI_VIDEOS[idx];
-  const iframeEl=document.getElementById('vm-iframe');
-  const titleEl=document.getElementById('vm-video-title');
-  const descEl=document.getElementById('vm-video-desc');
-  const metaEl=document.getElementById('vm-video-meta');
-  if(iframeEl)iframeEl.src=`https://www.youtube.com/embed/${vid.videoId}?autoplay=1&rel=0&modestbranding=1`;
-  if(titleEl)titleEl.textContent=vid.title;
-  if(descEl)descEl.textContent=vid.desc;
-  if(metaEl)metaEl.innerHTML=`<span class="vm-video-source">${vid.source||M[vid.modelId]?.name||''}</span><span class="vm-video-date">${vid.date}</span>`;
-  document.querySelectorAll('.vm-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
-}
-
-function switchVideoModal(idx){
-  currentVideoIdx=idx;
-  loadVideoInModal(idx);
-}
-
-function closeVideoModal(){
-  document.getElementById('video-modal-overlay').classList.remove('open');
-  const iframeEl=document.getElementById('vm-iframe');
-  if(iframeEl)iframeEl.src=''; // stop playback
-  // Restart rotation
-  videoRotateInterval=setInterval(()=>{
-    currentVideoIdx=(currentVideoIdx+1)%AI_VIDEOS.length;
-    updateNavVideoBar(AI_VIDEOS[currentVideoIdx]);
-    document.querySelectorAll('.nav-vtab').forEach((d,i)=>d.classList.toggle('active',i===currentVideoIdx));
-  },8000);
-}
-
-function closeVideoIfBg(e){
-  if(e.target===document.getElementById('video-modal-overlay'))closeVideoModal();
-}
-
-/* ════ GOOGLE ONE TAP ════ */
-function handleOneTap(response){
-  // response.credential is a JWT — use it with Firebase
-  if(!auth)return;
-  try{
-    const credential=firebase.auth.GoogleAuthProvider.credential(response.credential);
-    auth.signInWithCredential(credential).then(result=>{
-      showToast('Welcome to AILoom! You have 5 votes today.');
-      closeModal();
-    }).catch(e=>console.warn('One Tap Firebase error:',e));
-  }catch(e){console.warn('One Tap error:',e);}
-}
 
 /* ════ WELCOME POPUP ════ */
 const WELCOME_DATA=[
-  {modelId:'gpt',  version:'GPT-4.1',  color:'#34d399',update:'1M token context + 50% cheaper API',   desc:'Entire codebases in one prompt. GPT-4.1 nano is the fastest OpenAI model ever. Workspace Agents connect to Slack, Drive & Salesforce.',vsWin:['Cheapest API at scale','Best voice mode','Largest custom bot ecosystem'],vsLose:['Claude beats it on long-form writing','Gemini leads on video gen']},
-  {modelId:'claude',version:'Claude 3.7',color:'#fbbf24',update:'Extended thinking: 10-min deep reasoning',desc:'Claude Design just launched for visual work. Claude Code auto-deploys apps. The #1 model for developers on GitHub in 2026.',vsWin:['#1 for coding on GitHub','Best at following precise instructions','Extended thinking solves PhD-level math'],vsLose:['No voice mode yet','Smaller overall user base than GPT/Gemini']},
-  {modelId:'gemini',version:'Gemini 2.5 Pro',color:'#60a5fa',update:'Tops every AI leaderboard worldwide',desc:'Free for all users and leads LMSYS Chatbot Arena, WebDev Arena and coding benchmarks. Veo 3 is the best AI video generator available.',vsWin:['Best AI video (Veo 3)','Cheapest capable API','Built into Gmail, Docs, Sheets, Meet'],vsLose:['Less popular than ChatGPT for daily use','Claude/GPT have smoother chat UX']},
-  {modelId:'grok', version:'Grok 3',   color:'#c084fc',update:'Live X search + Aurora photorealistic images',desc:'Only AI reading live X/Twitter posts mid-conversation. Aurora generates photorealistic images. Free with existing X Premium.',vsWin:['Best for breaking news & trends','Aurora rivals Midjourney quality','Free if you already pay for X Premium'],vsLose:['No free standalone tier','Less capable on long documents']},
-  {modelId:'meta', version:'Llama 4',  color:'#2d8cf0',update:'1B users · open-source beats GPT-4o',    desc:'First AI to hit 1 billion monthly users. Llama 4 is fully open-weight — download and run privately. Scout has a 10M token context window.',vsWin:['Completely free, on every Meta app','10M token context in Scout','Open-source: run locally for full privacy'],vsLose:['Lags behind GPT-4.1/Claude on hard reasoning','No dedicated standalone AI app']},
+  {modelId:'gpt',  version:'GPT-5.5',      color:'#34d399',update:'Apr 23 — smartest & most agentic model yet',desc:'GPT-5.5 plans, uses tools, checks its work and keeps going. Built for multi-step professional tasks. Now in ChatGPT Plus/Pro/Business.',vsWin:['Best for agentic long-horizon tasks','50M+ paying subscribers','Voice mode is indistinguishable from human'],vsLose:['Claude Opus 4.7 leads on hardest coding tasks']},
+  {modelId:'claude',version:'Opus 4.7',    color:'#fbbf24',update:'Apr 16 — 13% better coding, 3x better vision',desc:'Opus 4.7 catches its own logical faults before reporting back. Beats ChatGPT 5.4 & Gemini 3.1 Pro. Now the #1 coding AI on GitHub Copilot.',vsWin:['Best coding AI by benchmarks & developers','Catches own mistakes — extremely reliable','1M token context, 128k max output'],vsLose:['No voice mode yet']},
+  {modelId:'gemini',version:'Gemini 2.5 Pro',color:'#60a5fa',update:'Tops every AI leaderboard — now free',desc:'Gemini 2.5 Pro Experimental leads LMSYS Chatbot Arena, WebDev Arena and coding. Veo 3 generates 8-second HD videos from text.',vsWin:['Best AI video generation (Veo 3)','Cheapest capable API of the 5','Tops LMSYS leaderboard'],vsLose:['Claude Opus 4.7 edges it on hardest reasoning tasks']},
+  {modelId:'grok', version:'Grok 4.3 Beta',color:'#c084fc',update:'Apr 17 — video input, slides, PDFs in chat',desc:'Grok 4.3 Beta adds native video understanding, slide & PDF generation. 2M token context. Elon Musk pledged daily improvements. Rolling to $30 tier in May.',vsWin:['Only AI with live X/Twitter post access','2M context — largest Western model','Creates slides & PDFs directly in chat'],vsLose:['No memory across sessions — even at $300/mo']},
+  {modelId:'meta', version:'Llama 4',      color:'#2d8cf0',update:'1B users · open-source beats GPT-4o',    desc:'First AI to hit 1 billion monthly users. Llama 4 Scout has 10M token context and beats GPT-4o. Fully open-weight and free to download.',vsWin:['Completely free on every Meta app','Open-source: run locally for full privacy','10M context in Scout beats GPT-4o on tasks'],vsLose:['GPT-5.5 & Claude Opus 4.7 lead on agentic tasks']},
 ];
 function openWelcome(){
-  const lastSeen=localStorage.getItem('ailoom_welcome_date');
-  const today=new Date().toISOString().slice(0,10);
-  if(lastSeen===today)return;
   const overlay=document.getElementById('welcome-overlay');
   if(!overlay)return;
-  overlay.classList.add('open');
-  document.getElementById('wp-cards').innerHTML=WELCOME_DATA.map(d=>`
+  const wpCards=document.getElementById('wp-cards');
+  if(wpCards)wpCards.innerHTML=WELCOME_DATA.map(d=>`
     <div class="wp-card">
       <div class="wp-card-head">
         <div class="wp-card-logo">${logoImg(d.modelId,32)}</div>
@@ -2846,9 +2727,12 @@ function openWelcome(){
       <div class="wp-card-desc">${d.desc}</div>
       <div class="wp-card-vs">
         ${d.vsWin.map(w=>`<span class="wp-vs-tag win">✓ ${w}</span>`).join('')}
-        ${d.vsLose.slice(0,1).map(l=>`<span class="wp-vs-tag lose">✗ ${l}</span>`).join('')}
+        ${d.vsLose.map(l=>`<span class="wp-vs-tag lose">✗ ${l}</span>`).join('')}
       </div>
     </div>`).join('');
+  overlay.classList.add('open');
+  // backdrop click
+  overlay.onclick=function(e){if(e.target===this)closeWelcome();};
 }
 function closeWelcome(){
   const overlay=document.getElementById('welcome-overlay');
@@ -2920,8 +2804,9 @@ buildList('all');
 renderNews();
 initVideoBar();
 initFirebase();
-// Show welcome popup after short delay
-setTimeout(openWelcome, 1200);
+// Show welcome popup — clears old date guard so it always shows on fresh load
+localStorage.removeItem('ailoom_welcome_date');
+setTimeout(openWelcome, 800);
 setInterval(()=>{getVotesLeft();updateTotalVotes();},60000);
 </script>
 </body>
