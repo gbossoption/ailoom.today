@@ -939,8 +939,8 @@ a{color:inherit;text-decoration:none}
   <!-- Latest AI video player -->
   <div class="nav-video" id="nav-video">
     <div class="nav-video-player" onclick="openVideoModal()">
-      <div class="nav-video-thumb">
-        <img class="nav-video-thumb-img" id="nav-video-thumb" src="" alt="" onerror="this.style.display='none'">
+      <div class="nav-video-thumb" id="nav-video-thumb-wrap" style="background:rgba(248,113,113,.15)">
+        <img class="nav-video-thumb-img" id="nav-video-thumb" src="" alt="" style="opacity:0;transition:opacity .3s" onload="this.style.opacity='1'" onerror="this.style.opacity='0'">
         <div class="nav-video-play-icon">
           <svg viewBox="0 0 16 16" fill="white"><path d="M5 3.5l8 4.5-8 4.5V3.5z"/></svg>
         </div>
@@ -954,6 +954,7 @@ a{color:inherit;text-decoration:none}
       <span class="nav-video-cta">▶ Watch</span>
     </div>
   </div>
+  <div id="news-nav-slot"></div>
   <div class="live-chip"><span class="ld"></span>Live</div>
   <div class="nav-r" id="auth-area">
     <button class="submit-nav-btn" onclick="openSubmit()">+ Submit Tool</button>
@@ -1083,6 +1084,65 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 
+<!-- ══ NEWS COLLAPSED BUTTON ══ -->
+<button class="news-nav-btn" id="news-nav-btn" onclick="openWelcome()">
+  <div class="news-nav-dot"></div>
+  Latest AI News
+  <span class="news-badge">5</span>
+</button>
+
+<!-- ══ PROFILE POPUP ══ -->
+<div class="profile-overlay" id="profile-overlay" onclick="closeProfileIfBg(event)">
+  <div class="profile-popup">
+    <div class="pp-head">
+      <div class="pp-avatar" id="pp-avatar">?</div>
+      <div class="pp-name-wrap">
+        <div class="pp-name" id="pp-name">User</div>
+        <div class="pp-email" id="pp-email"></div>
+      </div>
+      <button class="pp-close" onclick="closeProfile()">✕</button>
+    </div>
+
+    <!-- 3D RANK -->
+    <div class="pp-rank-section">
+      <div class="pp-rank-canvas-wrap" title="Tap to toggle spin" onclick="rankToggleSpin()">
+        <canvas id="pp-rank-canvas"></canvas>
+      </div>
+      <div class="pp-rank-info">
+        <div class="pp-rank-title" id="pp-rank-title">Novice Explorer</div>
+        <div class="pp-rank-sub" id="pp-rank-sub">0 XP total</div>
+        <div class="pp-xp-bar-bg"><div class="pp-xp-bar" id="pp-xp-bar" style="width:0%"></div></div>
+        <div class="pp-xp-labels"><span>0</span><span id="pp-xp-label"><b>0</b> XP · next rank at 20</span><span id="pp-xp-next">20</span></div>
+      </div>
+    </div>
+
+    <!-- HOW TO EARN -->
+    <div class="pp-earn-grid">
+      <div class="pp-earn-tile"><div class="pp-earn-pts">+5 XP</div><div class="pp-earn-label">Use all 5 votes</div></div>
+      <div class="pp-earn-tile"><div class="pp-earn-pts">+2 XP</div><div class="pp-earn-label">Visit AILoom</div></div>
+      <div class="pp-earn-tile"><div class="pp-earn-pts">+5 XP</div><div class="pp-earn-label">Send feedback</div></div>
+      <div class="pp-earn-tile"><div class="pp-earn-pts">+3 XP</div><div class="pp-earn-label">Submit a tool</div></div>
+    </div>
+
+    <!-- REMINDERS -->
+    <div class="pp-section">
+      <div class="pp-sec-title">
+        <span>🔔 AI Release Reminders</span>
+        <span style="font-size:9px;color:var(--fog);cursor:pointer" onclick="closeProfile();openCourses()">View Calendar →</span>
+      </div>
+      <div id="pp-reminders"><div class="pp-rem-empty">No reminders yet. Click a next update date on any Best AI card.</div></div>
+    </div>
+
+    <!-- COMMUNITY LEADERBOARD -->
+    <div class="pp-section">
+      <div class="pp-sec-title">🏆 Community Leaderboard</div>
+      <div id="pp-leaderboard"><div class="pp-rem-empty">Loading…</div></div>
+    </div>
+
+    <button class="pp-signout-btn" onclick="signOutUser();closeProfile()">Sign out</button>
+  </div>
+</div>
+
 <!-- ══ WELCOME POPUP ══ -->
 <div class="welcome-overlay" id="welcome-overlay">
   <div class="welcome-popup">
@@ -1096,7 +1156,7 @@ a{color:inherit;text-decoration:none}
     </div>
     <div class="wp-cards" id="wp-cards"></div>
     <div class="wp-footer">
-      <span class="wp-dismiss" onclick="closeWelcome()">Don't show again today</span>
+      <span class="wp-dismiss" onclick="collapseWelcome()" style="cursor:pointer">Collapse to button ↑</span>
       <button class="wp-cta" onclick="closeWelcome();tocNav('sec-bow')">See Full Rankings →</button>
     </div>
   </div>
@@ -1447,6 +1507,24 @@ function bowCardHTML(id,rank){
       <div class="bow-bar-val">${v}</div>
     </div>`).join('');
 
+  const insight=BOW_INSIGHTS[id]||{};
+  const nextUpd=insight.nextUpdate||'';
+  const remId='rem_'+id;
+  const reminders=getReminders();
+  const hasRem=reminders.some(r=>r.id===remId);
+  const extraInfo=`
+    <div style="margin-top:6px;padding:6px 8px;background:rgba(255,255,255,.04);border-radius:7px;border:1px solid rgba(255,255,255,.06)">
+      <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:${m.ac};margin-bottom:2px">${insight.tag||''}</div>
+      <div style="font-size:10px;color:var(--mist);line-height:1.35">${insight.desc||''}</div>
+    </div>
+    ${nextUpd?`<div class="bow-next-date" onclick="event.stopPropagation();openCourses()" title="View calendar">
+      📅 Next update: <span style="color:${m.ac};font-weight:700">${nextUpd}</span> ↗
+    </div>
+    <button class="bow-remind-btn${hasRem?' set':''}" data-rem="${remId}" onclick="event.stopPropagation();addReminder('${remId}','${m.name} — ${nextUpd}','${nextUpd}','${m.ac}')">
+      ${hasRem?'✓ Reminder set':'🔔 Remind me'}
+    </button>`:''}
+    <div style="font-size:9px;color:var(--fog);margin-top:4px">Best for: <span style="color:var(--mist)">${insight.bestFor||''}</span></div>`;
+
   return `<div class="bow-card rank-${rank}" onclick="openModelPopup('${id}')">
     <div class="bow-glow" style="background:${m.ac}"></div>
     ${trophyHTML}
@@ -1456,10 +1534,9 @@ function bowCardHTML(id,rank){
     <div class="bow-maker">${m.maker}</div>
     ${ringHTML}
     <div class="bow-bars">${bars}</div>
+    ${isSmall?'':extraInfo}
     <div class="bow-votes-row">
-      <button class="bow-details-btn" onclick="event.stopPropagation();openModelPopup('${id}')">
-        Details →
-      </button>
+      <button class="bow-details-btn" onclick="event.stopPropagation();openModelPopup('${id}')">Details →</button>
     </div>
   </div>`;
 }
@@ -1488,64 +1565,93 @@ function castBowVote(id,e){
 let expandedModel=null;
 const MODEL_DETAIL={
   gpt:{
-    highlight:'GPT-5.5 — smartest & most agentic model OpenAI has ever shipped',
-    pricing:'Free / $20 Plus / $200 Pro',
-    strengths:[
-      {label:'Agentic tasks', v:97,desc:'Plans, uses tools, checks work — no hand-holding needed'},
-      {label:'Voice Mode',    v:96,desc:'Indistinguishable from a real phone call'},
-      {label:'Coding',        v:96,desc:'GPT-5.5 uses fewer tokens than 5.4 for same Codex tasks'},
-      {label:'Research',      v:95,desc:'Deep Research writes 30+ page real-time web reports'},
-    ],
-    facts:['900M+ weekly users & 50M+ paying subscribers','GPT-5.5 matches GPT-5.4 speed at much higher intelligence','4M active Codex users building production apps','Powers Microsoft Copilot, Bing, Azure AI and GitHub'],
-    updates:[{d:'Apr 23',t:'GPT-5.5 launches — smartest & most agentic model yet',tag:'model'},{d:'Apr 22',t:'Workspace Agents in ChatGPT — Slack, Drive, Salesforce'},{d:'Apr 14',t:'GPT-4.1 with 1M token context, 50% cheaper API'},{d:'Mar 28',t:'Image Gen 2.0 — edit photos with plain text'}],
+    highlight:'GPT-5.5 — smartest & most agentic model OpenAI has ever built',
+    useCaseTitle:'What can you actually do with GPT-5.5?',
+    useCases:['Build and deploy full software projects end-to-end with Codex — without writing a line yourself','Create polished presentations, reports and spreadsheets from raw data in seconds','Use Workspace Agents to automate Slack, Google Drive, Salesforce and email workflows','Record voice notes and get instant structured summaries with near-human voice quality','Run Deep Research to produce 30+ page referenced reports from a single prompt'],
+    pricingTiers:[{price:'Free',label:'ChatGPT Free',desc:'GPT-5 with usage limits, no GPT-5.5'},{price:'$20/mo',label:'ChatGPT Plus',desc:'GPT-5.5 access, more usage, image gen'},{price:'$100/mo',label:'ChatGPT Pro',desc:'Unlimited GPT-5.5 + 5.5 Pro reasoning'},{price:'$200/mo',label:'ChatGPT Enterprise',desc:'Team admin, SSO, extended context'}],
+    context:'128K tokens',apiAccess:'Yes (gpt-5.5)',docsUrl:'https://platform.openai.com/docs',
+    benchmarks:[{name:'SWE-bench Verified',v:72,rank:'#1'},{name:'GPQA Diamond',v:84,rank:'#1'},{name:'MathVista',v:91,rank:'#1'},{name:'HumanEval',v:95,rank:'#1'},{name:'MMLU',v:92,rank:'#2'}],
+    codeDesc:'Quick start with GPT-5.5 via OpenAI Python SDK:',
+    codeSnippet:`from openai import OpenAI
+client = OpenAI(api_key="sk-...")
+response = client.chat.completions.create(
+  model="gpt-5.5",
+  messages=[{"role":"user","content":"Build me a REST API"}]
+)
+print(response.choices[0].message.content)`,
   },
   claude:{
-    highlight:'Extended thinking reasons up to 10 minutes — PhD-level problem solving',
-    pricing:'Free / $20 Pro / $100 Max',
-    strengths:[
-      {label:'Coding',       v:98,desc:'#1 rated by developers on GitHub 2026'},
-      {label:'Long Docs',    v:96,desc:'Read & analyse 300-page PDFs instantly'},
-      {label:'Writing',      v:97,desc:'Matches your personal tone and style'},
-      {label:'Reasoning',    v:95,desc:'Extended thinking: up to 10 min on hard problems'},
-    ],
-    facts:['#1 AI for developers on GitHub — ahead of Copilot','Claude Design: create prototypes & slides in chat','Claude Code: builds & deploys entire apps autonomously','Safest AI — trained with Constitutional AI principles'],
-    updates:[{d:'Apr 17',t:'Claude Design — AI-powered visual collaboration tool',tag:'product'},{d:'Apr 14',t:'Claude 3.7 Sonnet — extended thinking, 200k context'},{d:'Apr 7',t:'Claude Code: auto-deploys to Vercel, Netlify & more'}],
+    highlight:'Claude Opus 4.7 — catches its own mistakes before reporting back',
+    useCaseTitle:'Where Claude Opus 4.7 shines vs other models:',
+    useCases:['Long-form code reviews across entire repositories — 1M token context handles it all','Refactor complex legacy codebases with Claude Code auto-deploying to Vercel or Netlify','Create beautifully formatted slides, one-pagers and prototypes with Claude Design','Analyse 300-page PDF contracts, research papers or legal documents in seconds','Build multi-step agentic workflows with automatic error detection and self-correction'],
+    pricingTiers:[{price:'Free',label:'Claude Free',desc:'Claude Sonnet with usage limits'},{price:'$20/mo',label:'Claude Pro',desc:'Opus 4.7, 5x more usage, Projects'},{price:'$100/mo',label:'Claude Max',desc:'20x usage, priority access to all models'},{price:'API',label:'Claude API',desc:'$5/M input · $25/M output tokens'}],
+    context:'1M tokens',apiAccess:'Yes (claude-opus-4-7)',docsUrl:'https://docs.anthropic.com',
+    benchmarks:[{name:'SWE-bench Verified',v:74,rank:'#1'},{name:'GPQA Diamond',v:82,rank:'#2'},{name:'CursorBench',v:70,rank:'#1'},{name:'Agentic tasks',v:88,rank:'#1'},{name:'Vision',v:79,rank:'#2'}],
+    codeDesc:'Opus 4.7 via Anthropic SDK — with adaptive thinking:',
+    codeSnippet:`import anthropic
+client = anthropic.Anthropic(api_key="sk-ant-...")
+msg = client.beta.messages.create(
+  model="claude-opus-4-7",
+  max_tokens=16000,
+  thinking={"type":"adaptive"},
+  messages=[{"role":"user","content":"Review my codebase"}]
+)
+print(msg.content[0].text)`,
   },
   gemini:{
-    highlight:'Tops every AI leaderboard — LMSYS, WebDev Arena, coding benchmarks',
-    pricing:'Free / $20 Pro / $30 Business',
-    strengths:[
-      {label:'Video (Veo 3)', v:97,desc:'8-second photorealistic videos from text'},
-      {label:'Google Apps',   v:99,desc:'Built into Gmail, Docs, Sheets & Meet'},
-      {label:'Multimodal',    v:98,desc:'Text + image + audio + video in one prompt'},
-      {label:'API Value',     v:96,desc:'Cheapest capable AI API available'},
-    ],
-    facts:['750M+ monthly users across all Google products','2M word context — reads entire codebases','NotebookLM turns any doc into a podcast','Gemini 2.5 Pro leads LMSYS Chatbot Arena leaderboard'],
-    updates:[{d:'Apr 5',t:'Gemini 2.5 Pro Experimental tops all leaderboards',tag:'model'},{d:'Mar 25',t:'Veo 3 video generation in 50+ countries'},{d:'Mar 10',t:'Thinking budget control — speed vs depth slider'}],
+    highlight:'Gemini 2.5 Pro — leads every benchmark and costs less than all rivals',
+    useCaseTitle:'Gemini 2.5 Pro unique capabilities:',
+    useCases:['Generate 8-second photorealistic videos from text using Veo 3 — the best AI video tool','Ask questions about YouTube videos, uploaded files, and live web pages simultaneously','Use 2 million token context to analyse entire codebases or years of documents at once','Get AI assistance directly in Gmail, Docs, Sheets, Slides and Google Meet','Build research agents that read and synthesise hundreds of sources automatically'],
+    pricingTiers:[{price:'Free',label:'Gemini Free',desc:'Gemini 2.5 Pro access, daily limits'},{price:'$20/mo',label:'Gemini Pro',desc:'Higher limits, Veo 3 video, priority'},{price:'$30/mo',label:'Google One AI',desc:'All Pro features + 2TB Google storage'},{price:'API',label:'Gemini API',desc:'$1.25/M input · $5/M output tokens'}],
+    context:'2M tokens',apiAccess:'Yes (gemini-2.5-pro)',docsUrl:'https://ai.google.dev/docs',
+    benchmarks:[{name:'LMSYS Chatbot Arena',v:89,rank:'#1'},{name:'WebDev Arena',v:91,rank:'#1'},{name:'MMLU',v:90,rank:'#2'},{name:'Coding (LiveBench)',v:83,rank:'#2'},{name:'Video understanding',v:97,rank:'#1'}],
+    codeDesc:'Gemini 2.5 Pro via Google AI Python SDK:',
+    codeSnippet:`import google.generativeai as genai
+genai.configure(api_key="AIza...")
+model = genai.GenerativeModel("gemini-2.5-pro")
+response = model.generate_content(
+  "Summarise this 500-page report",
+  generation_config={"thinking_budget": 8192}
+)
+print(response.text)`,
   },
   grok:{
-    highlight:'Grok 4.3 Beta — video input, slides & PDFs, 2M context window',
-    pricing:'$8 X Premium / $30 SuperGrok / $300 Heavy (4.3 Beta)',
-    strengths:[
-      {label:'Real-time Info', v:98,desc:'Only AI reading live X posts mid-conversation'},
-      {label:'Speed',          v:95,desc:'Fastest response times + largest 2M token context'},
-      {label:'Video input',    v:90,desc:'Grok 4.3 Beta: understand & analyse video in chat'},
-      {label:'Reasoning',      v:91,desc:'Grok 4 Heavy: 16-agent reasoning architecture'},
-    ],
-    facts:['Grok 4.3 Beta: native video input & slide/PDF generation','2M token context — largest Western closed-source model','SpaceX acquired xAI Feb 2026 — Grok powers Tesla AI','Daily improvements pledged during active beta period'],
-    updates:[{d:'Apr 17',t:'Grok 4.3 Beta — video, slides, PDFs, enhanced reasoning',tag:'beta'},{d:'Mar 31',t:'Grok 4.20: industry-leading speed & agentic tool use',tag:'model'},{d:'Feb 18',t:'Grok 4 launches — world-class reasoning'}],
+    highlight:'Grok 4.3 Beta — only AI with live X feed + 2M token context',
+    useCaseTitle:'What makes Grok 4.3 Beta unique:',
+    useCases:['Search and analyse live X posts mid-conversation — no other AI can do this','Generate formatted PDF reports, slide decks and spreadsheets directly in chat','Analyse video files: upload a recording and ask questions about what happens','Use 2M token context to process entire legal contracts or codebases at once','Get breaking news analysis with real-time X data and DeepSearch web citations'],
+    pricingTiers:[{price:'$8/mo',label:'X Premium',desc:'Basic Grok access, limited usage'},{price:'$30/mo',label:'SuperGrok',desc:'Full Grok 4 access, higher limits'},{price:'$300/mo',label:'SuperGrok Heavy',desc:'Grok 4.3 Beta early access now'},{price:'API',label:'xAI API',desc:'$2/M input · $6/M output tokens'}],
+    context:'2M tokens',apiAccess:'Yes (grok-4.20)',docsUrl:'https://docs.x.ai',
+    benchmarks:[{name:'Speed (tokens/sec)',v:95,rank:'#1'},{name:'Real-time info',v:99,rank:'#1'},{name:'GPQA Diamond',v:78,rank:'#3'},{name:'Coding (LiveBench)',v:76,rank:'#3'},{name:'Context window',v:98,rank:'#1'}],
+    codeDesc:'Grok via xAI API (OpenAI-compatible format):',
+    codeSnippet:`from openai import OpenAI
+client = OpenAI(
+  api_key="xai-...",
+  base_url="https://api.x.ai/v1"
+)
+response = client.chat.completions.create(
+  model="grok-4.20",
+  messages=[{"role":"user","content":"What is trending on X right now?"}]
+)
+print(response.choices[0].message.content)`,
   },
   meta:{
-    highlight:'1 billion monthly users — most accessible AI ever built',
-    pricing:'Free (everywhere)',
-    strengths:[
-      {label:'Accessibility',  v:99,desc:'Built into WhatsApp, Instagram, Facebook'},
-      {label:'Speed',          v:90,desc:'Optimised for mobile real-time responses'},
-      {label:'Open Source',    v:98,desc:'Llama 4 — run locally, free forever'},
-      {label:'Value',          v:99,desc:'Completely free, no subscription needed'},
-    ],
-    facts:['1B+ monthly users — first AI to hit this milestone','Llama 4 Scout beats GPT-4o on most benchmarks','Ray-Ban Meta glasses: real-world AI vision','Open-weight models: download & run on your own hardware'],
-    updates:[{d:'Apr 5',t:'Llama 4 Scout & Maverick — beats GPT-4o open-source',tag:'model'},{d:'Mar 20',t:'Meta AI in Ray-Ban glasses expanded to UK, France, Australia'},{d:'Mar 10',t:'Meta AI hits 1 billion monthly active users'}],
+    highlight:'Llama 4 — open-source beats GPT-4o and runs privately on your hardware',
+    useCaseTitle:'Why 1 billion people use Meta AI:',
+    useCases:['Chat with AI directly inside WhatsApp, Instagram, Facebook and Messenger — no new app','Ask Meta AI to generate images inside any Meta app for free, no subscription','Download Llama 4 Scout and run it on your own machine for complete privacy','Use the 10M token context window to process entire books or years of chat history','Build enterprise AI apps on Llama 4 without any API costs or usage limits'],
+    pricingTiers:[{price:'Free',label:'Meta AI',desc:'Full access on all Meta apps'},{price:'Free',label:'Llama 4 Download',desc:'Open-weight, run locally or cloud'},{price:'API',label:'Meta API',desc:'Coming soon — inference pricing TBD'},{price:'Cloud',label:'AWS/Azure',desc:'Run Llama 4 on cloud infrastructure'}],
+    context:'10M tokens (Scout)',apiAccess:'Open weights',docsUrl:'https://llama.meta.com',
+    benchmarks:[{name:'MMLU (vs GPT-4o)',v:84,rank:'beats'},{name:'HumanEval coding',v:82,rank:'ties'},{name:'MATH reasoning',v:78,rank:'#3'},{name:'Image understanding',v:88,rank:'#2'},{name:'Speed on device',v:96,rank:'#1'}],
+    codeDesc:'Llama 4 via Hugging Face Transformers:',
+    codeSnippet:`from transformers import pipeline
+pipe = pipeline(
+  "text-generation",
+  model="meta-llama/Llama-4-Scout-17B-16E"
+)
+result = pipe(
+  "Explain quantum computing simply",
+  max_new_tokens=500
+)
+print(result[0]['generated_text'])`,
   },
 };
 
@@ -1578,24 +1684,44 @@ function renderModels(){
     const isExp=expandedModel===m.id;
     const popEntries=Object.entries(pop).slice(0,3);
     const score=calcBowScore(m.id);
+    const tab=expandedTab[m.id]||'usecases';
     const expandHTML=isExp?`
     <div class="mbar-expand-content open" id="mexp-${m.id}">
-      <div style="padding:4px 0 12px;font-size:13px;font-weight:600;color:${m.ac};border-bottom:1px solid var(--rim);margin-bottom:14px">${det.highlight||''}</div>
-      <div class="mbar-exp-grid">
-        <div>
-          <div class="mbar-exp-label">Performance</div>
-          ${(det.strengths||[]).map(s=>`<div class="mbar-exp-skill-row"><div class="mbar-exp-skill-name">${s.label}</div><div class="mbar-exp-track"><div class="mbar-exp-fill" style="width:${s.v}%;background:${m.ac}"></div></div><div class="mbar-exp-val">${s.v}</div></div><div style="font-size:10px;color:var(--fog);margin:-3px 0 6px 108px">${s.desc}</div>`).join('')}
-          <div class="mbar-exp-label" style="margin-top:10px">Pricing</div>
-          <div style="font-size:12px;color:var(--mist);margin-bottom:10px">${det.pricing||''}</div>
-          <a href="${m.url}" target="_blank" rel="noopener" class="mbar-exp-visit">↗ Visit ${m.name}</a>
-        </div>
-        <div>
-          <div class="mbar-exp-label">Did You Know?</div>
-          ${(det.facts||[]).map(f=>`<div class="mbar-exp-fact">${f}</div>`).join('')}
-          <div class="mbar-exp-label" style="margin-top:12px">Recent Updates</div>
-          ${(det.updates||[]).map(u=>`<div class="mbar-exp-update"><div class="mbar-exp-update-date">${u.d}${u.tag?` · ${u.tag}`:''}</div><div class="mbar-exp-update-text">${u.t}</div></div>`).join('')}
-        </div>
+      <div class="mbar-tabs">
+        <button class="mbar-tab${tab==='usecases'?' active':''}" onclick="event.stopPropagation();setModelTab('${m.id}','usecases')">💡 Use Cases</button>
+        <button class="mbar-tab${tab==='api'?' active':''}" onclick="event.stopPropagation();setModelTab('${m.id}','api')">⚙️ API & Pricing</button>
+        <button class="mbar-tab${tab==='benchmarks'?' active':''}" onclick="event.stopPropagation();setModelTab('${m.id}','benchmarks')">📊 Benchmarks</button>
+        <button class="mbar-tab${tab==='code'?' active':''}" onclick="event.stopPropagation();setModelTab('${m.id}','code')">{'</>'}  Code Sample</button>
       </div>
+      ${tab==='usecases'?`
+        <div style="font-size:12px;font-weight:600;color:${m.ac};margin-bottom:10px">${det.useCaseTitle||det.highlight||''}</div>
+        ${(det.useCases||det.facts||[]).map(u=>`<div class="mbar-use-case">${u}</div>`).join('')}
+        <a href="${m.url}" target="_blank" rel="noopener" class="mbar-try-btn" style="margin-top:12px">↗ Try ${m.name} free</a>
+      `:''}
+      ${tab==='api'?`
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+          ${(det.pricingTiers||[]).map(t=>`<div style="background:var(--glass);border:1px solid var(--rim);border-radius:9px;padding:10px 12px">
+            <div style="font-size:14px;font-weight:800;color:${m.ac}">${t.price}</div>
+            <div style="font-size:11px;font-weight:700;color:var(--snow)">${t.label}</div>
+            <div style="font-size:10px;color:var(--mist);margin-top:3px">${t.desc}</div>
+          </div>`).join('')}
+        </div>
+        <div style="font-size:10px;color:var(--fog)">Context: <b style="color:var(--mist)">${det.context||'—'}</b> · API: <b style="color:var(--mist)">${det.apiAccess||'Yes'}</b></div>
+      `:''}
+      ${tab==='benchmarks'?`
+        <div style="font-size:10px;color:var(--fog);margin-bottom:10px">Performance vs other models (higher = better)</div>
+        ${(det.benchmarks||[]).map(b=>`<div class="mbar-benchmark-row">
+          <div class="mbar-bench-name">${b.name}</div>
+          <div class="mbar-bench-track"><div class="mbar-bench-fill" style="width:${b.v}%;background:${m.ac}"></div></div>
+          <div class="mbar-bench-val">${b.v}%</div>
+          <div class="mbar-bench-rank" style="background:${m.ac}20;color:${m.ac}">${b.rank||''}</div>
+        </div>`).join('')}
+      `:''}
+      ${tab==='code'?`
+        <div style="font-size:10px;color:var(--fog);margin-bottom:8px">${det.codeDesc||'Quick start example'}</div>
+        <div class="mbar-code">${det.codeSnippet||'// No code sample yet'}</div>
+        <a href="${det.docsUrl||m.url}" target="_blank" rel="noopener" class="mbar-try-btn" style="margin-top:10px;font-size:10px">📚 Full docs</a>
+      `:''}
     </div>`:'';
 
     return `<div>
@@ -2256,49 +2382,14 @@ function setLoggedInUI(user){
   const name=user.displayName?user.displayName.split(' ')[0]:'User';
   document.getElementById('auth-area').innerHTML=`
     <button class="submit-nav-btn" onclick="openSubmit()">+ Submit Tool</button>
-    <div class="user-dropdown-wrap">
-      <div class="user-chip" onclick="toggleUserDropdown(event)">
-        ${user.photoURL?`<img src="${user.photoURL}" style="width:24px;height:24px;border-radius:50%;object-fit:cover" referrerpolicy="no-referrer">`:`<div class="user-avatar">${init}</div>`}
-        ${name}
-        <svg viewBox="0 0 10 6" fill="none" width="10" height="6" style="opacity:.5;margin-left:2px"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </div>
-      <div class="user-dropdown" id="user-dropdown">
-        <div class="ud-head">
-          <div class="ud-name">${user.displayName||'User'}</div>
-          <div class="ud-email">${user.email||''}</div>
-        </div>
-        <div class="ud-votes">
-          <span class="ud-votes-label">Votes left today</span>
-          <span class="ud-votes-val" id="ud-votes-val">${getVotesLeft()} / 5</span>
-        </div>
-        <div class="ud-votes-bar"><div class="ud-votes-bar-fill" id="ud-votes-bar-fill" style="width:${(getVotesLeft()/5)*100}%"></div></div>
-        <div class="ud-item" onclick="openQuiz()">
-          <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M6.5 6.5a1.5 1.5 0 012.8.5c0 1-1.3 1.5-1.3 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="12" r=".6" fill="currentColor"/></svg>
-          Find My AI
-        </div>
-        <div class="ud-item" onclick="openCourses()">
-          <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 7h6M5 10h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-          AI Courses
-        </div>
-        <div class="ud-item ud-signout" onclick="signOutUser()">
-          <svg viewBox="0 0 16 16" fill="none"><path d="M6 3H3a1 1 0 00-1 1v8a1 1 0 001 1h3M10 5l3 3-3 3M13 8H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-          Sign out
-        </div>
-      </div>
+    <div class="user-chip" onclick="openProfile(event)" style="cursor:pointer" title="View profile">
+      ${user.photoURL?`<img src="${user.photoURL}" style="width:24px;height:24px;border-radius:50%;object-fit:cover" referrerpolicy="no-referrer">`:`<div class="user-avatar">${init}</div>`}
+      ${name}
+      <svg viewBox="0 0 10 6" fill="none" width="10" height="6" style="opacity:.5;margin-left:2px"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </div>`;
-  // Update votes display
+  awardXP(2,'Visited AILoom');
   updateVotesDisplay();
 }
-
-function toggleUserDropdown(e){
-  e&&e.stopPropagation();
-  const dd=document.getElementById('user-dropdown');
-  if(dd)dd.classList.toggle('open');
-}
-document.addEventListener('click',()=>{
-  const dd=document.getElementById('user-dropdown');
-  if(dd)dd.classList.remove('open');
-});
 
 function updateVotesDisplay(){
   const vl=getVotesLeft();
@@ -2341,6 +2432,7 @@ async function submitFeedback(){
   if(db){try{await db.collection('feedback').add({...payload,createdAt:firebase.firestore.FieldValue.serverTimestamp()});}catch(e){console.warn(e);}}
   try{const ex=JSON.parse(localStorage.getItem('ailoom_feedback')||'[]');ex.push(payload);localStorage.setItem('ailoom_feedback',JSON.stringify(ex));}catch(e){}
   document.getElementById('fb-form-wrap').style.display='none';document.getElementById('fb-success').style.display='block';
+  awardXP(5,'Sent feedback');
   setTimeout(()=>closeFeedback(),3500);
 }
 
@@ -2680,15 +2772,7 @@ function initVideoBar(){
   },8000);
 }
 
-function updateNavVideoBar(vid){
-  const m=M[vid.modelId];
-  const thumbEl=document.getElementById('nav-video-thumb');
-  const titleEl=document.getElementById('nav-video-title');
-  const metaEl=document.getElementById('nav-video-meta');
-  if(thumbEl)thumbEl.src=vid.thumb;
-  if(titleEl)titleEl.textContent=vid.title;
-  if(metaEl)metaEl.textContent=`${m?.name||''} · ${vid.date}`;
-}
+
 
 function switchNavVideo(idx){
   currentVideoIdx=idx;
@@ -2705,31 +2789,32 @@ function switchNavVideo(idx){
 
 /* ════ WELCOME POPUP ════ */
 const WELCOME_DATA=[
-  {modelId:'gpt',  version:'GPT-5.5',      color:'#34d399',update:'Apr 23 — smartest & most agentic model yet',desc:'GPT-5.5 plans, uses tools, checks its work and keeps going. Built for multi-step professional tasks. Now in ChatGPT Plus/Pro/Business.',vsWin:['Best for agentic long-horizon tasks','50M+ paying subscribers','Voice mode is indistinguishable from human'],vsLose:['Claude Opus 4.7 leads on hardest coding tasks']},
-  {modelId:'claude',version:'Opus 4.7',    color:'#fbbf24',update:'Apr 16 — 13% better coding, 3x better vision',desc:'Opus 4.7 catches its own logical faults before reporting back. Beats ChatGPT 5.4 & Gemini 3.1 Pro. Now the #1 coding AI on GitHub Copilot.',vsWin:['Best coding AI by benchmarks & developers','Catches own mistakes — extremely reliable','1M token context, 128k max output'],vsLose:['No voice mode yet']},
-  {modelId:'gemini',version:'Gemini 2.5 Pro',color:'#60a5fa',update:'Tops every AI leaderboard — now free',desc:'Gemini 2.5 Pro Experimental leads LMSYS Chatbot Arena, WebDev Arena and coding. Veo 3 generates 8-second HD videos from text.',vsWin:['Best AI video generation (Veo 3)','Cheapest capable API of the 5','Tops LMSYS leaderboard'],vsLose:['Claude Opus 4.7 edges it on hardest reasoning tasks']},
-  {modelId:'grok', version:'Grok 4.3 Beta',color:'#c084fc',update:'Apr 17 — video input, slides, PDFs in chat',desc:'Grok 4.3 Beta adds native video understanding, slide & PDF generation. 2M token context. Elon Musk pledged daily improvements. Rolling to $30 tier in May.',vsWin:['Only AI with live X/Twitter post access','2M context — largest Western model','Creates slides & PDFs directly in chat'],vsLose:['No memory across sessions — even at $300/mo']},
-  {modelId:'meta', version:'Llama 4',      color:'#2d8cf0',update:'1B users · open-source beats GPT-4o',    desc:'First AI to hit 1 billion monthly users. Llama 4 Scout has 10M token context and beats GPT-4o. Fully open-weight and free to download.',vsWin:['Completely free on every Meta app','Open-source: run locally for full privacy','10M context in Scout beats GPT-4o on tasks'],vsLose:['GPT-5.5 & Claude Opus 4.7 lead on agentic tasks']},
+  {modelId:'gpt',  version:'GPT-5.5',      color:'#34d399',url:'https://openai.com/index/introducing-gpt-5-5/', update:'Apr 23 — smartest & most agentic model yet',desc:'GPT-5.5 plans, uses tools, checks its work and keeps going. Built for multi-step professional tasks. Now in ChatGPT Plus/Pro/Business.',vsWin:['Best for agentic long-horizon tasks','50M+ paying subscribers','Voice mode is indistinguishable from human'],vsLose:['Claude Opus 4.7 leads on hardest coding tasks']},
+  {modelId:'claude',version:'Opus 4.7',    color:'#fbbf24',url:'https://www.anthropic.com/news/claude-opus-4-7', update:'Apr 16 — 13% better coding, 3x better vision',desc:'Opus 4.7 catches its own logical faults before reporting back. Beats ChatGPT 5.4 & Gemini 3.1 Pro. Now the #1 coding AI on GitHub Copilot.',vsWin:['Best coding AI by benchmarks & developers','Catches own mistakes — extremely reliable','1M token context, 128k max output'],vsLose:['No voice mode yet']},
+  {modelId:'gemini',version:'Gemini 2.5 Pro',color:'#60a5fa',url:'https://blog.google/products/gemini/gemini-2-5-pro-experimental/', update:'Tops every leaderboard — now free',desc:'Gemini 2.5 Pro Experimental leads LMSYS Chatbot Arena, WebDev Arena and coding. Veo 3 generates 8-second HD videos from text.',vsWin:['Best AI video generation (Veo 3)','Cheapest capable API of the 5','Tops LMSYS leaderboard'],vsLose:['Claude Opus 4.7 edges it on hardest reasoning tasks']},
+  {modelId:'grok', version:'Grok 4.3 Beta',color:'#c084fc',url:'https://x.ai/news', update:'Apr 17 — video input, slides, PDFs in chat',desc:'Grok 4.3 Beta adds native video understanding, slide & PDF generation. 2M token context. Elon Musk pledged daily improvements. Rolling to $30 tier in May.',vsWin:['Only AI with live X/Twitter post access','2M context — largest Western model','Creates slides & PDFs directly in chat'],vsLose:['No memory across sessions — even at $300/mo']},
+  {modelId:'meta', version:'Llama 4',      color:'#2d8cf0',url:'https://ai.meta.com/blog/llama-4-multimodal-intelligence/', update:'1B users · open-source beats GPT-4o',desc:'First AI to hit 1 billion monthly users. Llama 4 Scout has 10M token context and beats GPT-4o. Fully open-weight and free to download.',vsWin:['Completely free on every Meta app','Open-source: run locally for full privacy','10M context in Scout beats GPT-4o on tasks'],vsLose:['GPT-5.5 & Claude Opus 4.7 lead on agentic tasks']},
 ];
 function openWelcome(){
   const overlay=document.getElementById('welcome-overlay');
   if(!overlay)return;
   const wpCards=document.getElementById('wp-cards');
   if(wpCards)wpCards.innerHTML=WELCOME_DATA.map(d=>`
-    <div class="wp-card">
+    <a class="wp-card" href="${d.url||M[d.modelId]?.url||'#'}" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit" onclick="event.stopPropagation()">
       <div class="wp-card-head">
         <div class="wp-card-logo">${logoImg(d.modelId,32)}</div>
-        <div>
+        <div style="flex:1">
           <div class="wp-card-name">${M[d.modelId]?.name||d.modelId} <span class="wp-card-version" style="background:${d.color}20;color:${d.color};border:1px solid ${d.color}30">${d.version}</span></div>
           <div class="wp-card-maker" style="color:${d.color};font-weight:700">${d.update}</div>
         </div>
+        <span style="font-size:13px;color:var(--fog)">↗</span>
       </div>
       <div class="wp-card-desc">${d.desc}</div>
       <div class="wp-card-vs">
         ${d.vsWin.map(w=>`<span class="wp-vs-tag win">✓ ${w}</span>`).join('')}
         ${d.vsLose.map(l=>`<span class="wp-vs-tag lose">✗ ${l}</span>`).join('')}
       </div>
-    </div>`).join('');
+    </a>`).join('');
   overlay.classList.add('open');
   // backdrop click
   overlay.onclick=function(e){if(e.target===this)closeWelcome();};
@@ -2797,6 +2882,361 @@ function closeVideoModal(){
 function closeVideoIfBg(e){if(e.target===document.getElementById('video-modal-overlay'))closeVideoModal();}
 
 /* ════ INIT ════ */
+
+/* ════ TAB STATE for expandable Big 5 ════ */
+let expandedTab={gpt:'usecases',claude:'usecases',gemini:'usecases',grok:'usecases',meta:'usecases'};
+function setModelTab(id,tab){
+  expandedTab[id]=tab;
+  // Re-render just the expand content in place
+  renderModels();
+}
+
+/* ════ XP / RANK SYSTEM ════ */
+const XP_KEY='ailoom_xp_v1',XP_LOG_KEY='ailoom_xp_log_v1';
+const RANKS=[
+  {min:0,   title:'Novice Explorer',   color:'#4a5878',gems:1},
+  {min:20,  title:'AI Curious',        color:'#60a5fa',gems:2},
+  {min:60,  title:'Tool Hunter',       color:'#34d399',gems:3},
+  {min:120, title:'AI Enthusiast',     color:'#fbbf24',gems:4},
+  {min:250, title:'Power Voter',       color:'#c084fc',gems:5},
+  {min:450, title:'AI Insider',        color:'#f97316',gems:6},
+  {min:750, title:'Model Expert',      color:'#e11d48',gems:7},
+  {min:1200,title:'AILoom Legend',     color:'#d4a853',gems:8},
+];
+function getXP(){return parseInt(localStorage.getItem(XP_KEY)||'0');}
+function getXPLog(){try{return JSON.parse(localStorage.getItem(XP_LOG_KEY)||'[]');}catch(e){return[];}}
+function getRankInfo(xp){
+  let r=RANKS[0];
+  for(const rank of RANKS){if(xp>=rank.min)r=rank;else break;}
+  return r;
+}
+function getNextRankInfo(xp){
+  for(const rank of RANKS){if(rank.min>xp)return rank;}
+  return null;
+}
+
+function awardXP(pts,reason){
+  if(!currentUser)return;
+  const today=todayStr();
+  const log=getXPLog();
+  // Once-per-day reasons
+  if((reason==='Visited AILoom'||reason==='Used all votes today')&&log.some(l=>l.date===today&&l.reason===reason))return;
+  const cur=getXP();
+  const newXP=cur+pts;
+  localStorage.setItem(XP_KEY,String(newXP));
+  log.push({pts,reason,date:today,total:newXP});
+  localStorage.setItem(XP_LOG_KEY,JSON.stringify(log.slice(-100)));
+  if(db&&currentUser){
+    db.collection('userXP').doc(currentUser.uid).set({
+      uid:currentUser.uid,name:currentUser.displayName||'Anonymous',
+      xp:newXP,updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+    },{merge:true}).catch(()=>{});
+  }
+}
+
+/* Award XP when all 5 votes used */
+function checkAllVotesUsedXP(){
+  if(getVotesLeft()===0)awardXP(5,'Used all votes today');
+}
+
+/* ════ PROFILE POPUP ════ */
+let rankCanvasAF=null,rankSpin=true;
+
+function openProfile(e){
+  e&&e.stopPropagation();
+  if(!currentUser){openModal();return;}
+  // Fill header
+  const u=currentUser;
+  const init=(u.displayName||u.email||'U')[0].toUpperCase();
+  const ppAv=document.getElementById('pp-avatar');
+  if(ppAv){
+    ppAv.innerHTML=u.photoURL
+      ?`<img src="${u.photoURL}" style="width:42px;height:42px;border-radius:50%;object-fit:cover" referrerpolicy="no-referrer">`
+      :init;
+  }
+  const ppN=document.getElementById('pp-name');if(ppN)ppN.textContent=u.displayName||'User';
+  const ppE=document.getElementById('pp-email');if(ppE)ppE.textContent=u.email||'';
+  // XP display
+  const xp=getXP();
+  const rank=getRankInfo(xp);
+  const nextRank=getNextRankInfo(xp);
+  const rtEl=document.getElementById('pp-rank-title');
+  if(rtEl){rtEl.textContent=rank.title;rtEl.style.color=rank.color;}
+  const rsEl=document.getElementById('pp-rank-sub');
+  if(rsEl)rsEl.textContent=xp.toLocaleString()+' XP total'+(nextRank?' · '+((nextRank.min-xp))+' to next rank':'');
+  const barEl=document.getElementById('pp-xp-bar');
+  if(barEl){
+    const pct=nextRank?Math.round(((xp-rank.min)/(nextRank.min-rank.min))*100):100;
+    barEl.style.width=Math.min(100,pct)+'%';
+    barEl.style.background=`linear-gradient(90deg,${rank.color},${nextRank?nextRank.color:rank.color})`;
+  }
+  const lbEl=document.getElementById('pp-xp-label');
+  if(lbEl)lbEl.innerHTML=`<b>${xp.toLocaleString()}</b> XP${nextRank?' · next: '+nextRank.title:''}`;
+  const nxEl=document.getElementById('pp-xp-next');
+  if(nxEl)nxEl.textContent=nextRank?nextRank.min.toLocaleString():'MAX';
+  // Render subsections
+  renderReminders();
+  loadLeaderboard();
+  // 3D canvas
+  if(rankCanvasAF){cancelAnimationFrame(rankCanvasAF);rankCanvasAF=null;}
+  setTimeout(()=>init3DRankCanvas(rank,xp),80);
+  document.getElementById('profile-overlay').classList.add('open');
+}
+function closeProfile(){
+  document.getElementById('profile-overlay').classList.remove('open');
+  if(rankCanvasAF){cancelAnimationFrame(rankCanvasAF);rankCanvasAF=null;}
+}
+function closeProfileIfBg(e){if(e.target===document.getElementById('profile-overlay'))closeProfile();}
+function rankToggleSpin(){rankSpin=!rankSpin;}
+
+/* ════ 3D INTERACTIVE RANK CANVAS ════ */
+function init3DRankCanvas(rank,xp){
+  const canvas=document.getElementById('pp-rank-canvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const dpr=window.devicePixelRatio||1;
+  const W=canvas.offsetWidth||380,H=150;
+  canvas.width=W*dpr;canvas.height=H*dpr;
+  ctx.scale(dpr,dpr);
+  const col=rank.color;
+  const tier=RANKS.indexOf(rank);
+  // Parse color
+  function hexRGB(h){const n=parseInt(h.replace('#',''),16);return{r:(n>>16)&255,g:(n>>8)&255,b:n&255};}
+  const {r,g,b}=hexRGB(col);
+  const cx=W/2,cy=H/2;
+  let angle=0;
+  // Background stars
+  const stars=Array.from({length:50},()=>({x:Math.random()*W,y:Math.random()*H,r:.4+Math.random()*1.6,pulse:Math.random()*Math.PI*2,speed:.02+Math.random()*.04}));
+  // Orbiting particles
+  const orbits=Array.from({length:4+tier},(_,i)=>{
+    const base=28+i*7;
+    return {a:Math.random()*Math.PI*2,dist:base,speed:(i%2===0?.012:-.009)+Math.random()*.006,size:2.5+i,phase:Math.random()*Math.PI*2};
+  });
+  // Burst particles (on open)
+  const burst=Array.from({length:30},()=>{const a=Math.random()*Math.PI*2,sp=1.5+Math.random()*4;return{x:cx,y:cy,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:1,decay:.018+Math.random()*.02,size:1.5+Math.random()*2.5};});
+  let frame=0;
+
+  function drawFrame(){
+    ctx.clearRect(0,0,W,H);
+    // Ambient radial glow
+    const bg=ctx.createRadialGradient(cx,cy,0,cx,cy,80);
+    bg.addColorStop(0,`rgba(${r},${g},${b},.12)`);
+    bg.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+    // Stars
+    stars.forEach(s=>{
+      s.pulse+=s.speed;
+      const a=.25+.25*Math.sin(s.pulse);
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(180,200,255,${a})`;ctx.fill();
+    });
+    // Burst particles (first 90 frames)
+    if(frame<90){
+      burst.forEach(p=>{p.x+=p.vx;p.y+=p.vy*.9;p.vy+=.06;p.life-=p.decay;
+        if(p.life<0)return;
+        ctx.save();ctx.globalAlpha=p.life*p.life;
+        ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+        ctx.fillStyle=col;ctx.fill();ctx.restore();
+      });
+    }
+    if(rankSpin)angle+=.014;
+    // Outer pulsing ring
+    const pulse=.7+.3*Math.sin(frame*.05);
+    ctx.save();
+    ctx.strokeStyle=`rgba(${r},${g},${b},${.25*pulse})`;
+    ctx.lineWidth=12*pulse;ctx.beginPath();ctx.arc(cx,cy,50,0,Math.PI*2);ctx.stroke();
+    ctx.restore();
+    // Spinning arc dashes
+    const numDashes=8+tier*3;
+    for(let i=0;i<numDashes;i++){
+      const a=angle+i*(Math.PI*2/numDashes);
+      const r1=38,r2=48+4*(i%3);
+      const glow=.3+.4*Math.abs(Math.sin(angle*2+i));
+      ctx.save();
+      ctx.strokeStyle=`rgba(${r},${g},${b},${glow})`;
+      ctx.lineWidth=2;ctx.lineCap='round';
+      ctx.beginPath();
+      ctx.moveTo(cx+Math.cos(a)*r1,cy+Math.sin(a)*r1*.65);
+      ctx.lineTo(cx+Math.cos(a)*r2,cy+Math.sin(a)*r2*.65);
+      ctx.stroke();ctx.restore();
+    }
+    // Orbiting orbs
+    orbits.forEach((o,i)=>{
+      o.a+=o.speed;
+      const ox=cx+Math.cos(o.a)*o.dist;
+      const oy=cy+Math.sin(o.a)*o.dist*.6;
+      const og=ctx.createRadialGradient(ox,oy,0,ox,oy,o.size*2.5);
+      og.addColorStop(0,`rgba(${r},${g},${b},.95)`);
+      og.addColorStop(1,'transparent');
+      ctx.fillStyle=og;ctx.beginPath();ctx.arc(ox,oy,o.size*2.5,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle=col;ctx.beginPath();ctx.arc(ox,oy,o.size,0,Math.PI*2);ctx.fill();
+    });
+    // Central gem
+    draw3DGem(ctx,cx,cy,24,col,{r,g,b},angle,tier);
+    frame++;
+    rankCanvasAF=requestAnimationFrame(drawFrame);
+  }
+  rankSpin=true;
+  drawFrame();
+}
+
+function draw3DGem(ctx,cx,cy,size,col,rgb,angle,tier){
+  const {r,g,b}=rgb;
+  const sides=6;
+  ctx.save();
+  ctx.shadowColor=col;ctx.shadowBlur=24;
+  // Bottom face (darker)
+  ctx.beginPath();
+  for(let i=0;i<sides;i++){const a=angle+i*(Math.PI*2/sides);ctx.lineTo(cx+Math.cos(a)*size,cy+Math.sin(a)*size*.62+3);}
+  ctx.closePath();ctx.fillStyle=`rgba(${r},${g},${b},.3)`;ctx.fill();
+  // Top face (gradient)
+  ctx.beginPath();
+  for(let i=0;i<sides;i++){const a=angle+i*(Math.PI*2/sides);ctx.lineTo(cx+Math.cos(a)*size,cy+Math.sin(a)*size*.62);}
+  ctx.closePath();
+  const grd=ctx.createLinearGradient(cx-size,cy-size*.62,cx+size,cy+size*.62);
+  grd.addColorStop(0,'rgba(255,255,255,.35)');
+  grd.addColorStop(.4,`rgba(${r},${g},${b},.95)`);
+  grd.addColorStop(1,`rgba(${r},${g},${b},.55)`);
+  ctx.fillStyle=grd;ctx.fill();
+  // Inner highlight facet
+  ctx.beginPath();
+  for(let i=0;i<sides;i++){const a=angle+i*(Math.PI*2/sides)+.2;ctx.lineTo(cx+Math.cos(a)*size*.45,cy+Math.sin(a)*size*.28);}
+  ctx.closePath();ctx.fillStyle='rgba(255,255,255,.18)';ctx.fill();
+  // Tier number
+  ctx.shadowBlur=0;
+  ctx.font=`900 ${12+tier*1.5}px sans-serif`;
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillStyle='rgba(255,255,255,.95)';
+  ctx.fillText(tier<7?tier+1:'★',cx,cy-1);
+  ctx.restore();
+  // Gem stars below
+  const starCount=Math.min(tier+1,8);
+  const starW=(starCount-1)*14;
+  for(let i=0;i<starCount;i++){
+    ctx.font='10px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillStyle=`rgba(${r},${g},${b},${.4+.6*(i/starCount)})`;
+    ctx.fillText('★',cx-starW/2+i*14,cy+40);
+  }
+}
+
+/* ════ REMINDERS ════ */
+const REMINDER_KEY='ailoom_reminders_v1';
+function getReminders(){try{return JSON.parse(localStorage.getItem(REMINDER_KEY)||'[]');}catch(e){return[];}}
+function saveReminders(arr){try{localStorage.setItem(REMINDER_KEY,JSON.stringify(arr));}catch(e){}}
+
+function addReminder(id,title,date,color){
+  if(!currentUser){openModal();return;}
+  const reminders=getReminders();
+  if(reminders.find(r=>r.id===id)){showToast('Reminder already set!');return;}
+  reminders.push({id,title,date,color,created:Date.now()});
+  saveReminders(reminders);
+  showToast('🔔 Reminder set: '+title);
+  // Mark button
+  document.querySelectorAll(`.bow-remind-btn[data-rem="${id}"]`).forEach(b=>{b.classList.add('set');b.textContent='✓ Reminder set';});
+  // Chrome notification permission
+  if('Notification' in window&&Notification.permission==='default'){
+    Notification.requestPermission().then(p=>{if(p==='granted'){showToast('Notifications enabled!');scheduleNotifications();}});
+  } else if(Notification.permission==='granted')scheduleNotifications();
+  awardXP(1,'Set a reminder');
+}
+function removeReminder(id){
+  saveReminders(getReminders().filter(r=>r.id!==id));
+  renderReminders();
+}
+function renderReminders(){
+  const el=document.getElementById('pp-reminders');if(!el)return;
+  const rems=getReminders();
+  if(!rems.length){el.innerHTML='<div class="pp-rem-empty">No reminders set. Click any "next update" date on Best AI cards.</div>';return;}
+  el.innerHTML=rems.map(r=>`
+    <div class="pp-reminder">
+      <div class="pp-rem-dot" style="background:${r.color||'var(--gold)'}"></div>
+      <div class="pp-rem-body">
+        <div class="pp-rem-title">${r.title}</div>
+        <div class="pp-rem-date">📅 ${r.date} · <span style="color:var(--gold);cursor:pointer" onclick="closeProfile();openCourses()">View calendar</span></div>
+      </div>
+      <button class="pp-rem-del" onclick="removeReminder('${r.id}')">✕</button>
+    </div>`).join('');
+}
+function scheduleNotifications(){
+  if(!('Notification' in window)||Notification.permission!=='granted')return;
+  getReminders().forEach(r=>{
+    const ms=new Date(r.date+'T09:00:00')-Date.now();
+    if(ms>0&&ms<7*24*60*60*1000){
+      setTimeout(()=>{
+        try{new Notification('🤖 AILoom: '+r.title,{body:'Check the latest on ailoom.today',icon:'https://ailoom.today/favicon.ico'});}
+        catch(e){}
+      },ms);
+    }
+  });
+}
+if('Notification' in window&&Notification.permission==='granted')scheduleNotifications();
+
+/* ════ LEADERBOARD ════ */
+async function loadLeaderboard(){
+  const el=document.getElementById('pp-leaderboard');if(!el)return;
+  if(!db){el.innerHTML='<div class="pp-rem-empty">Sign in to see rankings.</div>';return;}
+  el.innerHTML='<div class="pp-rem-empty">Loading…</div>';
+  try{
+    const snap=await db.collection('userXP').orderBy('xp','desc').limit(10).get();
+    const myUid=currentUser?.uid;const myXP=getXP();
+    let html='';let myRank=-1;
+    snap.forEach((doc,i)=>{
+      const d=doc.data();const isMe=doc.id===myUid;if(isMe)myRank=i+1;
+      const rnk=getRankInfo(d.xp||0);
+      const medal=i===0?'🥇':i===1?'🥈':i===2?'🥉':String(i+1);
+      html+=`<div class="pp-lb-row${isMe?' pp-lb-me':''}">
+        <div class="pp-lb-pos">${medal}</div>
+        <div class="pp-lb-name">${d.name||'User'}${isMe?' (you)':''}</div>
+        <div class="pp-lb-rank-badge" style="background:${rnk.color}20;color:${rnk.color}">${rnk.title}</div>
+        <div class="pp-lb-xp">${(d.xp||0).toLocaleString()}</div>
+      </div>`;
+    });
+    if(myRank<0&&currentUser){
+      const myRankData=getRankInfo(myXP);
+      html+=`<div style="border-top:1px dashed var(--rim);margin:6px 0 4px;padding-top:4px;font-size:10px;color:var(--fog);text-align:center">Your position</div>
+      <div class="pp-lb-row pp-lb-me">
+        <div class="pp-lb-pos">–</div>
+        <div class="pp-lb-name">${currentUser.displayName||'You'} (you)</div>
+        <div class="pp-lb-rank-badge" style="background:${myRankData.color}20;color:${myRankData.color}">${myRankData.title}</div>
+        <div class="pp-lb-xp">${myXP.toLocaleString()}</div>
+      </div>`;
+    }
+    el.innerHTML=html||'<div class="pp-rem-empty">No one here yet — be first!</div>';
+  }catch(e){el.innerHTML='<div class="pp-rem-empty">Could not load leaderboard.</div>';}
+}
+
+/* ════ WELCOME COLLAPSE TO BUTTON ════ */
+function collapseWelcome(){
+  document.getElementById('welcome-overlay').classList.remove('open');
+  const btn=document.getElementById('news-nav-btn');
+  if(btn)btn.classList.add('visible');
+  localStorage.setItem('ailoom_welcome_date',todayStr());
+}
+
+/* ════ VIDEO BAR THUMBNAIL FIX ════ */
+function updateNavVideoBar(vid){
+  const m=M[vid.modelId];
+  const el=document.getElementById('nav-video-thumb');
+  if(el){
+    el.style.opacity='0';
+    const tries=[
+      `https://img.youtube.com/vi/${vid.videoId}/hqdefault.jpg`,
+      `https://img.youtube.com/vi/${vid.videoId}/mqdefault.jpg`,
+      `https://img.youtube.com/vi/${vid.videoId}/default.jpg`,
+    ];
+    let attempt=0;
+    function tryNext(){
+      if(attempt>=tries.length)return;
+      el.src=tries[attempt];
+      el.onload=()=>{el.style.opacity='1';};
+      el.onerror=()=>{attempt++;tryNext();};
+    }
+    tryNext();
+  }
+  const t=document.getElementById('nav-video-title');if(t)t.textContent=vid.title;
+  const mt=document.getElementById('nav-video-meta');if(mt)mt.textContent=(m?.name||'')+' · '+vid.date;
+}
+
 renderBOW();
 renderModels();
 renderFilters();
