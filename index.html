@@ -695,10 +695,10 @@ a{color:inherit;text-decoration:none}
 .cal-ep-feat::before{content:'→';color:var(--gold);flex-shrink:0;font-weight:700}
 
 /* ══ MBAR EXPANDABLE (Big 5) ══ */
-.mbar{background:var(--glass);border:1px solid var(--rim);border-radius:16px;padding:16px 20px;display:grid;grid-template-columns:46px 1fr repeat(2,auto);gap:12px;align-items:center;transition:all .25s;cursor:pointer;position:relative;overflow:hidden}
-.mbar:hover{border-color:var(--rim2);background:var(--glass2)}
-.mbar.expanded{border-color:rgba(212,168,83,.35);background:rgba(212,168,83,.04);border-radius:16px 16px 0 0;cursor:default}
-.mbar-expand-content{display:none;background:var(--glass);border:1px solid rgba(212,168,83,.2);border-top:none;border-radius:0 0 16px 16px;padding:18px 20px;margin-bottom:10px;animation:fadeUp .18s ease both}
+.mbar{background:rgba(13,20,36,.7);border:1px solid var(--rim);border-radius:16px;padding:14px 18px;display:grid;grid-template-columns:44px 1fr auto auto auto;gap:10px;align-items:center;transition:all .28s cubic-bezier(.22,1,.36,1);cursor:pointer;position:relative;overflow:hidden;backdrop-filter:blur(12px)}
+.mbar:hover{border-color:var(--rim2);background:rgba(20,28,48,.85);transform:translateX(4px);box-shadow:0 4px 24px rgba(0,0,0,.3)}
+.mbar.expanded{border-radius:16px 16px 0 0;cursor:default;transform:none!important;box-shadow:none!important}
+.mbar-expand-content{display:none;background:rgba(8,14,26,.92);border:1px solid var(--rim2);border-top:none;border-radius:0 0 16px 16px;padding:20px 22px;margin-bottom:10px;animation:fadeUp .2s ease both;backdrop-filter:blur(12px)}
 .mbar-expand-content.open{display:block}
 .mbar-exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .mbar-exp-section{margin-bottom:0}
@@ -718,7 +718,20 @@ a{color:inherit;text-decoration:none}
 .mbar-chevron{font-size:12px;color:var(--fog);transition:transform .25s;flex-shrink:0}
 .mbar.expanded .mbar-chevron{transform:rotate(180deg)}
 
+/* ══ NEWS BUTTON ZOOM APPEAR ANIMATION ══ */
+.news-nav-btn{display:none;align-items:center;gap:6px;font-size:10px;font-weight:800;padding:5px 12px 5px 9px;border-radius:20px;border:1px solid rgba(248,113,113,.5);background:linear-gradient(135deg,rgba(248,113,113,.18),rgba(248,113,113,.06));color:#f87171;cursor:pointer;font-family:var(--fb);white-space:nowrap;position:relative;letter-spacing:.03em;transform:scale(0);opacity:0}
+.news-nav-btn.visible{display:flex;animation:newsBtnAppear .5s cubic-bezier(0.34,1.56,0.64,1) forwards,newsGlow 2.8s ease-in-out 0.55s infinite}
+@keyframes newsBtnAppear{0%{opacity:0;transform:scale(0)}60%{opacity:1;transform:scale(1.14)}100%{opacity:1;transform:scale(1)}}
+@keyframes newsGlow{0%,100%{box-shadow:0 0 6px rgba(248,113,113,.2),0 0 0 1px rgba(248,113,113,.3)}50%{box-shadow:0 0 18px rgba(248,113,113,.55),0 0 0 1px rgba(248,113,113,.6)}}
+.news-nav-btn:hover{transform:scale(1.06)!important;background:linear-gradient(135deg,rgba(248,113,113,.28),rgba(248,113,113,.12));border-color:#f87171}
+.news-nav-dot{width:5px;height:5px;border-radius:50%;background:#f87171;animation:blink 1s infinite;flex-shrink:0}
+.news-badge{position:absolute;top:-5px;right:-6px;width:15px;height:15px;border-radius:50%;background:#f87171;color:#fff;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid var(--night)}
+
 @media(max-width:900px){
+  /* Nav: hide video bar, compress */
+  .nav-video{display:none}
+  .nav-courses-btn{display:none}
+  #news-nav-btn{max-width:120px;font-size:9px;padding:4px 8px}
   .bow-podium{grid-template-columns:1fr 1fr 1fr}
   .bow-lower{grid-template-columns:1fr 1fr}
   .tool-row{grid-template-columns:40px 1fr 70px 45px auto}
@@ -750,6 +763,52 @@ a{color:inherit;text-decoration:none}
   .quiz-options{grid-template-columns:1fr}
   .qr-rec{flex-wrap:wrap;gap:8px}
   .search-results-panel{padding:12px 20px 0}
+}
+@media(max-width:600px){
+  /* Nav mobile */
+  .nav{padding:0 12px;gap:6px;height:56px}
+  .logo-text{font-size:17px}
+  .logo-mark{width:28px;height:28px}
+  .nav-video,.nav-courses-btn,.live-chip,.submit-nav-btn{display:none!important}
+  /* Welcome popup mobile */
+  .welcome-popup{width:95vw;max-height:90vh}
+  .wp-cards{padding:12px 14px}
+  .wp-card{padding:12px}
+  /* BOW mobile */
+  .bow-podium{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .bow-lower{grid-template-columns:1fr 1fr;gap:8px}
+  .bow-card{padding:12px 10px 10px;border-radius:12px}
+  .bow-name{font-size:12px}
+  .bow-score-ring{width:50px;height:50px}
+  /* Models mobile */
+  .mbar{grid-template-columns:36px 1fr auto;gap:8px;padding:12px 14px}
+  .mbar-mid-stats,.mbar-mini-bars{display:none}
+  .mbar-expand-content{padding:14px 14px}
+  .mbar-tabs{gap:4px}
+  .mbar-tab{font-size:9px;padding:5px 10px}
+  .mbar-live-stats{grid-template-columns:1fr 1fr 1fr}
+  .mbar-product-grid{grid-template-columns:1fr 1fr}
+  /* Tools mobile */
+  .tool-row{grid-template-columns:32px 1fr auto auto}
+  .tr-hot,.tr-gr,.tr-cat{display:none}
+  /* Section mobile */
+  .section{padding:32px 16px}
+  .section-title{font-size:clamp(22px,6vw,32px)}
+  .section-sub{font-size:13px}
+  /* Footer mobile */
+  .site-footer{padding:28px 16px 20px}
+  .support-btns{flex-direction:column;align-items:center}
+  /* Profile mobile */
+  .pp-earn-grid{grid-template-columns:1fr 1fr}
+  #pp-leaderboard,.pp-section:last-of-type{grid-column:span 2}
+  /* Video modal mobile */
+  .video-modal{width:100vw;border-radius:0}
+  .vm-tabs{overflow-x:auto;flex-wrap:nowrap}
+  .vm-tab{flex-shrink:0;font-size:10px;padding:5px 9px}
+  /* Feedback button */
+  .menu-bar{bottom:16px;right:14px}
+  .quiz-fab{left:14px;bottom:60px;padding:8px 12px;font-size:12px}
+  .glossary-fab{left:14px;bottom:16px}
 }
 @media(max-width:480px){
   body{font-size:14px}
@@ -843,13 +902,176 @@ a{color:inherit;text-decoration:none}
 .mbar-api-link:hover{border-color:var(--rim3);color:var(--snow)}
 /* ══ FOOTER FIX — remove extra bottom space ══ */
 .site-footer{margin-bottom:0!important;padding-bottom:60px!important}
-body{padding-bottom:0!important}
+html,body{margin:0;padding:0}
 
 .mbar-mid-stats{display:flex;align-items:center;gap:8px;flex-shrink:0;padding:0 4px}
 .mbar-mid-stat{text-align:center}
 .mbar-mid-val{font-family:var(--fh);font-size:14px;font-weight:800;line-height:1.1}
 .mbar-mid-label{font-size:8px;color:var(--fog);text-transform:uppercase;letter-spacing:.05em;margin-top:1px}
 .mbar-mid-divider{width:1px;height:28px;background:var(--rim);flex-shrink:0}
+
+/* ══════════════════════════════════════════════════
+   PROFILE PAGE — Full-screen overlay, all styles
+══════════════════════════════════════════════════ */
+.profile-overlay{
+  position:fixed;inset:0;z-index:1200;
+  background:var(--night);
+  display:flex;flex-direction:column;align-items:stretch;
+  opacity:0;pointer-events:none;
+  transition:opacity .28s ease;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+}
+.profile-overlay.open{opacity:1;pointer-events:all}
+
+/* Nav bar inside profile page */
+.pp-head{
+  position:sticky;top:0;z-index:10;
+  display:flex;align-items:center;gap:12px;
+  padding:14px 24px;
+  background:rgba(8,12,20,.96);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--rim);
+  flex-shrink:0;
+}
+.pp-back-btn{display:flex;align-items:center;gap:5px;background:none;border:none;color:var(--mist);cursor:pointer;font-size:13px;font-weight:600;font-family:var(--fb);padding:0;transition:color .15s}
+.pp-back-btn:hover{color:var(--snow)}
+.pp-head-title{font-family:var(--fh);font-size:17px;font-weight:700;color:var(--snow);flex:1;margin-left:4px}
+.pp-head-actions{display:flex;align-items:center;gap:6px;margin-left:auto}
+.pp-head-btn{display:flex;align-items:center;gap:5px;background:var(--glass2);border:1px solid var(--rim2);color:var(--mist);cursor:pointer;font-size:11px;font-weight:700;font-family:var(--fb);padding:6px 13px;border-radius:20px;transition:all .18s;white-space:nowrap}
+.pp-head-btn:hover{color:var(--snow);border-color:var(--rim3);background:var(--glass3)}
+
+/* Profile popup (the content container) */
+.profile-popup{
+  width:100%;max-width:800px;margin:0 auto;
+  padding-bottom:60px;
+  flex:1;
+}
+
+/* Avatar */
+.pp-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:800;color:var(--night);
+  flex-shrink:0;border:2px solid var(--gold);
+  overflow:hidden;
+}
+.pp-name-wrap{min-width:0}
+.pp-name{font-family:var(--fh);font-size:15px;font-weight:700;color:var(--snow);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pp-email{font-size:10px;color:var(--fog);margin-top:1px}
+
+/* 3D Rank Section */
+.pp-rank-section{
+  background:linear-gradient(160deg,rgba(10,14,24,1) 0%,rgba(18,14,32,1) 100%);
+  border-bottom:1px solid var(--rim);
+  padding:24px;
+  position:relative;overflow:hidden;
+}
+.pp-rank-section::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,168,83,.08),transparent 70%);
+  pointer-events:none;
+}
+.pp-rank-canvas-wrap{
+  width:100%;height:180px;
+  position:relative;cursor:pointer;
+  margin-bottom:14px;border-radius:14px;
+  overflow:hidden;background:rgba(0,0,0,.35);
+}
+#pp-rank-canvas{width:100%;height:180px;display:block}
+.pp-rank-info{text-align:center}
+.pp-rank-title{
+  font-family:var(--fh);font-size:24px;font-weight:900;
+  margin-bottom:4px;letter-spacing:-.02em;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.pp-rank-sub{font-size:12px;color:var(--mist);margin-bottom:12px}
+.pp-xp-bar-bg{height:8px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden;margin-bottom:6px}
+.pp-xp-bar{height:8px;border-radius:4px;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+.pp-xp-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--fog)}
+.pp-xp-labels b{color:var(--gold)}
+
+/* Earn XP grid */
+.pp-earn-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:10px;padding:20px 24px;
+  border-bottom:1px solid var(--rim);
+}
+.pp-earn-tile{
+  background:var(--glass);border:1px solid var(--rim);border-radius:12px;
+  padding:12px 10px;text-align:center;transition:all .18s;
+}
+.pp-earn-tile:hover{border-color:var(--rim2);background:var(--glass2);transform:translateY(-2px)}
+.pp-earn-pts{font-family:var(--fh);font-size:18px;font-weight:900;color:var(--gold);margin-bottom:4px}
+.pp-earn-label{font-size:10px;color:var(--mist);line-height:1.3}
+
+/* Section titles */
+.pp-sec-title{
+  font-size:10px;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:12px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+
+/* Reminders */
+.pp-rem-empty{font-size:12px;color:var(--fog);font-style:italic;padding:8px 0;text-align:center}
+.pp-reminder{
+  display:flex;align-items:center;gap:9px;
+  padding:9px 12px;background:var(--glass);
+  border:1px solid var(--rim);border-radius:10px;margin-bottom:5px;
+}
+.pp-rem-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.pp-rem-body{flex:1;min-width:0}
+.pp-rem-title{font-size:12px;font-weight:600;color:var(--snow);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pp-rem-date{font-size:10px;color:var(--fog);margin-top:2px}
+.pp-rem-del{background:none;border:none;color:var(--fog);cursor:pointer;font-size:13px;padding:2px 5px;border-radius:5px;transition:all .15s}
+.pp-rem-del:hover{color:#f87171;background:rgba(248,113,113,.1)}
+
+/* Leaderboard rows */
+.pp-lb-row{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 14px;background:var(--glass);
+  border:1px solid var(--rim);border-radius:10px;margin-bottom:5px;
+  font-size:12px;transition:border-color .18s;
+}
+.pp-lb-row:hover{border-color:var(--rim2)}
+.pp-lb-pos{font-weight:800;color:var(--fog);width:22px;text-align:center;flex-shrink:0}
+.pp-lb-name{flex:1;color:var(--snow);font-weight:600}
+.pp-lb-rank-badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:10px;flex-shrink:0}
+.pp-lb-xp{color:var(--gold);font-weight:700;flex-shrink:0}
+.pp-lb-me{border-color:rgba(212,168,83,.4)!important;background:rgba(212,168,83,.06)!important}
+
+/* Sign out */
+.pp-signout-btn{
+  padding:9px 20px;border-radius:11px;
+  border:1px solid var(--rim2);background:var(--glass);
+  color:var(--fog);cursor:pointer;font-size:13px;font-weight:700;
+  font-family:var(--fb);transition:all .2s;text-align:center;
+}
+.pp-signout-btn:hover{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3);color:#f87171}
+
+/* Two-column layout for reminders + leaderboard */
+.pp-two-col{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0;border-bottom:1px solid var(--rim);
+}
+.pp-col{padding:18px 24px}
+.pp-col-left{border-right:1px solid var(--rim)}
+
+@media(max-width:600px){
+  .pp-earn-grid{grid-template-columns:1fr 1fr}
+  .pp-two-col{grid-template-columns:1fr}
+  .pp-col-left{border-right:none;border-bottom:1px solid var(--rim)}
+  .pp-rank-canvas-wrap{height:140px}
+  #pp-rank-canvas{height:140px}
+  .pp-head{padding:12px 16px}
+  .pp-rank-section{padding:16px}
+  .pp-earn-grid{padding:14px 16px}
+}
+
 </style>
 </head>
 <body>
@@ -1142,68 +1364,83 @@ body{padding-bottom:0!important}
 <!-- ══ PROFILE POPUP ══ -->
 <div class="profile-overlay" id="profile-overlay">
   <div class="profile-popup">
+
+    <!-- ── STICKY NAV ── -->
     <div class="pp-head">
-      <button onclick="closeProfile()" style="display:flex;align-items:center;gap:5px;background:none;border:none;color:var(--mist);cursor:pointer;font-size:13px;font-weight:600;font-family:var(--fb);padding:0">
+      <button class="pp-back-btn" onclick="closeProfile()">
         <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         Back
       </button>
-      <div class="pp-avatar" id="pp-avatar" style="width:36px;height:36px;font-size:14px">?</div>
+      <div class="pp-avatar" id="pp-avatar">?</div>
       <div class="pp-name-wrap">
         <div class="pp-name" id="pp-name">My Profile</div>
         <div class="pp-email" id="pp-email"></div>
       </div>
-      <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
-        <button onclick="closeProfile();openCourses()" style="display:flex;align-items:center;gap:5px;background:var(--glass2);border:1px solid var(--rim2);color:var(--mist);cursor:pointer;font-size:11px;font-weight:700;font-family:var(--fb);padding:5px 12px;border-radius:20px;transition:all .18s" onmouseover="this.style.color='var(--snow)'" onmouseout="this.style.color='var(--mist)'">
-          📅 Calendar
-        </button>
-        <button onclick="closeProfile();tocNav('sec-bow')" style="display:flex;align-items:center;gap:5px;background:var(--glass2);border:1px solid var(--rim2);color:var(--mist);cursor:pointer;font-size:11px;font-weight:700;font-family:var(--fb);padding:5px 12px;border-radius:20px;transition:all .18s" onmouseover="this.style.color='var(--snow)'" onmouseout="this.style.color='var(--mist)'">
-          🏆 Rankings
-        </button>
+      <div class="pp-head-actions">
+        <button class="pp-head-btn" onclick="closeProfile();openCourses()">📅 Calendar</button>
+        <button class="pp-head-btn" onclick="closeProfile();tocNav('sec-bow')">🏆 Rankings</button>
       </div>
     </div>
 
-    <!-- 3D RANK -->
+    <!-- ── 3D RANK ── -->
     <div class="pp-rank-section">
       <div class="pp-rank-canvas-wrap" title="Tap to toggle spin" onclick="rankToggleSpin()">
         <canvas id="pp-rank-canvas"></canvas>
       </div>
       <div class="pp-rank-info">
         <div class="pp-rank-title" id="pp-rank-title">Novice Explorer</div>
-        <div class="pp-rank-sub" id="pp-rank-sub">0 XP total</div>
-        <div class="pp-xp-bar-bg"><div class="pp-xp-bar" id="pp-xp-bar" style="width:0%"></div></div>
+        <div class="pp-rank-sub" id="pp-rank-sub">0 XP · Start voting to level up!</div>
+        <div class="pp-xp-bar-bg"><div class="pp-xp-bar" id="pp-xp-bar" style="width:0%;background:linear-gradient(90deg,var(--gold),var(--gold2))"></div></div>
         <div class="pp-xp-labels"><span>0</span><span id="pp-xp-label"><b>0</b> XP · next rank at 20</span><span id="pp-xp-next">20</span></div>
       </div>
     </div>
 
-    <!-- HOW TO EARN -->
+    <!-- ── HOW TO EARN ── -->
     <div class="pp-earn-grid">
-      <div class="pp-earn-tile"><div class="pp-earn-pts">+5 XP</div><div class="pp-earn-label">Use all 5 votes</div></div>
-      <div class="pp-earn-tile"><div class="pp-earn-pts">+2 XP</div><div class="pp-earn-label">Visit AILoom</div></div>
-      <div class="pp-earn-tile"><div class="pp-earn-pts">+5 XP</div><div class="pp-earn-label">Send feedback</div></div>
-      <div class="pp-earn-tile"><div class="pp-earn-pts">+3 XP</div><div class="pp-earn-label">Submit a tool</div></div>
+      <div class="pp-earn-tile">
+        <div class="pp-earn-pts">+5 XP</div>
+        <div class="pp-earn-label">Use all 5 votes today</div>
+      </div>
+      <div class="pp-earn-tile">
+        <div class="pp-earn-pts">+2 XP</div>
+        <div class="pp-earn-label">Visit AILoom daily</div>
+      </div>
+      <div class="pp-earn-tile">
+        <div class="pp-earn-pts">+5 XP</div>
+        <div class="pp-earn-label">Send feedback</div>
+      </div>
+      <div class="pp-earn-tile">
+        <div class="pp-earn-pts">+3 XP</div>
+        <div class="pp-earn-label">Submit a tool</div>
+      </div>
     </div>
 
-    <!-- REMINDERS + LEADERBOARD side by side -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--rim)">
-      <div style="padding:16px 24px;border-right:1px solid var(--rim)">
+    <!-- ── REMINDERS + LEADERBOARD ── -->
+    <div class="pp-two-col">
+      <div class="pp-col pp-col-left">
         <div class="pp-sec-title">
           <span>🔔 AI Release Reminders</span>
           <span style="font-size:9px;color:var(--gold);cursor:pointer;font-weight:700" onclick="closeProfile();openCourses()">Calendar →</span>
         </div>
-        <div id="pp-reminders"><div class="pp-rem-empty">No reminders yet. Click a next update date on any Best AI card.</div></div>
+        <div id="pp-reminders">
+          <div class="pp-rem-empty">No reminders yet. Click a next update date on any Best AI card.</div>
+        </div>
       </div>
-      <div style="padding:16px 24px">
+      <div class="pp-col">
         <div class="pp-sec-title">🏆 Community Leaderboard</div>
-        <div id="pp-leaderboard"><div class="pp-rem-empty">Loading…</div></div>
+        <div id="pp-leaderboard">
+          <div class="pp-rem-empty">Sign in to see the leaderboard.</div>
+        </div>
       </div>
     </div>
 
-    <div style="padding:16px 24px">
-      <button class="pp-signout-btn" style="width:auto;margin:0;max-width:200px" onclick="signOutUser();closeProfile()">Sign out</button>
+    <!-- ── SIGN OUT ── -->
+    <div style="padding:20px 24px">
+      <button class="pp-signout-btn" onclick="signOutUser();closeProfile()">Sign out</button>
     </div>
+
   </div>
 </div>
-
 <!-- ══ WELCOME POPUP ══ -->
 <div class="welcome-overlay" id="welcome-overlay">
   <div class="welcome-popup">
@@ -1302,6 +1539,27 @@ body{padding-bottom:0!important}
 <div class="toast" id="toast"></div>
 
 <script>
+const REMINDER_KEY='ailoom_reminders_v1';
+const XP_KEY='ailoom_xp_v1',XP_LOG_KEY='ailoom_xp_log_v1';
+const RANKS=[
+  {min:0,   title:'Novice Explorer',   color:'#4a5878',gems:1},
+  {min:20,  title:'AI Curious',        color:'#60a5fa',gems:2},
+  {min:60,  title:'Tool Hunter',       color:'#34d399',gems:3},
+  {min:120, title:'AI Enthusiast',     color:'#fbbf24',gems:4},
+  {min:250, title:'Power Voter',       color:'#c084fc',gems:5},
+  {min:450, title:'AI Insider',        color:'#f97316',gems:6},
+  {min:750, title:'Model Expert',      color:'#e11d48',gems:7},
+  {min:1200,title:'AILoom Legend',     color:'#d4a853',gems:8},
+];
+const BOW_INSIGHTS={
+  gpt:  {tag:'GPT-5.5 just launched',desc:'Smartest OpenAI model ever — agentic, faster, with zero hand-holding needed',bestFor:'Agentic tasks · Voice · Research',nextUpdate:'May 2026'},
+  claude:{tag:'Claude Opus 4.7',desc:'13% better than Opus 4.6 on hard coding — beats GPT-5.4 on benchmarks',bestFor:'Coding · Long docs · Vision',nextUpdate:'May 2026'},
+  gemini:{tag:'Tops every leaderboard',desc:'Gemini 2.5 Pro leads LMSYS, WebDev Arena and coding — now free',bestFor:'Video · Google apps · Search',nextUpdate:'May 10, 2026'},
+  grok: {tag:'Grok 4.3 Beta',desc:'Native video input, slide gen, 2M context — daily improvements in beta',bestFor:'Breaking news · Video · Real-time X',nextUpdate:'Daily (beta)'},
+  meta: {tag:'1 Billion users',desc:'First AI to hit 1B monthly users. Llama 4 beats GPT-4o open-source.',bestFor:'WhatsApp · Reach · Free access',nextUpdate:'May 5, 2026'},
+};
+
+
 /* ════════════════════════════════════
    LOGO URLS (real favicons via Google)
 ════════════════════════════════════ */
@@ -1540,6 +1798,8 @@ function renderBOW(){
   },100);
 }
 
+function getReminders(){try{return JSON.parse(localStorage.getItem(REMINDER_KEY)||'[]');}catch(e){return[];}}
+
 function bowCardHTML(id,rank){
   const m=M[id];
   const score=calcBowScore(id);
@@ -1574,20 +1834,17 @@ function bowCardHTML(id,rank){
   const reminders=getReminders();
   const hasRem=reminders.some(r=>r.id===remId);
   const extraInfo=`
-    <div style="margin-top:7px;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:9px;border:1px solid rgba(255,255,255,.07)">
+    <div style="margin-top:8px;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:9px;border:1px solid rgba(255,255,255,.07)">
       <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:${m.ac};margin-bottom:3px">${insight.tag||''}</div>
       <div style="font-size:10px;color:var(--mist);line-height:1.4">${insight.desc||''}</div>
     </div>
-    <div style="font-size:9px;color:var(--fog);margin-top:5px">Best for: <span style="color:var(--mist)">${insight.bestFor||''}</span></div>
-    ${nextUpd?`<div style="display:flex;align-items:center;gap:6px;margin-top:7px;flex-wrap:wrap">
-      <div class="bow-next-date" onclick="event.stopPropagation();openCourses()" title="View AI release calendar">
-        <span style="font-size:10px">📅</span>
-        <span>Next: <b style="color:${m.ac}">${nextUpd}</b></span>
-        <span style="color:var(--gold);font-size:9px">↗</span>
-      </div>
-      <button class="bow-remind-btn${hasRem?' set':''}" data-rem="${remId}" onclick="event.stopPropagation();addReminder('${remId}','${m.name} — ${nextUpd}','${nextUpd}','${m.ac}')">
+    <div style="font-size:9px;color:var(--fog);margin-top:5px;text-align:center">Best for: <span style="color:var(--mist)">${insight.bestFor||''}</span></div>
+    ${nextUpd?`<div style="margin-top:10px;padding:8px 10px;background:linear-gradient(135deg,${m.ac}12,${m.ac}06);border-radius:10px;border:1px solid ${m.ac}30;text-align:center">
+      <div style="font-size:9px;font-weight:700;color:var(--fog);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Next Version</div>
+      <div style="font-size:13px;font-weight:800;color:${m.ac};cursor:pointer;margin-bottom:6px" onclick="event.stopPropagation();openCourses()">📅 ${nextUpd} ↗</div>
+      <button class="bow-remind-btn${hasRem?' set':''}" data-rem="${remId}" style="margin:0 auto" onclick="event.stopPropagation();addReminder('${remId}','${m.name} — ${nextUpd}','${nextUpd}','${m.ac}')">
         <span class="rem-icon">${hasRem?'✅':'🔔'}</span>
-        <span>${hasRem?'Set':'Notify me'}</span>
+        <span>${hasRem?'Reminder Set':'🔔 Notify Me'}</span>
       </button>
     </div>`:''}`;
 
@@ -2525,16 +2782,31 @@ async function initFirebase(){
     if(db){loadBowVotesFromFirestore();loadToolVotesFromFirestore();}
   }
 }
+function getXP(){return parseInt(localStorage.getItem(XP_KEY)||'0');}
+
+function getRankInfo(xp){
+  let r=RANKS[0];
+  for(const rank of RANKS){if(xp>=rank.min)r=rank;else break;}
+  return r;
+}
+
+function getXPLog(){try{return JSON.parse(localStorage.getItem(XP_LOG_KEY)||'[]');}catch(e){return[];}}
+
 function setLoggedInUI(user){
   const init=(user.displayName||user.email||'?')[0].toUpperCase();
   const name=user.displayName?user.displayName.split(' ')[0]:'User';
   document.getElementById('auth-area').innerHTML=`
     <button class="submit-nav-btn" onclick="openSubmit()">+ Submit Tool</button>
-    <div class="user-chip" onclick="openProfile(event)" style="cursor:pointer" title="View profile">
-      ${user.photoURL?`<img src="${user.photoURL}" style="width:24px;height:24px;border-radius:50%;object-fit:cover" referrerpolicy="no-referrer">`:`<div class="user-avatar">${init}</div>`}
-      ${name}
-      <svg viewBox="0 0 10 6" fill="none" width="10" height="6" style="opacity:.5;margin-left:2px"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </div>`;
+    <button onclick="openProfile(event)" style="display:flex;align-items:center;gap:7px;background:var(--glass2);border:1px solid var(--rim2);border-radius:22px;padding:4px 12px 4px 5px;cursor:pointer;transition:all .2s;font-family:var(--fb)" onmouseover="this.style.borderColor='var(--gold)';this.style.background='rgba(212,168,83,.08)'" onmouseout="this.style.borderColor='var(--rim2)';this.style.background='var(--glass2)'" title="My Profile & Rank">
+      ${user.photoURL?`<img src="${user.photoURL}" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:1.5px solid var(--rim2)" referrerpolicy="no-referrer">`:`<div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--night)">${init}</div>`}
+      <span style="font-size:12px;font-weight:700;color:var(--snow)">${name}</span>
+      <span style="font-size:9px;color:var(--gold);font-weight:800" id="nav-rank-badge"></span>
+    </button>`;
+  // Show rank badge
+  const navXp=getXP();
+  const navRnk=getRankInfo(navXp);
+  const badge=document.getElementById('nav-rank-badge');
+  if(badge)badge.textContent=navRnk.title;
   awardXP(2,'Visited AILoom');
   updateVotesDisplay();
 }
@@ -2747,13 +3019,7 @@ function toggleMenu(){
 }
 
 /* ════ BOW enhanced render — more info in cards ════ */
-const BOW_INSIGHTS={
-  gpt:  {tag:'GPT-5.5 just launched',desc:'Smartest OpenAI model ever — agentic, faster, with zero hand-holding needed',bestFor:'Agentic tasks · Voice · Research',nextUpdate:'May 2026'},
-  claude:{tag:'Claude Opus 4.7',desc:'13% better than Opus 4.6 on hard coding — beats GPT-5.4 on benchmarks',bestFor:'Coding · Long docs · Vision',nextUpdate:'May 2026'},
-  gemini:{tag:'Tops every leaderboard',desc:'Gemini 2.5 Pro leads LMSYS, WebDev Arena and coding — now free',bestFor:'Video · Google apps · Search',nextUpdate:'May 10, 2026'},
-  grok: {tag:'Grok 4.3 Beta',desc:'Native video input, slide gen, 2M context — daily improvements in beta',bestFor:'Breaking news · Video · Real-time X',nextUpdate:'Daily (beta)'},
-  meta: {tag:'1 Billion users',desc:'First AI to hit 1B monthly users. Llama 4 beats GPT-4o open-source.',bestFor:'WhatsApp · Reach · Free access',nextUpdate:'May 5, 2026'},
-};
+
 
 
 /* ════ RELEASE CALENDAR ════ */
@@ -2861,7 +3127,8 @@ const AI_VIDEOS=[
     videoId:'yyvVUEPSCu0',
     thumb:'https://img.youtube.com/vi/yyvVUEPSCu0/hqdefault.jpg',
     date:'Apr 22, 2026',
-    source:'OpenAI'
+    source:'OpenAI',
+    platform:'youtube'
   },
   {
     modelId:'claude',
@@ -2870,34 +3137,40 @@ const AI_VIDEOS=[
     videoId:'t_LBECIQQqs',
     thumb:'https://img.youtube.com/vi/t_LBECIQQqs/hqdefault.jpg',
     date:'Apr 17, 2026',
-    source:'Anthropic'
+    source:'Anthropic',
+    platform:'youtube'
   },
   {
     modelId:'gemini',
-    title:"Introducing Gemini 2.5 — Google's Most Capable AI",
-    desc:'Google DeepMind officially introduces Gemini 2.5, combining state-of-the-art reasoning with Veo 3 video and Imagen 4 — leading every major benchmark.',
-    videoId:'eHO2RKBIWiQ',
-    thumb:'https://img.youtube.com/vi/eHO2RKBIWiQ/hqdefault.jpg',
+    title:'Introducing Google Gemini — The Most Capable AI',
+    desc:'Google DeepMind officially introduces Gemini with multimodal AI capabilities across text, code, images, audio and video in one unified model.',
+    videoId:'UIZAiXYceBI',
+    thumb:'https://img.youtube.com/vi/UIZAiXYceBI/hqdefault.jpg',
+    tiktokUrl:'https://www.tiktok.com/@googlegemini/video/7626494781144829198',
     date:'Mar 25, 2026',
-    source:'Google DeepMind'
+    source:'Google Gemini',
+    platform:'youtube'
   },
   {
     modelId:'grok',
-    title:'Grok 3 — Live Demo with Elon Musk & xAI Team',
-    desc:"xAI official Grok 3 launch livestream. Elon Musk and the xAI team demonstrate Grok 3 reasoning, Aurora image gen and real-time X integration.",
-    videoId:'iFsRn0Kbbpc',
-    thumb:'https://img.youtube.com/vi/iFsRn0Kbbpc/hqdefault.jpg',
+    title:'Grok 3 — xAI Official Launch & Live Demo',
+    desc:'xAI demonstrates Grok 3 with breakthrough reasoning, Aurora image generation, and real-time X post integration. The most capable AI xAI has built.',
+    videoId:'E_-EjgX40O4',
+    thumb:'https://img.youtube.com/vi/E_-EjgX40O4/hqdefault.jpg',
+    xUrl:'https://x.com/xai/status/2050355373052223585/video/1',
     date:'Feb 18, 2026',
-    source:'xAI'
+    source:'xAI',
+    platform:'youtube'
   },
   {
     modelId:'meta',
-    title:"Introducing Llama 4 — Meta's Most Capable Open Model",
-    desc:'Meta officially introduces Llama 4: Scout with 10M token context and Maverick. Both are open-weight, free to download, and beat GPT-4o on key benchmarks.',
-    videoId:'eRFeNQb6noQ',
-    thumb:'https://img.youtube.com/vi/eRFeNQb6noQ/hqdefault.jpg',
+    title:'Meta AI — Introducing the New Era of Smart AI Assistant',
+    desc:'Meta unveils its new AI assistant powered by Llama, now available across WhatsApp, Instagram, Facebook and Messenger for billions of users worldwide.',
+    videoId:'jjwt-7Iov0k',
+    thumb:'https://img.youtube.com/vi/jjwt-7Iov0k/hqdefault.jpg',
     date:'Apr 5, 2026',
-    source:'Meta'
+    source:'Meta AI',
+    platform:'youtube'
   },
 ];
 
@@ -3059,24 +3332,10 @@ function setModelTab(id,tab){
 }
 
 /* ════ XP / RANK SYSTEM ════ */
-const XP_KEY='ailoom_xp_v1',XP_LOG_KEY='ailoom_xp_log_v1';
-const RANKS=[
-  {min:0,   title:'Novice Explorer',   color:'#4a5878',gems:1},
-  {min:20,  title:'AI Curious',        color:'#60a5fa',gems:2},
-  {min:60,  title:'Tool Hunter',       color:'#34d399',gems:3},
-  {min:120, title:'AI Enthusiast',     color:'#fbbf24',gems:4},
-  {min:250, title:'Power Voter',       color:'#c084fc',gems:5},
-  {min:450, title:'AI Insider',        color:'#f97316',gems:6},
-  {min:750, title:'Model Expert',      color:'#e11d48',gems:7},
-  {min:1200,title:'AILoom Legend',     color:'#d4a853',gems:8},
-];
-function getXP(){return parseInt(localStorage.getItem(XP_KEY)||'0');}
-function getXPLog(){try{return JSON.parse(localStorage.getItem(XP_LOG_KEY)||'[]');}catch(e){return[];}}
-function getRankInfo(xp){
-  let r=RANKS[0];
-  for(const rank of RANKS){if(xp>=rank.min)r=rank;else break;}
-  return r;
-}
+
+
+
+
 function getNextRankInfo(xp){
   for(const rank of RANKS){if(rank.min>xp)return rank;}
   return null;
@@ -3110,8 +3369,11 @@ function checkAllVotesUsedXP(){
 let rankCanvasAF=null,rankSpin=true;
 
 function openProfile(e){
-  e&&e.stopPropagation();
+  if(e){e.stopPropagation();e.preventDefault();}
   if(!currentUser){openModal();return;}
+  // Force update nav rank badge
+  const _xp0=getXP();const _rnk0=getRankInfo(_xp0);
+  const nb=document.getElementById('nav-rank-badge');if(nb)nb.textContent=_rnk0.title;
   // Fill header
   const u=currentUser;
   const init=(u.displayName||u.email||'U')[0].toUpperCase();
@@ -3289,8 +3551,8 @@ function draw3DGem(ctx,cx,cy,size,col,rgb,angle,tier){
 }
 
 /* ════ REMINDERS ════ */
-const REMINDER_KEY='ailoom_reminders_v1';
-function getReminders(){try{return JSON.parse(localStorage.getItem(REMINDER_KEY)||'[]');}catch(e){return[];}}
+
+
 function saveReminders(arr){try{localStorage.setItem(REMINDER_KEY,JSON.stringify(arr));}catch(e){}}
 
 function addReminder(id,title,date,color){
@@ -3374,12 +3636,31 @@ async function loadLeaderboard(){
   }catch(e){el.innerHTML='<div class="pp-rem-empty">Could not load leaderboard.</div>';}
 }
 
-/* ════ WELCOME COLLAPSE TO BUTTON ════ */
+/* ════ WELCOME COLLAPSE TO BUTTON — zoom out transition ════ */
 function collapseWelcome(){
-  document.getElementById('welcome-overlay').classList.remove('open');
+  const overlay=document.getElementById('welcome-overlay');
+  const popup=overlay?.querySelector('.welcome-popup');
   const btn=document.getElementById('news-nav-btn');
-  if(btn)btn.classList.add('visible');
-  localStorage.setItem('ailoom_welcome_date',todayStr());
+  // Show button first (hidden, at scale 0) so we can get its position
+  if(btn){btn.style.display='flex';btn.style.opacity='0';}
+  const btnRect=btn?btn.getBoundingClientRect():null;
+  if(popup&&btnRect){
+    // Animate popup shrinking toward the Live button area
+    popup.style.transition='transform .5s cubic-bezier(0.55,0,1,0.45),opacity .35s ease';
+    popup.style.transformOrigin=`${btnRect.left+btnRect.width/2 - (overlay.offsetWidth/2 - popup.offsetWidth/2)}px ${btnRect.top+btnRect.height/2 - (overlay.offsetHeight/2 - popup.offsetHeight/2)}px`;
+    popup.style.transform='scale(0.04)';
+    popup.style.opacity='0';
+  } else if(overlay){
+    overlay.style.transition='opacity .3s ease';
+    overlay.style.opacity='0';
+  }
+  setTimeout(()=>{
+    overlay.classList.remove('open');
+    if(popup){popup.style.transform='';popup.style.opacity='';popup.style.transition='';}
+    if(overlay){overlay.style.opacity='';overlay.style.transition='';}
+    if(btn){btn.style.opacity='';btn.classList.add('visible');}
+    localStorage.setItem('ailoom_welcome_date',todayStr());
+  },480);
 }
 
 /* ════ VIDEO BAR THUMBNAIL FIX ════ */
