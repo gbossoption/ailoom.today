@@ -842,8 +842,14 @@ a{color:inherit;text-decoration:none}
 .mbar-api-link{font-size:11px;color:var(--mist);text-decoration:none;padding:7px 14px;border:1px solid var(--rim2);border-radius:20px;transition:all .18s}
 .mbar-api-link:hover{border-color:var(--rim3);color:var(--snow)}
 /* ══ FOOTER FIX — remove extra bottom space ══ */
-.site-footer{margin-bottom:0!important;padding-bottom:40px!important}
-body{padding-bottom:0}
+.site-footer{margin-bottom:0!important;padding-bottom:60px!important}
+body{padding-bottom:0!important}
+
+.mbar-mid-stats{display:flex;align-items:center;gap:8px;flex-shrink:0;padding:0 4px}
+.mbar-mid-stat{text-align:center}
+.mbar-mid-val{font-family:var(--fh);font-size:14px;font-weight:800;line-height:1.1}
+.mbar-mid-label{font-size:8px;color:var(--fog);text-transform:uppercase;letter-spacing:.05em;margin-top:1px}
+.mbar-mid-divider{width:1px;height:28px;background:var(--rim);flex-shrink:0}
 </style>
 </head>
 <body>
@@ -1134,15 +1140,26 @@ body{padding-bottom:0}
 </button>
 
 <!-- ══ PROFILE POPUP ══ -->
-<div class="profile-overlay" id="profile-overlay" onclick="closeProfileIfBg(event)">
+<div class="profile-overlay" id="profile-overlay">
   <div class="profile-popup">
     <div class="pp-head">
-      <div class="pp-avatar" id="pp-avatar">?</div>
+      <button onclick="closeProfile()" style="display:flex;align-items:center;gap:5px;background:none;border:none;color:var(--mist);cursor:pointer;font-size:13px;font-weight:600;font-family:var(--fb);padding:0">
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Back
+      </button>
+      <div class="pp-avatar" id="pp-avatar" style="width:36px;height:36px;font-size:14px">?</div>
       <div class="pp-name-wrap">
-        <div class="pp-name" id="pp-name">User</div>
+        <div class="pp-name" id="pp-name">My Profile</div>
         <div class="pp-email" id="pp-email"></div>
       </div>
-      <button class="pp-close" onclick="closeProfile()">✕</button>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+        <button onclick="closeProfile();openCourses()" style="display:flex;align-items:center;gap:5px;background:var(--glass2);border:1px solid var(--rim2);color:var(--mist);cursor:pointer;font-size:11px;font-weight:700;font-family:var(--fb);padding:5px 12px;border-radius:20px;transition:all .18s" onmouseover="this.style.color='var(--snow)'" onmouseout="this.style.color='var(--mist)'">
+          📅 Calendar
+        </button>
+        <button onclick="closeProfile();tocNav('sec-bow')" style="display:flex;align-items:center;gap:5px;background:var(--glass2);border:1px solid var(--rim2);color:var(--mist);cursor:pointer;font-size:11px;font-weight:700;font-family:var(--fb);padding:5px 12px;border-radius:20px;transition:all .18s" onmouseover="this.style.color='var(--snow)'" onmouseout="this.style.color='var(--mist)'">
+          🏆 Rankings
+        </button>
+      </div>
     </div>
 
     <!-- 3D RANK -->
@@ -1166,22 +1183,24 @@ body{padding-bottom:0}
       <div class="pp-earn-tile"><div class="pp-earn-pts">+3 XP</div><div class="pp-earn-label">Submit a tool</div></div>
     </div>
 
-    <!-- REMINDERS -->
-    <div class="pp-section">
-      <div class="pp-sec-title">
-        <span>🔔 AI Release Reminders</span>
-        <span style="font-size:9px;color:var(--fog);cursor:pointer" onclick="closeProfile();openCourses()">View Calendar →</span>
+    <!-- REMINDERS + LEADERBOARD side by side -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--rim)">
+      <div style="padding:16px 24px;border-right:1px solid var(--rim)">
+        <div class="pp-sec-title">
+          <span>🔔 AI Release Reminders</span>
+          <span style="font-size:9px;color:var(--gold);cursor:pointer;font-weight:700" onclick="closeProfile();openCourses()">Calendar →</span>
+        </div>
+        <div id="pp-reminders"><div class="pp-rem-empty">No reminders yet. Click a next update date on any Best AI card.</div></div>
       </div>
-      <div id="pp-reminders"><div class="pp-rem-empty">No reminders yet. Click a next update date on any Best AI card.</div></div>
+      <div style="padding:16px 24px">
+        <div class="pp-sec-title">🏆 Community Leaderboard</div>
+        <div id="pp-leaderboard"><div class="pp-rem-empty">Loading…</div></div>
+      </div>
     </div>
 
-    <!-- COMMUNITY LEADERBOARD -->
-    <div class="pp-section">
-      <div class="pp-sec-title">🏆 Community Leaderboard</div>
-      <div id="pp-leaderboard"><div class="pp-rem-empty">Loading…</div></div>
+    <div style="padding:16px 24px">
+      <button class="pp-signout-btn" style="width:auto;margin:0;max-width:200px" onclick="signOutUser();closeProfile()">Sign out</button>
     </div>
-
-    <button class="pp-signout-btn" onclick="signOutUser();closeProfile()">Sign out</button>
   </div>
 </div>
 
@@ -1555,18 +1574,22 @@ function bowCardHTML(id,rank){
   const reminders=getReminders();
   const hasRem=reminders.some(r=>r.id===remId);
   const extraInfo=`
-    <div style="margin-top:6px;padding:6px 8px;background:rgba(255,255,255,.04);border-radius:7px;border:1px solid rgba(255,255,255,.06)">
-      <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:${m.ac};margin-bottom:2px">${insight.tag||''}</div>
-      <div style="font-size:10px;color:var(--mist);line-height:1.35">${insight.desc||''}</div>
+    <div style="margin-top:7px;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:9px;border:1px solid rgba(255,255,255,.07)">
+      <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:${m.ac};margin-bottom:3px">${insight.tag||''}</div>
+      <div style="font-size:10px;color:var(--mist);line-height:1.4">${insight.desc||''}</div>
     </div>
-    ${nextUpd?`<div class="bow-next-date" onclick="event.stopPropagation();openCourses()" title="View calendar">
-      📅 Next update: <span style="color:${m.ac};font-weight:700">${nextUpd}</span> ↗
-    </div>
-    <button class="bow-remind-btn${hasRem?' set':''}" data-rem="${remId}" onclick="event.stopPropagation();addReminder('${remId}','${m.name} — ${nextUpd}','${nextUpd}','${m.ac}')">
-      <span class="rem-icon">${hasRem?'✅':'🔔'}</span>
-      <span>${hasRem?'Reminder set':'Notify me'}</span>
-    </button>`:''}
-    <div style="font-size:9px;color:var(--fog);margin-top:4px">Best for: <span style="color:var(--mist)">${insight.bestFor||''}</span></div>`;
+    <div style="font-size:9px;color:var(--fog);margin-top:5px">Best for: <span style="color:var(--mist)">${insight.bestFor||''}</span></div>
+    ${nextUpd?`<div style="display:flex;align-items:center;gap:6px;margin-top:7px;flex-wrap:wrap">
+      <div class="bow-next-date" onclick="event.stopPropagation();openCourses()" title="View AI release calendar">
+        <span style="font-size:10px">📅</span>
+        <span>Next: <b style="color:${m.ac}">${nextUpd}</b></span>
+        <span style="color:var(--gold);font-size:9px">↗</span>
+      </div>
+      <button class="bow-remind-btn${hasRem?' set':''}" data-rem="${remId}" onclick="event.stopPropagation();addReminder('${remId}','${m.name} — ${nextUpd}','${nextUpd}','${m.ac}')">
+        <span class="rem-icon">${hasRem?'✅':'🔔'}</span>
+        <span>${hasRem?'Set':'Notify me'}</span>
+      </button>
+    </div>`:''}`;
 
   return `<div class="bow-card rank-${rank}" onclick="openModelPopup('${id}')">
     <div class="bow-glow" style="background:${m.ac}"></div>
@@ -1816,44 +1839,60 @@ function renderModels(){
       `:''}
 
       ${tab==='code'?`
-        <div style="font-size:10px;color:var(--fog);margin-bottom:8px">${det.codeDesc||'Quick start example'}</div>
-        <div class="mbar-code-wrap">
-          <div class="mbar-code-header">
-            <div class="mbar-code-dot" style="background:#f87171"></div>
-            <div class="mbar-code-dot" style="background:#fbbf24"></div>
-            <div class="mbar-code-dot" style="background:#34d399"></div>
-            <span style="font-size:9px;color:var(--fog);margin-left:6px">${det.apiAccess||'example.py'}</span>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="${m.url}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,${m.ac}18,${m.ac}08);border:1px solid ${m.ac}40;border-radius:12px;text-decoration:none;transition:all .2s;group" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px ${m.ac}30'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <div>
+              <div style="font-size:14px;font-weight:800;color:var(--snow);margin-bottom:3px">↗ Start using ${m.name} free</div>
+              <div style="font-size:11px;color:var(--mist)">${m.url.replace('https://','')}</div>
+            </div>
+            <div style="font-size:28px">${logoImg(m.logoKey,32)}</div>
+          </a>
+          <a href="${det.docsUrl||m.url+'/docs'}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:rgba(0,0,0,.3);border:1px solid var(--rim);border-radius:12px;text-decoration:none;transition:all .2s" onmouseover="this.style.borderColor='var(--rim2)'" onmouseout="this.style.borderColor='var(--rim)'">
+            <div>
+              <div style="font-size:13px;font-weight:700;color:var(--mist);margin-bottom:2px">📚 API Documentation</div>
+              <div style="font-size:10px;color:var(--fog)">Model ID: <code style="background:rgba(124,179,252,.12);color:#7dd3fc;padding:1px 5px;border-radius:4px">${det.apiAccess||'—'}</code></div>
+            </div>
+            <span style="color:var(--fog);font-size:18px">→</span>
+          </a>
+          <div style="padding:11px 14px;background:rgba(0,0,0,.4);border:1px solid rgba(124,179,252,.15);border-radius:10px">
+            <div style="font-size:9px;font-weight:700;color:#7dd3fc;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">Quick Start Code</div>
+            <div style="font-family:'Courier New',monospace;font-size:10px;color:#7dd3fc;line-height:1.7;overflow-x:auto;white-space:pre">${(det.codeSnippet||'').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
           </div>
-          <div class="mbar-code-body">${(det.codeSnippet||'# No code sample').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
-        </div>
-        <div class="mbar-try-row">
-          <a href="${m.url}" target="_blank" rel="noopener" class="mbar-try-link">↗ Try ${m.name}</a>
-          <a href="${det.docsUrl||m.url}" target="_blank" rel="noopener" class="mbar-api-link">📚 Full docs</a>
         </div>
       `:''}
     </div>`:'';
 
+    // Product tags for the middle fancy section
+    const topProds=(det.products||[]).slice(0,3);
     return `<div>
     <div class="mbar${isExp?' expanded':''}" id="mbar-${m.id}" onclick="toggleModelExpand('${m.id}',event)">
       <div class="mbar-accent" style="background:${m.ac}"></div>
-      <div class="mbar-logo">${logoImg(m.logoKey,30)}</div>
+      <div class="mbar-logo">${logoImg(m.logoKey,32)}</div>
       <div class="mbar-info">
         <div class="mbar-name">${m.name}</div>
-        <div class="mbar-maker">${m.maker} · #${rank+1} this week</div>
-      </div>
-      <div class="mbar-stat">
-        <div class="mbar-stat-val" style="color:${m.ac}">${m.reachVal}</div>
-        <div class="mbar-stat-label">${m.reachUnit}</div>
-      </div>
-      <div class="mbar-mini-bars">
-        ${popEntries.map(([k,v])=>`<div class="mbar-mini-row"><div class="mbar-mini-label">${k}</div><div class="mbar-mini-track"><div class="mbar-mini-fill" style="width:${v}%;background:${m.ac}"></div></div></div>`).join('')}
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
-        <div style="text-align:center">
-          <div style="font-family:var(--fh);font-size:20px;font-weight:800;color:${m.ac}">${score}</div>
-          <div style="font-size:9px;color:var(--fog);text-transform:uppercase;letter-spacing:.06em">Score</div>
+        <div class="mbar-maker" style="color:${m.ac};opacity:.75">${m.maker}</div>
+        <div style="display:flex;gap:4px;margin-top:5px;flex-wrap:wrap">
+          ${topProds.map(p=>`<span style="display:inline-flex;align-items:center;gap:3px;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;background:${m.ac}18;color:${m.ac};border:1px solid ${m.ac}30">${p.icon} ${p.name}</span>`).join('')}
         </div>
-        <div class="mbar-chevron">${isExp?'▲':'▼'}</div>
+      </div>
+      <div class="mbar-mid-stats">
+        <div class="mbar-mid-stat">
+          <div class="mbar-mid-val" style="color:${m.ac}">${m.reachVal}</div>
+          <div class="mbar-mid-label">${m.reachUnit}</div>
+        </div>
+        <div class="mbar-mid-divider"></div>
+        <div class="mbar-mid-stat">
+          <div class="mbar-mid-val" style="color:${m.ac}">#${rank+1}</div>
+          <div class="mbar-mid-label">This week</div>
+        </div>
+      </div>
+      <div class="mbar-mini-bars" style="min-width:90px">
+        ${popEntries.map(([k,v])=>`<div class="mbar-mini-row"><div class="mbar-mini-label">${k}</div><div class="mbar-mini-track"><div class="mbar-mini-fill" style="width:${v}%;background:${m.ac}"></div></div><span style="font-size:8px;color:var(--fog);min-width:18px;text-align:right">${v}</span></div>`).join('')}
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0">
+        <div style="font-family:var(--fh);font-size:26px;font-weight:900;color:${m.ac};line-height:1">${score}</div>
+        <div style="font-size:8px;color:var(--fog);text-transform:uppercase;letter-spacing:.06em;text-align:center">Score</div>
+        <div class="mbar-chevron" style="font-size:10px;color:var(--fog)">${isExp?'▲':'▼'}</div>
       </div>
     </div>
     ${expandHTML}
@@ -2895,6 +2934,25 @@ function switchNavVideo(idx){
   },8000);
 }
 
+function loadVideoInModal(idx){
+  const vid=AI_VIDEOS[idx];
+  const iframeEl=document.getElementById('vm-iframe');
+  const titleEl=document.getElementById('vm-video-title');
+  const descEl=document.getElementById('vm-video-desc');
+  const metaEl=document.getElementById('vm-video-meta');
+  const m=M[vid.modelId];
+  if(iframeEl)iframeEl.src=`https://www.youtube-nocookie.com/embed/${vid.videoId}?autoplay=1&rel=0&modestbranding=1`;
+  if(titleEl)titleEl.textContent=vid.title;
+  if(descEl)descEl.textContent=vid.desc;
+  if(metaEl)metaEl.innerHTML=`<span style="font-weight:700;color:${m?.ac||'var(--gold)'}">${vid.source||m?.name||''}</span><span style="color:var(--fog)">${vid.date}</span>`;
+  document.querySelectorAll('.vm-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+}
+
+function switchVideoModal(idx){
+  currentVideoIdx=idx;
+  loadVideoInModal(idx);
+  document.querySelectorAll('.vm-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+}
 
 /* ════ WELCOME POPUP ════ */
 const WELCOME_DATA=[
@@ -3106,7 +3164,7 @@ function init3DRankCanvas(rank,xp){
   const ctx=canvas.getContext('2d');
   const dpr=window.devicePixelRatio||1;
   // Force layout reflow so offsetWidth is correct after overlay opens
-  const W=canvas.parentElement?.offsetWidth||canvas.offsetWidth||360,H=150;
+  const W=canvas.parentElement?.offsetWidth||canvas.offsetWidth||700,H=200;
   canvas.width=W*dpr;canvas.height=H*dpr;
   ctx.scale(dpr,dpr);
   const col=rank.color;
