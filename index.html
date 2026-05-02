@@ -542,7 +542,7 @@ a{color:inherit;text-decoration:none}
 .sp-success-sub{font-size:12px;color:var(--mist);line-height:1.5}
 
 /* ══ FOOTER ══ */
-.site-footer{border-top:1px solid var(--rim);padding:44px 44px 36px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;background:rgba(8,12,20,.6)}
+.site-footer{border-top:1px solid var(--rim);padding:44px 44px 80px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;background:rgba(8,12,20,.6)}
 .footer-brand{font-family:var(--fh);font-size:24px;font-weight:700;color:var(--snow)}
 .footer-brand em{font-style:italic;color:var(--gold)}
 .footer-tagline{font-size:13px;color:var(--fog);margin-top:-10px}
@@ -803,6 +803,47 @@ a{color:inherit;text-decoration:none}
   .sp-body{padding:12px 16px 16px}
   .sp-grid{grid-template-columns:1fr}
 }
+
+/* ══ FANCY REMIND BUTTON ══ */
+.bow-remind-btn{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:800;padding:4px 11px;border-radius:20px;border:none;background:linear-gradient(135deg,rgba(212,168,83,.22),rgba(212,168,83,.08));color:var(--gold);cursor:pointer;transition:all .22s;margin-top:5px;font-family:var(--fb);letter-spacing:.04em;position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(212,168,83,.3),0 2px 8px rgba(212,168,83,.1)}
+.bow-remind-btn:hover{box-shadow:0 0 16px rgba(212,168,83,.5),0 0 0 1px rgba(212,168,83,.7);transform:scale(1.06)}
+.bow-remind-btn .rem-icon{animation:bellShake 3.5s ease-in-out infinite}
+@keyframes bellShake{0%,70%,100%{transform:rotate(0)}75%{transform:rotate(-15deg)}80%{transform:rotate(12deg)}85%{transform:rotate(-9deg)}90%{transform:rotate(6deg)}}
+.bow-remind-btn.set{background:linear-gradient(135deg,rgba(52,211,153,.18),rgba(52,211,153,.06));color:#34d399;box-shadow:0 0 0 1px rgba(52,211,153,.4)}
+.bow-remind-btn.set .rem-icon{animation:none}
+.bow-next-date{font-size:9px;cursor:pointer;transition:color .15s;display:flex;align-items:center;gap:3px;margin-top:3px;color:var(--fog)}
+.bow-next-date:hover{color:var(--gold)}
+/* ══ BIG 5 EXPANDED FANCY ══ */
+.mbar-live-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.mbar-live-tile{background:rgba(0,0,0,.35);border:1px solid var(--rim);border-radius:10px;padding:10px 11px;text-align:center;position:relative;overflow:hidden}
+.mbar-live-tile::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:2px;border-radius:2px;background:currentColor;opacity:.4}
+.mbar-live-num{font-family:var(--fh);font-size:17px;font-weight:800;line-height:1.1;margin-bottom:2px}
+.mbar-live-label{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--fog)}
+.mbar-product-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
+.mbar-product-card{background:rgba(0,0,0,.25);border:1px solid var(--rim);border-radius:10px;padding:10px 12px;transition:all .2s}
+.mbar-product-card:hover{border-color:var(--rim2);transform:translateY(-1px)}
+.mbar-product-icon{font-size:18px;margin-bottom:4px}
+.mbar-product-name{font-size:11px;font-weight:700;color:var(--snow);margin-bottom:2px}
+.mbar-product-stat{font-size:10px;color:var(--fog)}
+.mbar-product-stat b{font-weight:700}
+.mbar-bench-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mbar-bench-name{font-size:10px;color:var(--mist);width:130px;flex-shrink:0}
+.mbar-bench-bar{flex:1;height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.mbar-bench-fill{height:5px;border-radius:3px}
+.mbar-bench-score{font-size:10px;font-weight:700;width:30px;text-align:right;color:var(--mist);flex-shrink:0}
+.mbar-bench-medal{font-size:10px;flex-shrink:0}
+.mbar-code-wrap{background:rgba(0,0,0,.55);border:1px solid rgba(124,179,252,.2);border-radius:10px;overflow:hidden;margin-bottom:10px}
+.mbar-code-header{display:flex;align-items:center;gap:6px;padding:8px 12px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.06)}
+.mbar-code-dot{width:8px;height:8px;border-radius:50%}
+.mbar-code-body{padding:12px 14px;font-family:'Courier New',monospace;font-size:10.5px;color:#7dd3fc;line-height:1.7;overflow-x:auto;white-space:pre}
+.mbar-try-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.mbar-try-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:8px 18px;border-radius:22px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--night);text-decoration:none;transition:all .2s;box-shadow:0 3px 12px rgba(212,168,83,.3)}
+.mbar-try-link:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(212,168,83,.4)}
+.mbar-api-link{font-size:11px;color:var(--mist);text-decoration:none;padding:7px 14px;border:1px solid var(--rim2);border-radius:20px;transition:all .18s}
+.mbar-api-link:hover{border-color:var(--rim3);color:var(--snow)}
+/* ══ FOOTER FIX — remove extra bottom space ══ */
+.site-footer{margin-bottom:0!important;padding-bottom:40px!important}
+body{padding-bottom:0}
 </style>
 </head>
 <body>
@@ -939,9 +980,10 @@ a{color:inherit;text-decoration:none}
   <!-- Latest AI video player -->
   <div class="nav-video" id="nav-video">
     <div class="nav-video-player" onclick="openVideoModal()">
-      <div class="nav-video-thumb" id="nav-video-thumb-wrap" style="background:rgba(248,113,113,.15)">
-        <img class="nav-video-thumb-img" id="nav-video-thumb" src="" alt="" style="opacity:0;transition:opacity .3s" onload="this.style.opacity='1'" onerror="this.style.opacity='0'">
-        <div class="nav-video-play-icon">
+      <div class="nav-video-thumb" id="nav-video-thumb-wrap">
+        <div id="nav-video-thumb-bg" style="position:absolute;inset:0;border-radius:5px;opacity:.9"></div>
+        <img class="nav-video-thumb-img" id="nav-video-thumb" src="" alt="" style="opacity:0;transition:opacity .3s;position:relative;z-index:1" onload="this.style.opacity='1'" onerror="this.style.opacity='0'">
+        <div class="nav-video-play-icon" style="z-index:2">
           <svg viewBox="0 0 16 16" fill="white"><path d="M5 3.5l8 4.5-8 4.5V3.5z"/></svg>
         </div>
       </div>
@@ -1521,7 +1563,8 @@ function bowCardHTML(id,rank){
       📅 Next update: <span style="color:${m.ac};font-weight:700">${nextUpd}</span> ↗
     </div>
     <button class="bow-remind-btn${hasRem?' set':''}" data-rem="${remId}" onclick="event.stopPropagation();addReminder('${remId}','${m.name} — ${nextUpd}','${nextUpd}','${m.ac}')">
-      ${hasRem?'✓ Reminder set':'🔔 Remind me'}
+      <span class="rem-icon">${hasRem?'✅':'🔔'}</span>
+      <span>${hasRem?'Reminder set':'Notify me'}</span>
     </button>`:''}
     <div style="font-size:9px;color:var(--fog);margin-top:4px">Best for: <span style="color:var(--mist)">${insight.bestFor||''}</span></div>`;
 
@@ -1566,6 +1609,13 @@ let expandedModel=null;
 const MODEL_DETAIL={
   gpt:{
     highlight:'GPT-5.5 — smartest & most agentic model OpenAI has ever built',
+    liveStats:[{val:'900M+',label:'Weekly Users'},{val:'50M+',label:'Paying Subscribers'},{val:'4M',label:'Codex Users'}],
+    products:[
+      {icon:'🤖',name:'ChatGPT',stat:'<b>900M+</b> weekly users on web & mobile'},
+      {icon:'💻',name:'Codex',stat:'<b>4M</b> devs building with AI agents'},
+      {icon:'🔍',name:'Deep Research',stat:'<b>30+</b> page reports in minutes'},
+      {icon:'🎙️',name:'Voice Mode',stat:'Indistinguishable from a phone call'},
+    ],
     useCaseTitle:'What can you actually do with GPT-5.5?',
     useCases:['Build and deploy full software projects end-to-end with Codex — without writing a line yourself','Create polished presentations, reports and spreadsheets from raw data in seconds','Use Workspace Agents to automate Slack, Google Drive, Salesforce and email workflows','Record voice notes and get instant structured summaries with near-human voice quality','Run Deep Research to produce 30+ page referenced reports from a single prompt'],
     pricingTiers:[{price:'Free',label:'ChatGPT Free',desc:'GPT-5 with usage limits, no GPT-5.5'},{price:'$20/mo',label:'ChatGPT Plus',desc:'GPT-5.5 access, more usage, image gen'},{price:'$100/mo',label:'ChatGPT Pro',desc:'Unlimited GPT-5.5 + 5.5 Pro reasoning'},{price:'$200/mo',label:'ChatGPT Enterprise',desc:'Team admin, SSO, extended context'}],
@@ -1582,6 +1632,13 @@ print(response.choices[0].message.content)`,
   },
   claude:{
     highlight:'Claude Opus 4.7 — catches its own mistakes before reporting back',
+    liveStats:[{val:'19M+',label:'Monthly Users'},{val:'#1',label:'Coding AI 2026'},{val:'1M',label:'Token Context'}],
+    products:[
+      {icon:'💻',name:'Claude Code',stat:'Builds & deploys <b>full apps</b> autonomously'},
+      {icon:'🎨',name:'Claude Design',stat:'Create <b>prototypes & slides</b> in chat'},
+      {icon:'📄',name:'Artifacts',stat:'Live <b>web apps</b> generated in seconds'},
+      {icon:'🤖',name:'Claude Opus 4.7',stat:'<b>13%</b> better than 4.6 on hard tasks'},
+    ],
     useCaseTitle:'Where Claude Opus 4.7 shines vs other models:',
     useCases:['Long-form code reviews across entire repositories — 1M token context handles it all','Refactor complex legacy codebases with Claude Code auto-deploying to Vercel or Netlify','Create beautifully formatted slides, one-pagers and prototypes with Claude Design','Analyse 300-page PDF contracts, research papers or legal documents in seconds','Build multi-step agentic workflows with automatic error detection and self-correction'],
     pricingTiers:[{price:'Free',label:'Claude Free',desc:'Claude Sonnet with usage limits'},{price:'$20/mo',label:'Claude Pro',desc:'Opus 4.7, 5x more usage, Projects'},{price:'$100/mo',label:'Claude Max',desc:'20x usage, priority access to all models'},{price:'API',label:'Claude API',desc:'$5/M input · $25/M output tokens'}],
@@ -1600,6 +1657,13 @@ print(msg.content[0].text)`,
   },
   gemini:{
     highlight:'Gemini 2.5 Pro — leads every benchmark and costs less than all rivals',
+    liveStats:[{val:'750M',label:'Monthly Users'},{val:'#1',label:'LMSYS Leaderboard'},{val:'2M',label:'Token Context'}],
+    products:[
+      {icon:'🎬',name:'Veo 3',stat:'<b>8-second</b> HD videos from text prompts'},
+      {icon:'🔬',name:'NotebookLM',stat:'Turns any doc into a <b>podcast</b>'},
+      {icon:'📧',name:'Gemini in Gmail',stat:'Drafts emails for <b>750M+</b> users'},
+      {icon:'🖼️',name:'Imagen 4',stat:'Photorealistic images, <b>free to use</b>'},
+    ],
     useCaseTitle:'Gemini 2.5 Pro unique capabilities:',
     useCases:['Generate 8-second photorealistic videos from text using Veo 3 — the best AI video tool','Ask questions about YouTube videos, uploaded files, and live web pages simultaneously','Use 2 million token context to analyse entire codebases or years of documents at once','Get AI assistance directly in Gmail, Docs, Sheets, Slides and Google Meet','Build research agents that read and synthesise hundreds of sources automatically'],
     pricingTiers:[{price:'Free',label:'Gemini Free',desc:'Gemini 2.5 Pro access, daily limits'},{price:'$20/mo',label:'Gemini Pro',desc:'Higher limits, Veo 3 video, priority'},{price:'$30/mo',label:'Google One AI',desc:'All Pro features + 2TB Google storage'},{price:'API',label:'Gemini API',desc:'$1.25/M input · $5/M output tokens'}],
@@ -1617,6 +1681,13 @@ print(response.text)`,
   },
   grok:{
     highlight:'Grok 4.3 Beta — only AI with live X feed + 2M token context',
+    liveStats:[{val:'2M',label:'Token Context'},{val:'Daily',label:'4.3 Beta Updates'},{val:'#1',label:'Real-time Speed'}],
+    products:[
+      {icon:'🐦',name:'Grok on X',stat:'Live <b>X post</b> search mid-conversation'},
+      {icon:'📊',name:'Grok 4.3 Beta',stat:'Video input, <b>slides & PDFs</b> in chat'},
+      {icon:'🎨',name:'Aurora Image',stat:'<b>Photorealistic</b> images from text'},
+      {icon:'🔍',name:'DeepSearch',stat:'Web research with <b>full citations</b>'},
+    ],
     useCaseTitle:'What makes Grok 4.3 Beta unique:',
     useCases:['Search and analyse live X posts mid-conversation — no other AI can do this','Generate formatted PDF reports, slide decks and spreadsheets directly in chat','Analyse video files: upload a recording and ask questions about what happens','Use 2M token context to process entire legal contracts or codebases at once','Get breaking news analysis with real-time X data and DeepSearch web citations'],
     pricingTiers:[{price:'$8/mo',label:'X Premium',desc:'Basic Grok access, limited usage'},{price:'$30/mo',label:'SuperGrok',desc:'Full Grok 4 access, higher limits'},{price:'$300/mo',label:'SuperGrok Heavy',desc:'Grok 4.3 Beta early access now'},{price:'API',label:'xAI API',desc:'$2/M input · $6/M output tokens'}],
@@ -1636,6 +1707,13 @@ print(response.choices[0].message.content)`,
   },
   meta:{
     highlight:'Llama 4 — open-source beats GPT-4o and runs privately on your hardware',
+    liveStats:[{val:'1B+',label:'Monthly Users'},{val:'Free',label:'Always & Forever'},{val:'10M',label:'Token Context'}],
+    products:[
+      {icon:'💬',name:'Meta AI on WhatsApp',stat:'AI in <b>3B+</b> WhatsApp conversations'},
+      {icon:'📸',name:'Meta AI on Instagram',stat:'Image gen & <b>story ideas</b> in-app'},
+      {icon:'🦙',name:'Llama 4 Scout',stat:'Open-source, beats <b>GPT-4o</b> on tasks'},
+      {icon:'👓',name:'Ray-Ban AI Glasses',stat:'Real-world <b>AI vision</b> wearable'},
+    ],
     useCaseTitle:'Why 1 billion people use Meta AI:',
     useCases:['Chat with AI directly inside WhatsApp, Instagram, Facebook and Messenger — no new app','Ask Meta AI to generate images inside any Meta app for free, no subscription','Download Llama 4 Scout and run it on your own machine for complete privacy','Use the 10M token context window to process entire books or years of chat history','Build enterprise AI apps on Llama 4 without any API costs or usage limits'],
     pricingTiers:[{price:'Free',label:'Meta AI',desc:'Full access on all Meta apps'},{price:'Free',label:'Llama 4 Download',desc:'Open-weight, run locally or cloud'},{price:'API',label:'Meta API',desc:'Coming soon — inference pricing TBD'},{price:'Cloud',label:'AWS/Azure',desc:'Run Llama 4 on cloud infrastructure'}],
@@ -1684,43 +1762,74 @@ function renderModels(){
     const isExp=expandedModel===m.id;
     const popEntries=Object.entries(pop).slice(0,3);
     const score=calcBowScore(m.id);
-    const tab=expandedTab[m.id]||'usecases';
+    const tab=expandedTab[m.id]||'products';
     const expandHTML=isExp?`
     <div class="mbar-expand-content open" id="mexp-${m.id}">
       <div class="mbar-tabs">
-        <button class="mbar-tab${tab==='usecases'?' active':''}" onclick="event.stopPropagation();setModelTab('${m.id}','usecases')">💡 Use Cases</button>
-        <button class="mbar-tab${tab==='api'?' active':''}" onclick="event.stopPropagation();setModelTab('${m.id}','api')">⚙️ API & Pricing</button>
+        <button class="mbar-tab${tab==='products'?' active':''}" onclick="event.stopPropagation();setModelTab('${m.id}','products')">🚀 Products</button>
         <button class="mbar-tab${tab==='benchmarks'?' active':''}" onclick="event.stopPropagation();setModelTab('${m.id}','benchmarks')">📊 Benchmarks</button>
-        <button class="mbar-tab${tab==='code'?' active':''}" onclick="event.stopPropagation();setModelTab('${m.id}','code')">{'</>'}  Code Sample</button>
+        <button class="mbar-tab${tab==='pricing'?' active':''}" onclick="event.stopPropagation();setModelTab('${m.id}','pricing')">💰 Pricing</button>
+        <button class="mbar-tab${tab==='code'?' active':''}" onclick="event.stopPropagation();setModelTab('${m.id}','code')">&lt;/&gt; Quick Start</button>
       </div>
-      ${tab==='usecases'?`
-        <div style="font-size:12px;font-weight:600;color:${m.ac};margin-bottom:10px">${det.useCaseTitle||det.highlight||''}</div>
-        ${(det.useCases||det.facts||[]).map(u=>`<div class="mbar-use-case">${u}</div>`).join('')}
-        <a href="${m.url}" target="_blank" rel="noopener" class="mbar-try-btn" style="margin-top:12px">↗ Try ${m.name} free</a>
-      `:''}
-      ${tab==='api'?`
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-          ${(det.pricingTiers||[]).map(t=>`<div style="background:var(--glass);border:1px solid var(--rim);border-radius:9px;padding:10px 12px">
-            <div style="font-size:14px;font-weight:800;color:${m.ac}">${t.price}</div>
-            <div style="font-size:11px;font-weight:700;color:var(--snow)">${t.label}</div>
-            <div style="font-size:10px;color:var(--mist);margin-top:3px">${t.desc}</div>
+
+      ${tab==='products'?`
+        <div class="mbar-live-stats">
+          ${(det.liveStats||[]).slice(0,3).map(s=>`<div class="mbar-live-tile" style="color:${m.ac}">
+            <div class="mbar-live-num" style="color:${m.ac}">${s.val}</div>
+            <div class="mbar-live-label">${s.label}</div>
           </div>`).join('')}
         </div>
-        <div style="font-size:10px;color:var(--fog)">Context: <b style="color:var(--mist)">${det.context||'—'}</b> · API: <b style="color:var(--mist)">${det.apiAccess||'Yes'}</b></div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:${m.ac};margin-bottom:8px">Key Products</div>
+        <div class="mbar-product-grid">
+          ${(det.products||[]).map(p=>`<div class="mbar-product-card">
+            <div class="mbar-product-icon">${p.icon}</div>
+            <div class="mbar-product-name">${p.name}</div>
+            <div class="mbar-product-stat">${p.stat}</div>
+          </div>`).join('')}
+        </div>
+        <div class="mbar-try-row">
+          <a href="${m.url}" target="_blank" rel="noopener" class="mbar-try-link">↗ Try ${m.name} free</a>
+          <a href="${det.docsUrl||m.url}" target="_blank" rel="noopener" class="mbar-api-link">📚 API Docs</a>
+        </div>
       `:''}
+
       ${tab==='benchmarks'?`
-        <div style="font-size:10px;color:var(--fog);margin-bottom:10px">Performance vs other models (higher = better)</div>
-        ${(det.benchmarks||[]).map(b=>`<div class="mbar-benchmark-row">
+        <div style="font-size:10px;color:var(--fog);margin-bottom:10px">Live benchmark rankings vs all models (higher = better)</div>
+        ${(det.benchmarks||[]).map(b=>`<div class="mbar-bench-row">
           <div class="mbar-bench-name">${b.name}</div>
-          <div class="mbar-bench-track"><div class="mbar-bench-fill" style="width:${b.v}%;background:${m.ac}"></div></div>
-          <div class="mbar-bench-val">${b.v}%</div>
-          <div class="mbar-bench-rank" style="background:${m.ac}20;color:${m.ac}">${b.rank||''}</div>
+          <div class="mbar-bench-bar"><div class="mbar-bench-fill" style="width:${b.v}%;background:${m.ac}"></div></div>
+          <div class="mbar-bench-score">${b.v}%</div>
+          <div class="mbar-bench-medal">${b.rank||''}</div>
         </div>`).join('')}
+        <div style="font-size:10px;color:var(--fog);margin-top:10px">Source: LMSYS Chatbot Arena, SWE-bench, HumanEval · April 2026</div>
       `:''}
+
+      ${tab==='pricing'?`
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+          ${(det.pricingTiers||[]).map((t,i)=>`<div style="background:${i===1?m.ac+'12':'rgba(0,0,0,.3)'};border:1px solid ${i===1?m.ac+'50':'var(--rim)'};border-radius:10px;padding:11px 13px;${i===1?'grid-column:span 2':''}">
+            <div style="font-size:${i===1?'20':'16'}px;font-weight:900;color:${m.ac}">${t.price}</div>
+            <div style="font-size:11px;font-weight:700;color:var(--snow);margin:3px 0">${t.label}${i===1?' <span style="font-size:9px;background:'+m.ac+'25;color:'+m.ac+';padding:1px 6px;border-radius:8px;margin-left:4px">Recommended</span>':''}</div>
+            <div style="font-size:10px;color:var(--mist)">${t.desc}</div>
+          </div>`).join('')}
+        </div>
+        <div style="font-size:10px;color:var(--fog)">Context: <b style="color:var(--mist)">${det.context||'—'}</b> · Model ID: <code style="background:rgba(124,179,252,.1);color:#7dd3fc;padding:1px 5px;border-radius:4px;font-size:9px">${det.apiAccess||'—'}</code></div>
+      `:''}
+
       ${tab==='code'?`
         <div style="font-size:10px;color:var(--fog);margin-bottom:8px">${det.codeDesc||'Quick start example'}</div>
-        <div class="mbar-code">${det.codeSnippet||'// No code sample yet'}</div>
-        <a href="${det.docsUrl||m.url}" target="_blank" rel="noopener" class="mbar-try-btn" style="margin-top:10px;font-size:10px">📚 Full docs</a>
+        <div class="mbar-code-wrap">
+          <div class="mbar-code-header">
+            <div class="mbar-code-dot" style="background:#f87171"></div>
+            <div class="mbar-code-dot" style="background:#fbbf24"></div>
+            <div class="mbar-code-dot" style="background:#34d399"></div>
+            <span style="font-size:9px;color:var(--fog);margin-left:6px">${det.apiAccess||'example.py'}</span>
+          </div>
+          <div class="mbar-code-body">${(det.codeSnippet||'# No code sample').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+        </div>
+        <div class="mbar-try-row">
+          <a href="${m.url}" target="_blank" rel="noopener" class="mbar-try-link">↗ Try ${m.name}</a>
+          <a href="${det.docsUrl||m.url}" target="_blank" rel="noopener" class="mbar-api-link">📚 Full docs</a>
+        </div>
       `:''}
     </div>`:'';
 
@@ -2979,8 +3088,9 @@ function openProfile(e){
   loadLeaderboard();
   // 3D canvas
   if(rankCanvasAF){cancelAnimationFrame(rankCanvasAF);rankCanvasAF=null;}
-  setTimeout(()=>init3DRankCanvas(rank,xp),80);
+  // Open overlay FIRST so canvas has a rendered size, then init canvas
   document.getElementById('profile-overlay').classList.add('open');
+  setTimeout(()=>init3DRankCanvas(rank,xp),120);
 }
 function closeProfile(){
   document.getElementById('profile-overlay').classList.remove('open');
@@ -2995,7 +3105,8 @@ function init3DRankCanvas(rank,xp){
   if(!canvas)return;
   const ctx=canvas.getContext('2d');
   const dpr=window.devicePixelRatio||1;
-  const W=canvas.offsetWidth||380,H=150;
+  // Force layout reflow so offsetWidth is correct after overlay opens
+  const W=canvas.parentElement?.offsetWidth||canvas.offsetWidth||360,H=150;
   canvas.width=W*dpr;canvas.height=H*dpr;
   ctx.scale(dpr,dpr);
   const col=rank.color;
@@ -3132,7 +3243,7 @@ function addReminder(id,title,date,color){
   saveReminders(reminders);
   showToast('🔔 Reminder set: '+title);
   // Mark button
-  document.querySelectorAll(`.bow-remind-btn[data-rem="${id}"]`).forEach(b=>{b.classList.add('set');b.textContent='✓ Reminder set';});
+  document.querySelectorAll(`.bow-remind-btn[data-rem="${id}"]`).forEach(b=>{b.classList.add('set');b.innerHTML='<span class="rem-icon">✅</span><span>Reminder set</span>';});
   // Chrome notification permission
   if('Notification' in window&&Notification.permission==='default'){
     Notification.requestPermission().then(p=>{if(p==='granted'){showToast('Notifications enabled!');scheduleNotifications();}});
@@ -3216,25 +3327,42 @@ function collapseWelcome(){
 /* ════ VIDEO BAR THUMBNAIL FIX ════ */
 function updateNavVideoBar(vid){
   const m=M[vid.modelId];
+  const ac=m?.ac||'#888';
+  // Always set background color so bar looks great even without thumbnail
+  const bgEl=document.getElementById('nav-video-thumb-bg');
+  if(bgEl)bgEl.style.background=`linear-gradient(135deg,${ac}60,${ac}20)`;
+  const wrap=document.getElementById('nav-video-thumb-wrap');
+  if(wrap)wrap.style.background=ac+'25';
+  // Try thumbnail
   const el=document.getElementById('nav-video-thumb');
   if(el){
     el.style.opacity='0';
-    const tries=[
-      `https://img.youtube.com/vi/${vid.videoId}/hqdefault.jpg`,
-      `https://img.youtube.com/vi/${vid.videoId}/mqdefault.jpg`,
-      `https://img.youtube.com/vi/${vid.videoId}/default.jpg`,
+    // Use YouTube's API to get thumbnail — try multiple sizes
+    const id=vid.videoId;
+    const urls=[
+      `https://img.youtube.com/vi/${id}/mqdefault.jpg`,
+      `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
     ];
     let attempt=0;
-    function tryNext(){
-      if(attempt>=tries.length)return;
-      el.src=tries[attempt];
-      el.onload=()=>{el.style.opacity='1';};
-      el.onerror=()=>{attempt++;tryNext();};
+    function tryLoad(){
+      if(attempt>=urls.length)return; // keep color bg
+      el.src=urls[attempt];
+      el.onload=function(){
+        // YouTube returns a black 120x90 placeholder for invalid IDs — detect it
+        const c=document.createElement('canvas');c.width=1;c.height=1;
+        const cx=c.getContext('2d');cx.drawImage(el,0,0,1,1);
+        const d=cx.getImageData(0,0,1,1).data;
+        if(d[0]<10&&d[1]<10&&d[2]<10){attempt++;tryLoad();} // black = invalid
+        else this.style.opacity='1';
+      };
+      el.onerror=function(){attempt++;tryLoad();};
     }
-    tryNext();
+    tryLoad();
   }
   const t=document.getElementById('nav-video-title');if(t)t.textContent=vid.title;
   const mt=document.getElementById('nav-video-meta');if(mt)mt.textContent=(m?.name||'')+' · '+vid.date;
+  const dot=document.getElementById('nav-video-thumb-bg');
+  if(dot)dot.style.background=`linear-gradient(135deg,${ac}50,transparent)`;
 }
 
 renderBOW();
