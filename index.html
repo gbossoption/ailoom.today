@@ -163,6 +163,110 @@ a{color:inherit;text-decoration:none}
 .courses-hero-title{font-family:var(--fh);font-size:clamp(28px,4vw,44px);font-weight:700;color:var(--snow);margin-bottom:10px}
 .courses-hero-title em{font-style:italic;color:var(--gold)}
 .courses-hero-sub{font-size:15px;color:var(--mist);max-width:500px;margin:0 auto}
+/* ══ ARTIFACTS LIBRARY ══ */
+.art-submit-nav{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:7px 14px;border-radius:20px;border:1px solid rgba(212,168,83,.4);background:rgba(212,168,83,.1);color:var(--gold);cursor:pointer;font-family:var(--fb);transition:all .18s;white-space:nowrap}
+.art-submit-nav:hover{background:var(--gold);color:var(--night)}
+/* home artifacts hero */
+.arth-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.arth-card{background:rgba(13,20,36,.72);border:1px solid var(--rim);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;display:flex;flex-direction:column}
+.arth-card:hover{transform:translateY(-4px);border-color:rgba(212,168,83,.4);box-shadow:0 12px 40px rgba(0,0,0,.45)}
+.arth-preview{position:relative;height:240px;overflow:hidden;background:#fff;border-bottom:1px solid var(--rim)}
+.arth-frame{width:250%;height:600px;border:none;transform:scale(.4);transform-origin:top left;pointer-events:none;background:#fff}
+.arth-card:hover .art-thumb-overlay{background:rgba(8,12,20,.5);opacity:1}
+.arth-card:hover .art-thumb-play{transform:translateY(0)}
+.arth-body{padding:18px}
+.arth-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.arth-title{font-family:var(--fh);font-size:19px;font-weight:700;color:var(--snow);line-height:1.1}
+.arth-desc{font-size:13px;color:var(--mist);line-height:1.5;margin-top:8px}
+.arth-browse-btn{font-size:14px;font-weight:800;padding:13px 28px;border-radius:26px;border:none;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--night);cursor:pointer;font-family:var(--fb);transition:all .2s;box-shadow:0 4px 16px rgba(212,168,83,.32)}
+.arth-browse-btn:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(212,168,83,.5)}
+.arth-submit-btn{font-size:14px;font-weight:700;padding:13px 24px;border-radius:26px;border:1px solid var(--rim2);background:var(--glass2);color:var(--snow);cursor:pointer;font-family:var(--fb);transition:all .2s}
+.arth-submit-btn:hover{border-color:var(--gold);background:rgba(212,168,83,.08);color:var(--gold2)}
+.art-how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+/* profile saved/submissions rows */
+.pp-saved-row{display:flex;align-items:center;gap:10px;padding:9px 11px;background:var(--glass);border:1px solid var(--rim);border-radius:10px;margin-bottom:6px;cursor:pointer;transition:all .15s}
+.pp-saved-row:hover{border-color:var(--rim2);background:var(--glass2)}
+.pp-saved-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;border:1px solid var(--rim)}
+.pp-saved-name{flex:1;font-size:13px;color:var(--snow);font-weight:600;min-width:0}
+.pp-saved-remove{color:var(--fog);font-size:13px;cursor:pointer;padding:2px 6px;border-radius:5px;transition:all .15s}
+.pp-saved-remove:hover{color:#f87171;background:rgba(248,113,113,.12)}
+.pp-sub-status{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:10px;flex-shrink:0}
+.pp-sub-pending{background:rgba(251,191,36,.14);color:#fbbf24;border:1px solid rgba(251,191,36,.3)}
+.pp-sub-live{background:rgba(52,211,153,.14);color:#34d399;border:1px solid rgba(52,211,153,.3)}
+.art-how-step{display:flex;align-items:center;gap:11px;padding:14px 16px;background:var(--glass);border:1px solid var(--rim);border-radius:13px;font-size:13px;color:var(--mist);line-height:1.4}
+.art-how-step b{color:var(--snow);font-weight:700}
+.art-how-num{width:26px;height:26px;flex-shrink:0;border-radius:50%;background:rgba(212,168,83,.15);border:1px solid rgba(212,168,83,.3);color:var(--gold);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+.art-filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px;justify-content:center}
+.art-filt{font-size:12px;font-weight:600;padding:7px 16px;border-radius:20px;border:1px solid var(--rim);background:var(--glass);color:var(--fog);cursor:pointer;transition:all .18s;font-family:var(--fb)}
+.art-filt:hover{color:var(--mist);border-color:var(--rim2);background:var(--glass2)}
+.art-filt.on{background:var(--gold);color:var(--night);border-color:var(--gold);font-weight:700;box-shadow:0 2px 12px rgba(212,168,83,.3)}
+.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:20px;margin-bottom:36px}
+.art-card{background:rgba(13,20,36,.72);border:1px solid var(--rim);border-radius:16px;padding:20px;display:flex;flex-direction:column;transition:transform .2s,border-color .2s,box-shadow .2s;backdrop-filter:blur(12px)}
+.art-card:hover{transform:translateY(-3px);border-color:var(--rim2);box-shadow:0 10px 36px rgba(0,0,0,.4)}
+.art-card-featured{border-color:rgba(212,168,83,.35);background:linear-gradient(180deg,rgba(212,168,83,.05),rgba(13,20,36,.72))}
+.art-thumb{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--rim);margin-bottom:16px;height:300px;background:#fff;cursor:pointer}
+.art-thumb-frame{width:250%;height:750px;border:none;transform:scale(.4);transform-origin:top left;pointer-events:none;background:#fff}
+.art-thumb-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(8,12,20,.0);transition:background .2s;opacity:0}
+.art-thumb:hover .art-thumb-overlay{background:rgba(8,12,20,.55);opacity:1}
+.art-thumb-play{font-size:14px;font-weight:800;color:var(--night);padding:11px 22px;border-radius:24px;box-shadow:0 4px 16px rgba(0,0,0,.4);transform:translateY(6px);transition:transform .2s}
+.art-thumb:hover .art-thumb-play{transform:translateY(0)}
+.art-thumb-badge{position:absolute;top:10px;left:10px;font-size:10px;font-weight:800;color:var(--night);background:linear-gradient(135deg,var(--gold),var(--gold2));padding:4px 10px;border-radius:20px;box-shadow:0 2px 10px rgba(0,0,0,.35);letter-spacing:.03em}
+.art-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.art-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;border:1px solid var(--rim2)}
+.art-cat-pill{font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;letter-spacing:.03em}
+.art-title{font-family:var(--fh);font-size:21px;font-weight:700;color:var(--snow);margin-bottom:8px;line-height:1.15}
+.art-author{display:flex;align-items:center;gap:7px;margin-bottom:12px}
+.art-author-avatar{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--night);flex-shrink:0}
+.art-author-name{font-size:12px;color:var(--mist);font-weight:600}
+.art-featured-pill{font-size:9px;font-weight:800;color:var(--gold);background:rgba(212,168,83,.14);border:1px solid rgba(212,168,83,.3);padding:2px 8px;border-radius:10px;margin-left:2px;letter-spacing:.04em}
+.art-scenario{font-size:12.5px;color:var(--mist);line-height:1.55;margin-bottom:10px;padding:10px 12px;background:rgba(0,0,0,.25);border:1px solid var(--rim);border-radius:10px}
+.art-scenario-label{display:block;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.art-desc{font-size:13px;color:var(--mist);line-height:1.55;margin-bottom:14px;flex:1}
+.art-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.art-tag{font-size:10px;font-weight:600;color:var(--fog);background:var(--glass2);border:1px solid var(--rim);padding:3px 9px;border-radius:8px}
+.art-engage{display:flex;gap:8px;margin-bottom:14px}
+.art-vote,.art-save,.art-share-btn{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:7px 13px;border-radius:20px;border:1px solid var(--rim2);background:var(--glass);color:var(--mist);cursor:pointer;font-family:var(--fb);transition:all .16s;white-space:nowrap}
+.art-vote:hover,.art-save:hover,.art-share-btn:hover{border-color:var(--rim3);color:var(--snow);background:var(--glass2)}
+.art-vote.voted{background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.4);color:#34d399}
+.art-save.saved{background:rgba(212,168,83,.16);border-color:rgba(212,168,83,.45);color:var(--gold2)}
+.art-actions{display:flex;gap:7px;margin-bottom:14px;flex-wrap:wrap}
+.art-btn{font-size:12px;font-weight:700;padding:9px 14px;border-radius:10px;cursor:pointer;font-family:var(--fb);transition:all .18s;border:1px solid transparent;white-space:nowrap}
+.art-btn-primary{color:var(--night);flex:1;box-shadow:0 3px 12px rgba(0,0,0,.3)}
+.art-btn-primary:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.art-btn-ghost{background:var(--glass);border-color:var(--rim2);color:var(--mist)}
+.art-btn-ghost:hover{background:var(--glass2);color:var(--snow);border-color:var(--rim3)}
+.art-foot{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--rim);font-size:11px;color:var(--fog)}
+.art-type{font-weight:700;letter-spacing:.06em;color:var(--mist);background:var(--glass2);padding:2px 8px;border-radius:6px;border:1px solid var(--rim)}
+/* sort bar */
+.art-sortbar{display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:18px;flex-wrap:wrap}
+.art-sort-label{font-size:11px;color:var(--fog);font-weight:600}
+.art-sort-btn{font-size:11px;font-weight:700;padding:5px 13px;border-radius:18px;border:1px solid var(--rim);background:var(--glass);color:var(--fog);cursor:pointer;font-family:var(--fb);transition:all .16s}
+.art-sort-btn:hover{color:var(--mist);border-color:var(--rim2)}
+.art-sort-btn.on{background:var(--glass3);border-color:var(--rim3);color:var(--snow)}
+/* featured hero in library */
+.art-featured-hero{display:grid;grid-template-columns:1.1fr 1fr;gap:0;border:1px solid rgba(212,168,83,.3);border-radius:20px;overflow:hidden;margin-bottom:32px;background:linear-gradient(135deg,rgba(212,168,83,.07),rgba(96,165,250,.04))}
+.art-feat-preview{position:relative;height:340px;overflow:hidden;cursor:pointer;border-right:1px solid var(--rim);background:#fff}
+.art-feat-frame{width:222%;height:756px;border:none;transform:scale(.45);transform-origin:top left;pointer-events:none;background:#fff}
+.art-feat-info{padding:28px;display:flex;flex-direction:column;justify-content:center}
+.art-feat-tag{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.art-feat-title{font-family:var(--fh);font-size:30px;font-weight:700;color:var(--snow);margin-bottom:8px;line-height:1.1}
+.art-feat-desc{font-size:14px;color:var(--mist);line-height:1.6}
+.art-submit-cta{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px 28px;background:linear-gradient(135deg,rgba(212,168,83,.08),rgba(96,165,250,.05));border:1px solid rgba(212,168,83,.2);border-radius:18px;flex-wrap:wrap}
+.art-submit-cta-title{font-family:var(--fh);font-size:20px;font-weight:700;color:var(--snow);margin-bottom:4px}
+.art-submit-cta-sub{font-size:13px;color:var(--mist)}
+.art-submit-cta-btn{font-size:14px;font-weight:800;padding:13px 26px;border-radius:26px;border:none;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--night);cursor:pointer;font-family:var(--fb);transition:all .2s;box-shadow:0 4px 16px rgba(212,168,83,.32);white-space:nowrap}
+.art-submit-cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(212,168,83,.5)}
+/* preview modal */
+.art-preview-overlay{position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .25s}
+.art-preview-overlay.open{opacity:1;pointer-events:all}
+.art-preview-box{background:rgba(13,20,36,.98);border:1px solid var(--rim2);border-radius:18px;width:min(900px,96vw);height:min(680px,90vh);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.7)}
+.art-preview-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--rim);flex-shrink:0}
+.art-preview-title{font-family:var(--fh);font-size:17px;font-weight:700;color:var(--snow)}
+.art-preview-head-actions{display:flex;align-items:center;gap:8px}
+.art-preview-close{background:none;border:none;color:var(--fog);font-size:18px;cursor:pointer;padding:4px 8px;border-radius:6px;transition:color .15s}
+.art-preview-close:hover{color:var(--snow)}
+.art-preview-frame{flex:1;width:100%;border:none;background:#fff}
+.art-preview-note{font-size:11px;color:var(--fog);text-align:center;padding:9px;border-top:1px solid var(--rim);flex-shrink:0}
 .courses-tabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
 .ctab{font-size:12px;font-weight:700;padding:7px 16px;border-radius:20px;border:1px solid var(--rim);background:var(--glass);color:var(--fog);cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:6px}
 .ctab:hover{border-color:var(--rim2);color:var(--mist);background:var(--glass2)}
@@ -763,6 +867,11 @@ a{color:inherit;text-decoration:none}
   .quiz-options{grid-template-columns:1fr}
   .qr-rec{flex-wrap:wrap;gap:8px}
   .search-results-panel{padding:12px 20px 0}
+  .arth-wrap{grid-template-columns:1fr}
+  .art-grid{grid-template-columns:1fr}
+  .art-featured-hero{grid-template-columns:1fr}
+  .art-feat-preview{border-right:none;border-bottom:1px solid var(--rim)}
+  .art-how{grid-template-columns:1fr}
 }
 @media(max-width:600px){
   /* Nav mobile */
@@ -784,10 +893,11 @@ a{color:inherit;text-decoration:none}
   .mbar{grid-template-columns:36px 1fr auto;gap:8px;padding:12px 14px}
   .mbar-mid-stats,.mbar-mini-bars{display:none}
   .mbar-expand-content{padding:14px 14px}
-  .mbar-tabs{gap:4px}
-  .mbar-tab{font-size:9px;padding:5px 10px}
+  .mbar-tabs{gap:4px;padding:4px}
+  .mbar-tab{font-size:10px;padding:7px 6px;gap:3px}
   .mbar-live-stats{grid-template-columns:1fr 1fr 1fr}
   .mbar-product-grid{grid-template-columns:1fr 1fr}
+  .mbar-tips-grid{grid-template-columns:1fr}
   /* Tools mobile */
   .tool-row{grid-template-columns:32px 1fr auto auto}
   .tr-hot,.tr-gr,.tr-cat{display:none}
@@ -895,11 +1005,56 @@ a{color:inherit;text-decoration:none}
 .mbar-code-header{display:flex;align-items:center;gap:6px;padding:8px 12px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.06)}
 .mbar-code-dot{width:8px;height:8px;border-radius:50%}
 .mbar-code-body{padding:12px 14px;font-family:'Courier New',monospace;font-size:10.5px;color:#7dd3fc;line-height:1.7;overflow-x:auto;white-space:pre}
-.mbar-try-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
-.mbar-try-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:8px 18px;border-radius:22px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--night);text-decoration:none;transition:all .2s;box-shadow:0 3px 12px rgba(212,168,83,.3)}
-.mbar-try-link:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(212,168,83,.4)}
-.mbar-api-link{font-size:11px;color:var(--mist);text-decoration:none;padding:7px 14px;border:1px solid var(--rim2);border-radius:20px;transition:all .18s}
-.mbar-api-link:hover{border-color:var(--rim3);color:var(--snow)}
+.mbar-tabs{display:flex;gap:6px;margin-bottom:16px;padding:5px;background:rgba(0,0,0,.35);border:1px solid var(--rim);border-radius:13px;flex-wrap:wrap}
+.mbar-tab{
+  flex:1;min-width:0;
+  display:inline-flex;align-items:center;justify-content:center;gap:5px;
+  font-family:var(--fb);font-size:12px;font-weight:700;
+  padding:9px 12px;border-radius:9px;
+  background:transparent;border:1px solid transparent;
+  color:var(--mist);cursor:pointer;white-space:nowrap;
+  transition:all .18s cubic-bezier(.22,1,.36,1);
+}
+.mbar-tab:hover{color:var(--snow);background:rgba(255,255,255,.05)}
+.mbar-tab.active{background:var(--glass3);border-color:var(--rim2);color:var(--snow);box-shadow:0 2px 10px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06)}
+.mbar-tab.active::after{content:'';position:absolute}
+/* accent underline driven inline by model color via .active state handled in JS-rendered border */
+.mbar-try-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+.mbar-try-link{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:13px;font-weight:800;font-family:var(--fb);
+  padding:11px 22px;border-radius:24px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:var(--night);text-decoration:none;
+  transition:transform .2s,box-shadow .2s;
+  box-shadow:0 4px 16px rgba(212,168,83,.32);
+  position:relative;overflow:hidden;
+}
+.mbar-try-link::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);transition:transform .5s}
+.mbar-try-link:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(212,168,83,.5)}
+.mbar-try-link:hover::before{transform:translateX(120%)}
+.mbar-api-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:700;color:var(--mist);text-decoration:none;
+  padding:11px 18px;border:1px solid var(--rim2);border-radius:24px;
+  background:var(--glass);transition:all .18s;
+}
+.mbar-api-link:hover{border-color:var(--rim3);color:var(--snow);background:var(--glass2);transform:translateY(-1px)}
+/* Enriched products-tab details */
+.mbar-highlight{display:flex;align-items:center;gap:9px;padding:11px 14px;border:1px solid var(--rim2);border-radius:11px;margin-bottom:14px;font-size:13px;font-weight:600;line-height:1.4}
+.mbar-highlight-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.mbar-usecase-list{display:flex;flex-direction:column;gap:6px;margin-bottom:4px}
+.mbar-usecase{display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--mist);line-height:1.5}
+.mbar-usecase-check{font-weight:900;flex-shrink:0;margin-top:1px}
+.mbar-update-list{display:flex;flex-direction:column;gap:5px}
+.mbar-update-row{display:flex;gap:10px;align-items:baseline;font-size:12px;line-height:1.45}
+.mbar-update-date{font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;width:46px;flex-shrink:0}
+.mbar-update-text{color:var(--mist)}
+.mbar-update-tag{font-size:9px;font-weight:700;padding:1px 6px;border-radius:8px;margin-left:2px;vertical-align:middle}
+.mbar-tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.mbar-tip{background:rgba(0,0,0,.28);border:1px solid var(--rim);border-radius:10px;padding:10px 12px}
+.mbar-tip-label{font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.mbar-tip-text{font-size:11px;color:var(--mist);line-height:1.4}
 /* ══ FOOTER FIX — remove extra bottom space ══ */
 .site-footer{margin-bottom:0!important;padding-bottom:60px!important}
 html,body{margin:0;padding:0}
@@ -1205,6 +1360,10 @@ html,body{margin:0;padding:0}
     <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="5" y1="2" x2="5" y2="5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="11" y1="2" x2="11" y2="5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="2" y1="7" x2="14" y2="7" stroke="currentColor" stroke-width="1.2"/></svg>
     AI Calendar
   </button>
+  <button class="nav-courses-btn" onclick="openArtifacts()" style="background:linear-gradient(135deg,rgba(212,168,83,.22),rgba(251,113,133,.15))">
+    <svg viewBox="0 0 16 16" fill="none"><path d="M3 3h10v10H3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M6 6.5l-1.5 1.5L6 9.5M10 6.5L11.5 8 10 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Artifacts
+  </button>
   <!-- Latest AI video player -->
   <div class="nav-video" id="nav-video">
     <div class="nav-video-player" onclick="openVideoModal()">
@@ -1250,6 +1409,18 @@ html,body{margin:0;padding:0}
 <div style="position:relative;z-index:1">
 
 <!-- ══ SEC 1: BEST AI THIS WEEK ══ -->
+<section class="section" id="sec-artifacts-home" style="padding-bottom:30px">
+  <div class="section-eyebrow">New · run real AI tools instantly</div>
+  <h1 class="section-title"><em>Artifacts</em> — AI tools you can use right now</h1>
+  <p class="section-sub">Small, self-contained tools built with AI. Use them live, save to your profile, or download as a file. Submit your own and earn points.</p>
+  <div class="arth-wrap" id="arth-wrap"></div>
+  <div style="text-align:center;margin-top:22px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <button class="arth-browse-btn" onclick="openArtifacts()">Browse all artifacts →</button>
+    <button class="arth-submit-btn" onclick="openArtifactSubmit()">+ Submit yours · earn XP</button>
+  </div>
+</section>
+
+<!-- ══ SEC: BEST AI THIS WEEK ══ -->
 <section class="section" id="sec-bow">
   <div class="section-eyebrow">Community voted · updates live</div>
   <h1 class="section-title">Best <em>AI</em> This Week</h1>
@@ -1315,7 +1486,8 @@ html,body{margin:0;padding:0}
 
 <!-- TOC DOTS -->
 <nav class="toc-dots" id="toc-dots">
-  <div class="toc-dot-btn active" data-label="Best This Week" onclick="tocNav('sec-bow')"></div>
+  <div class="toc-dot-btn active" data-label="Artifacts"     onclick="tocNav('sec-artifacts-home')"></div>
+  <div class="toc-dot-btn" data-label="Best This Week" onclick="tocNav('sec-bow')"></div>
   <div class="toc-dot-btn" data-label="Big 5 Models"    onclick="tocNav('sec-models')"></div>
   <div class="toc-dot-btn" data-label="AI Tools"        onclick="tocNav('sec-tools')"></div>
   <div class="toc-dot-btn" data-label="AI Updates"      onclick="tocNav('sec-news')"></div>
@@ -1412,6 +1584,28 @@ html,body{margin:0;padding:0}
       <div class="pp-earn-tile">
         <div class="pp-earn-pts">+3 XP</div>
         <div class="pp-earn-label">Submit a tool</div>
+      </div>
+    </div>
+
+    <!-- ── SAVED ARTIFACTS + MY SUBMISSIONS ── -->
+    <div class="pp-two-col">
+      <div class="pp-col pp-col-left">
+        <div class="pp-sec-title">
+          <span>📦 My Saved Artifacts</span>
+          <span style="font-size:9px;color:var(--gold);cursor:pointer;font-weight:700" onclick="closeProfile();openArtifacts()">Browse all →</span>
+        </div>
+        <div id="pp-saved-artifacts">
+          <div class="pp-rem-empty">No saved artifacts yet. Tap ☆ Save on any artifact to keep it here.</div>
+        </div>
+      </div>
+      <div class="pp-col">
+        <div class="pp-sec-title">
+          <span>📤 My Submissions</span>
+          <span style="font-size:9px;color:var(--gold);cursor:pointer;font-weight:700" onclick="closeProfile();openArtifactSubmit()">+ Submit · +25 XP</span>
+        </div>
+        <div id="pp-my-submissions">
+          <div class="pp-rem-empty">No submissions yet. Submit an artifact to earn +25 XP.</div>
+        </div>
       </div>
     </div>
 
@@ -1516,6 +1710,103 @@ html,body{margin:0;padding:0}
 </div>
 <!-- Calendar event popup -->
 <div id="cal-event-popup" style="display:none"></div>
+
+<!-- ══ ARTIFACTS LIBRARY OVERLAY ══ -->
+<div class="courses-overlay" id="artifacts-overlay">
+  <div class="courses-nav">
+    <button class="courses-back" onclick="closeArtifacts()">
+      <svg viewBox="0 0 16 16" fill="none" width="16" height="16"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      Back
+    </button>
+    <div class="courses-title">Artifacts Library</div>
+    <button class="art-submit-nav" onclick="openArtifactSubmit()">+ Submit Artifact</button>
+  </div>
+  <div class="courses-body" style="max-width:1100px">
+    <div class="courses-hero">
+      <div class="courses-hero-title">Ready-to-use <em>Artifacts</em></div>
+      <div class="courses-hero-sub">Small, self-contained AI-built tools you can use right here, download as a single file, or drop into your own site. No build step, no sign-up.</div>
+    </div>
+
+    <div class="art-how">
+      <div class="art-how-step"><div class="art-how-num">1</div><div><b>Use it now</b> — runs live in your browser, nothing to install.</div></div>
+      <div class="art-how-step"><div class="art-how-num">2</div><div><b>Save or download</b> — keep it in your profile or as a file.</div></div>
+      <div class="art-how-step"><div class="art-how-num">3</div><div><b>Submit your own</b> — earn <b>+25 XP</b> for every artifact you share.</div></div>
+    </div>
+
+    <div class="art-featured-hero" id="artifact-featured"></div>
+
+    <div class="art-filters" id="artifact-filters"></div>
+    <div class="art-sortbar">
+      <span class="art-sort-label">Sort:</span>
+      <button class="art-sort-btn on" data-sort="featured" onclick="setArtifactSort('featured')">★ Featured</button>
+      <button class="art-sort-btn" data-sort="top" onclick="setArtifactSort('top')">▲ Most upvoted</button>
+      <button class="art-sort-btn" data-sort="used" onclick="setArtifactSort('used')">🔥 Most used</button>
+    </div>
+    <div class="art-grid" id="artifact-grid"></div>
+
+    <div class="art-submit-cta">
+      <div>
+        <div class="art-submit-cta-title">Built something useful?</div>
+        <div class="art-submit-cta-sub">Share your own artifact with the community. Reviewed before it goes live — credit included.</div>
+      </div>
+      <button class="art-submit-cta-btn" onclick="openArtifactSubmit()">+ Submit your artifact</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ARTIFACT PREVIEW MODAL ══ -->
+<div class="art-preview-overlay" id="art-preview-overlay" onclick="closeArtPreviewIfBg(event)">
+  <div class="art-preview-box">
+    <div class="art-preview-head">
+      <div class="art-preview-title" id="art-preview-title">Artifact</div>
+      <div class="art-preview-head-actions">
+        <button class="art-btn art-btn-ghost" id="art-preview-save">☆ Save</button>
+        <button class="art-btn art-btn-ghost" id="art-preview-dl">⤓ Download</button>
+        <button class="art-btn art-btn-ghost" id="art-preview-copy">⧉ Copy</button>
+        <button class="art-preview-close" onclick="closeArtifactPreview()">✕</button>
+      </div>
+    </div>
+    <iframe class="art-preview-frame" id="art-preview-frame" sandbox="allow-scripts allow-same-origin allow-modals allow-popups" title="Artifact preview"></iframe>
+    <div class="art-preview-note">Running in a sandbox. Download or copy to use it on your own site.</div>
+  </div>
+</div>
+
+<!-- ══ ARTIFACT SUBMIT OVERLAY ══ -->
+<div class="submit-overlay" id="artifact-submit-overlay" onclick="closeArtSubmitIfBg(event)">
+  <div class="submit-popup">
+    <div class="sp-head">
+      <div>
+        <div class="sp-title">Submit Your <em>Artifact</em></div>
+        <div class="sp-sub">Share a self-contained HTML tool. Reviewed before going live.</div>
+      </div>
+      <button class="sp-close" onclick="closeArtifactSubmit()">✕</button>
+    </div>
+    <div class="sp-body">
+      <div id="as-form-wrap">
+        <span class="sp-free-badge">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#34d399" stroke-width="1.5"/><path d="M4 6l1.5 1.5L8 4" stroke="#34d399" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Earn +25 XP · credited to your profile on publish
+        </span>
+        <div class="sp-grid">
+          <div class="sp-row"><label class="sp-label">Title *</label><input class="sp-input" id="as-title" placeholder="e.g. Habit Tracker"></div>
+          <div class="sp-row"><label class="sp-label">Category</label>
+            <select class="sp-select" id="as-cat"><option>Productivity</option><option>Marketing</option><option>Developer</option><option>Data &amp; Charts</option><option>Design</option><option>Personal</option><option>Other</option></select>
+          </div>
+        </div>
+        <div class="sp-row"><label class="sp-label">Contact email <span style="color:var(--fog);font-weight:400">(optional — uses your account)</span></label><input class="sp-input" id="as-email" type="email" placeholder="you@email.com"></div>
+        <div class="sp-row"><label class="sp-label">When would someone use it?</label><input class="sp-input" id="as-scenario" placeholder="e.g. Tracking daily habits without an app"></div>
+        <div class="sp-row"><label class="sp-label">Artifact code (single HTML file) *</label><textarea class="sp-textarea" id="as-code" placeholder="Paste your self-contained HTML/CSS/JS here…" style="min-height:130px;font-family:monospace;font-size:12px"></textarea></div>
+        <button class="sp-submit" onclick="submitArtifact()">Submit & Earn +25 XP →</button>
+      </div>
+      <div class="sp-success" id="as-success" style="display:none">
+        <div class="sp-success-icon">🎉</div>
+        <div class="sp-success-title">Artifact Received!</div>
+        <div class="sp-success-sub">We'll review it within 48 hours and credit you when it goes live.</div>
+        <div id="as-xp-note" style="margin-top:12px;font-size:13px;font-weight:800;color:var(--gold)"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ══ MENU BAR (replaces feedback FAB) ══ -->
 <div class="menu-bar" id="menu-bar">
@@ -2044,13 +2335,17 @@ function renderModels(){
     const expandHTML=isExp?`
     <div class="mbar-expand-content open" id="mexp-${m.id}">
       <div class="mbar-tabs">
-        <button class="mbar-tab${tab==='products'?' active':''}" onclick="event.stopPropagation();setModelTab('${m.id}','products')">🚀 Products</button>
-        <button class="mbar-tab${tab==='benchmarks'?' active':''}" onclick="event.stopPropagation();setModelTab('${m.id}','benchmarks')">📊 Benchmarks</button>
-        <button class="mbar-tab${tab==='pricing'?' active':''}" onclick="event.stopPropagation();setModelTab('${m.id}','pricing')">💰 Pricing</button>
-        <button class="mbar-tab${tab==='code'?' active':''}" onclick="event.stopPropagation();setModelTab('${m.id}','code')">&lt;/&gt; Quick Start</button>
+        <button class="mbar-tab${tab==='products'?' active':''}" ${tab==='products'?`style="border-color:${m.ac}55;color:${m.ac}"`:''} onclick="event.stopPropagation();setModelTab('${m.id}','products')">🚀 Products</button>
+        <button class="mbar-tab${tab==='benchmarks'?' active':''}" ${tab==='benchmarks'?`style="border-color:${m.ac}55;color:${m.ac}"`:''} onclick="event.stopPropagation();setModelTab('${m.id}','benchmarks')">📊 Benchmarks</button>
+        <button class="mbar-tab${tab==='pricing'?' active':''}" ${tab==='pricing'?`style="border-color:${m.ac}55;color:${m.ac}"`:''} onclick="event.stopPropagation();setModelTab('${m.id}','pricing')">💰 Pricing</button>
+        <button class="mbar-tab${tab==='code'?' active':''}" ${tab==='code'?`style="border-color:${m.ac}55;color:${m.ac}"`:''} onclick="event.stopPropagation();setModelTab('${m.id}','code')">&lt;/&gt; Quick Start</button>
       </div>
 
       ${tab==='products'?`
+        ${det.highlight?`<div class="mbar-highlight" style="border-color:${m.ac}40;background:linear-gradient(135deg,${m.ac}14,transparent)">
+          <span class="mbar-highlight-dot" style="background:${m.ac};box-shadow:0 0 8px ${m.ac}"></span>
+          <span style="color:var(--snow)">${det.highlight}</span>
+        </div>`:''}
         <div class="mbar-live-stats">
           ${(det.liveStats||[]).slice(0,3).map(s=>`<div class="mbar-live-tile" style="color:${m.ac}">
             <div class="mbar-live-num" style="color:${m.ac}">${s.val}</div>
@@ -2065,6 +2360,26 @@ function renderModels(){
             <div class="mbar-product-stat">${p.stat}</div>
           </div>`).join('')}
         </div>
+        ${(det.useCases&&det.useCases.length)?`
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:${m.ac};margin:14px 0 8px">${det.useCaseTitle||'What you can do with it'}</div>
+          <div class="mbar-usecase-list">
+            ${det.useCases.slice(0,5).map(u=>`<div class="mbar-usecase"><span class="mbar-usecase-check" style="color:${m.ac}">▸</span><span>${u}</span></div>`).join('')}
+          </div>
+        `:''}
+        ${(m.updates&&m.updates.length)?`
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:${m.ac};margin:14px 0 8px">Latest updates</div>
+          <div class="mbar-update-list">
+            ${m.updates.slice(0,4).map((u,i)=>`<div class="mbar-update-row">
+              <span class="mbar-update-date" style="color:${i===0?m.ac:'var(--fog)'}">${u.d}</span>
+              <span class="mbar-update-text">${u.t}${u.tag?` <span class="mbar-update-tag" style="background:${m.ac}1e;color:${m.ac}">${u.tag}</span>`:''}</span>
+            </div>`).join('')}
+          </div>
+        `:''}
+        ${(m.tips&&m.tips.length)?`
+          <div class="mbar-tips-grid">
+            ${m.tips.slice(0,4).map(t=>`<div class="mbar-tip"><div class="mbar-tip-label" style="color:${m.ac}">${t.l}</div><div class="mbar-tip-text">${t.t}</div></div>`).join('')}
+          </div>
+        `:''}
         <div class="mbar-try-row">
           <a href="${m.url}" target="_blank" rel="noopener" class="mbar-try-link">↗ Try ${m.name} free</a>
           <a href="${det.docsUrl||m.url}" target="_blank" rel="noopener" class="mbar-api-link">📚 API Docs</a>
@@ -2715,7 +3030,7 @@ async function submitTool(){
 }
 
 /* ════ TOC ════ */
-const TOC_SECTIONS=['sec-bow','sec-models','sec-tools','sec-news'];
+const TOC_SECTIONS=['sec-artifacts-home','sec-bow','sec-models','sec-tools','sec-news'];
 function setTocActive(id){document.querySelectorAll('.toc-dot-btn').forEach((d,i)=>d.classList.toggle('active',TOC_SECTIONS[i]===id));}
 window.addEventListener('scroll',()=>{let active=null;const th=window.innerHeight*.45+60;TOC_SECTIONS.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=th)active=id;});if(active)setTocActive(active);},{passive:true});
 function tocNav(id){const el=document.getElementById(id);if(!el)return;window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-65,behavior:'smooth'});}
@@ -2770,6 +3085,7 @@ async function initFirebase(){
       else setLoggedOutUI();
       buildList(curCat);
       updateTotalVotes();
+      if(user)loadSavedArtifactsFromFirestore();
     });
     // Load shared vote counts from Firestore on startup
     loadBowVotesFromFirestore();
@@ -3036,6 +3352,608 @@ const MODEL_NAMES={gpt:'ChatGPT',claude:'Claude',gemini:'Gemini',grok:'Grok',met
 let calYear=2026,calMonth=5; // 0-indexed: 5=June
 function openCourses(){document.getElementById('courses-overlay').classList.add('open');renderCalendar();}
 function closeCourses(){document.getElementById('courses-overlay').classList.remove('open');closeCalEventPopup();}
+
+/* ════════════════════════════════════
+   ARTIFACTS LIBRARY — downloadable, copy & use
+════════════════════════════════════ */
+const ARTIFACT_CATS=['all','productivity','marketing','developer','data','design','personal'];
+const ARTIFACT_CAT_LABELS={all:'All',productivity:'Productivity',marketing:'Marketing',developer:'Developer',data:'Data & Charts',design:'Design',personal:'Personal'};
+const ARTIFACTS=[
+  {
+    id:'invoice-generator',title:'Invoice Generator',cat:'productivity',catLabel:'Productivity',icon:'🧾',accent:'#34d399',
+    scenario:'You freelance and need to send a clean, professional invoice in seconds — no Word templates, no math errors.',
+    desc:'A self-contained invoice builder. Add line items, set tax and currency, and the totals calculate live. Print or save to PDF straight from the browser.',
+    tags:['HTML','Print-ready','No build step'],type:'html',uses:1240,author:'Wentao',authorHandle:'wentao',votes:68,featured:true,
+    embed:`<!doctype html><meta charset=utf-8><title>Invoice</title>
+<style>body{font-family:system-ui,sans-serif;max-width:680px;margin:30px auto;color:#111}
+h1{font-size:28px}table{width:100%;border-collapse:collapse;margin:18px 0}
+th,td{border-bottom:1px solid #ddd;padding:8px;text-align:left}td:last-child,th:last-child{text-align:right}
+input{border:1px solid #ccc;padding:6px;border-radius:6px;width:100%}
+.tot{font-size:20px;font-weight:700;text-align:right;margin-top:12px}
+button{background:#111;color:#fff;border:0;padding:10px 18px;border-radius:8px;cursor:pointer}</style>
+<h1>Invoice</h1>
+<p>Bill to: <input id=client placeholder="Client name" style="max-width:240px"></p>
+<table id=t><tr><th>Item</th><th>Qty</th><th>Price</th><th>Total</th></tr></table>
+<button onclick=addRow()>+ Add line</button>
+<p>Tax %: <input id=tax type=number value=0 style="max-width:80px" oninput=calc()></p>
+<div class=tot id=grand>Total: $0.00</div>
+<button onclick=window.print()>Print / Save PDF</button>
+<script>
+function addRow(){const r=document.getElementById('t').insertRow(-1);
+r.innerHTML='<td><input placeholder="Description"></td><td><input type=number value=1 oninput=calc()></td><td><input type=number value=0 oninput=calc()></td><td class=lt>$0.00</td>';calc()}
+function calc(){let sub=0;document.querySelectorAll('#t tr').forEach((r,i)=>{if(i===0)return;
+const c=r.querySelectorAll('input');if(c.length<3)return;const q=+c[1].value||0,p=+c[2].value||0,t=q*p;sub+=t;r.querySelector('.lt').textContent='$'+t.toFixed(2)})
+const tax=+document.getElementById('tax').value||0;const g=sub*(1+tax/100);
+document.getElementById('grand').textContent='Total: $'+g.toFixed(2)}
+addRow();
+<\/script>`
+  },
+  {
+    id:'utm-builder',title:'Campaign Link Builder',cat:'marketing',catLabel:'Marketing',icon:'🔗',accent:'#60a5fa',
+    scenario:'You run ads and social posts and keep losing track of which link drove which click in Google Analytics.',
+    desc:'Paste a URL, fill in source/medium/campaign, and get a tagged UTM link you can copy with one tap. Validates as you type.',
+    tags:['HTML','UTM','Copy-ready'],type:'html',uses:870,author:'Wentao',authorHandle:'wentao',votes:48,featured:false,
+    embed:`<!doctype html><meta charset=utf-8><title>UTM Builder</title>
+<style>body{font-family:system-ui,sans-serif;max-width:560px;margin:30px auto;color:#111}
+label{display:block;margin:10px 0 3px;font-weight:600;font-size:13px}
+input{width:100%;padding:9px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box}
+.out{background:#f4f6fa;border:1px solid #dde;border-radius:8px;padding:12px;margin-top:16px;word-break:break-all;font-family:monospace;font-size:13px}
+button{background:#2563eb;color:#fff;border:0;padding:10px 18px;border-radius:8px;cursor:pointer;margin-top:10px}</style>
+<h2>Campaign Link Builder</h2>
+<label>Website URL</label><input id=u placeholder="https://example.com" oninput=build()>
+<label>Source (e.g. google, newsletter)</label><input id=s oninput=build()>
+<label>Medium (e.g. cpc, email)</label><input id=m oninput=build()>
+<label>Campaign name</label><input id=c oninput=build()>
+<div class=out id=out>Your link appears here…</div>
+<button onclick=copyL()>Copy link</button>
+<script>
+function build(){const u=document.getElementById('u').value;if(!u){document.getElementById('out').textContent='Your link appears here…';return}
+const p=new URLSearchParams();const s=document.getElementById('s').value,m=document.getElementById('m').value,c=document.getElementById('c').value;
+if(s)p.set('utm_source',s);if(m)p.set('utm_medium',m);if(c)p.set('utm_campaign',c);
+document.getElementById('out').textContent=u+(p.toString()?(u.includes('?')?'&':'?')+p:'')}
+function copyL(){navigator.clipboard.writeText(document.getElementById('out').textContent);}
+<\/script>`
+  },
+  {
+    id:'regex-tester',title:'Regex Tester',cat:'developer',catLabel:'Developer',icon:'⚡',accent:'#c084fc',
+    scenario:'You are writing a pattern to match emails or dates and want instant feedback without leaving your browser.',
+    desc:'Type a regular expression and test string; matches highlight live with a flags toggle. Handy for quick checks while coding.',
+    tags:['HTML','JS','Live match'],type:'html',uses:1520,author:'Wentao',authorHandle:'wentao',votes:84,featured:true,
+    embed:`<!doctype html><meta charset=utf-8><title>Regex Tester</title>
+<style>body{font-family:system-ui,sans-serif;max-width:620px;margin:30px auto;color:#111}
+input,textarea{width:100%;padding:9px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box;font-family:monospace}
+.hl{background:#fde68a}mark{background:#fde68a}.box{border:1px solid #ddd;border-radius:8px;padding:12px;margin-top:12px;white-space:pre-wrap;min-height:60px}
+label{font-weight:600;font-size:13px;display:block;margin:10px 0 3px}</style>
+<h2>Regex Tester</h2>
+<label>Pattern</label><input id=p placeholder="\\\\b\\\\w+@\\\\w+\\\\.\\\\w+\\\\b" oninput=run()>
+<label>Flags</label><input id=f value="g" style="max-width:90px" oninput=run()>
+<label>Test string</label><textarea id=t rows=4 oninput=run()>Email me at hi@site.com or sales@shop.io</textarea>
+<div class=box id=out></div>
+<script>
+function run(){const p=document.getElementById('p').value,f=document.getElementById('f').value,t=document.getElementById('t').value;
+let html=t;try{if(p){const re=new RegExp(p,f);html=t.replace(re,m=>'<mark>'+m+'</mark>')}}catch(e){html='⚠ '+e.message}
+document.getElementById('out').innerHTML=html}
+run();
+<\/script>`
+  },
+  {
+    id:'budget-pie',title:'Monthly Budget Chart',cat:'data',catLabel:'Data & Charts',icon:'📊',accent:'#fbbf24',
+    scenario:'You want to see where your money goes each month without setting up a spreadsheet or signing up for an app.',
+    desc:'Enter spending categories and amounts; a live donut chart and percentages update instantly. Pure SVG, nothing to install.',
+    tags:['HTML','SVG chart','Offline'],type:'html',uses:640,author:'Wentao',authorHandle:'wentao',votes:35,featured:false,
+    embed:`<!doctype html><meta charset=utf-8><title>Budget</title>
+<style>body{font-family:system-ui,sans-serif;max-width:560px;margin:30px auto;color:#111}
+input{padding:7px;border:1px solid #ccc;border-radius:6px}.row{display:flex;gap:8px;margin:6px 0}
+.row input:first-child{flex:1}button{background:#111;color:#fff;border:0;padding:9px 16px;border-radius:8px;cursor:pointer}
+.leg{display:flex;align-items:center;gap:6px;font-size:13px;margin:4px 0}.sw{width:12px;height:12px;border-radius:3px}</style>
+<h2>Monthly Budget</h2>
+<div id=rows></div><button onclick=addR()>+ Category</button>
+<svg id=chart viewBox="0 0 120 120" width=200 height=200 style="display:block;margin:18px auto"></svg>
+<div id=legend></div>
+<script>
+const C=['#60a5fa','#34d399','#fbbf24','#f87171','#c084fc','#fb923c'];
+function addR(n,v){const d=document.createElement('div');d.className='row';
+d.innerHTML='<input placeholder=Category value="'+(n||'')+'"><input type=number placeholder=0 value="'+(v||'')+'" oninput=draw() onchange=draw()>';
+document.getElementById('rows').appendChild(d);draw()}
+function draw(){const rows=[...document.querySelectorAll('.row')].map((r,i)=>{const c=r.querySelectorAll('input');return{n:c[0].value||'?',v:+c[1].value||0,c:C[i%C.length]}}).filter(x=>x.v>0);
+const tot=rows.reduce((a,b)=>a+b.v,0);let off=0;let paths='';let leg='';
+rows.forEach(r=>{const frac=r.v/tot,a0=off*2*Math.PI-Math.PI/2,a1=(off+frac)*2*Math.PI-Math.PI/2;off+=frac;
+const x0=60+45*Math.cos(a0),y0=60+45*Math.sin(a0),x1=60+45*Math.cos(a1),y1=60+45*Math.sin(a1);
+paths+='<path d="M60 60 L'+x0+' '+y0+' A45 45 0 '+(frac>.5?1:0)+' 1 '+x1+' '+y1+' Z" fill="'+r.c+'"/>';
+leg+='<div class=leg><span class=sw style="background:'+r.c+'"></span>'+r.n+' — '+Math.round(frac*100)+'%</div>'})
+document.getElementById('chart').innerHTML=paths||'<circle cx=60 cy=60 r=45 fill=#eee/>';
+document.getElementById('legend').innerHTML=leg}
+addR('Rent',1200);addR('Food',400);addR('Transport',150);
+<\/script>`
+  },
+  {
+    id:'qr-generator',title:'QR Code Maker',cat:'design',catLabel:'Design',icon:'▦',accent:'#f472b6',
+    scenario:'You need a QR code for a menu, poster, or business card and do not want a watermarked or tracked one.',
+    desc:'Type any text or URL and get a clean QR code you can download as an image. Generated locally — your link never leaves the page.',
+    tags:['HTML','QR','Downloadable'],type:'html',uses:980,author:'Wentao',authorHandle:'wentao',votes:54,featured:false,
+    embed:`<!doctype html><meta charset=utf-8><title>QR Maker</title>
+<style>body{font-family:system-ui,sans-serif;max-width:480px;margin:30px auto;color:#111;text-align:center}
+input{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box}
+img{margin:18px auto;border:1px solid #eee;border-radius:8px}button{background:#111;color:#fff;border:0;padding:10px 18px;border-radius:8px;cursor:pointer}</style>
+<h2>QR Code Maker</h2>
+<input id=t placeholder="https://yoursite.com" value="https://ailoom.today" oninput=gen()>
+<div><img id=q width=240 height=240 alt="QR"></div>
+<button onclick=dl()>Download PNG</button>
+<script>
+function gen(){const v=encodeURIComponent(document.getElementById('t').value||' ');
+document.getElementById('q').src='https://api.qrserver.com/v1/create-qr-code/?size=240x240&data='+v}
+function dl(){const a=document.createElement('a');a.href=document.getElementById('q').src;a.download='qr.png';a.click()}
+gen();
+<\/script>`
+  },
+  {
+    id:'pomodoro',title:'Focus Timer',cat:'personal',catLabel:'Personal',icon:'🍅',accent:'#fb7185',
+    scenario:'You want to study or work in focused sprints with breaks, but timer apps are bloated or behind a paywall.',
+    desc:'A clean 25/5 Pomodoro timer with start, pause, and reset. Switches automatically between focus and break rounds.',
+    tags:['HTML','Timer','Zero setup'],type:'html',uses:710,author:'Wentao',authorHandle:'wentao',votes:39,featured:false,
+    embed:`<!doctype html><meta charset=utf-8><title>Focus Timer</title>
+<style>body{font-family:system-ui,sans-serif;text-align:center;margin-top:60px;color:#111}
+.time{font-size:72px;font-weight:800;font-variant-numeric:tabular-nums}
+.mode{font-size:14px;letter-spacing:2px;text-transform:uppercase;color:#888}
+button{background:#111;color:#fff;border:0;padding:12px 22px;border-radius:10px;cursor:pointer;margin:6px;font-size:15px}
+button.alt{background:#eee;color:#111}</style>
+<div class=mode id=mode>Focus</div>
+<div class=time id=t>25:00</div>
+<button onclick=tog()>Start</button><button class=alt onclick=reset()>Reset</button>
+<script>
+let focus=true,left=25*60,timer=null;
+function fmt(){const m=String(Math.floor(left/60)).padStart(2,'0'),s=String(left%60).padStart(2,'0');document.getElementById('t').textContent=m+':'+s}
+function tog(e){if(timer){clearInterval(timer);timer=null;return}
+timer=setInterval(()=>{if(left<=0){focus=!focus;left=(focus?25:5)*60;document.getElementById('mode').textContent=focus?'Focus':'Break'}else left--;fmt()},1000)}
+function reset(){clearInterval(timer);timer=null;focus=true;left=25*60;document.getElementById('mode').textContent='Focus';fmt()}
+fmt();
+<\/script>`
+  },
+  {
+    id:'kanban-board',title:'Kanban Board',cat:'productivity',catLabel:'Productivity',icon:'🗂️',accent:'#34d399',
+    scenario:'You want to organise tasks into To Do / Doing / Done without signing up for Trello or Notion.',
+    desc:'A three-column task board. Add cards to any column and move them left or right as work progresses. Clean and instant.',
+    tags:['HTML','Board','No setup'],type:'html',uses:560,author:'Wentao',authorHandle:'wentao',votes:31,featured:false,
+    embed:`<!doctype html><meta charset=utf-8><title>Kanban</title>
+<style>body{font-family:system-ui,sans-serif;margin:20px;color:#111;background:#f7f8fa}
+.cols{display:flex;gap:12px}.col{flex:1;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px;min-height:200px}
+.col h3{font-size:13px;margin:0 0 8px;text-transform:uppercase;letter-spacing:1px;color:#6b7280}
+.card{background:#f3f4f6;border:1px solid #e5e7eb;border-radius:8px;padding:8px;margin-bottom:7px;font-size:13px}
+.card .mv{float:right;cursor:pointer;color:#9ca3af;font-weight:700}
+input{width:100%;padding:7px;border:1px solid #d1d5db;border-radius:7px;box-sizing:border-box;margin-top:4px}</style>
+<h2>My Board</h2>
+<div class=cols>
+<div class=col data-c=0><h3>To Do</h3><div class=list></div><input placeholder="+ add" onkeydown="if(event.key=='Enter')add(this,0)"></div>
+<div class=col data-c=1><h3>Doing</h3><div class=list></div><input placeholder="+ add" onkeydown="if(event.key=='Enter')add(this,1)"></div>
+<div class=col data-c=2><h3>Done</h3><div class=list></div><input placeholder="+ add" onkeydown="if(event.key=='Enter')add(this,2)"></div>
+</div>
+<script>
+function add(inp,c){if(!inp.value.trim())return;const card=document.createElement('div');card.className='card';
+card.innerHTML='<span class=mv onclick="move(this,1)">›</span><span class=mv onclick="move(this,-1)" style="margin-right:6px">‹</span>'+inp.value;
+document.querySelectorAll('.list')[c].appendChild(card);inp.value=''}
+function move(el,dir){const card=el.closest('.card');const col=card.closest('.col');let c=+col.dataset.c+dir;
+if(c<0||c>2)return;document.querySelectorAll('.list')[c].appendChild(card)}
+add({value:'Plan project'},0);add({value:'Design mockups'},1);add({value:'Set up repo'},2);
+<\/script>`
+  },
+  {
+    id:'markdown-preview',title:'Markdown Previewer',cat:'developer',catLabel:'Developer',icon:'📝',accent:'#c084fc',
+    scenario:'You write in Markdown for READMEs or notes and want to see the formatted result side by side as you type.',
+    desc:'A split-pane editor: type Markdown on the left, see rendered HTML on the right in real time. Supports headings, bold, lists, code and links.',
+    tags:['HTML','Markdown','Live'],type:'html',uses:1180,author:'Wentao',authorHandle:'wentao',votes:65,featured:true,
+    embed:`<!doctype html><meta charset=utf-8><title>Markdown</title>
+<style>body{font-family:system-ui,sans-serif;margin:0;color:#111;display:flex;height:100vh}
+textarea{width:50%;border:none;padding:18px;font-family:monospace;font-size:14px;resize:none;outline:none;border-right:1px solid #eee}
+#out{width:50%;padding:18px;overflow:auto}#out h1{font-size:24px}#out h2{font-size:19px}
+#out code{background:#f3f4f6;padding:2px 5px;border-radius:4px}#out pre{background:#f3f4f6;padding:10px;border-radius:8px}</style>
+<textarea id=src oninput=render()># Hello
+
+Type **Markdown** here.
+
+- item one
+- item two
+
+\`inline code\` and [a link](https://ailoom.today)</textarea>
+<div id=out></div>
+<script>
+function render(){let t=document.getElementById('src').value;
+t=t.replace(/&/g,'&amp;').replace(/</g,'&lt;')
+.replace(/^### (.*)$/gm,'<h3>$1</h3>').replace(/^## (.*)$/gm,'<h2>$1</h2>').replace(/^# (.*)$/gm,'<h1>$1</h1>')
+.replace(/\\*\\*(.+?)\\*\\*/g,'<b>$1</b>').replace(/\\*(.+?)\\*/g,'<i>$1</i>')
+.replace(/\`(.+?)\`/g,'<code>$1</code>')
+.replace(/\\[(.+?)\\]\\((.+?)\\)/g,'<a href="$2">$1</a>')
+.replace(/^- (.*)$/gm,'<li>$1</li>').replace(/(<li>.*<\\/li>)/s,'<ul>$1</ul>')
+.replace(/\\n\\n/g,'<br><br>');
+document.getElementById('out').innerHTML=t}
+render();
+<\/script>`
+  },
+  {
+    id:'json-formatter',title:'JSON Formatter',cat:'developer',catLabel:'Developer',icon:'{ }',accent:'#60a5fa',
+    scenario:'You get a blob of minified JSON from an API and need it pretty-printed and validated fast.',
+    desc:'Paste raw JSON and it formats with indentation, or shows exactly where the syntax error is. One-click copy of the clean output.',
+    tags:['HTML','JSON','Validate'],type:'html',uses:1340,author:'Wentao',authorHandle:'wentao',votes:74,featured:false,
+    embed:`<!doctype html><meta charset=utf-8><title>JSON Formatter</title>
+<style>body{font-family:system-ui,sans-serif;max-width:640px;margin:24px auto;color:#111}
+textarea{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box;font-family:monospace;font-size:13px}
+pre{background:#0f172a;color:#7dd3fc;padding:14px;border-radius:8px;overflow:auto;font-size:13px;min-height:60px}
+button{background:#2563eb;color:#fff;border:0;padding:9px 16px;border-radius:8px;cursor:pointer;margin:8px 6px 8px 0}
+.err{color:#dc2626;font-weight:600}</style>
+<h2>JSON Formatter</h2>
+<textarea id=in rows=5 placeholder='{"name":"AILoom","tags":["ai","tools"]}' oninput=fmt()>{"name":"AILoom","tags":["ai","tools"],"free":true}</textarea>
+<button onclick=fmt()>Format</button><button onclick=copyOut()>Copy</button>
+<div id=status></div>
+<pre id=out></pre>
+<script>
+function fmt(){const v=document.getElementById('in').value;try{const o=JSON.parse(v);
+document.getElementById('out').textContent=JSON.stringify(o,null,2);
+document.getElementById('status').innerHTML='<span style="color:#16a34a">✓ Valid JSON</span>'}
+catch(e){document.getElementById('status').innerHTML='<span class=err>✗ '+e.message+'</span>';document.getElementById('out').textContent=''}}
+function copyOut(){navigator.clipboard.writeText(document.getElementById('out').textContent)}
+fmt();
+<\/script>`
+  },
+  {
+    id:'gradient-generator',title:'Gradient Generator',cat:'design',catLabel:'Design',icon:'🎨',accent:'#f472b6',
+    scenario:'You are styling a site and want a nice CSS gradient with the exact code to paste into your stylesheet.',
+    desc:'Pick two colours and an angle, preview the gradient live, and copy the ready-to-use CSS background property.',
+    tags:['HTML','CSS','Copy-ready'],type:'html',uses:920,author:'Wentao',authorHandle:'wentao',votes:51,featured:false,
+    embed:`<!doctype html><meta charset=utf-8><title>Gradient</title>
+<style>body{font-family:system-ui,sans-serif;max-width:520px;margin:24px auto;color:#111;text-align:center}
+.prev{height:180px;border-radius:14px;margin:16px 0;border:1px solid #e5e7eb}
+input[type=color]{width:60px;height:40px;border:none;border-radius:8px;cursor:pointer}
+input[type=range]{width:200px}
+.code{background:#0f172a;color:#7dd3fc;padding:12px;border-radius:8px;font-family:monospace;font-size:13px;word-break:break-all}
+button{background:#111;color:#fff;border:0;padding:9px 18px;border-radius:8px;cursor:pointer;margin-top:10px}</style>
+<h2>Gradient Generator</h2>
+<div class=prev id=prev></div>
+<div>
+<input type=color id=c1 value="#7c3aed" oninput=up()>
+<input type=color id=c2 value="#ec4899" oninput=up()>
+<br><label>Angle: <span id=av>90</span>°</label><br>
+<input type=range id=ang min=0 max=360 value=90 oninput=up()>
+</div>
+<div class=code id=code></div>
+<button onclick=copyC()>Copy CSS</button>
+<script>
+function up(){const a=document.getElementById('ang').value,c1=document.getElementById('c1').value,c2=document.getElementById('c2').value;
+const css='linear-gradient('+a+'deg, '+c1+', '+c2+')';
+document.getElementById('prev').style.background=css;document.getElementById('av').textContent=a;
+document.getElementById('code').textContent='background: '+css+';'}
+function copyC(){navigator.clipboard.writeText(document.getElementById('code').textContent)}
+up();
+<\/script>`
+  },
+  {
+    id:'tip-calculator',title:'Tip & Bill Splitter',cat:'personal',catLabel:'Personal',icon:'💵',accent:'#fb7185',
+    scenario:'You are out with friends and need to split the bill and tip evenly without arguing over the maths.',
+    desc:'Enter the bill, choose a tip percent, and set how many people are splitting. It shows the per-person total instantly.',
+    tags:['HTML','Calculator','Split'],type:'html',uses:1060,author:'Wentao',authorHandle:'wentao',votes:58,featured:false,
+    embed:`<!doctype html><meta charset=utf-8><title>Tip Splitter</title>
+<style>body{font-family:system-ui,sans-serif;max-width:420px;margin:30px auto;color:#111;text-align:center}
+label{display:block;margin:14px 0 4px;font-weight:600;text-align:left}
+input{width:100%;padding:11px;border:1px solid #ccc;border-radius:9px;box-sizing:border-box;font-size:16px}
+.tips{display:flex;gap:8px;justify-content:center;margin:8px 0}
+.tips button{flex:1;padding:9px;border:1px solid #ddd;background:#f9fafb;border-radius:8px;cursor:pointer}
+.tips button.on{background:#fb7185;color:#fff;border-color:#fb7185}
+.res{background:#fff5f6;border:1px solid #fecdd3;border-radius:12px;padding:18px;margin-top:18px}
+.big{font-size:34px;font-weight:800;color:#fb7185}</style>
+<h2>Tip & Bill Splitter</h2>
+<label>Bill amount ($)</label><input id=bill type=number value=80 oninput=calc()>
+<label>Tip</label>
+<div class=tips id=tips>
+<button onclick=setTip(10)>10%</button><button class=on onclick=setTip(15)>15%</button>
+<button onclick=setTip(18)>18%</button><button onclick=setTip(20)>20%</button></div>
+<label>Split between</label><input id=ppl type=number value=4 min=1 oninput=calc()>
+<div class=res><div>Each person pays</div><div class=big id=per>$0.00</div><div id=tot style=color:#888></div></div>
+<script>
+let tip=15;
+function setTip(t){tip=t;document.querySelectorAll('#tips button').forEach(b=>b.classList.toggle('on',b.textContent==t+'%'));calc()}
+function calc(){const b=+document.getElementById('bill').value||0,p=Math.max(1,+document.getElementById('ppl').value||1);
+const total=b*(1+tip/100);document.getElementById('per').textContent='$'+(total/p).toFixed(2);
+document.getElementById('tot').textContent='Total with tip: $'+total.toFixed(2)}
+calc();
+<\/script>`
+  },
+  {
+    id:'password-generator',title:'Password Generator',cat:'developer',catLabel:'Developer',icon:'🔐',accent:'#fbbf24',
+    scenario:'You need a strong, random password right now and do not want to install a password manager extension first.',
+    desc:'Generate a secure random password with adjustable length and character types. Copy it with one click — generated entirely on your device.',
+    tags:['HTML','Security','Offline'],type:'html',uses:1410,author:'Wentao',authorHandle:'wentao',votes:78,featured:false,
+    embed:`<!doctype html><meta charset=utf-8><title>Password</title>
+<style>body{font-family:system-ui,sans-serif;max-width:460px;margin:30px auto;color:#111;text-align:center}
+.pw{font-family:monospace;font-size:20px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:10px;padding:16px;word-break:break-all;margin:16px 0}
+label{display:flex;align-items:center;gap:8px;justify-content:center;margin:8px 0}
+input[type=range]{width:180px}button{background:#111;color:#fff;border:0;padding:11px 20px;border-radius:9px;cursor:pointer;margin:4px}</style>
+<h2>Password Generator</h2>
+<div class=pw id=pw>click generate</div>
+<label>Length: <span id=lv>16</span> <input type=range id=len min=6 max=40 value=16 oninput="document.getElementById('lv').textContent=this.value;gen()"></label>
+<label><input type=checkbox id=sym checked onchange=gen()> Symbols</label>
+<label><input type=checkbox id=num checked onchange=gen()> Numbers</label>
+<button onclick=gen()>↻ Generate</button><button onclick=copyP()>⧉ Copy</button>
+<script>
+function gen(){let c='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+if(document.getElementById('num').checked)c+='0123456789';
+if(document.getElementById('sym').checked)c+='!@#$%^&*-_=+?';
+const n=+document.getElementById('len').value;let p='';const a=new Uint32Array(n);crypto.getRandomValues(a);
+for(let i=0;i<n;i++)p+=c[a[i]%c.length];document.getElementById('pw').textContent=p}
+function copyP(){navigator.clipboard.writeText(document.getElementById('pw').textContent)}
+gen();
+<\/script>`
+  },
+  {
+    id:'word-counter',title:'Word & Character Counter',cat:'productivity',catLabel:'Productivity',icon:'🔢',accent:'#60a5fa',
+    scenario:'You are writing a tweet, essay or meta description with a strict limit and need live word and character counts.',
+    desc:'Paste or type text and get instant word, character, sentence and reading-time stats. Great for staying under platform limits.',
+    tags:['HTML','Writing','Live stats'],type:'html',uses:780,author:'Wentao',authorHandle:'wentao',votes:43,featured:false,
+    embed:`<!doctype html><meta charset=utf-8><title>Word Counter</title>
+<style>body{font-family:system-ui,sans-serif;max-width:600px;margin:24px auto;color:#111}
+textarea{width:100%;padding:14px;border:1px solid #ccc;border-radius:10px;box-sizing:border-box;font-size:15px;min-height:160px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+.stat{background:#f3f4f6;border:1px solid #e5e7eb;border-radius:10px;padding:14px;text-align:center}
+.num{font-size:26px;font-weight:800;color:#2563eb}.lbl{font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:.5px}</style>
+<h2>Word & Character Counter</h2>
+<textarea id=t placeholder="Start typing…" oninput=count()>The best way to predict the future is to invent it.</textarea>
+<div class=stats>
+<div class=stat><div class=num id=w>0</div><div class=lbl>Words</div></div>
+<div class=stat><div class=num id=c>0</div><div class=lbl>Characters</div></div>
+<div class=stat><div class=num id=s>0</div><div class=lbl>Sentences</div></div>
+<div class=stat><div class=num id=r>0</div><div class=lbl>Min read</div></div>
+</div>
+<script>
+function count(){const t=document.getElementById('t').value;
+const w=(t.match(/\\S+/g)||[]).length;
+document.getElementById('w').textContent=w;
+document.getElementById('c').textContent=t.length;
+document.getElementById('s').textContent=(t.match(/[.!?]+/g)||[]).length;
+document.getElementById('r').textContent=Math.max(1,Math.ceil(w/200))}
+count();
+<\/script>`
+  },
+];
+let artifactCat='all';
+let artifactSort='featured';
+/* Saved artifacts (per user, localStorage + Firestore) */
+const ART_SAVED_KEY='ailoom_saved_artifacts_v1';
+const ART_VOTED_KEY='ailoom_artifact_voted_v1';
+let savedArtifacts={};
+let artifactVoted={};
+let artifactVoteCounts={}; // overrides from Firestore/local
+try{savedArtifacts=JSON.parse(localStorage.getItem(ART_SAVED_KEY)||'{}');}catch(e){}
+try{artifactVoted=JSON.parse(localStorage.getItem(ART_VOTED_KEY)||'{}');}catch(e){}
+function saveSavedArtifacts(){try{localStorage.setItem(ART_SAVED_KEY,JSON.stringify(savedArtifacts));}catch(e){}}
+function saveArtifactVoted(){try{localStorage.setItem(ART_VOTED_KEY,JSON.stringify(artifactVoted));}catch(e){}}
+function artVotes(a){return (artifactVoteCounts[a.id]!=null?artifactVoteCounts[a.id]:a.votes)||0;}
+
+function renderArtifactsHome(){
+  const wrap=document.getElementById('arth-wrap');if(!wrap)return;
+  // top 3: featured first, then by votes
+  const top=sortedArtifacts(ARTIFACTS).slice(0,3);
+  wrap.innerHTML=top.map(a=>`
+    <div class="arth-card" onclick="openArtifacts();setTimeout(()=>previewArtifact('${a.id}'),350)">
+      <div class="arth-preview">
+        <iframe class="arth-frame" sandbox="allow-scripts allow-same-origin" scrolling="no" tabindex="-1" srcdoc="${a.embed.replace(/"/g,'&quot;')}"></iframe>
+        <div class="art-thumb-overlay"><span class="art-thumb-play" style="background:${a.accent}">▶ Use it now</span></div>
+        ${a.featured?'<span class="art-thumb-badge">★ Featured</span>':''}
+      </div>
+      <div class="arth-body">
+        <div class="arth-row"><span class="art-icon" style="width:34px;height:34px;font-size:17px;background:${a.accent}1c;color:${a.accent};border-color:${a.accent}40">${a.icon}</span><div class="arth-title">${a.title}</div></div>
+        ${artifactAuthorHTML(a)}
+        <div class="arth-desc">${a.desc}</div>
+      </div>
+    </div>`).join('');
+}
+function openArtifacts(){document.getElementById('artifacts-overlay').classList.add('open');loadArtifactVotesFromFirestore();renderArtifactFilters();renderArtifacts();renderFeaturedArtifact();}
+function closeArtifacts(){document.getElementById('artifacts-overlay').classList.remove('open');closeArtifactPreview();}
+function setArtifactCat(c){artifactCat=c;renderArtifactFilters();renderArtifacts();}
+function setArtifactSort(s){artifactSort=s;document.querySelectorAll('.art-sort-btn').forEach(b=>b.classList.toggle('on',b.dataset.sort===s));renderArtifacts();}
+function renderArtifactFilters(){
+  document.getElementById('artifact-filters').innerHTML=ARTIFACT_CATS.map(c=>
+    `<button class="art-filt${c===artifactCat?' on':''}" onclick="setArtifactCat('${c}')">${ARTIFACT_CAT_LABELS[c]}</button>`).join('');
+}
+function artifactAuthorHTML(a){
+  const initial=(a.author||'?')[0].toUpperCase();
+  return `<div class="art-author"><span class="art-author-avatar" style="background:${a.accent}">${initial}</span><span class="art-author-name">by ${a.author||'Community'}</span>${a.featured?'<span class="art-featured-pill">★ Featured</span>':''}</div>`;
+}
+function sortedArtifacts(list){
+  const arr=[...list];
+  if(artifactSort==='top')arr.sort((x,y)=>artVotes(y)-artVotes(x));
+  else if(artifactSort==='used')arr.sort((x,y)=>(y.uses||0)-(x.uses||0));
+  else arr.sort((x,y)=>(y.featured?1:0)-(x.featured?1:0)||artVotes(y)-artVotes(x)); // featured
+  return arr;
+}
+function renderArtifacts(){
+  let list=artifactCat==='all'?ARTIFACTS:ARTIFACTS.filter(a=>a.cat===artifactCat);
+  list=sortedArtifacts(list);
+  const wrap=document.getElementById('artifact-grid');
+  if(!list.length){wrap.innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--fog);padding:40px">No artifacts in this category yet — be the first to submit one.</div>';return;}
+  wrap.innerHTML=list.map(a=>{
+    const isSaved=!!savedArtifacts[a.id];
+    const isVoted=!!artifactVoted[a.id];
+    const v=artVotes(a);
+    return `
+    <div class="art-card${a.featured?' art-card-featured':''}">
+      <div class="art-thumb" onclick="previewArtifact('${a.id}')">
+        <iframe class="art-thumb-frame" sandbox="allow-scripts allow-same-origin" scrolling="no" tabindex="-1" srcdoc="${a.embed.replace(/"/g,'&quot;')}"></iframe>
+        <div class="art-thumb-overlay"><span class="art-thumb-play" style="background:${a.accent}">▶ Use it now</span></div>
+        ${a.featured?'<span class="art-thumb-badge">★ Featured</span>':''}
+      </div>
+      <div class="art-card-top">
+        <div class="art-icon" style="background:${a.accent}1c;color:${a.accent};border-color:${a.accent}40">${a.icon}</div>
+        <span class="art-cat-pill" style="background:${a.accent}18;color:${a.accent}">${a.catLabel}</span>
+      </div>
+      <div class="art-title">${a.title}</div>
+      ${artifactAuthorHTML(a)}
+      <div class="art-scenario"><span class="art-scenario-label" style="color:${a.accent}">When you'd use it</span>${a.scenario}</div>
+      <div class="art-desc">${a.desc}</div>
+      <div class="art-tags">${a.tags.map(t=>`<span class="art-tag">${t}</span>`).join('')}</div>
+      <div class="art-engage">
+        <button class="art-vote${isVoted?' voted':''}" onclick="voteArtifact('${a.id}',event)" title="Upvote">▲ <b>${v.toLocaleString()}</b></button>
+        <button class="art-save${isSaved?' saved':''}" onclick="toggleSaveArtifact('${a.id}',event)" title="Save to your profile">${isSaved?'★ Saved':'☆ Save'}</button>
+        <button class="art-share-btn" onclick="shareArtifact('${a.id}',event)" title="Copy share link">⇪ Share</button>
+      </div>
+      <div class="art-actions">
+        <button class="art-btn art-btn-primary" style="background:linear-gradient(135deg,${a.accent},${a.accent}cc)" onclick="previewArtifact('${a.id}')">▶ Use it now</button>
+        <button class="art-btn art-btn-ghost" onclick="downloadArtifact('${a.id}')" title="Download HTML file">⤓ Download</button>
+        <button class="art-btn art-btn-ghost" onclick="copyArtifact('${a.id}')" title="Copy embed code">⧉ Copy</button>
+      </div>
+      <div class="art-foot"><span>${(a.uses||0).toLocaleString()} uses</span><span class="art-type">${a.type.toUpperCase()}</span></div>
+    </div>`;}).join('');
+}
+/* Featured "Artifact of the week" hero inside the library */
+function renderFeaturedArtifact(){
+  const el=document.getElementById('artifact-featured');if(!el)return;
+  const feat=ARTIFACTS.filter(a=>a.featured);
+  if(!feat.length){el.style.display='none';return;}
+  // pick one deterministically by week number so it rotates
+  const week=Math.floor(Date.now()/(7*864e5));
+  const a=feat[week%feat.length];
+  el.style.display='grid';
+  el.innerHTML=`
+    <div class="art-feat-preview" onclick="previewArtifact('${a.id}')">
+      <iframe class="art-feat-frame" sandbox="allow-scripts allow-same-origin" scrolling="no" tabindex="-1" srcdoc="${a.embed.replace(/"/g,'&quot;')}"></iframe>
+      <div class="art-thumb-overlay"><span class="art-thumb-play" style="background:${a.accent}">▶ Use it now</span></div>
+    </div>
+    <div class="art-feat-info">
+      <div class="art-feat-tag" style="color:${a.accent}">★ Artifact of the week</div>
+      <div class="art-feat-title">${a.title}</div>
+      ${artifactAuthorHTML(a)}
+      <div class="art-feat-desc">${a.desc}</div>
+      <div class="art-actions" style="margin-top:14px">
+        <button class="art-btn art-btn-primary" style="background:linear-gradient(135deg,${a.accent},${a.accent}cc)" onclick="previewArtifact('${a.id}')">▶ Use it now</button>
+        <button class="art-btn art-btn-ghost" onclick="toggleSaveArtifact('${a.id}',event)">${savedArtifacts[a.id]?'★ Saved':'☆ Save'}</button>
+        <button class="art-btn art-btn-ghost" onclick="shareArtifact('${a.id}',event)">⇪ Share</button>
+      </div>
+    </div>`;
+}
+function getArtifact(id){return ARTIFACTS.find(a=>a.id===id);}
+function downloadArtifact(id){
+  const a=getArtifact(id);if(!a)return;
+  const blob=new Blob([a.embed],{type:'text/html'});
+  const url=URL.createObjectURL(blob);
+  const link=document.createElement('a');link.href=url;link.download=a.id+'.html';link.click();
+  URL.revokeObjectURL(url);
+  showToast('⤓ Downloaded '+a.title+'.html');
+}
+function copyArtifact(id){
+  const a=getArtifact(id);if(!a)return;
+  navigator.clipboard.writeText(a.embed).then(()=>showToast('⧉ Copied embed code for '+a.title)).catch(()=>showToast('Copy failed — try Download'));
+}
+function shareArtifact(id,e){
+  e&&e.stopPropagation();
+  const a=getArtifact(id);if(!a)return;
+  const link=location.origin+location.pathname+'#artifact='+id;
+  navigator.clipboard.writeText(link).then(()=>showToast('⇪ Share link copied for '+a.title)).catch(()=>showToast(link));
+}
+function toggleSaveArtifact(id,e){
+  e&&e.stopPropagation();
+  if(!currentUser){showToast('Sign in to save artifacts to your profile');openModal();return;}
+  const a=getArtifact(id);if(!a)return;
+  if(savedArtifacts[id]){delete savedArtifacts[id];showToast('Removed from your saved artifacts');}
+  else{savedArtifacts[id]={id,title:a.title,savedAt:Date.now()};showToast('★ Saved '+a.title+' to your profile');}
+  saveSavedArtifacts();syncSavedArtifactsToFirestore();
+  renderArtifacts();renderFeaturedArtifact();
+}
+function voteArtifact(id,e){
+  e&&e.stopPropagation();
+  const a=getArtifact(id);if(!a)return;
+  const cur=artVotes(a);
+  if(artifactVoted[id]){artifactVoted[id]=false;artifactVoteCounts[id]=cur-1;}
+  else{artifactVoted[id]=true;artifactVoteCounts[id]=cur+1;showToast('▲ Upvoted '+a.title);}
+  saveArtifactVoted();
+  if(db){try{const ref=db.collection('votes').doc('artifact_'+id);db.runTransaction(async tx=>{const d=await tx.get(ref);const base=d.exists?(d.data().count||0):0;tx.set(ref,{type:'artifact',artifactId:id,count:base+(artifactVoted[id]?1:-1)},{merge:true});}).catch(()=>{});}catch(e){}}
+  renderArtifacts();renderFeaturedArtifact();
+}
+async function loadArtifactVotesFromFirestore(){
+  if(!db)return;
+  try{
+    const snap=await db.collection('votes').where('type','==','artifact').get();
+    snap.forEach(doc=>{const d=doc.data();if(d.artifactId!=null)artifactVoteCounts[d.artifactId]=d.count;});
+    renderArtifacts();renderFeaturedArtifact();
+  }catch(e){}
+}
+function syncSavedArtifactsToFirestore(){
+  if(db&&currentUser){try{db.collection('userSavedArtifacts').doc(currentUser.uid).set({uid:currentUser.uid,saved:savedArtifacts,updatedAt:firebase.firestore.FieldValue.serverTimestamp()},{merge:true}).catch(()=>{});}catch(e){}}
+}
+async function loadSavedArtifactsFromFirestore(){
+  if(!db||!currentUser)return;
+  try{
+    const doc=await db.collection('userSavedArtifacts').doc(currentUser.uid).get();
+    if(doc.exists&&doc.data().saved){savedArtifacts=Object.assign({},savedArtifacts,doc.data().saved);saveSavedArtifacts();renderArtifacts();renderFeaturedArtifact();renderProfileArtifacts();}
+  }catch(e){}
+}
+function renderProfileArtifacts(){
+  const el=document.getElementById('pp-saved-artifacts');
+  if(el){
+    const ids=Object.keys(savedArtifacts);
+    if(!ids.length){el.innerHTML='<div class="pp-rem-empty">No saved artifacts yet. Tap ☆ Save on any artifact to keep it here.</div>';}
+    else{el.innerHTML=ids.map(id=>{const a=getArtifact(id);const s=savedArtifacts[id];const title=a?a.title:(s.title||id);const accent=a?a.accent:'#d4a853';const icon=a?a.icon:'📦';
+      return `<div class="pp-saved-row" onclick="${a?`closeProfile();openArtifacts();setTimeout(()=>previewArtifact('${id}'),350)`:''}">
+        <span class="pp-saved-icon" style="background:${accent}1c;color:${accent}">${icon}</span>
+        <span class="pp-saved-name">${title}</span>
+        <span class="pp-saved-remove" onclick="event.stopPropagation();toggleSaveArtifact('${id}');renderProfileArtifacts()">✕</span>
+      </div>`;}).join('');}
+  }
+  // my submissions
+  const subEl=document.getElementById('pp-my-submissions');
+  if(subEl){
+    let subs=[];try{subs=JSON.parse(localStorage.getItem('ailoom_artifact_submissions')||'[]');}catch(e){}
+    const mine=currentUser?subs.filter(s=>s.uid===currentUser.uid||s.author===(currentUser.displayName||'')):subs;
+    if(!mine.length){subEl.innerHTML='<div class="pp-rem-empty">No submissions yet. Submit an artifact to earn +25 XP.</div>';}
+    else{subEl.innerHTML=mine.slice().reverse().map(s=>`<div class="pp-saved-row">
+      <span class="pp-saved-icon" style="background:rgba(212,168,83,.15);color:var(--gold)">📤</span>
+      <span class="pp-saved-name">${s.title}<span style="display:block;font-size:10px;color:var(--fog)">${s.category||''}</span></span>
+      <span class="pp-sub-status pp-sub-${s.status||'pending'}">${(s.status||'pending')}</span>
+    </div>`).join('');}
+  }
+}
+function previewArtifact(id){
+  const a=getArtifact(id);if(!a)return;
+  a.uses=(a.uses||0)+1; // count a use locally
+  document.getElementById('art-preview-title').textContent=a.title;
+  const frame=document.getElementById('art-preview-frame');
+  frame.srcdoc=a.embed;
+  document.getElementById('art-preview-dl').onclick=()=>downloadArtifact(id);
+  document.getElementById('art-preview-copy').onclick=()=>copyArtifact(id);
+  const saveBtn=document.getElementById('art-preview-save');
+  if(saveBtn){saveBtn.textContent=savedArtifacts[id]?'★ Saved':'☆ Save';saveBtn.onclick=()=>{toggleSaveArtifact(id);saveBtn.textContent=savedArtifacts[id]?'★ Saved':'☆ Save';};}
+  document.getElementById('art-preview-overlay').classList.add('open');
+}
+function closeArtifactPreview(){const o=document.getElementById('art-preview-overlay');if(o){o.classList.remove('open');const f=document.getElementById('art-preview-frame');if(f)f.srcdoc='';}}
+function closeArtPreviewIfBg(e){if(e.target===document.getElementById('art-preview-overlay'))closeArtifactPreview();}
+
+/* Artifact submission */
+function openArtifactSubmit(){
+  if(!currentUser){showToast('Sign in to submit an artifact and earn points');openModal();return;}
+  document.getElementById('as-form-wrap').style.display='block';document.getElementById('as-success').style.display='none';document.getElementById('artifact-submit-overlay').classList.add('open');
+}
+function closeArtifactSubmit(){document.getElementById('artifact-submit-overlay').classList.remove('open');}
+function closeArtSubmitIfBg(e){if(e.target===document.getElementById('artifact-submit-overlay'))closeArtifactSubmit();}
+async function submitArtifact(){
+  if(!currentUser){showToast('Sign in to submit');openModal();return;}
+  const title=document.getElementById('as-title').value.trim();
+  const code=document.getElementById('as-code').value.trim();
+  if(!title||!code){showToast('Please fill in title and code');return;}
+  const payload={
+    title,
+    author:currentUser.displayName||'Anonymous',
+    uid:currentUser.uid,
+    contactEmail:currentUser.email||document.getElementById('as-email').value.trim()||'',
+    category:document.getElementById('as-cat').value,
+    scenario:document.getElementById('as-scenario').value.trim(),
+    code:code.substring(0,20000),
+    timestamp:new Date().toISOString(),
+    status:'pending'
+  };
+  if(db){try{await db.collection('artifact_submissions').add({...payload,createdAt:firebase.firestore.FieldValue.serverTimestamp()});}catch(e){console.warn('Artifact submit:',e);}}
+  try{const ex=JSON.parse(localStorage.getItem('ailoom_artifact_submissions')||'[]');ex.push(payload);localStorage.setItem('ailoom_artifact_submissions',JSON.stringify(ex));}catch(e){}
+  // Award XP for submitting
+  awardXP(25,'Submitted an artifact');
+  document.getElementById('as-form-wrap').style.display='none';
+  const succ=document.getElementById('as-success');succ.style.display='block';
+  const xpNote=document.getElementById('as-xp-note');if(xpNote)xpNote.textContent='+25 XP earned · '+getXP()+' XP total';
+  setTimeout(()=>closeArtifactSubmit(),4500);
+}
 function calPrev(){calMonth--;if(calMonth<0){calMonth=11;calYear--;}renderCalendar();}
 function calNext(){calMonth++;if(calMonth>11){calMonth=0;calYear++;}renderCalendar();}
 
@@ -3316,7 +4234,7 @@ function closeVideoIfBg(e){if(e.target===document.getElementById('video-modal-ov
 /* ════ INIT ════ */
 
 /* ════ TAB STATE for expandable Big 5 ════ */
-let expandedTab={gpt:'usecases',claude:'usecases',gemini:'usecases',grok:'usecases',meta:'usecases'};
+let expandedTab={gpt:'products',claude:'products',gemini:'products',grok:'products',meta:'products'};
 function setModelTab(id,tab){
   expandedTab[id]=tab;
   // Re-render just the expand content in place
@@ -3397,6 +4315,7 @@ function openProfile(e){
   if(nxEl)nxEl.textContent=nextRank?nextRank.min.toLocaleString():'MAX';
   // Render subsections
   renderReminders();
+  renderProfileArtifacts();
   loadLeaderboard();
   // 3D canvas
   if(rankCanvasAF){cancelAnimationFrame(rankCanvasAF);rankCanvasAF=null;}
@@ -3701,8 +4620,14 @@ renderModels();
 renderFilters();
 buildList('all');
 renderNews();
+renderArtifactsHome();
 initVideoBar();
 initFirebase();
+// Deep link: #artifact=<id> opens the library and previews it
+(function(){
+  const m=location.hash.match(/artifact=([a-z0-9-]+)/i);
+  if(m&&getArtifact(m[1])){setTimeout(()=>{openArtifacts();setTimeout(()=>previewArtifact(m[1]),400);},600);}
+})();
 // Show welcome popup — clears old date guard so it always shows on fresh load
 localStorage.removeItem('ailoom_welcome_date');
 setTimeout(openWelcome, 800);
