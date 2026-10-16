@@ -23,7 +23,7 @@
   --night:#080c14;--deep:#0d1424;
   --glass:rgba(255,255,255,0.04);--glass2:rgba(255,255,255,0.07);--glass3:rgba(255,255,255,0.10);
   --rim:rgba(255,255,255,0.08);--rim2:rgba(255,255,255,0.14);--rim3:rgba(255,255,255,0.22);
-  --snow:#f0f4ff;--mist:#8898bb;--fog:#4a5878;
+  --snow:#f0f4ff;--mist:#9aa9c9;--fog:#6a7ba0;
   --gold:#d4a853;--gold2:#f0c96a;
   --gpt:#34d399;--cla:#fbbf24;--gem:#60a5fa;--grk:#c084fc;--meta:#2d8cf0;
   --r:14px;--r2:8px;
@@ -1057,7 +1057,7 @@ a{color:inherit;text-decoration:none}
 .mbar-tip-text{font-size:11px;color:var(--mist);line-height:1.4}
 /* ══ FOOTER FIX — remove extra bottom space ══ */
 .site-footer{margin-bottom:0!important;padding-bottom:60px!important}
-html,body{margin:0;padding:0}
+html,body{margin:0}
 
 .mbar-mid-stats{display:flex;align-items:center;gap:8px;flex-shrink:0;padding:0 4px}
 .mbar-mid-stat{text-align:center}
@@ -1227,6 +1227,79 @@ html,body{margin:0;padding:0}
   .pp-earn-grid{padding:14px 16px}
 }
 
+
+/* ══════════ STATE OF AI HERO (Oct 2026 redesign) ══════════ */
+.soa{padding:56px 44px 48px;border-bottom:1px solid var(--rim);position:relative;z-index:1}
+.soa-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:48px;align-items:start}
+.soa-date{font-size:13px;color:var(--gold);font-weight:600;margin-bottom:10px}
+.soa-title{font-family:var(--fh);font-size:clamp(34px,4.6vw,58px);font-weight:700;line-height:1.02;letter-spacing:-.025em;color:var(--snow);max-width:15ch;margin-bottom:14px}
+.soa-lede{font-size:16px;color:var(--mist);line-height:1.6;max-width:58ch;margin-bottom:30px}
+.soa-lede b{color:var(--snow);font-weight:600}
+/* the loom */
+.loom{position:relative;padding:4px 0 0}
+.loom-head{display:grid;grid-template-columns:168px 1fr 96px;gap:14px;font-size:11px;color:var(--fog);margin-bottom:8px}
+.loom-head span:last-child{text-align:right}
+.loom-body{position:relative}
+.loom-rows{position:relative;list-style:none}
+.loom-warp{position:absolute;top:0;bottom:0;left:182px;right:110px;pointer-events:none;display:flex;justify-content:space-between}
+.loom-warp i{width:1px;background:linear-gradient(to bottom,transparent,rgba(212,168,83,.16) 8%,rgba(212,168,83,.16) 92%,transparent)}
+.loom-row{display:grid;grid-template-columns:168px 1fr 96px;gap:14px;align-items:center;padding:9px 0;position:relative}
+.loom-name{font-size:14px;font-weight:700;color:var(--snow);line-height:1.2}
+.loom-name small{display:block;font-size:11px;font-weight:500;color:var(--fog);margin-top:2px}
+.loom-track{position:relative;height:18px;display:flex;align-items:center}
+.loom-thread{height:3px;border-radius:2px;width:0;transition:width 1.1s cubic-bezier(.22,1,.36,1);position:relative;box-shadow:0 0 12px currentColor}
+.loom-knot{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:18px;height:18px;border-radius:50%;background:var(--night);border:2px solid currentColor}
+.loom-score{font-family:var(--fh);font-size:22px;font-weight:700;text-align:right;line-height:1}
+.loom-score small{display:block;font-family:var(--fb);font-size:10.5px;font-weight:500;color:var(--fog);margin-top:3px}
+.loom-row.is-top .loom-name{color:var(--gold2)}
+.loom-axis{display:grid;grid-template-columns:168px 1fr 96px;gap:14px;margin-top:6px;font-size:10.5px;color:var(--fog)}
+.loom-axis div{display:flex;justify-content:space-between}
+.loom-note{font-size:12px;color:var(--fog);margin-top:14px;line-height:1.5;max-width:70ch}
+.loom-note a{color:var(--mist);text-decoration:underline;text-underline-offset:2px}
+/* right column */
+.soa-side{display:flex;flex-direction:column;gap:22px}
+.soa-panel{background:rgba(13,20,36,.6);border:1px solid var(--rim);border-radius:16px;padding:20px 20px 16px;backdrop-filter:blur(14px)}
+.soa-panel h2{font-family:var(--fh);font-size:20px;font-weight:700;color:var(--snow);margin-bottom:12px;letter-spacing:-.01em}
+.tl{list-style:none;position:relative}
+.tl::before{content:'';position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--rim2)}
+.tl li{position:relative;padding:0 0 13px 22px;cursor:pointer}
+.tl li:last-child{padding-bottom:2px}
+.tl li::before{content:'';position:absolute;left:0;top:5px;width:11px;height:11px;border-radius:50%;background:var(--night);border:2px solid var(--c)}
+.tl-when{font-size:11.5px;color:var(--fog);font-weight:600}
+.tl-what{font-size:14px;color:var(--snow);font-weight:600;line-height:1.35}
+.tl-why{font-size:12.5px;color:var(--mist);line-height:1.45;margin-top:2px}
+.tl li:hover .tl-what,.tl li:focus-visible .tl-what{color:var(--gold2)}
+.reach{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.reach-cell{padding:12px 12px 10px;border-radius:12px;background:var(--glass);border:1px solid var(--rim)}
+.reach-num{font-family:var(--fh);font-size:24px;font-weight:700;line-height:1}
+.reach-lbl{font-size:12px;color:var(--snow);font-weight:600;margin-top:5px}
+.reach-src{font-size:10.5px;color:var(--fog);margin-top:2px;line-height:1.35}
+/* ══════════ PLANS & PRICES TABLE ══════════ */
+.plans-wrap{max-width:1100px;margin:0 auto;overflow-x:auto;border:1px solid var(--rim);border-radius:16px;background:rgba(13,20,36,.55)}
+.plans{width:100%;border-collapse:collapse;min-width:760px;font-size:13.5px}
+.plans th,.plans td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--rim);vertical-align:top}
+.plans thead th{font-size:12px;font-weight:600;color:var(--fog);background:rgba(255,255,255,.02)}
+.plans tbody tr:last-child td,.plans tbody tr:last-child th{border-bottom:none}
+.plans tbody th{font-family:var(--fh);font-size:16px;font-weight:700;white-space:nowrap}
+.plans tbody th small{display:block;font-family:var(--fb);font-size:11px;font-weight:500;color:var(--fog);margin-top:2px}
+.plans td b{color:var(--snow);font-weight:700}
+.plans td{color:var(--mist)}
+.plans td span{display:block;font-size:11.5px;color:var(--fog);margin-top:1px}
+.plans-foot{max-width:1100px;margin:12px auto 0;font-size:12px;color:var(--fog)}
+/* quality floor */
+:focus-visible{outline:2px solid var(--gold2);outline-offset:2px;border-radius:6px}
+@media(prefers-reduced-motion:reduce){*,::before,::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+@media(max-width:980px){
+  .soa-inner{grid-template-columns:1fr;gap:30px}
+}
+@media(max-width:600px){
+  .soa{padding:36px 18px 32px}
+  .loom-head,.loom-row,.loom-axis{grid-template-columns:110px 1fr 64px;gap:10px}
+  .loom-warp{left:120px;right:74px}
+  .loom-name{font-size:12.5px}
+  .loom-score{font-size:18px}
+  .reach{grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
 <body>
@@ -1409,9 +1482,36 @@ html,body{margin:0;padding:0}
 <div style="position:relative;z-index:1">
 
 <!-- ══ SEC 1: BEST AI THIS WEEK ══ -->
+<!-- ══ SEC 0: STATE OF AI (hero) ══ -->
+<section class="soa" id="sec-state" aria-labelledby="soa-title">
+  <div class="soa-inner">
+    <div>
+      <div class="soa-date" id="soa-date">Thursday, October 15, 2026</div>
+      <h1 class="soa-title" id="soa-title">Who's ahead in AI right now</h1>
+      <p class="soa-lede"><b>Claude Opus 5.5</b> leads the independent Intelligence Index. <b>Meta's Muse Wonder</b> jumped straight to second on Oct 12, and OpenAI's <b>GPT-6</b> family arrived in September. Every thread below is one model, drawn to its score.</p>
+      <div class="loom" role="figure" aria-label="Artificial Analysis Intelligence Index, top frontier models">
+        <div class="loom-head"><span>Model</span><span>Intelligence Index (higher is better)</span><span>Score · API $/1M</span></div>
+        <div class="loom-body"><div class="loom-warp" aria-hidden="true"><i></i><i></i><i></i><i></i></div><ol class="loom-rows" id="loom-rows"></ol></div>
+        <div class="loom-axis" aria-hidden="true"><span></span><div><span>30</span><span>40</span><span>50</span><span>60</span></div><span></span></div>
+        <p class="loom-note">Scores from the <a href="https://artificialanalysis.ai" target="_blank" rel="noopener">Artificial Analysis Intelligence Index v4.3.2</a>, highest effort setting. Gemini 3.5 Pro and Gemini 4 are not out yet, so Google's best measured model here is 3.8 Flash. Prices are input / output per million tokens.</p>
+      </div>
+    </div>
+    <aside class="soa-side">
+      <div class="soa-panel">
+        <h2>Last 30 days</h2>
+        <ul class="tl" id="soa-timeline"></ul>
+      </div>
+      <div class="soa-panel">
+        <h2>How many people use them</h2>
+        <div class="reach" id="soa-reach"></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
 <section class="section" id="sec-artifacts-home" style="padding-bottom:30px">
   <div class="section-eyebrow">New · run real AI tools instantly</div>
-  <h1 class="section-title"><em>Artifacts</em> — AI tools you can use right now</h1>
+  <h2 class="section-title"><em>Artifacts</em> — AI tools you can use right now</h2>
   <p class="section-sub">Small, self-contained tools built with AI. Use them live, save to your profile, or download as a file. Submit your own and earn points.</p>
   <div class="arth-wrap" id="arth-wrap"></div>
   <div style="text-align:center;margin-top:22px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
@@ -1423,7 +1523,7 @@ html,body{margin:0;padding:0}
 <!-- ══ SEC: BEST AI THIS WEEK ══ -->
 <section class="section" id="sec-bow">
   <div class="section-eyebrow">Community voted · updates live</div>
-  <h1 class="section-title">Best <em>AI</em> This Week</h1>
+  <h2 class="section-title">Best <em>AI</em> This Week</h2>
   <p class="section-sub">Ranked by community votes across Image, Coding, Writing, Speed and more. Vote in Big 5 Models below.</p>
   <div class="bow-section-head">
     <div class="bow-today-date" id="bow-date"></div>
@@ -1438,6 +1538,16 @@ html,body{margin:0;padding:0}
   <h2 class="section-title">Big 5 <em>Models</em></h2>
   <p class="section-sub">ChatGPT, Claude, Gemini, Grok and Meta AI. Click any bar to expand specs, strengths and latest updates.</p>
   <div class="models-list" id="models-list"></div>
+</section>
+
+
+<!-- ══ SEC: PLANS & PRICES ══ -->
+<section class="section" id="sec-plans">
+  <div class="section-eyebrow">Updated October 15, 2026</div>
+  <h2 class="section-title">What each one <em>costs</em></h2>
+  <p class="section-sub">Consumer plans side by side, plus the price developers pay for each lab's flagship model.</p>
+  <div class="plans-wrap"><table class="plans" id="plans-table"></table></div>
+  <p class="plans-foot">Prices in US dollars per month. API prices are per million input / output tokens. Plans change often — check each provider before you buy.</p>
 </section>
 
 <!-- ══ SEC 3: AI TOOLS ══ -->
@@ -1486,9 +1596,11 @@ html,body{margin:0;padding:0}
 
 <!-- TOC DOTS -->
 <nav class="toc-dots" id="toc-dots">
-  <div class="toc-dot-btn active" data-label="Artifacts"     onclick="tocNav('sec-artifacts-home')"></div>
+  <div class="toc-dot-btn active" data-label="State of AI"   onclick="tocNav('sec-state')"></div>
+  <div class="toc-dot-btn" data-label="Artifacts"     onclick="tocNav('sec-artifacts-home')"></div>
   <div class="toc-dot-btn" data-label="Best This Week" onclick="tocNav('sec-bow')"></div>
   <div class="toc-dot-btn" data-label="Big 5 Models"    onclick="tocNav('sec-models')"></div>
+  <div class="toc-dot-btn" data-label="Plans & prices"  onclick="tocNav('sec-plans')"></div>
   <div class="toc-dot-btn" data-label="AI Tools"        onclick="tocNav('sec-tools')"></div>
   <div class="toc-dot-btn" data-label="AI Updates"      onclick="tocNav('sec-news')"></div>
 </nav>
@@ -1640,9 +1752,9 @@ html,body{margin:0;padding:0}
   <div class="welcome-popup">
     <div class="wp-head">
       <div>
-        <div class="wp-badge"><div class="wp-badge-dot"></div>Breaking AI News · June 9, 2026</div>
-        <div class="wp-title">Claude <em>Fable 5</em> Just Launched</div>
-        <div class="wp-subtitle">Anthropic's first public Mythos-class model is here. See the latest across all Big 5 and how they compare.</div>
+        <div class="wp-badge"><div class="wp-badge-dot"></div>AI Briefing · October 15, 2026</div>
+        <div class="wp-title">The <em>Frontier</em> Just Reshuffled</div>
+        <div class="wp-subtitle">Claude Opus 5.5 leads, Meta's Muse Wonder jumps to #2, and GPT-6 has arrived. Here's where the Big 5 stand today.</div>
       </div>
       <button class="wp-close" onclick="closeWelcome()">✕</button>
     </div>
@@ -1698,7 +1810,7 @@ html,body{margin:0;padding:0}
       </a>
     </div>
     <div class="cal-header">
-      <div class="cal-month" id="cal-month-label">June 2026</div>
+      <div class="cal-month" id="cal-month-label">October 2026</div>
       <div class="cal-nav">
         <button class="cal-nav-btn" onclick="calPrev()">← Prev</button>
         <button class="cal-nav-btn" onclick="calNext()">Next →</button>
@@ -1843,11 +1955,11 @@ const RANKS=[
   {min:1200,title:'AILoom Legend',     color:'#d4a853',gems:8},
 ];
 const BOW_INSIGHTS={
-  gpt:  {tag:'GPT-5.5',desc:'OpenAI\'s smartest model — agentic, fast, built for multi-step coding and research',bestFor:'Agentic tasks · Coding · Research',nextUpdate:'GPT-6 expected H2 2026'},
-  claude:{tag:'Claude Fable 5 — new today',desc:'First public Mythos-class model. Exceeds Opus 4.8 by 10%+ on some benchmarks',bestFor:'Coding · Knowledge work · Vision',nextUpdate:'Just launched (Jun 9)'},
-  gemini:{tag:'Gemini 3.1 Pro',desc:'Google\'s reasoning flagship. Gemini 3.5 Flash is the new speed tier (May)',bestFor:'Reasoning · Google apps · Video',nextUpdate:'Gemini 3.5 Pro this month'},
-  grok: {tag:'Grok 4.3 Beta',desc:'Native video input, Skills, doc/slide generation — cheapest of the frontier four',bestFor:'Real-time X · Video · Value',nextUpdate:'Rolling beta updates'},
-  meta: {tag:'1 Billion users',desc:'First AI to hit 1B monthly users. Llama 4 leads open-source.',bestFor:'WhatsApp · Reach · Free access',nextUpdate:'Llama 4 Behemoth soon'},
+  gpt:  {tag:'GPT-6 Astra',desc:'OpenAI\'s first GPT-6 model (Sep 3). Sol & Luna tiers followed; 1.2B weekly users',bestFor:'Agents · Computer use · Research',nextUpdate:'GPT-6.1 Sol Ultrafast soon'},
+  claude:{tag:'Claude Opus 5.5 — #1 overall',desc:'Tops the independent Intelligence Index (58) at 40% less cost than Opus 5. Sonnet & Haiku 5.5 followed',bestFor:'Coding · Agents · Knowledge work',nextUpdate:'Haiku 5.5 just shipped (Oct 7)'},
+  gemini:{tag:'Gemini 3.8 Flash',desc:'Fast, cheap near-frontier model (Sep 2). Gemini app passed 1 billion monthly users',bestFor:'Speed · Value · Google apps',nextUpdate:'Gemini 4 expected by end of 2026'},
+  grok: {tag:'Grok 4.7',desc:'xAI\'s new coding & knowledge-work flagship (Sep 21). 500K context, built into Cursor',bestFor:'Real-time X · Coding · Value',nextUpdate:'Grok 5 — no date yet'},
+  meta: {tag:'Muse Wonder — new',desc:'Meta\'s first frontier model (Oct 12). Wonder Full scores 56 on the Intelligence Index, #2 overall',bestFor:'Agents · Memory · Reach',nextUpdate:'Just launched (Oct 12)'},
 };
 
 
@@ -1940,54 +2052,54 @@ function logo(key,size=20){return logoImg(key,size);}
 /* ════════ DATA ════════ */
 const M={
   gpt:{id:'gpt',logoKey:'gpt',name:'ChatGPT',nameZh:'ChatGPT',maker:'OpenAI',ac:'#34d399',url:'https://chatgpt.com',
-    reachVal:'900M+',reachUnit:'weekly users',
-    skills:[{label:'Agentic tasks',v:97},{label:'Coding',v:96},{label:'Research',v:95},{label:'Voice chat',v:96}],
-    funFacts:['GPT-5.5 is OpenAI\'s current flagship (Apr 2026)','900M+ weekly users & 50M+ paying subscribers','GPT-5.5 Instant now the default ChatGPT model','Leads creative writing; neck-and-neck with Claude on coding'],
-    updates:[{d:'May 5',t:'GPT-5.5 Instant — smarter default, fewer hallucinations',tag:'model'},{d:'Apr 23',t:'GPT-5.5 launches — smartest & most agentic model yet',tag:'model'},{d:'Apr 16',t:'GPT-Rosalind — frontier model for life sciences'},{d:'Mar 5',t:'GPT-5.4 Thinking & Pro released'}],
-    stats:[{l:'Weekly users',v:'900M+'},{l:'Paying',v:'50M+'},{l:'Market share',v:'60%'},{l:'Free?',v:'Yes'}],
+    reachVal:'1.2B',reachUnit:'weekly users',
+    skills:[{label:'Agentic tasks',v:96},{label:'Computer use',v:95},{label:'Research',v:95},{label:'Voice chat',v:97}],
+    funFacts:['GPT-6 Astra launched Sep 3 — OpenAI\'s first GPT-6 model','1.2 billion weekly users (DevDay, Sep 29)','Three GPT-6 sizes: Astra (max), Sol (balanced), Luna (cheap)','GPT-6.1 Astra was held back after safety testing'],
+    updates:[{d:'Sep 29',t:'DevDay: GPT-6.1 Sol, Astra Ultrafast, "dots" agents, $500 Pro tier',tag:'devday'},{d:'Sep 22',t:'GPT-6 Sol & Luna launch — Luna now powers Free',tag:'model'},{d:'Sep 3',t:'GPT-6 Astra — OpenAI\'s new flagship',tag:'model'},{d:'Jun 8',t:'OpenAI files for IPO (now delayed to 2027)'}],
+    stats:[{l:'Weekly users',v:'1.2B'},{l:'Paying',v:'50M+'},{l:'Web share',v:'~57%'},{l:'Free?',v:'Yes'}],
     tier1Price:'Free',tier1Label:'Free',tier2Price:'$20',tier2Label:'Plus',tier2Highlight:'Most popular',tier3Price:'$200',tier3Label:'Pro',
-    patch:{date:'GPT-6 H2 2026',days:'TBA'},
-    tips:[{l:'Best at',t:'Agentic tasks, creative writing, research, voice'},{l:'Hidden gem',t:'GPT-5.5 does multi-step work with zero hand-holding'},{l:'Not great at',t:'Very long documents — try Claude'},{l:'Pro tip',t:'GPT-5.5 is in ChatGPT Plus ($20/mo); GPT-4.5 retires Jun 27'}]
+    patch:{date:'GPT-6.1 Sol Ultrafast',days:'Soon'},
+    tips:[{l:'Best at',t:'Agents, computer use, voice, research'},{l:'Hidden gem',t:'"dots" — always-on agents with their own cloud computer'},{l:'Not great at',t:'Price: Astra API is 2.5× Opus 5.5'},{l:'Pro tip',t:'Sol is the sweet spot — near-Astra quality at 1/5 the cost'}]
   },
   claude:{id:'claude',logoKey:'claude',name:'Claude',nameZh:'Claude',maker:'Anthropic',ac:'#fbbf24',url:'https://claude.ai',
-    reachVal:'30M+',reachUnit:'monthly users',
-    skills:[{label:'Agentic coding',v:99},{label:'Knowledge work',v:98},{label:'Long docs',v:97},{label:'Vision',v:96}],
-    funFacts:['Claude Fable 5 — first public Mythos-class model, launched Jun 9','Scores 10%+ higher than Opus 4.8 on some benchmarks','State-of-the-art on nearly all tested AI capability benchmarks','Routes high-risk cyber/bio questions to Opus 4.8 for safety'],
-    updates:[{d:'Jun 9',t:'Claude Fable 5 — first public Mythos-class model',tag:'model'},{d:'May 28',t:'Claude Opus 4.8 — top of Intelligence Index at 61.4',tag:'model'},{d:'May 19',t:'Claude Mythos opened to 150+ organisations'},{d:'May 6',t:'Claude Opus 4.7 — narrows gap to Mythos'}],
-    stats:[{l:'Monthly users',v:'30M+'},{l:'Intelligence Index',v:'#1'},{l:'Best at',v:'Coding'},{l:'Free?',v:'Yes'}],
-    tier1Price:'Free',tier1Label:'Free',tier2Price:'$20',tier2Label:'Pro',tier2Highlight:'Best for devs',tier3Price:'$100',tier3Label:'Max',
-    patch:{date:'Just launched',days:'New today'},
-    tips:[{l:'Best at',t:'Agentic coding, knowledge work, long docs'},{l:'Hidden gem',t:'Fable 5 exceeds Opus 4.8 on software engineering & vision'},{l:'Not great at',t:'High-risk cyber/bio — routed to Opus 4.8'},{l:'Pro tip',t:'Fable 5 is ~2× Opus pricing — use Opus 4.8 for routine work'}]
+    reachVal:'~950M',reachUnit:'monthly visits',
+    skills:[{label:'Agentic coding',v:99},{label:'Knowledge work',v:98},{label:'Long docs',v:97},{label:'Writing',v:97}],
+    funFacts:['Opus 5.5 is #1 on the Artificial Analysis Intelligence Index (58)','Opus 5.5 matches Fable 5.1 on most work at 40% less than Opus 5','Full 5.5 family shipped in 15 days: Opus, Sonnet, Haiku','Anthropic run-rate passed $65B by end of July 2026'],
+    updates:[{d:'Oct 7',t:'Claude Haiku 5.5 — fastest, cheapest small model',tag:'model'},{d:'Sep 28',t:'Sonnet 5.5 — 30% faster, up to 30% cheaper than Sonnet 5',tag:'model'},{d:'Sep 22',t:'Opus 5.5 — Fable-level performance, 40% cheaper',tag:'model'},{d:'Jul 1',t:'Fable & Mythos access restored after export pause'}],
+    stats:[{l:'Monthly visits',v:'~950M'},{l:'Intel. Index',v:'#1'},{l:'Best at',v:'Coding'},{l:'Free?',v:'Yes'}],
+    tier1Price:'Free',tier1Label:'Free',tier2Price:'$20',tier2Label:'Pro',tier2Highlight:'Best for work',tier3Price:'$100',tier3Label:'Max',
+    patch:{date:'Haiku 5.5 shipped',days:'Oct 7'},
+    tips:[{l:'Best at',t:'Agentic coding, long docs, writing, analysis'},{l:'Hidden gem',t:'Sonnet 5.5 beats Opus on Terminal-Bench 4.0 at half the price'},{l:'Not great at',t:'Image & video generation — not offered'},{l:'Pro tip',t:'Plan with Opus 5.5, build with Sonnet 5.5'}]
   },
   gemini:{id:'gemini',logoKey:'gemini',name:'Gemini',nameZh:'Gemini',maker:'Google',ac:'#60a5fa',url:'https://gemini.google.com',
-    reachVal:'750M',reachUnit:'monthly users',
-    skills:[{label:'Video generation',v:97},{label:'Google Workspace',v:99},{label:'Multimodal',v:98},{label:'Cost efficiency',v:96}],
-    funFacts:['Gemini 3.1 Pro is Google\'s reasoning flagship','Gemini 3.5 Flash (May 19) beats 3.1 Pro on coding, runs 4× faster','Leads on reasoning & data analysis among the frontier four','1M token context, free in the Gemini app'],
-    updates:[{d:'May 19',t:'Gemini 3.5 Flash launches at I/O — 4× faster',tag:'model'},{d:'Feb',t:'Gemini 3.1 Pro — reasoning flagship',tag:'model'},{d:'May',t:'Gemini Spark — 24/7 personal AI agent (preview)'},{d:'May',t:'Antigravity autonomous coding agent (preview)'}],
-    stats:[{l:'Monthly users',v:'750M'},{l:'Context',v:'1M tokens'},{l:'Best at',v:'Reasoning'},{l:'Free?',v:'Yes'}],
-    tier1Price:'Free',tier1Label:'Free',tier2Price:'$20',tier2Label:'Pro',tier2Highlight:'Best for Google',tier3Price:'$30',tier3Label:'Business',
-    patch:{date:'Gemini 3.5 Pro',days:'This month'},
-    tips:[{l:'Best at',t:'Reasoning, data analysis, Google apps, video'},{l:'Hidden gem',t:'Gemini 3.5 Flash is fast and ~25% cheaper than 3.1 Pro'},{l:'Not great at',t:'Hardest coding — Opus & GPT-5.5 edge it'},{l:'Pro tip',t:'3.5 Flash is free in the Gemini app and AI Mode in Search'}]
+    reachVal:'1B+',reachUnit:'monthly users',
+    skills:[{label:'Speed',v:98},{label:'Google apps',v:99},{label:'Multimodal',v:97},{label:'Cost efficiency',v:97}],
+    funFacts:['Gemini app passed 1 billion monthly users (Aug 11)','Four Flash releases in four months: 3.5 → 3.8','Gemini 3.8 Flash costs $0.75 / $3.75 per 1M tokens','63% of Gemini users talk to it by voice'],
+    updates:[{d:'Sep 2',t:'Gemini 3.8 Flash + 3.8 Flash Cyber',tag:'model'},{d:'Aug 13',t:'Gemini 3.7 Flash',tag:'model'},{d:'Aug 11',t:'Gemini app passes 1 billion monthly users',tag:'milestone'},{d:'Jul 21',t:'Gemini 3.6 Flash & 3.5 Flash-Lite'}],
+    stats:[{l:'Monthly users',v:'1B+'},{l:'Context',v:'1M tokens'},{l:'Best at',v:'Speed'},{l:'Free?',v:'Yes'}],
+    tier1Price:'Free',tier1Label:'Free',tier2Price:'$20',tier2Label:'AI Pro',tier2Highlight:'Best for Google users',tier3Price:'$100',tier3Label:'AI Ultra',
+    patch:{date:'Gemini 4',days:'By end of 2026'},
+    tips:[{l:'Best at',t:'Speed, price, Google apps, voice & camera'},{l:'Hidden gem',t:'AI Ultra cut from $250 to $100/mo at I/O'},{l:'Not great at',t:'Top-end reasoning — 3.5 Pro still not out'},{l:'Pro tip',t:'3.8 Flash is the cheapest near-frontier API model'}]
   },
-  grok:{id:'grok',logoKey:'grok',name:'Grok',nameZh:'Grok',maker:'xAI',ac:'#c084fc',url:'https://grok.com',
-    reachVal:'SuperGrok',reachUnit:'subscribers',
-    skills:[{label:'Real-time info',v:98},{label:'Speed',v:95},{label:'Video input',v:90},{label:'Reasoning',v:91}],
-    funFacts:['Grok 4.3 Beta (Apr 17): native video input & doc generation','Skills — teach Grok once, it remembers across chats','Cheapest of the frontier four with strong agentic scores','Live X/Twitter post access mid-conversation'],
-    updates:[{d:'Jun',t:'Skills — persistent custom expertise across chats',tag:'product'},{d:'Apr 17',t:'Grok 4.3 Beta — video input, doc/slide generation',tag:'model'},{d:'Apr 17',t:'Better tool-use reliability & math reasoning'},{d:'Feb',t:'SpaceX merges with xAI — now one company'}],
-    stats:[{l:'Video input',v:'5 min HD'},{l:'Best at',v:'Real-time'},{l:'Price',v:'Cheapest'},{l:'Free?',v:'Via X'}],
+  grok:{id:'grok',logoKey:'grok',name:'Grok',nameZh:'Grok',maker:'xAI (SpaceX)',ac:'#c084fc',url:'https://grok.com',
+    reachVal:'$30/mo',reachUnit:'SuperGrok',
+    skills:[{label:'Real-time info',v:98},{label:'Coding',v:90},{label:'Speed',v:93},{label:'Value',v:94}],
+    funFacts:['Grok 4.7 launched Sep 21 — xAI\'s coding flagship','SpaceX bought Cursor for $60B (Jun 16)','Grok Build runs up to 8 coding agents at once','Grok 4.7 API: $2 / $6 per 1M tokens'],
+    updates:[{d:'Sep 21',t:'Grok 4.7 — coding & knowledge-work flagship, 500K context',tag:'model'},{d:'Aug 12',t:'Grok 4.6 — on GitHub Copilot & Amazon Bedrock',tag:'model'},{d:'Aug 11',t:'Grok Bot (beta) — AI teammates with a shared cloud computer'},{d:'Jul 8',t:'Grok 4.5 — 1.5T-parameter V9 foundation'}],
+    stats:[{l:'Context',v:'500K'},{l:'Best at',v:'Real-time'},{l:'API price',v:'$2/$6'},{l:'Free?',v:'Limited'}],
     tier1Price:'$8',tier1Label:'X Premium',tier2Price:'$30',tier2Label:'SuperGrok',tier2Highlight:'Best value AI',tier3Price:'$300',tier3Label:'Heavy',
-    patch:{date:'Rolling beta',days:'Frequent'},
-    tips:[{l:'Best at',t:'Breaking news, real-time X data, video input'},{l:'Hidden gem',t:'Skills give Grok persistent memory of your workflows'},{l:'Not great at',t:'Hardest reasoning vs Opus & GPT-5.5'},{l:'Pro tip',t:'Cheapest of the frontier four — great value'}]
+    patch:{date:'Grok 5',days:'No date'},
+    tips:[{l:'Best at',t:'Breaking news, live X data, coding in Cursor'},{l:'Hidden gem',t:'Grok Build — terminal coding with parallel agents'},{l:'Not great at',t:'Trails Opus 5.5 & Muse Wonder on hard reasoning'},{l:'Pro tip',t:'Use Grok 4.7 inside Cursor for fast, cheap coding'}]
   },
   meta:{id:'meta',logoKey:'meta',name:'Meta AI',nameZh:'Meta AI',maker:'Meta',ac:'#2d8cf0',url:'https://meta.ai',
     reachVal:'1B+',reachUnit:'monthly users',
-    skills:[{label:'Accessibility',v:99},{label:'WhatsApp chat',v:98},{label:'Speed',v:92},{label:'Image gen',v:87}],
-    funFacts:['First AI to cross 1 billion monthly active users','Llama 4 Scout breaks every open-source benchmark','Works inside Ray-Ban glasses for real-world AI vision','Completely free — no subscription needed ever'],
-    updates:[{d:'Apr 21',t:'Meta AI crosses 1 billion monthly users',tag:'milestone'},{d:'Apr 15',t:'Llama 4 Scout sets open-source benchmark records'},{d:'Apr 8',t:'Meta AI available in 100+ countries on WhatsApp'},{d:'Apr 1',t:'AR glasses AI vision now in Ray-Ban Meta',tag:'hardware'}],
-    stats:[{l:'Monthly users',v:'1B+'},{l:'Platforms',v:'5'},{l:'Best at',v:'Reach'},{l:'Free?',v:'Yes'}],
-    tier1Price:'Free',tier1Label:'Free',tier2Price:'Free',tier2Label:'Meta+',tier2Highlight:'Most accessible',tier3Price:'API',tier3Label:'Enterprise',
-    patch:{date:'Llama 4 Behemoth',days:'Expected'},
-    tips:[{l:'Best at',t:'WhatsApp AI, images, global accessibility'},{l:'Hidden gem',t:'Ray-Ban Meta glasses for real-world AI vision'},{l:'Not great at',t:'Complex reasoning vs GPT-5.5 or Claude'},{l:'Pro tip',t:'1B users and completely free forever'}]
+    skills:[{label:'Reach',v:99},{label:'Agents & memory',v:95},{label:'Coding',v:93},{label:'Image gen',v:89}],
+    funFacts:['Muse Wonder (Oct 12) — Meta\'s first frontier-level model','Wonder Full scores 56 on the Intelligence Index, #2 overall','Muse agent app launched Sep 8 with $20 and $100 tiers','Muse Glimmer 30B is open-source (Apache 2.0)'],
+    updates:[{d:'Oct 12',t:'Muse Wonder & Wonder Full — frontier models',tag:'model'},{d:'Sep 8',t:'Muse — personal AI agent app',tag:'product'},{d:'Sep 2',t:'Muse Spark 1.3 powers Meta AI'},{d:'Aug 10',t:'Muse Glimmer 30B — open model (Apache 2.0)',tag:'open'}],
+    stats:[{l:'Monthly users',v:'1B+'},{l:'Intel. Index',v:'#2'},{l:'Best at',v:'Reach'},{l:'Free?',v:'Yes'}],
+    tier1Price:'Free',tier1Label:'Meta AI',tier2Price:'$20',tier2Label:'Muse',tier2Highlight:'New agent app',tier3Price:'$100',tier3Label:'Muse top tier',
+    patch:{date:'Just launched',days:'Oct 12'},
+    tips:[{l:'Best at',t:'Free AI inside WhatsApp, Instagram & glasses'},{l:'Hidden gem',t:'Wonder tops Meta\'s MemoryBench vs Opus & Astra'},{l:'Not great at',t:'Wonder Full is subscription-only, not in the API'},{l:'Pro tip',t:'Meta AI stays free; Muse subscription unlocks Wonder'}]
   }
 };
 
@@ -2037,11 +2149,11 @@ async function writeBowVoteToFirestore(modelId, increment){
 
 /* ════ SKILL SCORES per model ════ */
 const MODEL_SCORES={
-  gpt:{speed:96,smart:96,value:80,voice:96},
-  claude:{speed:88,smart:99,value:78,code:99},
-  gemini:{speed:94,smart:91,video:96,value:90},
-  grok:{speed:95,news:99,smart:85,value:96},
-  meta:{reach:99,speed:91,smart:80,free:100}
+  gpt:{speed:92,smart:94,value:78,voice:97},
+  claude:{speed:90,smart:99,value:86,code:99},
+  gemini:{speed:98,smart:87,video:96,value:97},
+  grok:{speed:93,news:99,smart:85,value:94},
+  meta:{reach:99,speed:90,smart:95,free:96}
 };
 const SCORE_LABELS={speed:'Speed',smart:'Smart',value:'Value',voice:'Voice',code:'Code',video:'Video',news:'News',reach:'Reach',free:'Free'};
 
@@ -2179,89 +2291,89 @@ function castBowVote(id,e){
 let expandedModel=null;
 const MODEL_DETAIL={
   gpt:{
-    highlight:'GPT-5.5 — OpenAI\'s smartest, most agentic flagship model',
-    liveStats:[{val:'900M+',label:'Weekly Users'},{val:'50M+',label:'Paying Subscribers'},{val:'#2',label:'Intelligence Index'}],
+    highlight:'GPT-6 Astra — OpenAI\'s first GPT-6 model, with Sol and Luna tiers',
+    liveStats:[{val:'1.2B',label:'Weekly Users'},{val:'50M+',label:'Paying Subscribers'},{val:'53',label:'Intelligence Index'}],
     products:[
-      {icon:'🤖',name:'ChatGPT',stat:'<b>900M+</b> weekly users on web & mobile'},
-      {icon:'💻',name:'Codex',stat:'Agentic coding across your repos'},
-      {icon:'🔍',name:'Deep Research',stat:'<b>30+</b> page reports in minutes'},
-      {icon:'🎙️',name:'Voice Mode',stat:'Indistinguishable from a phone call'},
+      {icon:'🤖',name:'ChatGPT',stat:'<b>1.2B</b> weekly users on web & mobile'},
+      {icon:'💻',name:'Codex',stat:'Cloud coding agents, Code Review & CLI'},
+      {icon:'🔵',name:'dots',stat:'Always-on agents, each with a <b>cloud computer</b>'},
+      {icon:'🎙️',name:'Voice Mode',stat:'Real-time voice & camera conversations'},
     ],
-    useCaseTitle:'What can you actually do with GPT-5.5?',
-    useCases:['Build and deploy full software projects end-to-end with Codex — without writing a line yourself','Create polished presentations, reports and spreadsheets from raw data in seconds','Use agents to automate Slack, Google Drive, Salesforce and email workflows','Record voice notes and get instant structured summaries with near-human voice quality','Run Deep Research to produce 30+ page referenced reports from a single prompt'],
-    pricingTiers:[{price:'Free',label:'ChatGPT Free',desc:'GPT-5.5 mini with usage limits'},{price:'$20/mo',label:'ChatGPT Plus',desc:'GPT-5.5 access, more usage, image gen'},{price:'$200/mo',label:'ChatGPT Pro',desc:'Unlimited GPT-5.5 + 5.5 Pro reasoning'},{price:'API',label:'API',desc:'gpt-5.5 via OpenAI platform'}],
-    context:'400K tokens',apiAccess:'Yes (gpt-5.5)',docsUrl:'https://platform.openai.com/docs',
-    benchmarks:[{name:'Terminal-Bench 2.0',v:83,rank:'#1'},{name:'FrontierMath T1-3',v:52,rank:'#1'},{name:'SWE-bench Verified',v:78,rank:'#1'},{name:'Creative writing',v:90,rank:'#1'},{name:'Intelligence Index',v:60,rank:'#2'}],
-    codeDesc:'Quick start with GPT-5.5 via OpenAI Python SDK:',
+    useCaseTitle:'What can you actually do with GPT-6?',
+    useCases:['Hand long, multi-step jobs to always-on "dots" agents that work on their own cloud computer','Use Astra for hard problems with competing constraints; Sol for everyday coding and documents','Let agents operate apps and websites for you (73.5% on OSWorld 2.0 computer use)','Work across ~1M tokens of context — whole codebases or long reports in one go','Collaborate in ChatGPT Space, Pages and shared slides with your team'],
+    pricingTiers:[{price:'Free / $8',label:'Free & Go',desc:'GPT-6 Luna with usage limits'},{price:'$20/mo',label:'ChatGPT Plus',desc:'GPT-6 Sol & Luna, more usage'},{price:'$200/mo',label:'ChatGPT Pro',desc:'Higher limits, dots agents'},{price:'$500/mo',label:'Pro 500',desc:'25× Plus usage + Astra Ultrafast'}],
+    context:'1.05M tokens',apiAccess:'Yes (Astra $10/$50, Sol $2/$10, Luna $0.10/$0.50)',docsUrl:'https://platform.openai.com/docs',
+    benchmarks:[{name:'DeepSWE v1.1',v:74,rank:'#2'},{name:'OSWorld 2.0 (computer use)',v:74,rank:'#2'},{name:'Agents Last Exam',v:59,rank:'top 3'},{name:'FrontierCode 1.1',v:53,rank:'#2'},{name:'Intelligence Index',v:53,rank:'#3'}],
+    codeDesc:'Quick start with GPT-6 Sol via OpenAI Python SDK:',
     codeSnippet:`from openai import OpenAI
 client = OpenAI(api_key="sk-...")
-response = client.chat.completions.create(
-  model="gpt-5.5",
-  messages=[{"role":"user","content":"Build me a REST API"}]
+response = client.responses.create(
+  model="gpt-6-sol",
+  input="Build me a REST API"
 )
-print(response.choices[0].message.content)`,
+print(response.output_text)`,
   },
   claude:{
-    highlight:'Claude Fable 5 — first public Mythos-class model, launched Jun 9',
-    liveStats:[{val:'30M+',label:'Monthly Users'},{val:'#1',label:'Intelligence Index'},{val:'New',label:'Launched Jun 9'}],
+    highlight:'Claude Opus 5.5 — #1 on the Intelligence Index, 40% cheaper than Opus 5',
+    liveStats:[{val:'58',label:'Intelligence Index'},{val:'#1',label:'Overall Rank'},{val:'$4/$20',label:'Opus 5.5 API'}],
     products:[
-      {icon:'🤖',name:'Claude Fable 5',stat:'Exceeds <b>Opus 4.8</b> by 10%+ on some benchmarks'},
-      {icon:'💻',name:'Claude Code',stat:'Builds & deploys <b>full apps</b> autonomously'},
-      {icon:'🎨',name:'Claude Design',stat:'Create <b>prototypes & slides</b> in chat'},
-      {icon:'📄',name:'Artifacts',stat:'Live <b>web apps</b> generated in seconds'},
+      {icon:'🧠',name:'Claude Opus 5.5',stat:'<b>Fable-level</b> performance on most work'},
+      {icon:'⚡',name:'Sonnet & Haiku 5.5',stat:'<b>30% faster</b> everyday models'},
+      {icon:'💻',name:'Claude Code',stat:'Agentic coding in terminal, IDE & web'},
+      {icon:'📄',name:'Artifacts & Design',stat:'Live <b>apps, docs & slides</b> in chat'},
     ],
-    useCaseTitle:'Where Claude Fable 5 shines vs other models:',
-    useCases:['State-of-the-art software engineering — leads or ties on nearly every coding benchmark','Knowledge work: research, analysis, document and spreadsheet creation','Strong computer vision — analyse screenshots, diagrams and complex documents','Long-context work across entire repositories and 300-page documents','Agentic workflows with Claude Code auto-deploying to Vercel or Netlify'],
-    pricingTiers:[{price:'Free',label:'Claude Free',desc:'Claude Sonnet with usage limits'},{price:'$20/mo',label:'Claude Pro',desc:'Fable 5, Opus 4.8, Projects'},{price:'$100/mo',label:'Claude Max',desc:'20x usage, priority on all models'},{price:'API',label:'Claude API',desc:'Fable 5 ~2× Opus pricing'}],
-    context:'200K+ tokens',apiAccess:'Yes (claude-fable-5)',docsUrl:'https://docs.claude.com',
-    benchmarks:[{name:'SWE-bench Verified',v:80,rank:'#1'},{name:'Intelligence Index',v:67,rank:'#1'},{name:'Software engineering',v:85,rank:'#1'},{name:'Agentic tasks',v:90,rank:'#1'},{name:'Vision',v:84,rank:'#1'}],
-    codeDesc:'Claude Fable 5 via Anthropic SDK:',
+    useCaseTitle:'Where Claude 5.5 shines:',
+    useCases:['Hard, judgement-heavy coding and architecture with Opus 5.5 (54.4% FrontierCode)','Everyday bug fixes, documents and spreadsheets with Sonnet 5.5 — the default pick','Long-running agents that use your browser, files and apps','Research and analysis across very long documents and codebases','Mythos-class Fable 5.1 for the hardest work, with extra safeguards'],
+    pricingTiers:[{price:'Free',label:'Claude Free',desc:'Sonnet 5.5 with daily limits'},{price:'$20/mo',label:'Claude Pro',desc:'Opus 5.5, Claude Code, Projects'},{price:'$100/mo',label:'Claude Max',desc:'5× to 20× usage, priority access'},{price:'API',label:'Claude API',desc:'Opus 5.5 $4/$20 · Sonnet 5.5 $2/$10'}],
+    context:'1M tokens (Fable 5.1)',apiAccess:'Yes (claude-opus-5-5)',docsUrl:'https://docs.claude.com',
+    benchmarks:[{name:'Intelligence Index',v:58,rank:'#1'},{name:'Humanity\'s Last Exam (tools)',v:68,rank:'#1'},{name:'ProgramBench',v:71,rank:'#1'},{name:'Terminal-Bench 4.0 (Sonnet)',v:71,rank:'#1'},{name:'FrontierCode',v:54,rank:'#1'}],
+    codeDesc:'Claude Opus 5.5 via Anthropic SDK:',
     codeSnippet:`import anthropic
 client = anthropic.Anthropic(api_key="sk-ant-...")
 msg = client.messages.create(
-  model="claude-fable-5",
+  model="claude-opus-5-5",
   max_tokens=16000,
   messages=[{"role":"user","content":"Review my codebase"}]
 )
 print(msg.content[0].text)`,
   },
   gemini:{
-    highlight:'Gemini 3.1 Pro — Google\'s reasoning flagship, with 3.5 Flash for speed',
-    liveStats:[{val:'750M',label:'Monthly Users'},{val:'#1',label:'Reasoning'},{val:'1M',label:'Token Context'}],
+    highlight:'Gemini 3.8 Flash — near-frontier speed at a fraction of the price',
+    liveStats:[{val:'1B+',label:'Monthly Users'},{val:'147',label:'Tokens / sec'},{val:'$0.75',label:'Per 1M input'}],
     products:[
-      {icon:'🧠',name:'Gemini 3.1 Pro',stat:'Leads on <b>reasoning</b> & data analysis'},
-      {icon:'⚡',name:'Gemini 3.5 Flash',stat:'<b>4× faster</b>, beats 3.1 Pro on coding'},
-      {icon:'🔬',name:'NotebookLM',stat:'Turns any doc into a <b>podcast</b>'},
+      {icon:'⚡',name:'Gemini 3.8 Flash',stat:'Fastest output of the frontier labs'},
+      {icon:'🛡️',name:'3.8 Flash Cyber',stat:'Security model via the <b>Fairwind</b> program'},
+      {icon:'🍌',name:'Nano Banana',stat:'Image generation & editing'},
       {icon:'📧',name:'Gemini in Workspace',stat:'AI across Gmail, Docs & Meet'},
     ],
-    useCaseTitle:'Gemini 3.1 Pro unique capabilities:',
-    useCases:['Best-in-class reasoning and data analysis among the frontier models','Use the 1M token context to analyse entire codebases or document sets at once','Generate and edit video with Veo, plus photorealistic images','Get AI assistance directly in Gmail, Docs, Sheets, Slides and Google Meet','Run autonomous coding agents with the new Antigravity preview'],
-    pricingTiers:[{price:'Free',label:'Gemini Free',desc:'Gemini 3.5 Flash, daily limits'},{price:'$20/mo',label:'Gemini Pro',desc:'Gemini 3.1 Pro, higher limits, Veo'},{price:'$30/mo',label:'Google One AI',desc:'All Pro features + 2TB storage'},{price:'API',label:'Gemini API',desc:'gemini-3.1-pro / 3.5-flash'}],
-    context:'1M tokens',apiAccess:'Yes (gemini-3.1-pro)',docsUrl:'https://ai.google.dev/docs',
-    benchmarks:[{name:'Reasoning',v:90,rank:'#1'},{name:'Data analysis',v:89,rank:'#1'},{name:'Terminal-Bench 2.1',v:80,rank:'#2'},{name:'Intelligence Index',v:57,rank:'#3'},{name:'Multimodal',v:96,rank:'#1'}],
-    codeDesc:'Gemini 3.1 Pro via Google AI Python SDK:',
+    useCaseTitle:'What Gemini does best right now:',
+    useCases:['Fast, cheap answers at scale — 3.8 Flash runs ~147 tokens per second','Talk to it by voice or point your camera — 63% of users use voice','Generate and edit images with Nano Banana inside Gemini','Work inside Gmail, Docs, Sheets and Meet without switching apps','Analyse long files and videos with a 1M-token context window'],
+    pricingTiers:[{price:'Free',label:'Gemini Free',desc:'Gemini Flash with daily limits'},{price:'$20/mo',label:'Google AI Pro',desc:'Higher limits, Pro models, storage'},{price:'$100/mo',label:'AI Ultra',desc:'5× Pro limits, Gemini Spark agent'},{price:'$200/mo',label:'AI Ultra+',desc:'Project Genie, 4× Ultra limits'}],
+    context:'1M tokens',apiAccess:'Yes (gemini-3.8-flash)',docsUrl:'https://ai.google.dev/docs',
+    benchmarks:[{name:'Output speed',v:98,rank:'#1'},{name:'Price per task',v:95,rank:'#1'},{name:'Multimodal',v:96,rank:'#1'},{name:'Voice usage',v:63,rank:'#1'},{name:'Intelligence Index',v:41,rank:'Flash tier'}],
+    codeDesc:'Gemini 3.8 Flash via Google Gen AI SDK:',
     codeSnippet:`from google import genai
 client = genai.Client(api_key="AIza...")
 response = client.models.generate_content(
-  model="gemini-3.1-pro",
+  model="gemini-3.8-flash",
   contents="Summarise this 500-page report"
 )
 print(response.text)`,
   },
   grok:{
-    highlight:'Grok 4.3 Beta — live X feed, video input & Skills, cheapest of the four',
-    liveStats:[{val:'5 min',label:'HD Video Input'},{val:'New',label:'Skills'},{val:'#1',label:'Real-time Speed'}],
+    highlight:'Grok 4.7 — xAI\'s coding flagship, now inside Cursor',
+    liveStats:[{val:'500K',label:'Token Context'},{val:'46',label:'Intelligence Index'},{val:'$2/$6',label:'API per 1M'}],
     products:[
       {icon:'🐦',name:'Grok on X',stat:'Live <b>X post</b> search mid-conversation'},
-      {icon:'🧩',name:'Skills',stat:'Persistent <b>custom expertise</b> across chats'},
-      {icon:'📊',name:'Document Gen',stat:'Invoices, decks, <b>spreadsheets & PDFs</b>'},
-      {icon:'🎬',name:'Video Input',stat:'Process <b>5-min HD</b> video files'},
+      {icon:'🛠️',name:'Grok Build',stat:'Terminal coding with up to <b>8 agents</b>'},
+      {icon:'🤝',name:'Grok Bot',stat:'AI teammates on a shared cloud computer'},
+      {icon:'🖱️',name:'Cursor',stat:'Acquired by SpaceX for <b>$60B</b>'},
     ],
-    useCaseTitle:'What makes Grok 4.3 Beta unique:',
-    useCases:['Search and analyse live X posts mid-conversation — no other AI can do this','Teach Grok a workflow once with Skills and it remembers across every chat','Generate formatted invoices, contracts, slide decks and spreadsheets directly in chat','Analyse video files: upload a recording and ask questions about what happens','Get breaking news analysis with real-time X data and DeepSearch web citations'],
-    pricingTiers:[{price:'$8/mo',label:'X Premium',desc:'Basic Grok access, limited usage'},{price:'$30/mo',label:'SuperGrok',desc:'Full Grok 4.3 access, higher limits'},{price:'$300/mo',label:'SuperGrok Heavy',desc:'Maximum usage & early features'},{price:'API',label:'xAI API',desc:'Cheapest of the frontier four'}],
-    context:'256K tokens',apiAccess:'Yes (grok-4.3)',docsUrl:'https://docs.x.ai',
-    benchmarks:[{name:'Speed (tokens/sec)',v:95,rank:'#1'},{name:'Real-time info',v:99,rank:'#1'},{name:'Tool use',v:84,rank:'#2'},{name:'Value (cost)',v:96,rank:'#1'},{name:'Intelligence Index',v:53,rank:'#4'}],
+    useCaseTitle:'What makes Grok 4.7 stand out:',
+    useCases:['Search and analyse live X posts mid-conversation','Code inside Cursor or Grok Build with a fast, low-cost model','Run several coding agents in parallel: plan, search, build','Long-context work with a 500K-token window','Government-accredited deployments via Grok for Government'],
+    pricingTiers:[{price:'$8/mo',label:'X Premium',desc:'Basic Grok access, limited usage'},{price:'$30/mo',label:'SuperGrok',desc:'Grok 4.7, Grok Build, higher limits'},{price:'$300/mo',label:'SuperGrok Heavy',desc:'Maximum usage & early features'},{price:'API',label:'xAI API',desc:'$2 in / $6 out per 1M tokens'}],
+    context:'500K tokens',apiAccess:'Yes (grok-4.7)',docsUrl:'https://docs.x.ai',
+    benchmarks:[{name:'Real-time info',v:99,rank:'#1'},{name:'SWE-bench Verified (Build)',v:71,rank:'top 5'},{name:'Value (cost)',v:94,rank:'#2'},{name:'Speed',v:91,rank:'#3'},{name:'Intelligence Index',v:46,rank:'#5'}],
     codeDesc:'Grok via xAI API (OpenAI-compatible format):',
     codeSnippet:`from openai import OpenAI
 client = OpenAI(
@@ -2269,30 +2381,30 @@ client = OpenAI(
   base_url="https://api.x.ai/v1"
 )
 response = client.chat.completions.create(
-  model="grok-4.3",
+  model="grok-4.7",
   messages=[{"role":"user","content":"What is trending on X right now?"}]
 )
 print(response.choices[0].message.content)`,
   },
   meta:{
-    highlight:'Llama 4 — open-source beats GPT-4o and runs privately on your hardware',
-    liveStats:[{val:'1B+',label:'Monthly Users'},{val:'Free',label:'Always & Forever'},{val:'10M',label:'Token Context'}],
+    highlight:'Muse Wonder — Meta jumps to the frontier, #2 on the Intelligence Index',
+    liveStats:[{val:'1B+',label:'Monthly Users'},{val:'56',label:'Wonder Full Index'},{val:'1M',label:'Token Context'}],
     products:[
-      {icon:'💬',name:'Meta AI on WhatsApp',stat:'AI in <b>3B+</b> WhatsApp conversations'},
-      {icon:'📸',name:'Meta AI on Instagram',stat:'Image gen & <b>story ideas</b> in-app'},
-      {icon:'🦙',name:'Llama 4 Scout',stat:'Open-source, beats <b>GPT-4o</b> on tasks'},
-      {icon:'👓',name:'Ray-Ban AI Glasses',stat:'Real-world <b>AI vision</b> wearable'},
+      {icon:'✨',name:'Muse Wonder',stat:'Frontier model, <b>$4/$20</b> per 1M tokens'},
+      {icon:'🤖',name:'Muse agent',stat:'Personal AI agent app, $20–$100/mo'},
+      {icon:'💬',name:'Meta AI',stat:'Free in WhatsApp, Instagram & Facebook'},
+      {icon:'🌱',name:'Muse Glimmer 30B',stat:'<b>Open-source</b> model (Apache 2.0)'},
     ],
-    useCaseTitle:'Why 1 billion people use Meta AI:',
-    useCases:['Chat with AI directly inside WhatsApp, Instagram, Facebook and Messenger — no new app','Ask Meta AI to generate images inside any Meta app for free, no subscription','Download Llama 4 Scout and run it on your own machine for complete privacy','Use the 10M token context window to process entire books or years of chat history','Build enterprise AI apps on Llama 4 without any API costs or usage limits'],
-    pricingTiers:[{price:'Free',label:'Meta AI',desc:'Full access on all Meta apps'},{price:'Free',label:'Llama 4 Download',desc:'Open-weight, run locally or cloud'},{price:'API',label:'Meta API',desc:'Coming soon — inference pricing TBD'},{price:'Cloud',label:'AWS/Azure',desc:'Run Llama 4 on cloud infrastructure'}],
-    context:'10M tokens (Scout)',apiAccess:'Open weights',docsUrl:'https://llama.meta.com',
-    benchmarks:[{name:'MMLU (vs GPT-4o)',v:84,rank:'beats'},{name:'HumanEval coding',v:82,rank:'ties'},{name:'MATH reasoning',v:78,rank:'#3'},{name:'Image understanding',v:88,rank:'#2'},{name:'Speed on device',v:96,rank:'#1'}],
-    codeDesc:'Llama 4 via Hugging Face Transformers:',
+    useCaseTitle:'Why Meta matters again:',
+    useCases:['Free AI help inside WhatsApp, Instagram, Facebook, Messenger and Threads','Muse Wonder Full leads Meta\'s tests on DeepSWE (79.0) and long coding tasks','Strong long-term memory — Wonder tops Meta\'s MemoryBench','Real-world AI vision on Ray-Ban and Oakley Meta glasses','Run the open Muse Glimmer 30B model on your own hardware'],
+    pricingTiers:[{price:'Free',label:'Meta AI',desc:'Muse Spark in every Meta app'},{price:'$20/mo',label:'Muse',desc:'Agent app with Muse Wonder'},{price:'$100/mo',label:'Muse higher tier',desc:'Includes Wonder Full'},{price:'API',label:'Meta Model API',desc:'Wonder $4 in / $20 out per 1M'}],
+    context:'1M tokens',apiAccess:'Yes (Muse Wonder)',docsUrl:'https://ai.meta.com',
+    benchmarks:[{name:'Intelligence Index (Full)',v:56,rank:'#2'},{name:'DeepSWE 1.1 (Meta test)',v:79,rank:'#1'},{name:'SWE-Marathon (Meta test)',v:58,rank:'#1'},{name:'ProgramBench (Meta test)',v:59,rank:'#2'},{name:'Reach',v:99,rank:'#1'}],
+    codeDesc:'Open Muse Glimmer 30B via Hugging Face Transformers:',
     codeSnippet:`from transformers import pipeline
 pipe = pipeline(
   "text-generation",
-  model="meta-llama/Llama-4-Scout-17B-16E"
+  model="meta/muse-glimmer-30b"
 )
 result = pipe(
   "Explain quantum computing simply",
@@ -2303,11 +2415,11 @@ print(result[0]['generated_text'])`,
 };
 
 const POPULARITY_SCORES={
-  gpt:{speed:96,smart:96,value:80,voice:96},
-  claude:{speed:88,smart:99,value:78,code:99},
-  gemini:{speed:94,smart:91,value:90,video:97},
-  grok:{speed:95,smart:85,value:96,news:99},
-  meta:{speed:90,smart:79,value:99,reach:99},
+  gpt:{speed:92,smart:94,value:78,voice:97},
+  claude:{speed:90,smart:99,value:86,code:99},
+  gemini:{speed:98,smart:87,value:97,video:96},
+  grok:{speed:93,smart:85,value:94,news:99},
+  meta:{speed:90,smart:95,value:96,reach:99},
 };
 
 function toggleModelExpand(id,e){
@@ -2516,14 +2628,14 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElement
 /* ════ AI TOOLS ════ */
 const TOOLS_BASE=[
   {n:'Cursor',       cat:'code', cl:'Code',    cc:'cc-code',g:'+38%',hot:true, votes:1840,url:'https://cursor.sh',           aff:'https://cursor.sh/?ref=ailoom',      lk:'cursor'},
-  {n:'Midjourney v7',cat:'image',cl:'Image',   cc:'cc-img', g:'+22%',hot:true, votes:1520,url:'https://midjourney.com',      aff:'https://midjourney.com',             lk:'midjourney'},
+  {n:'Midjourney',cat:'image',cl:'Image',   cc:'cc-img', g:'+22%',hot:true, votes:1520,url:'https://midjourney.com',      aff:'https://midjourney.com',             lk:'midjourney'},
   {n:'Perplexity',   cat:'search',cl:'Search', cc:'cc-sch', g:'+19%',hot:false,votes:1380,url:'https://perplexity.ai',       aff:'https://perplexity.ai/?ref=ailoom',  lk:'perplexity'},
   {n:'Suno AI',      cat:'audio',cl:'Audio',   cc:'cc-aud', g:'+44%',hot:true, votes:1260,url:'https://suno.com',            aff:'https://suno.com',                   lk:'suno'},
-  {n:'Runway Gen-3', cat:'video',cl:'Video',   cc:'cc-vid', g:'+31%',hot:true, votes:1190,url:'https://runwayml.com',        aff:'https://runwayml.com/?ref=ailoom',   lk:'runway'},
+  {n:'Runway',       cat:'video',cl:'Video',   cc:'cc-vid', g:'+31%',hot:true, votes:1190,url:'https://runwayml.com',        aff:'https://runwayml.com/?ref=ailoom',   lk:'runway'},
   {n:'GitHub Copilot',cat:'code',cl:'Code',    cc:'cc-code',g:'+15%',hot:false,votes:1080,url:'https://github.com/features/copilot',aff:'https://github.com/features/copilot',lk:'copilot'},
   {n:'ElevenLabs',   cat:'audio',cl:'Audio',   cc:'cc-aud', g:'+29%',hot:true, votes:990, url:'https://elevenlabs.io',       aff:'https://try.elevenlabs.io/ailoom',   lk:'elevenlabs'},
   {n:'v0 by Vercel', cat:'code', cl:'Code',    cc:'cc-code',g:'+52%',hot:true, votes:940, url:'https://v0.dev',              aff:'https://v0.dev/?ref=ailoom',         lk:'v0'},
-  {n:'Pika 2.0',     cat:'video',cl:'Video',   cc:'cc-vid', g:'+27%',hot:true, votes:890, url:'https://pika.art',            aff:'https://pika.art/?ref=ailoom',       lk:'pika'},
+  {n:'Pika',         cat:'video',cl:'Video',   cc:'cc-vid', g:'+27%',hot:true, votes:890, url:'https://pika.art',            aff:'https://pika.art/?ref=ailoom',       lk:'pika'},
   {n:'Jasper',       cat:'write',cl:'Writing', cc:'cc-wri', g:'+11%',hot:false,votes:820, url:'https://jasper.ai',           aff:'https://jasper.ai?fpr=ailoom',       lk:'jasper'},
   {n:'Notion AI',    cat:'write',cl:'Writing', cc:'cc-wri', g:'+8%', hot:false,votes:760, url:'https://notion.so',           aff:'https://notion.so/?ref=ailoom',      lk:'notion'},
   {n:'Adobe Firefly',cat:'image',cl:'Image',   cc:'cc-img', g:'+14%',hot:false,votes:720, url:'https://firefly.adobe.com',   aff:'https://firefly.adobe.com',          lk:'firefly'},
@@ -2693,7 +2805,7 @@ function rowHTML(tool,idx,pos,moved){
       ${logoEl}
       <div>
         <div class="tr-name" onclick="window.open('${dest}','_blank','noopener')">${tool.n}${moved?'<span class="moved-badge">↑</span>':''}</div>
-        <div class="tr-maker">${tool.n.includes('Midjourney')||tool.n.includes('Suno')||tool.n.includes('Runway')?tool.n.split(' ')[0]:''}</div>
+        <div class="tr-maker">${({Cursor:'Now owned by SpaceX (xAI)','GitHub Copilot':'Microsoft · runs Claude, GPT & Grok'})[tool.n]||''}</div>
       </div>
     </div>
     <span class="tr-cat ${tool.cc}">${tool.cl}</span>
@@ -2774,14 +2886,14 @@ function castVote(idx,dir,e){
 
 /* ════ NEWS ════ */
 const MODEL_NEWS={
-  gpt:{color:'#34d399',label:'ChatGPT',headline:'GPT-5.5 — OpenAI\'s smartest, most agentic flagship',sub:'GPT-5.5 leads agentic and creative-writing benchmarks and is neck-and-neck with Claude on coding. GPT-5.5 Instant is now the default ChatGPT model.',date:'Apr 23, 2026',url:'https://openai.com/index/introducing-gpt-5-5/'},
-  claude:{color:'#fbbf24',label:'Claude',headline:'Claude Fable 5 launches — first public Mythos-class model',sub:'Anthropic releases Fable 5 to paid and enterprise users. It exceeds Opus 4.8 by 10%+ on some benchmarks and routes high-risk cyber/bio questions to Opus 4.8.',date:'Jun 9, 2026',url:'https://www.anthropic.com/news'},
-  gemini:{color:'#60a5fa',label:'Gemini',headline:'Gemini 3.5 Flash arrives — 4× faster, beats 3.1 Pro on coding',sub:'Launched at Google I/O 2026, Gemini 3.5 Flash leads coding and agentic tasks while running 4× faster. Gemini 3.1 Pro still tops the hardest reasoning tests.',date:'May 19, 2026',url:'https://blog.google/technology/google-deepmind/'},
-  grok:{color:'#c084fc',label:'Grok',headline:'Grok launches Skills — persistent custom expertise',sub:'xAI adds Skills to Grok 4.3: teach it a workflow once and it remembers across chats. Built-in tools generate documents, decks, spreadsheets and PDFs.',date:'Jun 2026',url:'https://x.ai/news'},
-  meta:{color:'#2d8cf0',label:'Meta AI',headline:'Llama 4 open-source leads — Meta AI tops 1 billion users',sub:'Llama 4 Scout and Maverick lead open-source on image understanding, coding and reasoning. Meta AI is the first assistant to reach 1B monthly users.',date:'Apr 2026',url:'https://ai.meta.com/blog/'}
+  gpt:{color:'#34d399',label:'ChatGPT',headline:'DevDay: GPT-6.1 Sol, Astra Ultrafast and always-on "dots" agents',sub:'OpenAI shipped 20+ launches, a $500 Pro tier with 25× Plus usage, and said ChatGPT now has 1.2 billion weekly users. GPT-6.1 Astra was held back after safety testing.',date:'Sep 29, 2026',url:'https://openai.com/index/devday-2026/'},
+  claude:{color:'#fbbf24',label:'Claude',headline:'Claude 5.5 family complete — Opus, Sonnet and Haiku',sub:'Opus 5.5 (Sep 22) tops the Intelligence Index at 40% less cost than Opus 5. Sonnet 5.5 (Sep 28) runs 30% faster; Haiku 5.5 (Oct 7) is the new small model.',date:'Oct 7, 2026',url:'https://www.anthropic.com/news'},
+  gemini:{color:'#60a5fa',label:'Gemini',headline:'Gemini 3.8 Flash — near-frontier at a fraction of the cost',sub:'Google\'s fourth Flash release since May, plus a security-tuned Cyber variant. The Gemini app passed 1 billion monthly users in August; Gemini 4 is in post-training.',date:'Sep 2, 2026',url:'https://blog.google/technology/google-deepmind/'},
+  grok:{color:'#c084fc',label:'Grok',headline:'Grok 4.7 launches as xAI\'s coding flagship',sub:'Bigger base model than 4.6, 500K context, trained on hours-long tasks. Available in Cursor — which SpaceX bought for $60B — plus Grok Build and the API at $2/$6.',date:'Sep 21, 2026',url:'https://x.ai/news'},
+  meta:{color:'#2d8cf0',label:'Meta AI',headline:'Meta launches Muse Wonder — its first frontier model',sub:'Wonder Full scores 56 on the independent Intelligence Index, second only to Opus 5.5. Wonder is in the API at $4/$20; Wonder Full is for Muse Code subscribers.',date:'Oct 12, 2026',url:'https://ai.meta.com'}
 };
 function renderNews(){
-  document.getElementById('news-strip-compact').innerHTML=Object.entries(MODEL_NEWS).map(([k,n])=>`
+  document.getElementById('news-strip-compact').innerHTML=Object.entries(MODEL_NEWS).sort((a,b)=>new Date(b[1].date)-new Date(a[1].date)).map(([k,n])=>`
     <a class="nc-row" href="${n.url}" target="_blank" rel="noopener">
       <div class="nc-dot-wrap">
         <div class="nc-dot" style="background:${n.color};box-shadow:0 0 6px ${n.color}50"></div>
@@ -2965,7 +3077,7 @@ LLM replies: "Paris is the capital of France."`},
    diagram:`❌ Bad prompt: "write email"
 ✅ Good prompt: "Write a polite email declining 
    a Tuesday meeting. 2 sentences. Friendly tone."`},
-  {term:'Context Window',badge:'Key concept',def:'How much text the AI can read at once. Like short-term memory — once full, earlier parts of the conversation are forgotten.',example:'Gemini 3.1 Pro: ~750,000 words (1M tokens). GPT-5.5: ~300,000 words.',
+  {term:'Context Window',badge:'Key concept',def:'How much text the AI can read at once. Like short-term memory — once full, earlier parts of the conversation are forgotten.',example:'GPT-6 Astra: ~790,000 words (1.05M tokens). Grok 4.7: ~375,000 words (500K tokens).',
    diagram:`[Your message] + [AI reply] + [Your next message]...
    ↑ All this must fit inside the context window
    Claude: ~200k tokens (~150k words)`},
@@ -2992,7 +3104,7 @@ Agent: 1) Plans structure
   {term:'Multimodal',badge:'Feature',def:'AI that handles text + images + audio + video in one conversation. You can send a photo and ask questions about it.',example:'"Here\'s a photo of my error message — what\'s wrong with my code?"',
    diagram:`Input types the AI can understand:
 📝 Text  🖼️ Images  🎵 Audio  🎬 Video
-Examples: GPT-5.5, Gemini 3.1 Pro, Claude Fable 5`},
+Examples: GPT-6 Astra, Gemini 3.8 Flash, Muse Wonder`},
 ];
 
 function renderGlossary(){
@@ -3030,7 +3142,7 @@ async function submitTool(){
 }
 
 /* ════ TOC ════ */
-const TOC_SECTIONS=['sec-artifacts-home','sec-bow','sec-models','sec-tools','sec-news'];
+const TOC_SECTIONS=['sec-state','sec-artifacts-home','sec-bow','sec-models','sec-plans','sec-tools','sec-news'];
 function setTocActive(id){document.querySelectorAll('.toc-dot-btn').forEach((d,i)=>d.classList.toggle('active',TOC_SECTIONS[i]===id));}
 window.addEventListener('scroll',()=>{let active=null;const th=window.innerHeight*.45+60;TOC_SECTIONS.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=th)active=id;});if(active)setTocActive(active);},{passive:true});
 function tocNav(id){const el=document.getElementById(id);if(!el)return;window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-65,behavior:'smooth'});}
@@ -3338,18 +3450,25 @@ function toggleMenu(){
 
 /* ════ RELEASE CALENDAR ════ */
 const RELEASE_EVENTS=[
-  {date:'2026-06-09',modelId:'claude',title:'Claude Fable 5 — Public Launch',  desc:'Anthropic releases its first publicly available Mythos-class model. Available to paid and enterprise users at ~2× Opus pricing.',features:['First public Mythos-class model','Exceeds Opus 4.8 by 10%+ on some benchmarks','State-of-the-art software engineering & vision','Routes high-risk cyber/bio to Opus 4.8']},
-  {date:'2026-06-15',modelId:'gemini',title:'Gemini 3.5 Pro — Expected',       desc:'Google expected to ship Gemini 3.5 Pro this month. Already in internal use; positioned as the next frontier reasoning + agentic flagship.',features:['Next-gen reasoning flagship','Builds on the 3.5 family','Frontier agentic performance','1M+ token context']},
-  {date:'2026-06-22',modelId:'meta',  title:'Meta Connect — AI Hardware',     desc:'Meta annual Connect event focused on AI hardware. Ray-Ban Meta updates and AR headset announcements with integrated Meta AI.',features:['Next Ray-Ban Meta glasses','AR headset preview','Meta AI on all hardware','Open Llama stack for developers']},
-  {date:'2026-06-27',modelId:'gpt',   title:'GPT-4.5 Retires from ChatGPT',   desc:'OpenAI retires GPT-4.5 from ChatGPT after a 30-day sunset. Conversations move to current GPT-5.5 models; no API changes.',features:['GPT-4.5 removed from ChatGPT','Chats migrate to GPT-5.5','No changes to the API','o3 retires later, Aug 26']},
-  {date:'2026-07-15',modelId:'grok',  title:'Grok Skills — Wider Rollout',    desc:'xAI expands Skills and document generation across more tiers, with shareable community skills and deeper workflow automation.',features:['Shareable community skills','Expanded document generation','Deeper workflow automation','Wider tier availability']},
-  {date:'2026-08-26',modelId:'gpt',   title:'OpenAI o3 Retires',              desc:'OpenAI retires the o3 model from ChatGPT following its 90-day sunset period, consolidating around newer GPT-5.5-era models.',features:['o3 removed from ChatGPT','Usage moves to GPT-5.5 models','Part of model line consolidation','No API changes announced']},
+  {date:'2026-09-02',modelId:'gemini',title:'Gemini 3.8 Flash + Flash Cyber',desc:'Google ships its fourth Flash model since May, plus a cybersecurity-tuned variant for the Fairwind program.',features:['Near-frontier at low cost','$0.75 / $3.75 per 1M tokens','~147 tokens/sec output','Cyber variant via Fairwind']},
+  {date:'2026-09-03',modelId:'gpt',title:'GPT-6 Astra launches',desc:'OpenAI\'s first GPT-6 model reaches approved users, then the public a day later; API from Sep 5.',features:['New OpenAI flagship','1.05M-token context','$10 / $50 per 1M tokens','Top-tier computer use']},
+  {date:'2026-09-08',modelId:'meta',title:'Muse — Meta\'s AI agent app',desc:'Meta launches Muse, a personal AI agent powered by Muse Spark, with $20 and $100 subscription tiers.',features:['Personal agent app','Powered by Muse Spark 1.3','$20 and $100 tiers','Works across Meta apps']},
+  {date:'2026-09-21',modelId:'grok',title:'Grok 4.7',desc:'xAI\'s new flagship for coding and knowledge work, available in Cursor, Grok Build and the API.',features:['Larger base than Grok 4.6','500K-token context','$2 / $6 per 1M tokens','Fast variant in Cursor']},
+  {date:'2026-09-22',modelId:'claude',title:'Claude Opus 5.5',desc:'Anthropic\'s new Opus performs at Fable 5.1 level on most work and costs 40% less to run than Opus 5.',features:['#1 Intelligence Index (58)','$4 / $20 per 1M tokens','Fable-level on most work','40% cheaper than Opus 5']},
+  {date:'2026-09-22',modelId:'gpt',title:'GPT-6 Sol & Luna',desc:'Balanced (Sol) and budget (Luna) GPT-6 tiers. Luna now powers ChatGPT Free and Go.',features:['Sol: $2 / $10','Luna: $0.10 / $0.50','Luna in Free & Go','Sol in Plus and above']},
+  {date:'2026-09-28',modelId:'claude',title:'Claude Sonnet 5.5',desc:'A clear upgrade over Sonnet 5: 30% faster output and up to 30% lower cost for most work.',features:['30% faster than Sonnet 5','$2 / $10 per 1M tokens','70.6% Terminal-Bench 4.0','Default pick for daily work']},
+  {date:'2026-09-29',modelId:'gpt',title:'OpenAI DevDay 2026',desc:'20+ launches: GPT-6.1 Sol, Astra Ultrafast, dots agents, Agents API with computer use, and a $500 Pro tier.',features:['GPT-6.1 Sol','Astra Ultrafast (up to 8×)','"dots" always-on agents','1.2B weekly users']},
+  {date:'2026-10-07',modelId:'claude',title:'Claude Haiku 5.5',desc:'Anthropic\'s fastest, cheapest and most capable small model yet.',features:['Fastest Claude model','Lowest price tier','Best small-model quality','Ideal for high-volume apps']},
+  {date:'2026-10-12',modelId:'meta',title:'Muse Wonder & Wonder Full',desc:'Meta\'s first frontier-level models. Wonder Full scores 56 on the Intelligence Index, #2 overall.',features:['1M-token context','$4 / $20 per 1M (Wonder)','Wonder Full via Muse Code','Leads Meta\'s DeepSWE test']},
+  {date:'2026-10-29',modelId:'meta',title:'Meta Q3 earnings (expected)',desc:'Meta\'s quarterly results — watch for Meta AI user numbers and Muse subscription uptake. Date is an estimate.',features:['Meta AI user update','Muse subscription data','AI capex outlook','Date not confirmed']},
+  {date:'2026-11-16',modelId:'gpt',title:'GPT-6.1 Sol Ultrafast (soon)',desc:'Announced at DevDay as "coming soon" with no fixed date. Placed here as a placeholder.',features:['Up to several× faster Sol','Pro 500 & Enterprise first','No confirmed date','Placeholder date']},
+  {date:'2026-12-10',modelId:'gemini',title:'Gemini 4 (expected)',desc:'Gemini 4 is reportedly in post-training and expected before the end of 2026. Google has not given a date.',features:['Google\'s next flagship','Largest pretraining run yet','Expected before 2027','Date not confirmed']},
 ];
 
 const MODEL_COLORS={gpt:'#34d399',claude:'#fbbf24',gemini:'#60a5fa',grok:'#c084fc',meta:'#2d8cf0'};
 const MODEL_NAMES={gpt:'ChatGPT',claude:'Claude',gemini:'Gemini',grok:'Grok',meta:'Meta AI'};
 
-let calYear=2026,calMonth=5; // 0-indexed: 5=June
+let calYear=2026,calMonth=9; // 0-indexed: 9=October
 function openCourses(){document.getElementById('courses-overlay').classList.add('open');renderCalendar();}
 function closeCourses(){document.getElementById('courses-overlay').classList.remove('open');closeCalEventPopup();}
 
@@ -4030,58 +4149,11 @@ document.addEventListener('click',e=>{
 /* ════ VIDEO PLAYER SYSTEM ════ */
 // Latest official YouTube videos from each AI model's channel
 const AI_VIDEOS=[
-  {
-    modelId:'gpt',
-    title:'Introducing GPT-5.5 — OpenAI\'s Smartest Model',
-    desc:'GPT-5.5 understands what you\'re trying to do faster and carries more of the work itself — coding, research, data analysis, and operating software across tools until a task is finished.',
-    videoId:'yyvVUEPSCu0',
-    thumb:'https://img.youtube.com/vi/yyvVUEPSCu0/hqdefault.jpg',
-    date:'Apr 23, 2026',
-    source:'OpenAI',
-    platform:'youtube'
-  },
-  {
-    modelId:'claude',
-    title:'Introducing Claude Fable 5 by Anthropic',
-    desc:'Claude Fable 5 is Anthropic\'s first publicly available Mythos-class model — state-of-the-art on software engineering, knowledge work and vision, with safety guardrails on high-risk topics.',
-    videoId:'t_LBECIQQqs',
-    thumb:'https://img.youtube.com/vi/t_LBECIQQqs/hqdefault.jpg',
-    date:'Jun 9, 2026',
-    source:'Anthropic',
-    platform:'youtube'
-  },
-  {
-    modelId:'gemini',
-    title:'Introducing Google Gemini — The Most Capable AI',
-    desc:'Google DeepMind officially introduces Gemini with multimodal AI capabilities across text, code, images, audio and video in one unified model.',
-    videoId:'UIZAiXYceBI',
-    thumb:'https://img.youtube.com/vi/UIZAiXYceBI/hqdefault.jpg',
-    tiktokUrl:'https://www.tiktok.com/@googlegemini/video/7626494781144829198',
-    date:'Mar 25, 2026',
-    source:'Google Gemini',
-    platform:'youtube'
-  },
-  {
-    modelId:'grok',
-    title:'Grok 4.3 — xAI Launch & Live Demo',
-    desc:'xAI demonstrates Grok 4.3 with native video input, document generation, Skills, and real-time X post integration. The most capable AI xAI has built.',
-    videoId:'E_-EjgX40O4',
-    thumb:'https://img.youtube.com/vi/E_-EjgX40O4/hqdefault.jpg',
-    xUrl:'https://x.com/xai/status/2050355373052223585/video/1',
-    date:'Apr 17, 2026',
-    source:'xAI',
-    platform:'youtube'
-  },
-  {
-    modelId:'meta',
-    title:'Meta AI — Introducing the New Era of Smart AI Assistant',
-    desc:'Meta unveils its new AI assistant powered by Llama, now available across WhatsApp, Instagram, Facebook and Messenger for billions of users worldwide.',
-    videoId:'jjwt-7Iov0k',
-    thumb:'https://img.youtube.com/vi/jjwt-7Iov0k/hqdefault.jpg',
-    date:'Apr 5, 2026',
-    source:'Meta AI',
-    platform:'youtube'
-  },
+  {modelId:'gpt',title:'Introducing GPT-6 Astra',desc:'OpenAI introduces GPT-6 Astra, its first GPT-6 model, built for hard multi-step work, agents and computer use.',videoId:'1QNsdr-Qx_I',thumb:'https://img.youtube.com/vi/1QNsdr-Qx_I/hqdefault.jpg',date:'Sep 3, 2026',source:'OpenAI',platform:'youtube'},
+  {modelId:'claude',title:'Claude Opus 5.5 — 40% cheaper, Fable-level performance',desc:'A breakdown of Anthropic\'s Opus 5.5: #1 on the Intelligence Index and 40% cheaper to run than Opus 5.',videoId:'p_X1T4RNmXw',thumb:'https://img.youtube.com/vi/p_X1T4RNmXw/hqdefault.jpg',date:'Sep 22, 2026',source:'YouTube',platform:'youtube'},
+  {modelId:'gemini',title:'Gemini 3.8 Flash: near-frontier AI at a fraction of the cost',desc:'What changed in Google\'s latest Flash model — speed, price and benchmarks.',videoId:'vxoqEvTjomE',thumb:'https://img.youtube.com/vi/vxoqEvTjomE/hqdefault.jpg',date:'Sep 2026',source:'YouTube',platform:'youtube'},
+  {modelId:'grok',title:'What is Grok 4.7?',desc:'An overview of xAI\'s Grok 4.7, the new coding and knowledge-work flagship available in Cursor and Grok Build.',videoId:'k7Wu2gsWpMY',thumb:'https://img.youtube.com/vi/k7Wu2gsWpMY/hqdefault.jpg',date:'Sep 2026',source:'YouTube',platform:'youtube'},
+  {modelId:'meta',title:'Meta releases Muse Wonder',desc:'Meta\'s first frontier-level model: what Muse Wonder and Wonder Full can do and how they compare.',videoId:'lyhYEr5svOc',thumb:'https://img.youtube.com/vi/lyhYEr5svOc/hqdefault.jpg',date:'Oct 12, 2026',source:'YouTube',platform:'youtube'},
 ];
 
 let currentVideoIdx=0;
@@ -4139,11 +4211,11 @@ function switchVideoModal(idx){
 
 /* ════ WELCOME POPUP ════ */
 const WELCOME_DATA=[
-  {modelId:'gpt',  version:'GPT-5.5',      color:'#34d399',url:'https://openai.com/index/introducing-gpt-5-5/', update:'Apr 23 — smartest & most agentic model yet',desc:'GPT-5.5 plans, uses tools, checks its work and keeps going. Leads creative writing; ties Claude on coding. GPT-5.5 Instant is the default ChatGPT model.',vsWin:['#2 on Artificial Analysis Intelligence Index','Best for agentic long-horizon tasks','900M+ weekly users'],vsLose:['Claude Fable 5 now leads overall']},
-  {modelId:'claude',version:'Fable 5',    color:'#fbbf24',url:'https://www.anthropic.com/news', update:'Jun 9 — first public Mythos-class model',desc:'Claude Fable 5 is state-of-the-art on nearly every coding benchmark and exceeds Opus 4.8 by 10%+ on some. Routes high-risk cyber/bio questions to Opus 4.8.',vsWin:['Best overall model on the Intelligence Index','State-of-the-art software engineering & vision','Mythos-class capability, publicly available'],vsLose:['~2× Opus pricing; some topics restricted']},
-  {modelId:'gemini',version:'Gemini 3.1 Pro',color:'#60a5fa',url:'https://blog.google/technology/google-deepmind/', update:'Reasoning flagship; 3.5 Flash for speed',desc:'Gemini 3.1 Pro leads on reasoning and data analysis. The new 3.5 Flash (May) beats it on coding and runs 4× faster. 1M token context, free in the Gemini app.',vsWin:['Best on reasoning & data analysis','1M token context window','Deep Google Workspace integration'],vsLose:['Opus & GPT-5.5 edge it on hardest coding']},
-  {modelId:'grok', version:'Grok 4.3 Beta',color:'#c084fc',url:'https://x.ai/news', update:'Apr 17 — video input, Skills, doc generation',desc:'Grok 4.3 adds native video input, Skills (persistent expertise), and document generation. Live X access mid-conversation. Cheapest of the frontier four.',vsWin:['Only AI with live X/Twitter post access','Cheapest of the frontier four','Skills give it persistent custom expertise'],vsLose:['#4 on Intelligence Index of the four']},
-  {modelId:'meta', version:'Llama 4',      color:'#2d8cf0',url:'https://ai.meta.com/blog/', update:'1B users · open-source leader',desc:'First AI to hit 1 billion monthly users. Llama 4 Scout and Maverick lead open-source on image understanding, coding and reasoning. Fully open-weight and free.',vsWin:['Completely free on every Meta app','Open-source: run locally for full privacy','First assistant to reach 1B users'],vsLose:['Frontier closed models lead on capability']},
+  {modelId:'claude',version:'Opus 5.5',color:'#fbbf24',url:'https://www.anthropic.com/news',update:'Sep 22 — #1 on the Intelligence Index',desc:'Opus 5.5 performs at Fable 5.1 level on most work and costs 40% less than Opus 5. Sonnet 5.5 (Sep 28) and Haiku 5.5 (Oct 7) completed the family.',vsWin:['#1 Intelligence Index (58)','Best coding & agent model','$4/$20 — cheaper than Astra'],vsLose:['No image or video generation']},
+  {modelId:'meta',version:'Muse Wonder',color:'#2d8cf0',url:'https://ai.meta.com',update:'Oct 12 — Meta\'s first frontier model',desc:'Wonder Full scores 56 on the independent Intelligence Index, second only to Opus 5.5. Meta AI stays free for 1B+ users; Muse subscriptions unlock Wonder.',vsWin:['#2 Intelligence Index (Full)','1M context, strong memory','Free Meta AI for 1B+ users'],vsLose:['Wonder Full not in the API']},
+  {modelId:'gpt',version:'GPT-6 Astra',color:'#34d399',url:'https://openai.com/index/devday-2026/',update:'Sep 3 — GPT-6 era begins',desc:'Astra, Sol and Luna span every budget. DevDay added dots agents, Astra Ultrafast and a $500 Pro tier. ChatGPT has 1.2 billion weekly users.',vsWin:['1.2B weekly users','Best computer-use agents','Luna is free for everyone'],vsLose:['Astra trails Opus 5.5 on the Index']},
+  {modelId:'gemini',version:'Gemini 3.8 Flash',color:'#60a5fa',url:'https://blog.google/technology/google-deepmind/',update:'Sep 2 — fast, cheap, near-frontier',desc:'Four Flash releases since May. The Gemini app passed 1 billion monthly users; Gemini 4 is expected before the end of 2026.',vsWin:['1B+ monthly users','Fastest & cheapest frontier API','Deep Google integration'],vsLose:['3.5 Pro still not released']},
+  {modelId:'grok',version:'Grok 4.7',color:'#c084fc',url:'https://x.ai/news',update:'Sep 21 — coding & knowledge work',desc:'xAI\'s new flagship with a 500K context, built into Cursor (now owned by SpaceX) and Grok Build. Live X data remains its unique edge.',vsWin:['Only AI with live X posts','$2/$6 — low-cost API','Native in Cursor'],vsLose:['#5 of the Big 5 on the Index']},
 ];
 function openWelcome(){
   const overlay=document.getElementById('welcome-overlay');
@@ -4615,6 +4687,68 @@ function updateNavVideoBar(vid){
   if(dot)dot.style.background=`linear-gradient(135deg,${ac}50,transparent)`;
 }
 
+/* ════ STATE OF AI HERO + PLANS (Oct 2026) ════ */
+const FRONTIER=[
+  {m:'Claude Opus 5.5',lab:'Anthropic',id:'claude',score:58,price:'$4 / $20',date:'Sep 22'},
+  {m:'Muse Wonder Full',lab:'Meta',id:'meta',score:56,price:'Subscription',date:'Oct 12'},
+  {m:'GPT-6 Astra',lab:'OpenAI',id:'gpt',score:53,price:'$10 / $50',date:'Sep 3'},
+  {m:'Claude Fable 5.1',lab:'Anthropic',id:'claude',score:53,price:'$10 / $50',date:'Mythos-class'},
+  {m:'Muse Wonder',lab:'Meta',id:'meta',score:52,price:'$4 / $20',date:'Oct 12'},
+  {m:'Grok 4.7',lab:'xAI',id:'grok',score:46,price:'$2 / $6',date:'Sep 21'},
+  {m:'Gemini 3.8 Flash',lab:'Google',id:'gemini',score:41,price:'$0.75 / $3.75',date:'Sep 2'},
+];
+const REACH=[
+  {id:'gpt',num:'1.2B',lbl:'ChatGPT · weekly users',src:'OpenAI, Sep 29'},
+  {id:'gemini',num:'1B+',lbl:'Gemini app · monthly',src:'Google, Aug 11'},
+  {id:'meta',num:'1B+',lbl:'Meta AI · monthly',src:'Meta, last reported Oct 2025'},
+  {id:'claude',num:'~950M',lbl:'claude.ai · monthly visits',src:'Similarweb estimate, Sep'},
+];
+const PLANS=[
+  {id:'gpt',name:'ChatGPT',lab:'OpenAI',free:['Yes','GPT-6 Luna'],entry:['$8','Go'],main:['$20','Plus · Sol & Luna'],top:['$200 / $500','Pro / Pro 500'],api:['GPT-6 Astra','$10 / $50']},
+  {id:'claude',name:'Claude',lab:'Anthropic',free:['Yes','Sonnet 5.5'],entry:['—',''],main:['$20','Pro · Opus 5.5'],top:['$100 / $200','Max'],api:['Opus 5.5','$4 / $20']},
+  {id:'gemini',name:'Gemini',lab:'Google',free:['Yes','Gemini Flash'],entry:['—',''],main:['$20','Google AI Pro'],top:['$100 / $200','AI Ultra'],api:['Gemini 3.8 Flash','$0.75 / $3.75']},
+  {id:'grok',name:'Grok',lab:'xAI',free:['Limited','On X & grok.com'],entry:['$8','X Premium'],main:['$30','SuperGrok'],top:['$300','SuperGrok Heavy'],api:['Grok 4.7','$2 / $6']},
+  {id:'meta',name:'Meta AI',lab:'Meta',free:['Yes','Muse Spark in Meta apps'],entry:['—',''],main:['$20','Muse agent'],top:['$100','Muse top tier'],api:['Muse Wonder','$4 / $20']},
+];
+function renderStateOfAI(){
+  const rows=document.getElementById('loom-rows');if(!rows)return;
+  const lo=30,hi=60;
+  rows.innerHTML=FRONTIER.map((f,i)=>{
+    const c=MODEL_COLORS[f.id];const pct=Math.max(2,Math.min(100,(f.score-lo)/(hi-lo)*100));
+    return `<li class="loom-row${i===0?' is-top':''}" aria-label="${f.m} by ${f.lab}: ${f.score}">
+      <div class="loom-name">${f.m}<small>${f.lab} · ${f.date}</small></div>
+      <div class="loom-track"><div class="loom-thread" data-w="${pct}" style="color:${c};background:${c}"><span class="loom-knot"></span></div></div>
+      <div class="loom-score" style="color:${c}">${f.score}<small>${f.price}</small></div>
+    </li>`;}).join('');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>rows.querySelectorAll('.loom-thread').forEach(t=>t.style.width=t.dataset.w+'%')));
+  // timeline: past events in the last 30 days, newest first
+  const tl=document.getElementById('soa-timeline');
+  if(tl){
+    const now=new Date();const cutoff=new Date(now.getTime()-30*864e5);
+    const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    let past=RELEASE_EVENTS.filter(e=>{const d=new Date(e.date+'T12:00:00');return d<=now&&d>=cutoff;});
+    if(!past.length)past=RELEASE_EVENTS.filter(e=>new Date(e.date+'T12:00:00')<=now);
+    past=past.sort((a,b)=>b.date.localeCompare(a.date)).slice(0,6);
+    tl.innerHTML=past.map(e=>{const d=new Date(e.date+'T12:00:00');
+      return `<li tabindex="0" style="--c:${MODEL_COLORS[e.modelId]}" onclick="openCourses()" onkeydown="if(event.key==='Enter')openCourses()">
+        <div class="tl-when">${months[d.getMonth()]} ${d.getDate()} · ${MODEL_NAMES[e.modelId]}</div>
+        <div class="tl-what">${e.title}</div>
+        <div class="tl-why">${e.desc}</div></li>`;}).join('');
+  }
+  const rc=document.getElementById('soa-reach');
+  if(rc)rc.innerHTML=REACH.map(r=>`<div class="reach-cell"><div class="reach-num" style="color:${MODEL_COLORS[r.id]}">${r.num}</div><div class="reach-lbl">${r.lbl}</div><div class="reach-src">${r.src}</div></div>`).join('');
+  const sd=document.getElementById('soa-date');
+  if(sd)sd.textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  // plans table
+  const pt=document.getElementById('plans-table');
+  if(pt){
+    const cell=v=>`<td><b>${v[0]}</b>${v[1]?`<span>${v[1]}</span>`:''}</td>`;
+    pt.innerHTML=`<thead><tr><th scope="col">Assistant</th><th scope="col">Free plan</th><th scope="col">Budget plan</th><th scope="col">Main plan</th><th scope="col">Power plans</th><th scope="col">Flagship API</th></tr></thead><tbody>`+
+      PLANS.map(p=>`<tr><th scope="row" style="color:${MODEL_COLORS[p.id]}">${p.name}<small>${p.lab}</small></th>${cell(p.free)}${cell(p.entry)}${cell(p.main)}${cell(p.top)}${cell(p.api)}</tr>`).join('')+`</tbody>`;
+  }
+}
+
+renderStateOfAI();
 renderBOW();
 renderModels();
 renderFilters();
